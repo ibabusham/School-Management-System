@@ -1,0 +1,241 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id             String   @id @default(uuid())
+  name           String
+  username       String   @unique
+  password       String
+  role           Role
+  account_status Boolean  @default(true)
+  createdAt      DateTime @default(now())
+
+  teacher       Teacher?
+  student       Student?
+  refreshTokens RefreshToken[]
+}
+
+model RefreshToken {
+  id        String    @id @default(uuid())
+  tokenHash String    @unique
+  userId    String
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+enum Role {
+  ADMIN
+  TEACHER
+  STUDENT
+}
+
+model Teacher {
+  id             String  @id
+  name           String
+  employ_id      Int     @unique
+  email          String
+  phonenumber    String
+  specilization  String
+  account_status Boolean @default(true)
+
+  user User @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  subjects      Subjects[]
+  progressNotes Progress_notes[]
+}
+
+model Student {
+  id                   String   @id
+  student_id           Int      @unique
+  first_name           String
+  last_name            String
+  email                String
+  account_status       Boolean  @default(true)
+  date_of_birth        DateTime
+  phonenumber          String
+  enrollment_date      DateTime
+  learning_progress_id String   @unique
+  classId              String?
+  gender               Gender
+
+  user              User                 @relation(fields: [id], references: [id], onDelete: Cascade)
+  class             Classes?             @relation(fields: [classId], references: [id], onDelete: SetNull)
+  learning_progress Learning_progresses  @relation(fields: [learning_progress_id], references: [id], onDelete: Restrict)
+
+  attendances Attendences[]
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+model Classes {
+  id         String @id
+  class_name String
+
+  academicYears Class_Academic_year[]
+  students      Student[]
+  subjects      Subjects[]
+  performance   Classes_performence?
+}
+
+model Subjects {
+  id           String @id
+  subject_name String
+  subject_code String
+  Description  String
+  classId      String
+  teacherId    String
+
+  class   Classes @relation(fields: [classId], references: [id], onDelete: Cascade)
+  teacher Teacher @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+
+  assignments Assignments[]
+  lessons     Lessons[]
+  exams       Exams[]
+  attendances Attendences[]
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+}
+
+model Academic_Years {
+  id         String   @id
+  year_name  String
+  Start_date DateTime
+  end_date   DateTime
+  status     Status
+
+  classes Class_Academic_year[]
+  terms   Terms[]
+}
+
+model Terms {
+  id         String   @id
+  term_name  String
+  Start_date DateTime
+  end_date   DateTime
+  yearId     String
+
+  year Academic_Years @relation(fields: [yearId], references: [id], onDelete: Cascade)
+}
+
+model Class_Academic_year {
+  classId String
+  yearId  String
+
+  class Classes        @relation(fields: [classId], references: [id], onDelete: Cascade)
+  year  Academic_Years @relation(fields: [yearId], references: [id], onDelete: Cascade)
+
+  @@id([classId, yearId])
+}
+
+model Assignments {
+  id                       String   @id
+  assignment_title         String
+  assignment_description   String
+  due_date                 DateTime
+  maximum_grade            Int
+  attachment               String
+  Submission_instructions  String
+  subjectId                String
+
+  subject Subjects @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+}
+
+model Lessons {
+  id                  String      @id
+  lesson_title        String
+  lesson_description  String
+  lesson_date         DateTime
+  learning_objectinve String
+  learning_material   String
+  Completion_status   iscompleate
+  subjectId           String
+
+  subject Subjects @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+}
+
+enum iscompleate {
+  COMPLEATED
+  INCOMPLEATE
+}
+
+model Exams {
+  id            String   @id
+  exam_name     String
+  exam_date     DateTime
+  Maximum_grade Int
+  subjectId     String
+
+  subject Subjects @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+}
+
+model Learning_progresses {
+  id                     String @id
+  subjects_averages      Int
+  overall_avreages       Int
+  compleated_assignments String
+  missing_assignements   String
+  attendence_percentage  Int
+  learning_status        Status
+
+  student       Student?
+  progressNotes Progress_notes[]
+}
+
+model Progress_notes {
+  id                    String   @id
+  note_date             DateTime
+  note_observation      String
+  Strengths             String
+  areas_for_improvement String
+  teacherId             String
+  learningProgressId    String
+
+  teacher           Teacher              @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  learning_progress Learning_progresses  @relation(fields: [learningProgressId], references: [id], onDelete: Cascade)
+}
+
+model Classes_performence {
+  id                            String @id
+  class_avg                     Int
+  highest_grade                 Int
+  lowest_grade                  Int
+  assignments_compleation_rate  Int
+  attendence_rate               Int
+  student_requiring_support     Int
+  class_status                  Status
+  classId                       String @unique
+
+  class Classes @relation(fields: [classId], references: [id], onDelete: Cascade)
+}
+
+model Attendences {
+  id                     String   @id
+  attendance_date        DateTime
+  attendance_status      String
+  attendance_percentage  Int
+  studentId              String
+  subjectId              String
+
+  student Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  subject Subjects @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+}
