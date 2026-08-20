@@ -14,8 +14,10 @@ export function handleError(error: unknown) {
     return NextResponse.json({ error: error.message }, { status: error.statusCode });
   }
 
-  if(error instanceof ZodError) {
-    return NextResponse.json({ error: error.message }, { status: 400 });
+  if (error instanceof ZodError) {
+    const firstIssue = error.issues[0];
+    const message = firstIssue?.message ?? "Validation error";
+    return NextResponse.json({ error: message }, { status: 400 });
   }
 
   return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

@@ -3,6 +3,12 @@ import { prisma } from "@/app/lib/prisma";
 import { AppError } from "@/app/utils/errors.utility";
 import type { CreateClassInput, UpdateClassInput, GetClassListQueryInput } from "../schemas";
 
+const classInclude = {
+  academicYears: { include: { year: true } },
+  students: true,
+  subjects: true,
+} as const;
+
 async function findClassById(id: string) {
   const classRecord = await prisma.classes.findUnique({
     where: { id },
@@ -13,6 +19,18 @@ async function findClassById(id: string) {
   }
 
   return classRecord;
+}
+
+async function findAcademicYearById(id: string) {
+  const academicYear = await prisma.academic_Years.findUnique({
+    where: { id },
+  });
+
+  if (!academicYear) {
+    throw new AppError("Academic year not found", 404);
+  }
+
+  return academicYear;
 }
 
 const studentInclude = {
@@ -86,6 +104,24 @@ export async function unassignStudentFromClass(classId: string, studentId: strin
 }
 
 export async function createClass(data: CreateClassInput) {
+  let yearId: string;
+
+  if (data.academic_year_id) {
+    await findAcademicYearById(data.academic_year_id);
+    yearId = data.academic_year_id;
+  } else {
+    const academicYear = await prisma.academic_Years.create({
+      data: {
+        id: randomUUID(),
+        year_name: data.name!,
+        Start_date: data.startDate!,
+        end_date: data.endDate!,
+        status: "ACTIVE",
+      },
+    });
+    yearId = academicYear.id;
+  }
+
   return prisma.classes.create({
     data: {
       id: randomUUID(),
@@ -93,72 +129,85 @@ export async function createClass(data: CreateClassInput) {
       academicYears: {
         create: {
           year: {
-            connect: {
-              id: data.academic_year_id,
-            },
+            connect: { id: yearId },
           },
         },
       },
-      students: {
-        connect: { id: data.student_id },
-      },
-      subjects: {
-        connect: { id: data.subject_id },
-      },
-      teachers: {
-        connect: { id: data.teacher_id },
-      },
-      terms: {
-        connect: { id: data.term_id },
-      },
     },
+    include: classInclude,
   });
 }
-export async function updateClass(data: UpdateClassInput) {
-  return prisma.classes.update({
-    where: {id: data.class_id},
-    data: {
-      class_name: data.class_name,
-      academic_year_id: data.academic_year_id,
-      term_id: data.term_id,
-      teacher_id: data.teacher_id,
-      student_id: data.student_id,
-      subject_id: data.subject_id,
-      students: {
-        connect: { id: data.student_id },
+
+export async function updateClass(classId: string, data: UpdateClassInput) {
+  await findClassById(classId);
+
+  if (data.academic_year_id) {
+    await findAcademicYearById(data.academic_year_id);
+  }
+
+  return prisma.$transaction(async (tx) => {
+    if (data.academic_year_id) {
+      await tx.class_Academic_year.deleteMany({ where: { classId } });
+      await tx.class_Academic_year.create({
+        data: {
+          classId,
+          yearId: data.academic_year_id,
+        },
+      });
+    }
+
+    return tx.classes.update({
+      where: { id: classId },
+      data: {
+        ...(data.class_name && { class_name: data.class_name }),
       },
-      subjects: {
-        connect: { id: data.subject_id },
-      },
-      teachers: {
-        connect: { id: data.teacher_id },
-      },
-      terms: {
-        connect: { id: data.term_id },
-      },
-    },
+      include: classInclude,
+    });
   });
 }
+
 export async function deleteClass(id: string) {
+  await findClassById(id);
+
   return prisma.classes.delete({
     where: { id },
   });
 }
+
 export async function getClassById(id: string) {
-  return prisma.classes.findUnique({
+  const classRecord = await prisma.classes.findUnique({
     where: { id },
+    include: classInclude,
   });
+
+  if (!classRecord) {
+    throw new AppError("Class not found", 404);
+  }
+
+  return classRecord;
 }
+
 export async function getClassList(data: GetClassListQueryInput) {
-  return prisma.classes.findMany({
-    skip: (data.page - 1) * data.limit,
-    take: data.limit,
-    include: {
-      academicYears: true,
-      students: true,
-      subjects: true,
-      teachers: true,
-      terms: true,
+  const { page, limit } = data;
+  const skip = (page - 1) * limit;
+
+  const [classes, total] = await Promise.all([
+    prisma.classes.findMany({
+      skip,
+      take: limit,
+      include: classInclude,
+      orderBy: { class_name: "asc" },
+    }),
+    prisma.classes.count(),
+  ]);
+
+  return {
+    data: classes,
+    pagination: {
+      page,
+      limit,
+      total,
+      totalPages: Math.ceil(total / limit) || 1,
     },
-  });
+  };
 }

@@ -1,14 +1,16 @@
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 import { NextResponse } from "next/server";
-import { assignSubjectToClass, unassignSubjectFromClass } from "../../Services/subjects.services";
+import { assignSubjectToClass } from "../../Services/subjects.services";
 import { assignSubjectToClassSchema } from "../../schemas";
-import { unassignSubjectFromClassSchema } from "../../schemas";
+import { handleError } from "@/app/utils/errors.utility";
+
 /**
  * @swagger
  * /api/subjects/{id}/class:
  *   post:
  *     tags: [Subjects]
- *     summary: Assign subject to class
+ *     summary: Reassign subject to class
+ *     description: Updates the class a subject belongs to
  *     security:
  *       - BearerAuth: []
  *     parameters:
@@ -17,19 +19,27 @@ import { unassignSubjectFromClassSchema } from "../../schemas";
  *         required: true
  *         schema:
  *           type: string
+ *           format: uuid
+ *         description: Subject id
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/AssignSubjectToClassInput'
+ *             $ref: '#/components/schemas/AssignSubjectToClassRequest'
  *     responses:
  *       200:
- *         description: Subject assigned to class
+ *         description: Subject reassigned to class
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Subject'
+ *               $ref: '#/components/schemas/SubjectResponse'
+ *       400:
+ *         description: Validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
  *         description: Unauthorized
  *         content:
@@ -37,68 +47,21 @@ import { unassignSubjectFromClassSchema } from "../../schemas";
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
- *         description: Subject not found
+ *         description: Subject or class not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const POST = createRouteHandler(assignSubjectToClassSchema, async (request, body, context) => {
-  try {
-    const { id } = await context.params;
-    const result = await assignSubjectToClass({ ...body, subject_id: id });
-    return NextResponse.json(result);
-  } catch (error) {
-    return NextResponse.json({ error: (error as Error).message }, { status: 500 });
+export const POST = createRouteHandler(
+  assignSubjectToClassSchema,
+  async (_request, body, context) => {
+    try {
+      const { id } = await context.params;
+      const subject = await assignSubjectToClass(id, body);
+      return NextResponse.json({ subject });
+    } catch (error) {
+      return handleError(error);
+    }
   }
-});
-
-/**
- * @swagger
- * /api/subjects/{id}/class:
- *   delete:
- *     tags: [Subjects]
- *     summary: Unassign subject from class
- *     security:
- *       - BearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/UnassignSubjectFromClassInput'
- *     responses:
- *       200:
- *         description: Subject unassigned from class
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Subject'
- *       401:
- *         description: Unauthorized
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/ErrorResponse'
- *       404:
- *         description: Subject not found
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/ErrorResponse'
- */
-export const DELETE = createRouteHandler(unassignSubjectFromClassSchema, async (request, body, context) => {
-  try {
-    const { id } = await context.params;
-    const result = await unassignSubjectFromClass({ ...body, subject_id: id });
-    return NextResponse.json(result);
-  } catch (error) {
-    return NextResponse.json({ error: (error as Error).message }, { status: 500 });
-  }
-});
+);

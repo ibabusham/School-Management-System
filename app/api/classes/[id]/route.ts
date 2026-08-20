@@ -1,6 +1,6 @@
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 import { deleteClass, getClassById, updateClass } from "../Services/classes.services";
-import { deleteClassSchema, getClassByIdSchema, updateClassSchema } from "../schemas";
+import { updateClassSchema } from "../schemas";
 import { NextResponse } from "next/server";
 import { handleError } from "@/app/utils/errors.utility";
 
@@ -18,13 +18,14 @@ import { handleError } from "@/app/utils/errors.utility";
  *         required: true
  *         schema:
  *           type: string
+ *           format: uuid
  *     responses:
  *       200:
  *         description: Class details
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Class'
+ *               $ref: '#/components/schemas/ClassResponse'
  *       401:
  *         description: Unauthorized
  *         content:
@@ -38,11 +39,11 @@ import { handleError } from "@/app/utils/errors.utility";
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const GET = createRouteHandler(getClassByIdSchema, async (request, body, context) => {
+export const GET = createRouteHandler(null, async (_request, _body, context) => {
   try {
     const { id } = await context.params;
-    const result = await getClassById(id);
-    return NextResponse.json(result);
+    const classData = await getClassById(id);
+    return NextResponse.json({ classData });
   } catch (error) {
     return handleError(error);
   }
@@ -62,6 +63,7 @@ export const GET = createRouteHandler(getClassByIdSchema, async (request, body, 
  *         required: true
  *         schema:
  *           type: string
+ *           format: uuid
  *     requestBody:
  *       required: true
  *       content:
@@ -94,11 +96,11 @@ export const GET = createRouteHandler(getClassByIdSchema, async (request, body, 
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const PATCH = createRouteHandler(updateClassSchema, async (request, body, context) => {
+export const PATCH = createRouteHandler(updateClassSchema, async (_request, body, context) => {
   try {
     const { id } = await context.params;
-    const result = await updateClass({ ...body, class_id: id });
-    return NextResponse.json({ result });
+    const classData = await updateClass(id, body);
+    return NextResponse.json({ classData });
   } catch (error) {
     return handleError(error);
   }
@@ -118,13 +120,14 @@ export const PATCH = createRouteHandler(updateClassSchema, async (request, body,
  *         required: true
  *         schema:
  *           type: string
+ *           format: uuid
  *     responses:
  *       200:
  *         description: Class deleted
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Class'
+ *               $ref: '#/components/schemas/ClassResponse'
  *       401:
  *         description: Unauthorized
  *         content:
@@ -138,11 +141,11 @@ export const PATCH = createRouteHandler(updateClassSchema, async (request, body,
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const DELETE = createRouteHandler(deleteClassSchema, async (request, body, context) => {
+export const DELETE = createRouteHandler(null, async (_request, _body, context) => {
   try {
     const { id } = await context.params;
-    const result = await deleteClass(id);
-    return NextResponse.json({ result });
+    const classData = await deleteClass(id);
+    return NextResponse.json({ classData });
   } catch (error) {
     return handleError(error);
   }

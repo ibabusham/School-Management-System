@@ -1,8 +1,73 @@
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 import { createSubject, getSubjectList } from "./Services/subjects.services";
 import { NextResponse } from "next/server";
-import { createSubjectSchema, getSubjectListQuerySchema } from "./schemas";
+import { createSubjectSchema, subjectListQuerySchema } from "./schemas";
+import { handleError } from "@/app/utils/errors.utility";
 
+/**
+ * @swagger
+ * /api/subjects:
+ *   get:
+ *     tags: [Subjects]
+ *     summary: List subjects
+ *     description: Returns paginated subjects, optionally filtered by search query
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: search
+ *         schema:
+ *           type: string
+ *         description: Filter by subject name or code (partial match)
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           default: 1
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           default: 10
+ *     responses:
+ *       200:
+ *         description: Paginated list of subjects
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SubjectListResponse'
+ *       400:
+ *         description: Validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       401:
+ *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
+export const GET = createRouteHandler(null, async (request) => {
+  try {
+    const queryParams = request.nextUrl.searchParams;
+    const parsed = subjectListQuerySchema.safeParse({
+      page: queryParams.get("page") ?? undefined,
+      limit: queryParams.get("limit") ?? undefined,
+      search: queryParams.get("search") ?? undefined,
+    });
+
+    if (!parsed.success) {
+      return handleError(parsed.error);
+    }
+
+    const result = await getSubjectList(parsed.data);
+    return NextResponse.json(result);
+  } catch (error) {
+    return handleError(error);
+  }
+});
 
 /**
  * @swagger
@@ -10,6 +75,7 @@ import { createSubjectSchema, getSubjectListQuerySchema } from "./schemas";
  *   post:
  *     tags: [Subjects]
  *     summary: Create subject
+ *     description: Creates a subject and assigns it to a class and teacher
  *     security:
  *       - BearerAuth: []
  *     requestBody:
@@ -17,14 +83,26 @@ import { createSubjectSchema, getSubjectListQuerySchema } from "./schemas";
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/CreateSubjectInput'
+ *             $ref: '#/components/schemas/CreateSubjectRequest'
+ *           example:
+ *             subject_name: "Mathematics"
+ *             subject_code: "MATH-101"
+ *             subject_description: "Introductory mathematics"
+ *             class_id: "00000000-0000-4000-8000-000000000001"
+ *             teacher_id: "00000000-0000-4000-8000-000000000002"
  *     responses:
- *       200:
+ *       201:
  *         description: Subject created
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Subject'
+ *               $ref: '#/components/schemas/SubjectResponse'
+ *       400:
+ *         description: Validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
  *         description: Unauthorized
  *         content:
@@ -32,59 +110,17 @@ import { createSubjectSchema, getSubjectListQuerySchema } from "./schemas";
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
- *         description: Subject not found
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/ErrorResponse' 
- */
-export const POST = createRouteHandler(createSubjectSchema, async (request, body) => {
-  try {
-    const result = await createSubject(body);
-    return NextResponse.json(result);
-  } catch (error) {
-    return NextResponse.json({ error: (error as Error).message }, { status: 500 });
-  }
-});
-
-/**
- * @swagger
- * /api/subjects:
- *   get:
- *     tags: [Subjects]
- *     summary: Get subject list
- *     security:
- *       - BearerAuth: []
- *     parameters:
- *       - in: query
- *         name: page
- *         required: false
- *         schema:
- *           type: integer
- *       - in: query
- *         name: limit
- *         required: false
- *         schema:
- *           type: integer
- *     responses:
- *       200:
- *         description: Subject list
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/SubjectList'
- *       401:
- *         description: Unauthorized
+ *         description: Class or teacher not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const GET = createRouteHandler(getSubjectListQuerySchema, async (request, body) => {
+export const POST = createRouteHandler(createSubjectSchema, async (_request, body) => {
   try {
-    const result = await getSubjectList(body);
-    return NextResponse.json(result);
+    const subject = await createSubject(body);
+    return NextResponse.json({ subject }, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ error: (error as Error).message }, { status: 500 });
+    return handleError(error);
   }
 });

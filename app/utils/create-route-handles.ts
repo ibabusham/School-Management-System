@@ -2,7 +2,7 @@ import { NextRequest } from "next/server";
 import { z } from "zod";
 import { handleError } from "./errors.utility";
 
-type RouteContext<T = Record<string, string>> = {
+export type RouteContext<T = Record<string, string>> = {
   params: Promise<T>;
 };
 

@@ -10,7 +10,7 @@ export const getApiDocs = async () => {
         title: "School Management System API",
         version: "0.1.0",
         description:
-          "REST API for auth, students, teachers, and classes. Add @swagger JSDoc above each route handler to document endpoints.",
+          "REST API for auth, students, teachers, classes, subjects, and academic years.",
       },
       tags: [
         { name: "Auth", description: "Login, tokens, and password management" },
