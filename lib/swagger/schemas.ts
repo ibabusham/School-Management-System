@@ -56,6 +56,17 @@ export const safeUserSchema = z.object({
   account_status: z.boolean(),
   createdAt: z.string().datetime().or(z.string()),
 });
+export const classPerformanceSchema = z.object({
+  id: z.string(),
+  class_avg: z.number().int(),
+  highest_grade: z.number().int(),
+  lowest_grade: z.number().int(),
+  assignments_compleation_rate: z.number().int(),
+  attendence_rate: z.number().int(),
+  student_requiring_support: z.number().int(),
+  class_status: z.enum(["ACTIVE", "INACTIVE"]),
+  classId: z.string(),
+});
 
 export const teacherSchema = z.object({
   id: z.string(),
@@ -139,6 +150,10 @@ export const swaggerComponentSchemas = {
   TeacherResponse: zodToOpenApiSchema(z.object({ teacher: teacherSchema })),
   StudentResponse: zodToOpenApiSchema(z.object({ student: studentSchema })),
   ClassResponse: zodToOpenApiSchema(z.object({ classData: classSchema })),
+  ClassPerformance: zodToOpenApiSchema(classPerformanceSchema),
+  ClassPerformanceResponse: zodToOpenApiSchema(
+    z.object({ performance: classPerformanceSchema })
+  ),
   SubjectResponse: zodToOpenApiSchema(z.object({ subject: subjectSchema })),
   TermResponse: zodToOpenApiSchema(z.object({ term: termSchema })),
   AssignStudentsResponse: zodToOpenApiSchema(

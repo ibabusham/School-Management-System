@@ -211,3 +211,16 @@ export async function getClassList(data: GetClassListQueryInput) {
     },
   };
 }
+export async function getClassPerformance(classId: string) {
+  await findClassById(classId);
+
+  const performance = await prisma.classes_performence.findUnique({
+    where: { classId },
+  });
+
+  if (!performance) {
+    throw new AppError("Class performance not found", 404);
+  }
+
+  return performance;
+}
