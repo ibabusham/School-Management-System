@@ -1,59 +1,113 @@
-import { prisma } from "@/app/lib/prisma";
-import { CreateTermInput, TermListQuery, UpdateTermInput } from "../schemas";
 import { randomUUID } from "crypto";
-export const createTerm = async (term: CreateTermInput) => {
-    const newTerm = await prisma.terms.create({
-        data: {
-         id: randomUUID(),
-            term_name: term.name,
-            Start_date: term.startDate || new Date(),
-            end_date: term.endDate || new Date(),
-            yearId: term.yearId,
-            
-        },
-    });
-    return newTerm;
-};      
+import { prisma } from "@/app/lib/prisma";
+import { AppError } from "@/app/utils/errors.utility";
+import type { CreateTermInput, TermListQuery, UpdateTermInput } from "../schemas";
 
-export const updateTerm = async (id: string, term: UpdateTermInput) => {
-    const updatedTerm = await prisma.terms.update({
-        where: { id },
-        data: {
-            name: term.name,
-            start_date: term.startDate,
-            end_date: term.endDate || new Date(),
-            status: term.status,
-            yearId: term.yearId,
-           
-        },
-    });
-    return updatedTerm;
-};
+const termInclude = {
+  year: true,
+} as const;
 
-export const deleteTerm = async (id: string) => {
-    const deletedTerm = await prisma.terms.delete({
-        where: { id },
-    });
-    return deletedTerm;
-};
+async function findAcademicYearById(id: string) {
+  const academicYear = await prisma.academic_Years.findUnique({ where: { id } });
 
-export const getTerm = async (id: string) => {
-    const term = await prisma.terms.findUnique({
-        where: { id },
-    });
-    return term;
-};
-export const getTerms = async (query: TermListQuery) => {
-    const { page, limit, search } = query;
-    const terms = await prisma.terms.findMany({
-        where: {
-            term_name: { contains: search, mode: "insensitive" },
-        },
-    });
-    return {
-        data: terms,
-        total: terms.length,
-        page: page,
-        limit: limit,
-    };
-};
+  if (!academicYear) {
+    throw new AppError("Academic year not found", 404);
+  }
+
+  return academicYear;
+}
+
+async function findTermById(id: string) {
+  const term = await prisma.terms.findUnique({
+    where: { id },
+    include: termInclude,
+  });
+
+  if (!term) {
+    throw new AppError("Term not found", 404);
+  }
+
+  return term;
+}
+
+function mapUpdateData(data: UpdateTermInput) {
+  const { name, startDate, endDate, yearId } = data;
+
+  return {
+    ...(name !== undefined && { term_name: name }),
+    ...(startDate !== undefined && { Start_date: startDate }),
+    ...(endDate !== undefined && { end_date: endDate }),
+    ...(yearId !== undefined && { yearId }),
+  };
+}
+
+export async function createTerm(term: CreateTermInput) {
+  await findAcademicYearById(term.yearId);
+
+  return prisma.terms.create({
+    data: {
+      id: randomUUID(),
+      term_name: term.name,
+      Start_date: term.startDate,
+      end_date: term.endDate,
+      yearId: term.yearId,
+    },
+    include: termInclude,
+  });
+}
+
+export async function updateTerm(id: string, term: UpdateTermInput) {
+  await findTermById(id);
+
+  if (term.yearId) {
+    await findAcademicYearById(term.yearId);
+  }
+
+  return prisma.terms.update({
+    where: { id },
+    data: mapUpdateData(term),
+    include: termInclude,
+  });
+}
+
+export async function deleteTerm(id: string) {
+  await findTermById(id);
+
+  return prisma.terms.delete({
+    where: { id },
+    include: termInclude,
+  });
+}
+
+export async function getTerm(id: string) {
+  return findTermById(id);
+}
+
+export async function getTerms(query: TermListQuery) {
+  const { page, limit, search } = query;
+  const skip = (page - 1) * limit;
+  const where = {
+    ...(search && { term_name: { contains: search, mode: "insensitive" as const } }),
+  };
+
+  const [terms, total] = await Promise.all([
+    prisma.terms.findMany({
+      where,
+      skip,
+      take: limit,
+      include: termInclude,
+      orderBy: { Start_date: "desc" },
+    }),
+    prisma.terms.count({ where }),
+  ]);
+
+  return {
+    data: terms,
+    pagination: {
+      page,
+      limit,
+      total,
+      totalPages: Math.ceil(total / limit) || 1,
+    },
+  };
+}
