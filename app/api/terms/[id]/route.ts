@@ -1,0 +1,145 @@
+import { createRouteHandler } from "@/app/utils/create-route-handles";
+import { NextResponse } from "next/server";
+import { deleteTerm, getTerm, updateTerm } from "../services/terms.services";
+import { handleError } from "@/app/utils/errors.utility";
+import { updateTermSchema } from "../schemas";
+
+/**
+ * @swagger
+ * /api/terms/{id}:
+ *   get:
+ *     tags: [Terms]
+ *     summary: Get a term by id
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *         description: Term id
+ *     responses:
+ *       200:
+ *         description: Term found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/TermResponse'
+ *       401:
+ *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
+export const GET = createRouteHandler(null,async (_request, _body, context) => {
+    const { id } = await context.params;
+    const term = await getTerm(id);
+    return NextResponse.json({ term });
+});
+
+/**
+ * @swagger
+ * /api/terms/{id}:
+ *   patch:
+ *     tags: [Terms]
+ *     summary: Update a term by id
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *         description: Term id
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/UpdateTermInput'
+ *     responses:
+ *       200:
+ *         description: Term updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/TermResponse'
+ *       401:
+ *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
+export const PATCH = createRouteHandler(updateTermSchema, async (_request, body, context) => {
+    try {
+        const { id } = await context.params;
+        const term = await updateTerm(id, body);
+        return NextResponse.json({ term });
+    } catch (error) {
+        return handleError(error);
+    }
+});
+
+/**
+ * @swagger
+ * /api/terms/{id}:
+ *   delete:
+ *     tags: [Terms]
+ *     summary: Delete a term by id
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *         description: Term id
+ *     responses:
+ *       200:
+ *         description: Term deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/TermResponse'
+ *       401:
+ *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
+export const DELETE = createRouteHandler(null,async (_request, _body, context) => {
+    try {
+        const { id } = await context.params;
+        const term = await deleteTerm(id);
+        return NextResponse.json({ term });
+    } catch (error) {
+        return handleError(error);
+    }
+});
