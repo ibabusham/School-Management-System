@@ -20,6 +20,7 @@ export const getApiDocs = async () => {
         { name: "Subjects", description: "Subject CRUD and listing" },
         { name: "Academic Years", description: "Academic Year CRUD and listing" },
         { name: "Terms", description: "Term CRUD and listing" },
+        { name: "Exams", description: "Exam CRUD and listing" },
        
     
       ],

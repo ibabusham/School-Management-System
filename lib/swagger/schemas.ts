@@ -29,6 +29,15 @@ import {
   createSubjectSchema,
   updateSubjectSchema,
 } from "@/app/api/subjects/schemas";
+import {
+  createTermSchema,
+  updateTermSchema,
+} from "@/app/api/terms/schemas";
+import {
+  bulkMarkExamSchema,
+  createExamSchema,
+  updateExamSchema,
+} from "@/app/api/exams/schemas";
 import { z } from "zod";
 import { zodToOpenApiSchema } from "./zod-to-schema";
 
@@ -51,6 +60,17 @@ export const safeUserSchema = z.object({
   role: roleSchema,
   account_status: z.boolean(),
   createdAt: z.string().datetime().or(z.string()),
+});
+export const classPerformanceSchema = z.object({
+  id: z.string(),
+  class_avg: z.number().int(),
+  highest_grade: z.number().int(),
+  lowest_grade: z.number().int(),
+  assignments_compleation_rate: z.number().int(),
+  attendence_rate: z.number().int(),
+  student_requiring_support: z.number().int(),
+  class_status: z.enum(["ACTIVE", "INACTIVE"]),
+  classId: z.string(),
 });
 
 export const teacherSchema = z.object({
@@ -95,6 +115,33 @@ export const subjectSchema = z.object({
   teacher: teacherSchema.optional(),
 });
 
+export const termSchema = z.object({
+  id: z.string(),
+  term_name: z.string(),
+  Start_date: z.string().datetime().or(z.string()),
+  end_date: z.string().datetime().or(z.string()),
+  yearId: z.string(),
+  year: academicYearSchema.optional(),
+});
+
+export const examSchema = z.object({
+  id: z.string(),
+  exam_name: z.string(),
+  exam_date: z.string().datetime().or(z.string()),
+  Maximum_grade: z.number().int(),
+  subjectId: z.string(),
+  subject: subjectSchema.optional(),
+});
+
+export const examSubmissionSchema = z.object({
+  id: z.string(),
+  examId: z.string(),
+  studentId: z.string(),
+  score: z.number().int().nullable(),
+  takenAt: z.string().datetime().or(z.string()),
+  student: studentSchema.optional(),
+});
+
 export const paginationSchema = z.object({
   page: z.number().int(),
   limit: z.number().int(),
@@ -116,14 +163,34 @@ export const swaggerComponentSchemas = {
   UpdateSubjectRequest: zodToOpenApiSchema(updateSubjectSchema),
   AssignSubjectToClassRequest: zodToOpenApiSchema(assignSubjectToClassSchema),
   AssignSubjectToTeacherRequest: zodToOpenApiSchema(assignSubjectToTeacherSchema),
+  CreateTermRequest: zodToOpenApiSchema(createTermSchema),
+  UpdateTermRequest: zodToOpenApiSchema(updateTermSchema),
+  CreateExamRequest: zodToOpenApiSchema(createExamSchema),
+  UpdateExamRequest: zodToOpenApiSchema(updateExamSchema),
+  BulkMarkExamRequest: zodToOpenApiSchema(bulkMarkExamSchema),
   Teacher: zodToOpenApiSchema(teacherSchema),
   Student: zodToOpenApiSchema(studentSchema),
   Class: zodToOpenApiSchema(classSchema),
   Subject: zodToOpenApiSchema(subjectSchema),
+  Term: zodToOpenApiSchema(termSchema),
+  Exam: zodToOpenApiSchema(examSchema),
+  ExamSubmission: zodToOpenApiSchema(examSubmissionSchema),
   TeacherResponse: zodToOpenApiSchema(z.object({ teacher: teacherSchema })),
   StudentResponse: zodToOpenApiSchema(z.object({ student: studentSchema })),
   ClassResponse: zodToOpenApiSchema(z.object({ classData: classSchema })),
+  ClassPerformance: zodToOpenApiSchema(classPerformanceSchema),
+  ClassPerformanceResponse: zodToOpenApiSchema(
+    z.object({ performance: classPerformanceSchema })
+  ),
   SubjectResponse: zodToOpenApiSchema(z.object({ subject: subjectSchema })),
+  TermResponse: zodToOpenApiSchema(z.object({ term: termSchema })),
+  ExamResponse: zodToOpenApiSchema(z.object({ exam: examSchema })),
+  MarkExamResponse: zodToOpenApiSchema(
+    z.object({
+      submissions: z.array(examSubmissionSchema),
+      markedCount: z.number().int(),
+    })
+  ),
   AssignStudentsResponse: zodToOpenApiSchema(
     z.object({
       students: z.array(studentSchema),
@@ -141,6 +208,15 @@ export const swaggerComponentSchemas = {
   ),
   SubjectListResponse: zodToOpenApiSchema(
     z.object({ data: z.array(subjectSchema), pagination: paginationSchema })
+  ),
+  TermListResponse: zodToOpenApiSchema(
+    z.object({ data: z.array(termSchema), pagination: paginationSchema })
+  ),
+  ExamListResponse: zodToOpenApiSchema(
+    z.object({ data: z.array(examSchema), pagination: paginationSchema })
+  ),
+  ExamSubmissionListResponse: zodToOpenApiSchema(
+    z.object({ data: z.array(examSubmissionSchema), pagination: paginationSchema })
   ),
   LoginResponse: zodToOpenApiSchema(
     z.object({

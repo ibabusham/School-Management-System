@@ -77,6 +77,7 @@ model Student {
   learning_progress Learning_progresses  @relation(fields: [learning_progress_id], references: [id], onDelete: Restrict)
 
   attendances Attendences[]
+  examSubmissions  Exam_submissions[] 
 }
 
 enum Gender {
@@ -186,6 +187,7 @@ model Exams {
   subjectId     String
 
   subject Subjects @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  submissions Exam_submissions[] 
 }
 
 model Learning_progresses {
@@ -238,4 +240,17 @@ model Attendences {
 
   student Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
   subject Subjects @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+}
+
+model Exam_submissions {
+  id         String   @id
+  examId     String
+  studentId  String
+  score      Int?     
+  takenAt    DateTime @default(now())
+
+  exam    Exams   @relation(fields: [examId], references: [id], onDelete: Cascade)
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([examId, studentId])
 }

@@ -9,7 +9,7 @@ import { updateTermSchema } from "../schemas";
  * /api/terms/{id}:
  *   get:
  *     tags: [Terms]
- *     summary: Get a term by id
+ *     summary: Get term by id
  *     security:
  *       - BearerAuth: []
  *     parameters:
@@ -33,17 +33,21 @@ import { updateTermSchema } from "../schemas";
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
- *       500:
- *         description: Internal server error
+ *       404:
+ *         description: Term not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const GET = createRouteHandler(null,async (_request, _body, context) => {
+export const GET = createRouteHandler(null, async (_request, _body, context) => {
+  try {
     const { id } = await context.params;
     const term = await getTerm(id);
     return NextResponse.json({ term });
+  } catch (error) {
+    return handleError(error);
+  }
 });
 
 /**
@@ -51,7 +55,7 @@ export const GET = createRouteHandler(null,async (_request, _body, context) => {
  * /api/terms/{id}:
  *   patch:
  *     tags: [Terms]
- *     summary: Update a term by id
+ *     summary: Update term
  *     security:
  *       - BearerAuth: []
  *     parameters:
@@ -67,35 +71,45 @@ export const GET = createRouteHandler(null,async (_request, _body, context) => {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/UpdateTermInput'
+ *             $ref: '#/components/schemas/UpdateTermRequest'
+ *           example:
+ *             name: "Spring Semester"
+ *             startDate: "2026-01-10"
+ *             endDate: "2026-05-30"
  *     responses:
  *       200:
- *         description: Term updated successfully
+ *         description: Term updated
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/TermResponse'
+ *       400:
+ *         description: Validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
  *         description: Unauthorized
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
- *       500:
- *         description: Internal server error
+ *       404:
+ *         description: Term or academic year not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
 export const PATCH = createRouteHandler(updateTermSchema, async (_request, body, context) => {
-    try {
-        const { id } = await context.params;
-        const term = await updateTerm(id, body);
-        return NextResponse.json({ term });
-    } catch (error) {
-        return handleError(error);
-    }
+  try {
+    const { id } = await context.params;
+    const term = await updateTerm(id, body);
+    return NextResponse.json({ term });
+  } catch (error) {
+    return handleError(error);
+  }
 });
 
 /**
@@ -103,7 +117,7 @@ export const PATCH = createRouteHandler(updateTermSchema, async (_request, body,
  * /api/terms/{id}:
  *   delete:
  *     tags: [Terms]
- *     summary: Delete a term by id
+ *     summary: Delete term
  *     security:
  *       - BearerAuth: []
  *     parameters:
@@ -116,7 +130,7 @@ export const PATCH = createRouteHandler(updateTermSchema, async (_request, body,
  *         description: Term id
  *     responses:
  *       200:
- *         description: Term deleted successfully
+ *         description: Term deleted
  *         content:
  *           application/json:
  *             schema:
@@ -127,19 +141,19 @@ export const PATCH = createRouteHandler(updateTermSchema, async (_request, body,
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
- *       500:
- *         description: Internal server error
+ *       404:
+ *         description: Term not found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const DELETE = createRouteHandler(null,async (_request, _body, context) => {
-    try {
-        const { id } = await context.params;
-        const term = await deleteTerm(id);
-        return NextResponse.json({ term });
-    } catch (error) {
-        return handleError(error);
-    }
+export const DELETE = createRouteHandler(null, async (_request, _body, context) => {
+  try {
+    const { id } = await context.params;
+    const term = await deleteTerm(id);
+    return NextResponse.json({ term });
+  } catch (error) {
+    return handleError(error);
+  }
 });
