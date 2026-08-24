@@ -30,7 +30,16 @@ function mapUpdateData(data: UpdateAcademicYear) {
 }
 
 export async function createAcademicYear(data: CreateAcademicYear) {
+  const activeAcademicYear = await prisma.academic_Years.findFirst({
+    where: {
+      status: "ACTIVE",
+    },
+  });
+  if(activeAcademicYear) {
+    throw new AppError("Only one academic year can be active at a time", 400);
+  }
   return prisma.academic_Years.create({
+    
     data: {
       id: randomUUID(),
       year_name: data.name,
@@ -41,8 +50,13 @@ export async function createAcademicYear(data: CreateAcademicYear) {
   });
 }
 
-export async function updateAcademicYear(id: string, data: UpdateAcademicYear) {
+export async function updateAcademicYear(id: string, data: UpdateAcademicYear) {  
   await findAcademicYearById(id);
+  const active = await prisma.academic_Years.findFirst({
+    where: { status: "ACTIVE", NOT: { id } },
+  });
+  if (active) throw new AppError("Only one academic year can be active at a time", 400);
+
 
   return prisma.academic_Years.update({
     where: { id },

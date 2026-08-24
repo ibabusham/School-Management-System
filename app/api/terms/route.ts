@@ -97,7 +97,7 @@ export const GET = createRouteHandler(null, async (request) => {
  *             schema:
  *               $ref: '#/components/schemas/TermResponse'
  *       400:
- *         description: Validation error
+ *         description:  Validation error or maximum of 2 terms per academic year
  *         content:
  *           application/json:
  *             schema:

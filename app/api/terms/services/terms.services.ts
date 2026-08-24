@@ -43,6 +43,14 @@ function mapUpdateData(data: UpdateTermInput) {
 
 export async function createTerm(term: CreateTermInput) {
   await findAcademicYearById(term.yearId);
+  const termsCount = await prisma.terms.count({
+    where: {
+      yearId: term.yearId,
+    },
+  });
+  if(termsCount >= 2) {
+    throw new AppError("A maximum of 2 terms can be created for an academic year", 400);
+  }
 
   return prisma.terms.create({
     data: {

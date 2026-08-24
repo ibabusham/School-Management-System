@@ -99,7 +99,7 @@ export const GET = createRouteHandler(null, async (request) => {
  *             schema:
  *               $ref: '#/components/schemas/AcademicYear'
  *       400:
- *         description: Validation error
+ *         description: Validation error or an active academic year already exists
  *         content:
  *           application/json:
  *             schema:

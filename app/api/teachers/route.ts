@@ -64,6 +64,14 @@ export const GET = createRouteHandler(null, async (request) => {
  *         application/json:
  *           schema:
  *             $ref: '#/components/schemas/CreateTeacherRequest'
+ *           example:
+ *            username: "jane.smith"
+ *            employ_id: "12345"
+ *            name: "Jane Smith"
+ *            password: "password"
+ *            email: "jane.smith@example.com"
+ *            phonenumber: "1234567890"
+ *            specilization: "Mathematics"
  *     responses:
  *       201:
  *         description: Teacher created
@@ -72,7 +80,7 @@ export const GET = createRouteHandler(null, async (request) => {
  *             schema:
  *               $ref: '#/components/schemas/TeacherResponse'
  *       400:
- *         description: Validation error
+ *         description: Validation error or duplicate employ_id
  *         content:
  *           application/json:
  *             schema:

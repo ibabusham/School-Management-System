@@ -39,7 +39,7 @@ if(existing) {
         email: data.email,
         name: data.name,
         employ_id: parseInt(data.employ_id),
-        phonenumber: data.phonenumber,
+        phonenumber: data.phonenumber ?? " ",
         specilization: data.specilization,
         account_status: true,
         user: {

@@ -84,6 +84,14 @@ export const teacherSchema = z.object({
   user: safeUserSchema.optional(),
 });
 
+export const learningProgressSchema = z.object({
+  id: z.string(),
+  subjects_averages: z.number().int(),
+  overall_avreages: z.number().int(),
+  attendence_percentage: z.number().int(),
+  learning_status: z.enum(["ACTIVE", "INACTIVE"]),
+});
+
 export const studentSchema = z.object({
   id: z.string(),
   student_id: z.number().int(),
@@ -92,12 +100,14 @@ export const studentSchema = z.object({
   email: z.string().email(),
   account_status: z.boolean(),
   date_of_birth: z.string().datetime().or(z.string()),
-  phonenumber: z.string(),
+  phonenumber: z.string().optional().nullable(),
   enrollment_date: z.string().datetime().or(z.string()),
-  learning_progress_id: z.string(),
+  learning_progress: learningProgressSchema.optional(),
   gender: genderSchema,
   user: safeUserSchema.optional(),
 });
+
+
 
 export const classSchema = z.object({
   id: z.string(),
