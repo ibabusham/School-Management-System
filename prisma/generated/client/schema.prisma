@@ -11,13 +11,13 @@ datasource db {
 }
 
 model User {
-  id             String   @id @default(uuid())
-  name           String
-  username       String   @unique
-  password       String
-  role           Role
-  account_status Boolean  @default(true)
-  createdAt      DateTime @default(now())
+  id            String   @id @default(uuid())
+  name          String
+  username      String   @unique
+  password      String
+  role          Role
+  accountStatus Boolean  @default(true)
+  createdAt     DateTime @default(now())
 
   teacher       Teacher?
   student       Student?
@@ -44,40 +44,40 @@ enum Role {
 }
 
 model Teacher {
-  id             String  @id
-  name           String
-  employ_id      Int     @unique
-  email          String
-  phonenumber    String
-  specilization  String
-  account_status Boolean @default(true)
+  id            String  @id
+  name          String
+  employId      Int     @unique
+  email         String
+  phoneNumber   String
+  specilization String
+  accountStatus Boolean @default(true)
 
   user User @relation(fields: [id], references: [id], onDelete: Cascade)
 
   subjects      Subjects[]
-  progressNotes Progress_notes[]
+  progressNotes ProgressNotes[]
 }
 
 model Student {
-  id                   String   @id
-  student_id           Int      @unique
-  first_name           String
-  last_name            String
-  email                String
-  account_status       Boolean  @default(true)
-  date_of_birth        DateTime
-  phonenumber          String?
-  enrollment_date      DateTime
-  learning_progress_id String   @unique
-  classId              String?
-  gender               Gender
+  id                 String   @id
+  studentId          Int      @unique
+  firstName          String
+  lastName           String
+  email              String
+  accountStatus      Boolean  @default(true)
+  dateOfBirth        DateTime
+  phoneNumber        String?
+  enrollmentDate     DateTime
+  learningProgressId String   @unique
+  classId            String?
+  gender             Gender
 
-  user              User                @relation(fields: [id], references: [id], onDelete: Cascade)
-  class             Classes?            @relation(fields: [classId], references: [id], onDelete: SetNull)
-  learning_progress Learning_progresses @relation(fields: [learning_progress_id], references: [id], onDelete: Restrict)
+  user             User               @relation(fields: [id], references: [id], onDelete: Cascade)
+  class            Classes?           @relation(fields: [classId], references: [id], onDelete: SetNull)
+  learningProgress LearningProgresses @relation(fields: [learningProgressId], references: [id], onDelete: Restrict)
 
   attendances     Attendences[]
-  examSubmissions Exam_submissions[]
+  examSubmissions ExamSubmissions[]
 }
 
 enum Gender {
@@ -86,22 +86,22 @@ enum Gender {
 }
 
 model Classes {
-  id         String @id
-  class_name String
+  id        String @id
+  className String
 
-  academicYears Class_Academic_year[]
+  academicYears ClassAcademicYear[]
   students      Student[]
   subjects      Subjects[]
-  performance   Classes_performence?
+  performance   ClassesPerformence?
 }
 
 model Subjects {
-  id           String @id
-  subject_name String
-  subject_code String
-  Description  String
-  classId      String
-  teacherId    String
+  id          String @id
+  subjectName String
+  subjectCode String
+  Description String
+  classId     String
+  teacherId   String
 
   class   Classes @relation(fields: [classId], references: [id], onDelete: Cascade)
   teacher Teacher @relation(fields: [teacherId], references: [id], onDelete: Cascade)
@@ -117,59 +117,59 @@ enum Status {
   INACTIVE
 }
 
-model Academic_Years {
-  id         String   @id
-  year_name  String
-  Start_date DateTime
-  end_date   DateTime
-  status     Status
+model AcademicYears {
+  id        String   @id
+  yearName  String
+  StartDate DateTime
+  endDate   DateTime
+  status    Status
 
-  classes Class_Academic_year[]
+  classes ClassAcademicYear[]
   terms   Terms[]
 }
 
 model Terms {
-  id         String   @id
-  term_name  String
-  Start_date DateTime
-  end_date   DateTime
-  yearId     String
+  id        String   @id
+  termName  String
+  StartDate DateTime
+  endDate   DateTime
+  yearId    String
 
-  year Academic_Years @relation(fields: [yearId], references: [id], onDelete: Cascade)
+  year AcademicYears @relation(fields: [yearId], references: [id], onDelete: Cascade)
 }
 
-model Class_Academic_year {
+model ClassAcademicYear {
   classId String
   yearId  String
 
-  class Classes        @relation(fields: [classId], references: [id], onDelete: Cascade)
-  year  Academic_Years @relation(fields: [yearId], references: [id], onDelete: Cascade)
+  class Classes       @relation(fields: [classId], references: [id], onDelete: Cascade)
+  year  AcademicYears @relation(fields: [yearId], references: [id], onDelete: Cascade)
 
   @@id([classId, yearId])
 }
 
 model Assignments {
-  id                      String   @id
-  assignment_title        String
-  assignment_description  String
-  due_date                DateTime
-  maximum_grade           Int
-  attachment              String
-  Submission_instructions String
-  subjectId               String
+  id                     String   @id
+  assignmentTitle        String
+  assignmentDescription  String
+  dueDate                DateTime
+  maximumGrade           Int
+  attachment             String
+  SubmissionInstructions String
+  subjectId              String
 
   subject Subjects @relation(fields: [subjectId], references: [id], onDelete: Cascade)
 }
 
 model Lessons {
-  id                  String      @id
-  lesson_title        String
-  lesson_description  String
-  lesson_date         DateTime
-  learning_objectinve String
-  learning_material   String
-  Completion_status   iscompleate
-  subjectId           String
+  id                 String      @id
+  lessonTitle        String
+  lessonDescription  String
+  lessonDate         DateTime
+  learningObjectinve String
+  learningMaterial   String
+  CompletionStatus   iscompleate
+  subjectId          String
 
   subject Subjects @relation(fields: [subjectId], references: [id], onDelete: Cascade)
 }
@@ -180,67 +180,67 @@ enum iscompleate {
 }
 
 model Exams {
-  id            String   @id
-  exam_name     String
-  exam_date     DateTime
-  Maximum_grade Int
-  subjectId     String
+  id           String   @id
+  examName     String
+  examDate     DateTime
+  MaximumGrade Int
+  subjectId    String
 
-  subject     Subjects           @relation(fields: [subjectId], references: [id], onDelete: Cascade)
-  submissions Exam_submissions[]
+  subject     Subjects          @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  submissions ExamSubmissions[]
 }
 
-model Learning_progresses {
-  id                    String @id
-  subjects_averages     Int
-  overall_avreages      Int
-  attendence_percentage Int
-  learning_status       Status
+model LearningProgresses {
+  id                   String @id
+  subjectsAverages     Int
+  overallAvreages      Int
+  attendencePercentage Int
+  learningStatus       Status
 
   student       Student?
-  progressNotes Progress_notes[]
+  progressNotes ProgressNotes[]
 }
 
-model Progress_notes {
-  id                    String   @id
-  note_date             DateTime
-  note_observation      String
-  Strengths             String
-  areas_for_improvement String
-  teacherId             String
-  learningProgressId    String
+model ProgressNotes {
+  id                  String   @id
+  noteDate            DateTime
+  noteObservation     String
+  Strengths           String
+  areasForImprovement String
+  teacherId           String
+  learningProgressId  String
 
-  teacher           Teacher             @relation(fields: [teacherId], references: [id], onDelete: Cascade)
-  learning_progress Learning_progresses @relation(fields: [learningProgressId], references: [id], onDelete: Cascade)
+  teacher          Teacher            @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  learningProgress LearningProgresses @relation(fields: [learningProgressId], references: [id], onDelete: Cascade)
 }
 
-model Classes_performence {
-  id                           String @id
-  class_avg                    Int
-  highest_grade                Int
-  lowest_grade                 Int
-  assignments_compleation_rate Int
-  attendence_rate              Int
-  student_requiring_support    Int
-  class_status                 Status
-  classId                      String @unique
+model ClassesPerformence {
+  id                         String @id
+  classAvg                   Int
+  highestGrade               Int
+  lowestGrade                Int
+  assignmentsCompleationRate Int
+  attendenceRate             Int
+  studentRequiringSupport    Int
+  classStatus                Status
+  classId                    String @unique
 
   class Classes @relation(fields: [classId], references: [id], onDelete: Cascade)
 }
 
 model Attendences {
-  id                    String   @id
-  attendance_date       DateTime
-  attendance_status     String
-  attendance_percentage Int
-  studentId             String
-  subjectId             String
+  id                   String   @id
+  attendanceDate       DateTime
+  attendanceStatus     String
+  attendancePercentage Int
+  studentId            String
+  subjectId            String
 
   student Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
   subject Subjects @relation(fields: [subjectId], references: [id], onDelete: Cascade)
 }
 
-model Exam_submissions {
+model ExamSubmissions {
   id        String   @id
   examId    String
   studentId String

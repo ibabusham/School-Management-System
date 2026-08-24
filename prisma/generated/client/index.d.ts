@@ -44,20 +44,20 @@ export type Classes = $Result.DefaultSelection<Prisma.$ClassesPayload>
  */
 export type Subjects = $Result.DefaultSelection<Prisma.$SubjectsPayload>
 /**
- * Model Academic_Years
+ * Model AcademicYears
  * 
  */
-export type Academic_Years = $Result.DefaultSelection<Prisma.$Academic_YearsPayload>
+export type AcademicYears = $Result.DefaultSelection<Prisma.$AcademicYearsPayload>
 /**
  * Model Terms
  * 
  */
 export type Terms = $Result.DefaultSelection<Prisma.$TermsPayload>
 /**
- * Model Class_Academic_year
+ * Model ClassAcademicYear
  * 
  */
-export type Class_Academic_year = $Result.DefaultSelection<Prisma.$Class_Academic_yearPayload>
+export type ClassAcademicYear = $Result.DefaultSelection<Prisma.$ClassAcademicYearPayload>
 /**
  * Model Assignments
  * 
@@ -74,30 +74,30 @@ export type Lessons = $Result.DefaultSelection<Prisma.$LessonsPayload>
  */
 export type Exams = $Result.DefaultSelection<Prisma.$ExamsPayload>
 /**
- * Model Learning_progresses
+ * Model LearningProgresses
  * 
  */
-export type Learning_progresses = $Result.DefaultSelection<Prisma.$Learning_progressesPayload>
+export type LearningProgresses = $Result.DefaultSelection<Prisma.$LearningProgressesPayload>
 /**
- * Model Progress_notes
+ * Model ProgressNotes
  * 
  */
-export type Progress_notes = $Result.DefaultSelection<Prisma.$Progress_notesPayload>
+export type ProgressNotes = $Result.DefaultSelection<Prisma.$ProgressNotesPayload>
 /**
- * Model Classes_performence
+ * Model ClassesPerformence
  * 
  */
-export type Classes_performence = $Result.DefaultSelection<Prisma.$Classes_performencePayload>
+export type ClassesPerformence = $Result.DefaultSelection<Prisma.$ClassesPerformencePayload>
 /**
  * Model Attendences
  * 
  */
 export type Attendences = $Result.DefaultSelection<Prisma.$AttendencesPayload>
 /**
- * Model Exam_submissions
+ * Model ExamSubmissions
  * 
  */
-export type Exam_submissions = $Result.DefaultSelection<Prisma.$Exam_submissionsPayload>
+export type ExamSubmissions = $Result.DefaultSelection<Prisma.$ExamSubmissionsPayload>
 
 /**
  * Enums
@@ -335,14 +335,14 @@ export class PrismaClient<
   get subjects(): Prisma.SubjectsDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.academic_Years`: Exposes CRUD operations for the **Academic_Years** model.
+   * `prisma.academicYears`: Exposes CRUD operations for the **AcademicYears** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Academic_Years
-    * const academic_Years = await prisma.academic_Years.findMany()
+    * // Fetch zero or more AcademicYears
+    * const academicYears = await prisma.academicYears.findMany()
     * ```
     */
-  get academic_Years(): Prisma.Academic_YearsDelegate<ExtArgs, ClientOptions>;
+  get academicYears(): Prisma.AcademicYearsDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.terms`: Exposes CRUD operations for the **Terms** model.
@@ -355,14 +355,14 @@ export class PrismaClient<
   get terms(): Prisma.TermsDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.class_Academic_year`: Exposes CRUD operations for the **Class_Academic_year** model.
+   * `prisma.classAcademicYear`: Exposes CRUD operations for the **ClassAcademicYear** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Class_Academic_years
-    * const class_Academic_years = await prisma.class_Academic_year.findMany()
+    * // Fetch zero or more ClassAcademicYears
+    * const classAcademicYears = await prisma.classAcademicYear.findMany()
     * ```
     */
-  get class_Academic_year(): Prisma.Class_Academic_yearDelegate<ExtArgs, ClientOptions>;
+  get classAcademicYear(): Prisma.ClassAcademicYearDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.assignments`: Exposes CRUD operations for the **Assignments** model.
@@ -395,34 +395,34 @@ export class PrismaClient<
   get exams(): Prisma.ExamsDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.learning_progresses`: Exposes CRUD operations for the **Learning_progresses** model.
+   * `prisma.learningProgresses`: Exposes CRUD operations for the **LearningProgresses** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Learning_progresses
-    * const learning_progresses = await prisma.learning_progresses.findMany()
+    * // Fetch zero or more LearningProgresses
+    * const learningProgresses = await prisma.learningProgresses.findMany()
     * ```
     */
-  get learning_progresses(): Prisma.Learning_progressesDelegate<ExtArgs, ClientOptions>;
+  get learningProgresses(): Prisma.LearningProgressesDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.progress_notes`: Exposes CRUD operations for the **Progress_notes** model.
+   * `prisma.progressNotes`: Exposes CRUD operations for the **ProgressNotes** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Progress_notes
-    * const progress_notes = await prisma.progress_notes.findMany()
+    * // Fetch zero or more ProgressNotes
+    * const progressNotes = await prisma.progressNotes.findMany()
     * ```
     */
-  get progress_notes(): Prisma.Progress_notesDelegate<ExtArgs, ClientOptions>;
+  get progressNotes(): Prisma.ProgressNotesDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.classes_performence`: Exposes CRUD operations for the **Classes_performence** model.
+   * `prisma.classesPerformence`: Exposes CRUD operations for the **ClassesPerformence** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Classes_performences
-    * const classes_performences = await prisma.classes_performence.findMany()
+    * // Fetch zero or more ClassesPerformences
+    * const classesPerformences = await prisma.classesPerformence.findMany()
     * ```
     */
-  get classes_performence(): Prisma.Classes_performenceDelegate<ExtArgs, ClientOptions>;
+  get classesPerformence(): Prisma.ClassesPerformenceDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.attendences`: Exposes CRUD operations for the **Attendences** model.
@@ -435,14 +435,14 @@ export class PrismaClient<
   get attendences(): Prisma.AttendencesDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.exam_submissions`: Exposes CRUD operations for the **Exam_submissions** model.
+   * `prisma.examSubmissions`: Exposes CRUD operations for the **ExamSubmissions** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Exam_submissions
-    * const exam_submissions = await prisma.exam_submissions.findMany()
+    * // Fetch zero or more ExamSubmissions
+    * const examSubmissions = await prisma.examSubmissions.findMany()
     * ```
     */
-  get exam_submissions(): Prisma.Exam_submissionsDelegate<ExtArgs, ClientOptions>;
+  get examSubmissions(): Prisma.ExamSubmissionsDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -896,17 +896,17 @@ export namespace Prisma {
     Student: 'Student',
     Classes: 'Classes',
     Subjects: 'Subjects',
-    Academic_Years: 'Academic_Years',
+    AcademicYears: 'AcademicYears',
     Terms: 'Terms',
-    Class_Academic_year: 'Class_Academic_year',
+    ClassAcademicYear: 'ClassAcademicYear',
     Assignments: 'Assignments',
     Lessons: 'Lessons',
     Exams: 'Exams',
-    Learning_progresses: 'Learning_progresses',
-    Progress_notes: 'Progress_notes',
-    Classes_performence: 'Classes_performence',
+    LearningProgresses: 'LearningProgresses',
+    ProgressNotes: 'ProgressNotes',
+    ClassesPerformence: 'ClassesPerformence',
     Attendences: 'Attendences',
-    Exam_submissions: 'Exam_submissions'
+    ExamSubmissions: 'ExamSubmissions'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -922,7 +922,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "refreshToken" | "teacher" | "student" | "classes" | "subjects" | "academic_Years" | "terms" | "class_Academic_year" | "assignments" | "lessons" | "exams" | "learning_progresses" | "progress_notes" | "classes_performence" | "attendences" | "exam_submissions"
+      modelProps: "user" | "refreshToken" | "teacher" | "student" | "classes" | "subjects" | "academicYears" | "terms" | "classAcademicYear" | "assignments" | "lessons" | "exams" | "learningProgresses" | "progressNotes" | "classesPerformence" | "attendences" | "examSubmissions"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1370,77 +1370,77 @@ export namespace Prisma {
           }
         }
       }
-      Academic_Years: {
-        payload: Prisma.$Academic_YearsPayload<ExtArgs>
-        fields: Prisma.Academic_YearsFieldRefs
+      AcademicYears: {
+        payload: Prisma.$AcademicYearsPayload<ExtArgs>
+        fields: Prisma.AcademicYearsFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.Academic_YearsFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Academic_YearsPayload> | null
+            args: Prisma.AcademicYearsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcademicYearsPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.Academic_YearsFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Academic_YearsPayload>
+            args: Prisma.AcademicYearsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcademicYearsPayload>
           }
           findFirst: {
-            args: Prisma.Academic_YearsFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Academic_YearsPayload> | null
+            args: Prisma.AcademicYearsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcademicYearsPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.Academic_YearsFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Academic_YearsPayload>
+            args: Prisma.AcademicYearsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcademicYearsPayload>
           }
           findMany: {
-            args: Prisma.Academic_YearsFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Academic_YearsPayload>[]
+            args: Prisma.AcademicYearsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcademicYearsPayload>[]
           }
           create: {
-            args: Prisma.Academic_YearsCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Academic_YearsPayload>
+            args: Prisma.AcademicYearsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcademicYearsPayload>
           }
           createMany: {
-            args: Prisma.Academic_YearsCreateManyArgs<ExtArgs>
+            args: Prisma.AcademicYearsCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.Academic_YearsCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Academic_YearsPayload>[]
+            args: Prisma.AcademicYearsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcademicYearsPayload>[]
           }
           delete: {
-            args: Prisma.Academic_YearsDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Academic_YearsPayload>
+            args: Prisma.AcademicYearsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcademicYearsPayload>
           }
           update: {
-            args: Prisma.Academic_YearsUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Academic_YearsPayload>
+            args: Prisma.AcademicYearsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcademicYearsPayload>
           }
           deleteMany: {
-            args: Prisma.Academic_YearsDeleteManyArgs<ExtArgs>
+            args: Prisma.AcademicYearsDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.Academic_YearsUpdateManyArgs<ExtArgs>
+            args: Prisma.AcademicYearsUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.Academic_YearsUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Academic_YearsPayload>[]
+            args: Prisma.AcademicYearsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcademicYearsPayload>[]
           }
           upsert: {
-            args: Prisma.Academic_YearsUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Academic_YearsPayload>
+            args: Prisma.AcademicYearsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcademicYearsPayload>
           }
           aggregate: {
-            args: Prisma.Academic_YearsAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateAcademic_Years>
+            args: Prisma.AcademicYearsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAcademicYears>
           }
           groupBy: {
-            args: Prisma.Academic_YearsGroupByArgs<ExtArgs>
-            result: $Utils.Optional<Academic_YearsGroupByOutputType>[]
+            args: Prisma.AcademicYearsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AcademicYearsGroupByOutputType>[]
           }
           count: {
-            args: Prisma.Academic_YearsCountArgs<ExtArgs>
-            result: $Utils.Optional<Academic_YearsCountAggregateOutputType> | number
+            args: Prisma.AcademicYearsCountArgs<ExtArgs>
+            result: $Utils.Optional<AcademicYearsCountAggregateOutputType> | number
           }
         }
       }
@@ -1518,77 +1518,77 @@ export namespace Prisma {
           }
         }
       }
-      Class_Academic_year: {
-        payload: Prisma.$Class_Academic_yearPayload<ExtArgs>
-        fields: Prisma.Class_Academic_yearFieldRefs
+      ClassAcademicYear: {
+        payload: Prisma.$ClassAcademicYearPayload<ExtArgs>
+        fields: Prisma.ClassAcademicYearFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.Class_Academic_yearFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Class_Academic_yearPayload> | null
+            args: Prisma.ClassAcademicYearFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClassAcademicYearPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.Class_Academic_yearFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Class_Academic_yearPayload>
+            args: Prisma.ClassAcademicYearFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClassAcademicYearPayload>
           }
           findFirst: {
-            args: Prisma.Class_Academic_yearFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Class_Academic_yearPayload> | null
+            args: Prisma.ClassAcademicYearFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClassAcademicYearPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.Class_Academic_yearFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Class_Academic_yearPayload>
+            args: Prisma.ClassAcademicYearFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClassAcademicYearPayload>
           }
           findMany: {
-            args: Prisma.Class_Academic_yearFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Class_Academic_yearPayload>[]
+            args: Prisma.ClassAcademicYearFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClassAcademicYearPayload>[]
           }
           create: {
-            args: Prisma.Class_Academic_yearCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Class_Academic_yearPayload>
+            args: Prisma.ClassAcademicYearCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClassAcademicYearPayload>
           }
           createMany: {
-            args: Prisma.Class_Academic_yearCreateManyArgs<ExtArgs>
+            args: Prisma.ClassAcademicYearCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.Class_Academic_yearCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Class_Academic_yearPayload>[]
+            args: Prisma.ClassAcademicYearCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClassAcademicYearPayload>[]
           }
           delete: {
-            args: Prisma.Class_Academic_yearDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Class_Academic_yearPayload>
+            args: Prisma.ClassAcademicYearDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClassAcademicYearPayload>
           }
           update: {
-            args: Prisma.Class_Academic_yearUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Class_Academic_yearPayload>
+            args: Prisma.ClassAcademicYearUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClassAcademicYearPayload>
           }
           deleteMany: {
-            args: Prisma.Class_Academic_yearDeleteManyArgs<ExtArgs>
+            args: Prisma.ClassAcademicYearDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.Class_Academic_yearUpdateManyArgs<ExtArgs>
+            args: Prisma.ClassAcademicYearUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.Class_Academic_yearUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Class_Academic_yearPayload>[]
+            args: Prisma.ClassAcademicYearUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClassAcademicYearPayload>[]
           }
           upsert: {
-            args: Prisma.Class_Academic_yearUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Class_Academic_yearPayload>
+            args: Prisma.ClassAcademicYearUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClassAcademicYearPayload>
           }
           aggregate: {
-            args: Prisma.Class_Academic_yearAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateClass_Academic_year>
+            args: Prisma.ClassAcademicYearAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateClassAcademicYear>
           }
           groupBy: {
-            args: Prisma.Class_Academic_yearGroupByArgs<ExtArgs>
-            result: $Utils.Optional<Class_Academic_yearGroupByOutputType>[]
+            args: Prisma.ClassAcademicYearGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ClassAcademicYearGroupByOutputType>[]
           }
           count: {
-            args: Prisma.Class_Academic_yearCountArgs<ExtArgs>
-            result: $Utils.Optional<Class_Academic_yearCountAggregateOutputType> | number
+            args: Prisma.ClassAcademicYearCountArgs<ExtArgs>
+            result: $Utils.Optional<ClassAcademicYearCountAggregateOutputType> | number
           }
         }
       }
@@ -1814,225 +1814,225 @@ export namespace Prisma {
           }
         }
       }
-      Learning_progresses: {
-        payload: Prisma.$Learning_progressesPayload<ExtArgs>
-        fields: Prisma.Learning_progressesFieldRefs
+      LearningProgresses: {
+        payload: Prisma.$LearningProgressesPayload<ExtArgs>
+        fields: Prisma.LearningProgressesFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.Learning_progressesFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Learning_progressesPayload> | null
+            args: Prisma.LearningProgressesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LearningProgressesPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.Learning_progressesFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Learning_progressesPayload>
+            args: Prisma.LearningProgressesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LearningProgressesPayload>
           }
           findFirst: {
-            args: Prisma.Learning_progressesFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Learning_progressesPayload> | null
+            args: Prisma.LearningProgressesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LearningProgressesPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.Learning_progressesFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Learning_progressesPayload>
+            args: Prisma.LearningProgressesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LearningProgressesPayload>
           }
           findMany: {
-            args: Prisma.Learning_progressesFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Learning_progressesPayload>[]
+            args: Prisma.LearningProgressesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LearningProgressesPayload>[]
           }
           create: {
-            args: Prisma.Learning_progressesCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Learning_progressesPayload>
+            args: Prisma.LearningProgressesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LearningProgressesPayload>
           }
           createMany: {
-            args: Prisma.Learning_progressesCreateManyArgs<ExtArgs>
+            args: Prisma.LearningProgressesCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.Learning_progressesCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Learning_progressesPayload>[]
+            args: Prisma.LearningProgressesCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LearningProgressesPayload>[]
           }
           delete: {
-            args: Prisma.Learning_progressesDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Learning_progressesPayload>
+            args: Prisma.LearningProgressesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LearningProgressesPayload>
           }
           update: {
-            args: Prisma.Learning_progressesUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Learning_progressesPayload>
+            args: Prisma.LearningProgressesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LearningProgressesPayload>
           }
           deleteMany: {
-            args: Prisma.Learning_progressesDeleteManyArgs<ExtArgs>
+            args: Prisma.LearningProgressesDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.Learning_progressesUpdateManyArgs<ExtArgs>
+            args: Prisma.LearningProgressesUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.Learning_progressesUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Learning_progressesPayload>[]
+            args: Prisma.LearningProgressesUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LearningProgressesPayload>[]
           }
           upsert: {
-            args: Prisma.Learning_progressesUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Learning_progressesPayload>
+            args: Prisma.LearningProgressesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LearningProgressesPayload>
           }
           aggregate: {
-            args: Prisma.Learning_progressesAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateLearning_progresses>
+            args: Prisma.LearningProgressesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLearningProgresses>
           }
           groupBy: {
-            args: Prisma.Learning_progressesGroupByArgs<ExtArgs>
-            result: $Utils.Optional<Learning_progressesGroupByOutputType>[]
+            args: Prisma.LearningProgressesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LearningProgressesGroupByOutputType>[]
           }
           count: {
-            args: Prisma.Learning_progressesCountArgs<ExtArgs>
-            result: $Utils.Optional<Learning_progressesCountAggregateOutputType> | number
+            args: Prisma.LearningProgressesCountArgs<ExtArgs>
+            result: $Utils.Optional<LearningProgressesCountAggregateOutputType> | number
           }
         }
       }
-      Progress_notes: {
-        payload: Prisma.$Progress_notesPayload<ExtArgs>
-        fields: Prisma.Progress_notesFieldRefs
+      ProgressNotes: {
+        payload: Prisma.$ProgressNotesPayload<ExtArgs>
+        fields: Prisma.ProgressNotesFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.Progress_notesFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Progress_notesPayload> | null
+            args: Prisma.ProgressNotesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressNotesPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.Progress_notesFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Progress_notesPayload>
+            args: Prisma.ProgressNotesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressNotesPayload>
           }
           findFirst: {
-            args: Prisma.Progress_notesFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Progress_notesPayload> | null
+            args: Prisma.ProgressNotesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressNotesPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.Progress_notesFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Progress_notesPayload>
+            args: Prisma.ProgressNotesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressNotesPayload>
           }
           findMany: {
-            args: Prisma.Progress_notesFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Progress_notesPayload>[]
+            args: Prisma.ProgressNotesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressNotesPayload>[]
           }
           create: {
-            args: Prisma.Progress_notesCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Progress_notesPayload>
+            args: Prisma.ProgressNotesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressNotesPayload>
           }
           createMany: {
-            args: Prisma.Progress_notesCreateManyArgs<ExtArgs>
+            args: Prisma.ProgressNotesCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.Progress_notesCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Progress_notesPayload>[]
+            args: Prisma.ProgressNotesCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressNotesPayload>[]
           }
           delete: {
-            args: Prisma.Progress_notesDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Progress_notesPayload>
+            args: Prisma.ProgressNotesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressNotesPayload>
           }
           update: {
-            args: Prisma.Progress_notesUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Progress_notesPayload>
+            args: Prisma.ProgressNotesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressNotesPayload>
           }
           deleteMany: {
-            args: Prisma.Progress_notesDeleteManyArgs<ExtArgs>
+            args: Prisma.ProgressNotesDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.Progress_notesUpdateManyArgs<ExtArgs>
+            args: Prisma.ProgressNotesUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.Progress_notesUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Progress_notesPayload>[]
+            args: Prisma.ProgressNotesUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressNotesPayload>[]
           }
           upsert: {
-            args: Prisma.Progress_notesUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Progress_notesPayload>
+            args: Prisma.ProgressNotesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressNotesPayload>
           }
           aggregate: {
-            args: Prisma.Progress_notesAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateProgress_notes>
+            args: Prisma.ProgressNotesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProgressNotes>
           }
           groupBy: {
-            args: Prisma.Progress_notesGroupByArgs<ExtArgs>
-            result: $Utils.Optional<Progress_notesGroupByOutputType>[]
+            args: Prisma.ProgressNotesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProgressNotesGroupByOutputType>[]
           }
           count: {
-            args: Prisma.Progress_notesCountArgs<ExtArgs>
-            result: $Utils.Optional<Progress_notesCountAggregateOutputType> | number
+            args: Prisma.ProgressNotesCountArgs<ExtArgs>
+            result: $Utils.Optional<ProgressNotesCountAggregateOutputType> | number
           }
         }
       }
-      Classes_performence: {
-        payload: Prisma.$Classes_performencePayload<ExtArgs>
-        fields: Prisma.Classes_performenceFieldRefs
+      ClassesPerformence: {
+        payload: Prisma.$ClassesPerformencePayload<ExtArgs>
+        fields: Prisma.ClassesPerformenceFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.Classes_performenceFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Classes_performencePayload> | null
+            args: Prisma.ClassesPerformenceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClassesPerformencePayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.Classes_performenceFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Classes_performencePayload>
+            args: Prisma.ClassesPerformenceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClassesPerformencePayload>
           }
           findFirst: {
-            args: Prisma.Classes_performenceFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Classes_performencePayload> | null
+            args: Prisma.ClassesPerformenceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClassesPerformencePayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.Classes_performenceFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Classes_performencePayload>
+            args: Prisma.ClassesPerformenceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClassesPerformencePayload>
           }
           findMany: {
-            args: Prisma.Classes_performenceFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Classes_performencePayload>[]
+            args: Prisma.ClassesPerformenceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClassesPerformencePayload>[]
           }
           create: {
-            args: Prisma.Classes_performenceCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Classes_performencePayload>
+            args: Prisma.ClassesPerformenceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClassesPerformencePayload>
           }
           createMany: {
-            args: Prisma.Classes_performenceCreateManyArgs<ExtArgs>
+            args: Prisma.ClassesPerformenceCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.Classes_performenceCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Classes_performencePayload>[]
+            args: Prisma.ClassesPerformenceCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClassesPerformencePayload>[]
           }
           delete: {
-            args: Prisma.Classes_performenceDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Classes_performencePayload>
+            args: Prisma.ClassesPerformenceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClassesPerformencePayload>
           }
           update: {
-            args: Prisma.Classes_performenceUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Classes_performencePayload>
+            args: Prisma.ClassesPerformenceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClassesPerformencePayload>
           }
           deleteMany: {
-            args: Prisma.Classes_performenceDeleteManyArgs<ExtArgs>
+            args: Prisma.ClassesPerformenceDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.Classes_performenceUpdateManyArgs<ExtArgs>
+            args: Prisma.ClassesPerformenceUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.Classes_performenceUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Classes_performencePayload>[]
+            args: Prisma.ClassesPerformenceUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClassesPerformencePayload>[]
           }
           upsert: {
-            args: Prisma.Classes_performenceUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Classes_performencePayload>
+            args: Prisma.ClassesPerformenceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClassesPerformencePayload>
           }
           aggregate: {
-            args: Prisma.Classes_performenceAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateClasses_performence>
+            args: Prisma.ClassesPerformenceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateClassesPerformence>
           }
           groupBy: {
-            args: Prisma.Classes_performenceGroupByArgs<ExtArgs>
-            result: $Utils.Optional<Classes_performenceGroupByOutputType>[]
+            args: Prisma.ClassesPerformenceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ClassesPerformenceGroupByOutputType>[]
           }
           count: {
-            args: Prisma.Classes_performenceCountArgs<ExtArgs>
-            result: $Utils.Optional<Classes_performenceCountAggregateOutputType> | number
+            args: Prisma.ClassesPerformenceCountArgs<ExtArgs>
+            result: $Utils.Optional<ClassesPerformenceCountAggregateOutputType> | number
           }
         }
       }
@@ -2110,77 +2110,77 @@ export namespace Prisma {
           }
         }
       }
-      Exam_submissions: {
-        payload: Prisma.$Exam_submissionsPayload<ExtArgs>
-        fields: Prisma.Exam_submissionsFieldRefs
+      ExamSubmissions: {
+        payload: Prisma.$ExamSubmissionsPayload<ExtArgs>
+        fields: Prisma.ExamSubmissionsFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.Exam_submissionsFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Exam_submissionsPayload> | null
+            args: Prisma.ExamSubmissionsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamSubmissionsPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.Exam_submissionsFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Exam_submissionsPayload>
+            args: Prisma.ExamSubmissionsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamSubmissionsPayload>
           }
           findFirst: {
-            args: Prisma.Exam_submissionsFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Exam_submissionsPayload> | null
+            args: Prisma.ExamSubmissionsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamSubmissionsPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.Exam_submissionsFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Exam_submissionsPayload>
+            args: Prisma.ExamSubmissionsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamSubmissionsPayload>
           }
           findMany: {
-            args: Prisma.Exam_submissionsFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Exam_submissionsPayload>[]
+            args: Prisma.ExamSubmissionsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamSubmissionsPayload>[]
           }
           create: {
-            args: Prisma.Exam_submissionsCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Exam_submissionsPayload>
+            args: Prisma.ExamSubmissionsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamSubmissionsPayload>
           }
           createMany: {
-            args: Prisma.Exam_submissionsCreateManyArgs<ExtArgs>
+            args: Prisma.ExamSubmissionsCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.Exam_submissionsCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Exam_submissionsPayload>[]
+            args: Prisma.ExamSubmissionsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamSubmissionsPayload>[]
           }
           delete: {
-            args: Prisma.Exam_submissionsDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Exam_submissionsPayload>
+            args: Prisma.ExamSubmissionsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamSubmissionsPayload>
           }
           update: {
-            args: Prisma.Exam_submissionsUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Exam_submissionsPayload>
+            args: Prisma.ExamSubmissionsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamSubmissionsPayload>
           }
           deleteMany: {
-            args: Prisma.Exam_submissionsDeleteManyArgs<ExtArgs>
+            args: Prisma.ExamSubmissionsDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.Exam_submissionsUpdateManyArgs<ExtArgs>
+            args: Prisma.ExamSubmissionsUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.Exam_submissionsUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Exam_submissionsPayload>[]
+            args: Prisma.ExamSubmissionsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamSubmissionsPayload>[]
           }
           upsert: {
-            args: Prisma.Exam_submissionsUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Exam_submissionsPayload>
+            args: Prisma.ExamSubmissionsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExamSubmissionsPayload>
           }
           aggregate: {
-            args: Prisma.Exam_submissionsAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateExam_submissions>
+            args: Prisma.ExamSubmissionsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateExamSubmissions>
           }
           groupBy: {
-            args: Prisma.Exam_submissionsGroupByArgs<ExtArgs>
-            result: $Utils.Optional<Exam_submissionsGroupByOutputType>[]
+            args: Prisma.ExamSubmissionsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ExamSubmissionsGroupByOutputType>[]
           }
           count: {
-            args: Prisma.Exam_submissionsCountArgs<ExtArgs>
-            result: $Utils.Optional<Exam_submissionsCountAggregateOutputType> | number
+            args: Prisma.ExamSubmissionsCountArgs<ExtArgs>
+            result: $Utils.Optional<ExamSubmissionsCountAggregateOutputType> | number
           }
         }
       }
@@ -2313,17 +2313,17 @@ export namespace Prisma {
     student?: StudentOmit
     classes?: ClassesOmit
     subjects?: SubjectsOmit
-    academic_Years?: Academic_YearsOmit
+    academicYears?: AcademicYearsOmit
     terms?: TermsOmit
-    class_Academic_year?: Class_Academic_yearOmit
+    classAcademicYear?: ClassAcademicYearOmit
     assignments?: AssignmentsOmit
     lessons?: LessonsOmit
     exams?: ExamsOmit
-    learning_progresses?: Learning_progressesOmit
-    progress_notes?: Progress_notesOmit
-    classes_performence?: Classes_performenceOmit
+    learningProgresses?: LearningProgressesOmit
+    progressNotes?: ProgressNotesOmit
+    classesPerformence?: ClassesPerformenceOmit
     attendences?: AttendencesOmit
-    exam_submissions?: Exam_submissionsOmit
+    examSubmissions?: ExamSubmissionsOmit
   }
 
   /* Types for Logging */
@@ -2466,7 +2466,7 @@ export namespace Prisma {
    * TeacherCountOutputType without action
    */
   export type TeacherCountOutputTypeCountProgressNotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: Progress_notesWhereInput
+    where?: ProgressNotesWhereInput
   }
 
 
@@ -2506,7 +2506,7 @@ export namespace Prisma {
    * StudentCountOutputType without action
    */
   export type StudentCountOutputTypeCountExamSubmissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: Exam_submissionsWhereInput
+    where?: ExamSubmissionsWhereInput
   }
 
 
@@ -2541,7 +2541,7 @@ export namespace Prisma {
    * ClassesCountOutputType without action
    */
   export type ClassesCountOutputTypeCountAcademicYearsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: Class_Academic_yearWhereInput
+    where?: ClassAcademicYearWhereInput
   }
 
   /**
@@ -2618,41 +2618,41 @@ export namespace Prisma {
 
 
   /**
-   * Count Type Academic_YearsCountOutputType
+   * Count Type AcademicYearsCountOutputType
    */
 
-  export type Academic_YearsCountOutputType = {
+  export type AcademicYearsCountOutputType = {
     classes: number
     terms: number
   }
 
-  export type Academic_YearsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    classes?: boolean | Academic_YearsCountOutputTypeCountClassesArgs
-    terms?: boolean | Academic_YearsCountOutputTypeCountTermsArgs
+  export type AcademicYearsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    classes?: boolean | AcademicYearsCountOutputTypeCountClassesArgs
+    terms?: boolean | AcademicYearsCountOutputTypeCountTermsArgs
   }
 
   // Custom InputTypes
   /**
-   * Academic_YearsCountOutputType without action
+   * AcademicYearsCountOutputType without action
    */
-  export type Academic_YearsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AcademicYearsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Academic_YearsCountOutputType
+     * Select specific fields to fetch from the AcademicYearsCountOutputType
      */
-    select?: Academic_YearsCountOutputTypeSelect<ExtArgs> | null
+    select?: AcademicYearsCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * Academic_YearsCountOutputType without action
+   * AcademicYearsCountOutputType without action
    */
-  export type Academic_YearsCountOutputTypeCountClassesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: Class_Academic_yearWhereInput
+  export type AcademicYearsCountOutputTypeCountClassesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ClassAcademicYearWhereInput
   }
 
   /**
-   * Academic_YearsCountOutputType without action
+   * AcademicYearsCountOutputType without action
    */
-  export type Academic_YearsCountOutputTypeCountTermsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AcademicYearsCountOutputTypeCountTermsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TermsWhereInput
   }
 
@@ -2684,38 +2684,38 @@ export namespace Prisma {
    * ExamsCountOutputType without action
    */
   export type ExamsCountOutputTypeCountSubmissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: Exam_submissionsWhereInput
+    where?: ExamSubmissionsWhereInput
   }
 
 
   /**
-   * Count Type Learning_progressesCountOutputType
+   * Count Type LearningProgressesCountOutputType
    */
 
-  export type Learning_progressesCountOutputType = {
+  export type LearningProgressesCountOutputType = {
     progressNotes: number
   }
 
-  export type Learning_progressesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    progressNotes?: boolean | Learning_progressesCountOutputTypeCountProgressNotesArgs
+  export type LearningProgressesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    progressNotes?: boolean | LearningProgressesCountOutputTypeCountProgressNotesArgs
   }
 
   // Custom InputTypes
   /**
-   * Learning_progressesCountOutputType without action
+   * LearningProgressesCountOutputType without action
    */
-  export type Learning_progressesCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LearningProgressesCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Learning_progressesCountOutputType
+     * Select specific fields to fetch from the LearningProgressesCountOutputType
      */
-    select?: Learning_progressesCountOutputTypeSelect<ExtArgs> | null
+    select?: LearningProgressesCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * Learning_progressesCountOutputType without action
+   * LearningProgressesCountOutputType without action
    */
-  export type Learning_progressesCountOutputTypeCountProgressNotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: Progress_notesWhereInput
+  export type LearningProgressesCountOutputTypeCountProgressNotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProgressNotesWhereInput
   }
 
 
@@ -2739,7 +2739,7 @@ export namespace Prisma {
     username: string | null
     password: string | null
     role: $Enums.Role | null
-    account_status: boolean | null
+    accountStatus: boolean | null
     createdAt: Date | null
   }
 
@@ -2749,7 +2749,7 @@ export namespace Prisma {
     username: string | null
     password: string | null
     role: $Enums.Role | null
-    account_status: boolean | null
+    accountStatus: boolean | null
     createdAt: Date | null
   }
 
@@ -2759,7 +2759,7 @@ export namespace Prisma {
     username: number
     password: number
     role: number
-    account_status: number
+    accountStatus: number
     createdAt: number
     _all: number
   }
@@ -2771,7 +2771,7 @@ export namespace Prisma {
     username?: true
     password?: true
     role?: true
-    account_status?: true
+    accountStatus?: true
     createdAt?: true
   }
 
@@ -2781,7 +2781,7 @@ export namespace Prisma {
     username?: true
     password?: true
     role?: true
-    account_status?: true
+    accountStatus?: true
     createdAt?: true
   }
 
@@ -2791,7 +2791,7 @@ export namespace Prisma {
     username?: true
     password?: true
     role?: true
-    account_status?: true
+    accountStatus?: true
     createdAt?: true
     _all?: true
   }
@@ -2874,7 +2874,7 @@ export namespace Prisma {
     username: string
     password: string
     role: $Enums.Role
-    account_status: boolean
+    accountStatus: boolean
     createdAt: Date
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
@@ -2901,7 +2901,7 @@ export namespace Prisma {
     username?: boolean
     password?: boolean
     role?: boolean
-    account_status?: boolean
+    accountStatus?: boolean
     createdAt?: boolean
     teacher?: boolean | User$teacherArgs<ExtArgs>
     student?: boolean | User$studentArgs<ExtArgs>
@@ -2915,7 +2915,7 @@ export namespace Prisma {
     username?: boolean
     password?: boolean
     role?: boolean
-    account_status?: boolean
+    accountStatus?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["user"]>
 
@@ -2925,7 +2925,7 @@ export namespace Prisma {
     username?: boolean
     password?: boolean
     role?: boolean
-    account_status?: boolean
+    accountStatus?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["user"]>
 
@@ -2935,11 +2935,11 @@ export namespace Prisma {
     username?: boolean
     password?: boolean
     role?: boolean
-    account_status?: boolean
+    accountStatus?: boolean
     createdAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "username" | "password" | "role" | "account_status" | "createdAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "username" | "password" | "role" | "accountStatus" | "createdAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     teacher?: boolean | User$teacherArgs<ExtArgs>
     student?: boolean | User$studentArgs<ExtArgs>
@@ -2962,7 +2962,7 @@ export namespace Prisma {
       username: string
       password: string
       role: $Enums.Role
-      account_status: boolean
+      accountStatus: boolean
       createdAt: Date
     }, ExtArgs["result"]["user"]>
     composites: {}
@@ -3395,7 +3395,7 @@ export namespace Prisma {
     readonly username: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'Role'>
-    readonly account_status: FieldRef<"User", 'Boolean'>
+    readonly accountStatus: FieldRef<"User", 'Boolean'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
   }
     
@@ -4959,81 +4959,81 @@ export namespace Prisma {
   }
 
   export type TeacherAvgAggregateOutputType = {
-    employ_id: number | null
+    employId: number | null
   }
 
   export type TeacherSumAggregateOutputType = {
-    employ_id: number | null
+    employId: number | null
   }
 
   export type TeacherMinAggregateOutputType = {
     id: string | null
     name: string | null
-    employ_id: number | null
+    employId: number | null
     email: string | null
-    phonenumber: string | null
+    phoneNumber: string | null
     specilization: string | null
-    account_status: boolean | null
+    accountStatus: boolean | null
   }
 
   export type TeacherMaxAggregateOutputType = {
     id: string | null
     name: string | null
-    employ_id: number | null
+    employId: number | null
     email: string | null
-    phonenumber: string | null
+    phoneNumber: string | null
     specilization: string | null
-    account_status: boolean | null
+    accountStatus: boolean | null
   }
 
   export type TeacherCountAggregateOutputType = {
     id: number
     name: number
-    employ_id: number
+    employId: number
     email: number
-    phonenumber: number
+    phoneNumber: number
     specilization: number
-    account_status: number
+    accountStatus: number
     _all: number
   }
 
 
   export type TeacherAvgAggregateInputType = {
-    employ_id?: true
+    employId?: true
   }
 
   export type TeacherSumAggregateInputType = {
-    employ_id?: true
+    employId?: true
   }
 
   export type TeacherMinAggregateInputType = {
     id?: true
     name?: true
-    employ_id?: true
+    employId?: true
     email?: true
-    phonenumber?: true
+    phoneNumber?: true
     specilization?: true
-    account_status?: true
+    accountStatus?: true
   }
 
   export type TeacherMaxAggregateInputType = {
     id?: true
     name?: true
-    employ_id?: true
+    employId?: true
     email?: true
-    phonenumber?: true
+    phoneNumber?: true
     specilization?: true
-    account_status?: true
+    accountStatus?: true
   }
 
   export type TeacherCountAggregateInputType = {
     id?: true
     name?: true
-    employ_id?: true
+    employId?: true
     email?: true
-    phonenumber?: true
+    phoneNumber?: true
     specilization?: true
-    account_status?: true
+    accountStatus?: true
     _all?: true
   }
 
@@ -5126,11 +5126,11 @@ export namespace Prisma {
   export type TeacherGroupByOutputType = {
     id: string
     name: string
-    employ_id: number
+    employId: number
     email: string
-    phonenumber: string
+    phoneNumber: string
     specilization: string
-    account_status: boolean
+    accountStatus: boolean
     _count: TeacherCountAggregateOutputType | null
     _avg: TeacherAvgAggregateOutputType | null
     _sum: TeacherSumAggregateOutputType | null
@@ -5155,11 +5155,11 @@ export namespace Prisma {
   export type TeacherSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    employ_id?: boolean
+    employId?: boolean
     email?: boolean
-    phonenumber?: boolean
+    phoneNumber?: boolean
     specilization?: boolean
-    account_status?: boolean
+    accountStatus?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     subjects?: boolean | Teacher$subjectsArgs<ExtArgs>
     progressNotes?: boolean | Teacher$progressNotesArgs<ExtArgs>
@@ -5169,36 +5169,36 @@ export namespace Prisma {
   export type TeacherSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    employ_id?: boolean
+    employId?: boolean
     email?: boolean
-    phonenumber?: boolean
+    phoneNumber?: boolean
     specilization?: boolean
-    account_status?: boolean
+    accountStatus?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["teacher"]>
 
   export type TeacherSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    employ_id?: boolean
+    employId?: boolean
     email?: boolean
-    phonenumber?: boolean
+    phoneNumber?: boolean
     specilization?: boolean
-    account_status?: boolean
+    accountStatus?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["teacher"]>
 
   export type TeacherSelectScalar = {
     id?: boolean
     name?: boolean
-    employ_id?: boolean
+    employId?: boolean
     email?: boolean
-    phonenumber?: boolean
+    phoneNumber?: boolean
     specilization?: boolean
-    account_status?: boolean
+    accountStatus?: boolean
   }
 
-  export type TeacherOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "employ_id" | "email" | "phonenumber" | "specilization" | "account_status", ExtArgs["result"]["teacher"]>
+  export type TeacherOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "employId" | "email" | "phoneNumber" | "specilization" | "accountStatus", ExtArgs["result"]["teacher"]>
   export type TeacherInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     subjects?: boolean | Teacher$subjectsArgs<ExtArgs>
@@ -5217,16 +5217,16 @@ export namespace Prisma {
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
       subjects: Prisma.$SubjectsPayload<ExtArgs>[]
-      progressNotes: Prisma.$Progress_notesPayload<ExtArgs>[]
+      progressNotes: Prisma.$ProgressNotesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
-      employ_id: number
+      employId: number
       email: string
-      phonenumber: string
+      phoneNumber: string
       specilization: string
-      account_status: boolean
+      accountStatus: boolean
     }, ExtArgs["result"]["teacher"]>
     composites: {}
   }
@@ -5623,7 +5623,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     subjects<T extends Teacher$subjectsArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$subjectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubjectsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    progressNotes<T extends Teacher$progressNotesArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$progressNotesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Progress_notesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    progressNotes<T extends Teacher$progressNotesArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$progressNotesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressNotesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5655,11 +5655,11 @@ export namespace Prisma {
   interface TeacherFieldRefs {
     readonly id: FieldRef<"Teacher", 'String'>
     readonly name: FieldRef<"Teacher", 'String'>
-    readonly employ_id: FieldRef<"Teacher", 'Int'>
+    readonly employId: FieldRef<"Teacher", 'Int'>
     readonly email: FieldRef<"Teacher", 'String'>
-    readonly phonenumber: FieldRef<"Teacher", 'String'>
+    readonly phoneNumber: FieldRef<"Teacher", 'String'>
     readonly specilization: FieldRef<"Teacher", 'String'>
-    readonly account_status: FieldRef<"Teacher", 'Boolean'>
+    readonly accountStatus: FieldRef<"Teacher", 'Boolean'>
   }
     
 
@@ -6089,23 +6089,23 @@ export namespace Prisma {
    */
   export type Teacher$progressNotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Progress_notes
+     * Select specific fields to fetch from the ProgressNotes
      */
-    select?: Progress_notesSelect<ExtArgs> | null
+    select?: ProgressNotesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Progress_notes
+     * Omit specific fields from the ProgressNotes
      */
-    omit?: Progress_notesOmit<ExtArgs> | null
+    omit?: ProgressNotesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Progress_notesInclude<ExtArgs> | null
-    where?: Progress_notesWhereInput
-    orderBy?: Progress_notesOrderByWithRelationInput | Progress_notesOrderByWithRelationInput[]
-    cursor?: Progress_notesWhereUniqueInput
+    include?: ProgressNotesInclude<ExtArgs> | null
+    where?: ProgressNotesWhereInput
+    orderBy?: ProgressNotesOrderByWithRelationInput | ProgressNotesOrderByWithRelationInput[]
+    cursor?: ProgressNotesWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: Progress_notesScalarFieldEnum | Progress_notesScalarFieldEnum[]
+    distinct?: ProgressNotesScalarFieldEnum | ProgressNotesScalarFieldEnum[]
   }
 
   /**
@@ -6140,54 +6140,54 @@ export namespace Prisma {
   }
 
   export type StudentAvgAggregateOutputType = {
-    student_id: number | null
+    studentId: number | null
   }
 
   export type StudentSumAggregateOutputType = {
-    student_id: number | null
+    studentId: number | null
   }
 
   export type StudentMinAggregateOutputType = {
     id: string | null
-    student_id: number | null
-    first_name: string | null
-    last_name: string | null
+    studentId: number | null
+    firstName: string | null
+    lastName: string | null
     email: string | null
-    account_status: boolean | null
-    date_of_birth: Date | null
-    phonenumber: string | null
-    enrollment_date: Date | null
-    learning_progress_id: string | null
+    accountStatus: boolean | null
+    dateOfBirth: Date | null
+    phoneNumber: string | null
+    enrollmentDate: Date | null
+    learningProgressId: string | null
     classId: string | null
     gender: $Enums.Gender | null
   }
 
   export type StudentMaxAggregateOutputType = {
     id: string | null
-    student_id: number | null
-    first_name: string | null
-    last_name: string | null
+    studentId: number | null
+    firstName: string | null
+    lastName: string | null
     email: string | null
-    account_status: boolean | null
-    date_of_birth: Date | null
-    phonenumber: string | null
-    enrollment_date: Date | null
-    learning_progress_id: string | null
+    accountStatus: boolean | null
+    dateOfBirth: Date | null
+    phoneNumber: string | null
+    enrollmentDate: Date | null
+    learningProgressId: string | null
     classId: string | null
     gender: $Enums.Gender | null
   }
 
   export type StudentCountAggregateOutputType = {
     id: number
-    student_id: number
-    first_name: number
-    last_name: number
+    studentId: number
+    firstName: number
+    lastName: number
     email: number
-    account_status: number
-    date_of_birth: number
-    phonenumber: number
-    enrollment_date: number
-    learning_progress_id: number
+    accountStatus: number
+    dateOfBirth: number
+    phoneNumber: number
+    enrollmentDate: number
+    learningProgressId: number
     classId: number
     gender: number
     _all: number
@@ -6195,54 +6195,54 @@ export namespace Prisma {
 
 
   export type StudentAvgAggregateInputType = {
-    student_id?: true
+    studentId?: true
   }
 
   export type StudentSumAggregateInputType = {
-    student_id?: true
+    studentId?: true
   }
 
   export type StudentMinAggregateInputType = {
     id?: true
-    student_id?: true
-    first_name?: true
-    last_name?: true
+    studentId?: true
+    firstName?: true
+    lastName?: true
     email?: true
-    account_status?: true
-    date_of_birth?: true
-    phonenumber?: true
-    enrollment_date?: true
-    learning_progress_id?: true
+    accountStatus?: true
+    dateOfBirth?: true
+    phoneNumber?: true
+    enrollmentDate?: true
+    learningProgressId?: true
     classId?: true
     gender?: true
   }
 
   export type StudentMaxAggregateInputType = {
     id?: true
-    student_id?: true
-    first_name?: true
-    last_name?: true
+    studentId?: true
+    firstName?: true
+    lastName?: true
     email?: true
-    account_status?: true
-    date_of_birth?: true
-    phonenumber?: true
-    enrollment_date?: true
-    learning_progress_id?: true
+    accountStatus?: true
+    dateOfBirth?: true
+    phoneNumber?: true
+    enrollmentDate?: true
+    learningProgressId?: true
     classId?: true
     gender?: true
   }
 
   export type StudentCountAggregateInputType = {
     id?: true
-    student_id?: true
-    first_name?: true
-    last_name?: true
+    studentId?: true
+    firstName?: true
+    lastName?: true
     email?: true
-    account_status?: true
-    date_of_birth?: true
-    phonenumber?: true
-    enrollment_date?: true
-    learning_progress_id?: true
+    accountStatus?: true
+    dateOfBirth?: true
+    phoneNumber?: true
+    enrollmentDate?: true
+    learningProgressId?: true
     classId?: true
     gender?: true
     _all?: true
@@ -6336,15 +6336,15 @@ export namespace Prisma {
 
   export type StudentGroupByOutputType = {
     id: string
-    student_id: number
-    first_name: string
-    last_name: string
+    studentId: number
+    firstName: string
+    lastName: string
     email: string
-    account_status: boolean
-    date_of_birth: Date
-    phonenumber: string | null
-    enrollment_date: Date
-    learning_progress_id: string
+    accountStatus: boolean
+    dateOfBirth: Date
+    phoneNumber: string | null
+    enrollmentDate: Date
+    learningProgressId: string
     classId: string | null
     gender: $Enums.Gender
     _count: StudentCountAggregateOutputType | null
@@ -6370,20 +6370,20 @@ export namespace Prisma {
 
   export type StudentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    student_id?: boolean
-    first_name?: boolean
-    last_name?: boolean
+    studentId?: boolean
+    firstName?: boolean
+    lastName?: boolean
     email?: boolean
-    account_status?: boolean
-    date_of_birth?: boolean
-    phonenumber?: boolean
-    enrollment_date?: boolean
-    learning_progress_id?: boolean
+    accountStatus?: boolean
+    dateOfBirth?: boolean
+    phoneNumber?: boolean
+    enrollmentDate?: boolean
+    learningProgressId?: boolean
     classId?: boolean
     gender?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     class?: boolean | Student$classArgs<ExtArgs>
-    learning_progress?: boolean | Learning_progressesDefaultArgs<ExtArgs>
+    learningProgress?: boolean | LearningProgressesDefaultArgs<ExtArgs>
     attendances?: boolean | Student$attendancesArgs<ExtArgs>
     examSubmissions?: boolean | Student$examSubmissionsArgs<ExtArgs>
     _count?: boolean | StudentCountOutputTypeDefaultArgs<ExtArgs>
@@ -6391,60 +6391,60 @@ export namespace Prisma {
 
   export type StudentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    student_id?: boolean
-    first_name?: boolean
-    last_name?: boolean
+    studentId?: boolean
+    firstName?: boolean
+    lastName?: boolean
     email?: boolean
-    account_status?: boolean
-    date_of_birth?: boolean
-    phonenumber?: boolean
-    enrollment_date?: boolean
-    learning_progress_id?: boolean
+    accountStatus?: boolean
+    dateOfBirth?: boolean
+    phoneNumber?: boolean
+    enrollmentDate?: boolean
+    learningProgressId?: boolean
     classId?: boolean
     gender?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     class?: boolean | Student$classArgs<ExtArgs>
-    learning_progress?: boolean | Learning_progressesDefaultArgs<ExtArgs>
+    learningProgress?: boolean | LearningProgressesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["student"]>
 
   export type StudentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    student_id?: boolean
-    first_name?: boolean
-    last_name?: boolean
+    studentId?: boolean
+    firstName?: boolean
+    lastName?: boolean
     email?: boolean
-    account_status?: boolean
-    date_of_birth?: boolean
-    phonenumber?: boolean
-    enrollment_date?: boolean
-    learning_progress_id?: boolean
+    accountStatus?: boolean
+    dateOfBirth?: boolean
+    phoneNumber?: boolean
+    enrollmentDate?: boolean
+    learningProgressId?: boolean
     classId?: boolean
     gender?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     class?: boolean | Student$classArgs<ExtArgs>
-    learning_progress?: boolean | Learning_progressesDefaultArgs<ExtArgs>
+    learningProgress?: boolean | LearningProgressesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["student"]>
 
   export type StudentSelectScalar = {
     id?: boolean
-    student_id?: boolean
-    first_name?: boolean
-    last_name?: boolean
+    studentId?: boolean
+    firstName?: boolean
+    lastName?: boolean
     email?: boolean
-    account_status?: boolean
-    date_of_birth?: boolean
-    phonenumber?: boolean
-    enrollment_date?: boolean
-    learning_progress_id?: boolean
+    accountStatus?: boolean
+    dateOfBirth?: boolean
+    phoneNumber?: boolean
+    enrollmentDate?: boolean
+    learningProgressId?: boolean
     classId?: boolean
     gender?: boolean
   }
 
-  export type StudentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "student_id" | "first_name" | "last_name" | "email" | "account_status" | "date_of_birth" | "phonenumber" | "enrollment_date" | "learning_progress_id" | "classId" | "gender", ExtArgs["result"]["student"]>
+  export type StudentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "firstName" | "lastName" | "email" | "accountStatus" | "dateOfBirth" | "phoneNumber" | "enrollmentDate" | "learningProgressId" | "classId" | "gender", ExtArgs["result"]["student"]>
   export type StudentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     class?: boolean | Student$classArgs<ExtArgs>
-    learning_progress?: boolean | Learning_progressesDefaultArgs<ExtArgs>
+    learningProgress?: boolean | LearningProgressesDefaultArgs<ExtArgs>
     attendances?: boolean | Student$attendancesArgs<ExtArgs>
     examSubmissions?: boolean | Student$examSubmissionsArgs<ExtArgs>
     _count?: boolean | StudentCountOutputTypeDefaultArgs<ExtArgs>
@@ -6452,12 +6452,12 @@ export namespace Prisma {
   export type StudentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     class?: boolean | Student$classArgs<ExtArgs>
-    learning_progress?: boolean | Learning_progressesDefaultArgs<ExtArgs>
+    learningProgress?: boolean | LearningProgressesDefaultArgs<ExtArgs>
   }
   export type StudentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     class?: boolean | Student$classArgs<ExtArgs>
-    learning_progress?: boolean | Learning_progressesDefaultArgs<ExtArgs>
+    learningProgress?: boolean | LearningProgressesDefaultArgs<ExtArgs>
   }
 
   export type $StudentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6465,21 +6465,21 @@ export namespace Prisma {
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
       class: Prisma.$ClassesPayload<ExtArgs> | null
-      learning_progress: Prisma.$Learning_progressesPayload<ExtArgs>
+      learningProgress: Prisma.$LearningProgressesPayload<ExtArgs>
       attendances: Prisma.$AttendencesPayload<ExtArgs>[]
-      examSubmissions: Prisma.$Exam_submissionsPayload<ExtArgs>[]
+      examSubmissions: Prisma.$ExamSubmissionsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      student_id: number
-      first_name: string
-      last_name: string
+      studentId: number
+      firstName: string
+      lastName: string
       email: string
-      account_status: boolean
-      date_of_birth: Date
-      phonenumber: string | null
-      enrollment_date: Date
-      learning_progress_id: string
+      accountStatus: boolean
+      dateOfBirth: Date
+      phoneNumber: string | null
+      enrollmentDate: Date
+      learningProgressId: string
       classId: string | null
       gender: $Enums.Gender
     }, ExtArgs["result"]["student"]>
@@ -6878,9 +6878,9 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     class<T extends Student$classArgs<ExtArgs> = {}>(args?: Subset<T, Student$classArgs<ExtArgs>>): Prisma__ClassesClient<$Result.GetResult<Prisma.$ClassesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    learning_progress<T extends Learning_progressesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, Learning_progressesDefaultArgs<ExtArgs>>): Prisma__Learning_progressesClient<$Result.GetResult<Prisma.$Learning_progressesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    learningProgress<T extends LearningProgressesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LearningProgressesDefaultArgs<ExtArgs>>): Prisma__LearningProgressesClient<$Result.GetResult<Prisma.$LearningProgressesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     attendances<T extends Student$attendancesArgs<ExtArgs> = {}>(args?: Subset<T, Student$attendancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AttendencesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    examSubmissions<T extends Student$examSubmissionsArgs<ExtArgs> = {}>(args?: Subset<T, Student$examSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Exam_submissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    examSubmissions<T extends Student$examSubmissionsArgs<ExtArgs> = {}>(args?: Subset<T, Student$examSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamSubmissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6911,15 +6911,15 @@ export namespace Prisma {
    */
   interface StudentFieldRefs {
     readonly id: FieldRef<"Student", 'String'>
-    readonly student_id: FieldRef<"Student", 'Int'>
-    readonly first_name: FieldRef<"Student", 'String'>
-    readonly last_name: FieldRef<"Student", 'String'>
+    readonly studentId: FieldRef<"Student", 'Int'>
+    readonly firstName: FieldRef<"Student", 'String'>
+    readonly lastName: FieldRef<"Student", 'String'>
     readonly email: FieldRef<"Student", 'String'>
-    readonly account_status: FieldRef<"Student", 'Boolean'>
-    readonly date_of_birth: FieldRef<"Student", 'DateTime'>
-    readonly phonenumber: FieldRef<"Student", 'String'>
-    readonly enrollment_date: FieldRef<"Student", 'DateTime'>
-    readonly learning_progress_id: FieldRef<"Student", 'String'>
+    readonly accountStatus: FieldRef<"Student", 'Boolean'>
+    readonly dateOfBirth: FieldRef<"Student", 'DateTime'>
+    readonly phoneNumber: FieldRef<"Student", 'String'>
+    readonly enrollmentDate: FieldRef<"Student", 'DateTime'>
+    readonly learningProgressId: FieldRef<"Student", 'String'>
     readonly classId: FieldRef<"Student", 'String'>
     readonly gender: FieldRef<"Student", 'Gender'>
   }
@@ -7370,23 +7370,23 @@ export namespace Prisma {
    */
   export type Student$examSubmissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Exam_submissions
+     * Select specific fields to fetch from the ExamSubmissions
      */
-    select?: Exam_submissionsSelect<ExtArgs> | null
+    select?: ExamSubmissionsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Exam_submissions
+     * Omit specific fields from the ExamSubmissions
      */
-    omit?: Exam_submissionsOmit<ExtArgs> | null
+    omit?: ExamSubmissionsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Exam_submissionsInclude<ExtArgs> | null
-    where?: Exam_submissionsWhereInput
-    orderBy?: Exam_submissionsOrderByWithRelationInput | Exam_submissionsOrderByWithRelationInput[]
-    cursor?: Exam_submissionsWhereUniqueInput
+    include?: ExamSubmissionsInclude<ExtArgs> | null
+    where?: ExamSubmissionsWhereInput
+    orderBy?: ExamSubmissionsOrderByWithRelationInput | ExamSubmissionsOrderByWithRelationInput[]
+    cursor?: ExamSubmissionsWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: Exam_submissionsScalarFieldEnum | Exam_submissionsScalarFieldEnum[]
+    distinct?: ExamSubmissionsScalarFieldEnum | ExamSubmissionsScalarFieldEnum[]
   }
 
   /**
@@ -7420,34 +7420,34 @@ export namespace Prisma {
 
   export type ClassesMinAggregateOutputType = {
     id: string | null
-    class_name: string | null
+    className: string | null
   }
 
   export type ClassesMaxAggregateOutputType = {
     id: string | null
-    class_name: string | null
+    className: string | null
   }
 
   export type ClassesCountAggregateOutputType = {
     id: number
-    class_name: number
+    className: number
     _all: number
   }
 
 
   export type ClassesMinAggregateInputType = {
     id?: true
-    class_name?: true
+    className?: true
   }
 
   export type ClassesMaxAggregateInputType = {
     id?: true
-    class_name?: true
+    className?: true
   }
 
   export type ClassesCountAggregateInputType = {
     id?: true
-    class_name?: true
+    className?: true
     _all?: true
   }
 
@@ -7525,7 +7525,7 @@ export namespace Prisma {
 
   export type ClassesGroupByOutputType = {
     id: string
-    class_name: string
+    className: string
     _count: ClassesCountAggregateOutputType | null
     _min: ClassesMinAggregateOutputType | null
     _max: ClassesMaxAggregateOutputType | null
@@ -7547,7 +7547,7 @@ export namespace Prisma {
 
   export type ClassesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    class_name?: boolean
+    className?: boolean
     academicYears?: boolean | Classes$academicYearsArgs<ExtArgs>
     students?: boolean | Classes$studentsArgs<ExtArgs>
     subjects?: boolean | Classes$subjectsArgs<ExtArgs>
@@ -7557,20 +7557,20 @@ export namespace Prisma {
 
   export type ClassesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    class_name?: boolean
+    className?: boolean
   }, ExtArgs["result"]["classes"]>
 
   export type ClassesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    class_name?: boolean
+    className?: boolean
   }, ExtArgs["result"]["classes"]>
 
   export type ClassesSelectScalar = {
     id?: boolean
-    class_name?: boolean
+    className?: boolean
   }
 
-  export type ClassesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "class_name", ExtArgs["result"]["classes"]>
+  export type ClassesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "className", ExtArgs["result"]["classes"]>
   export type ClassesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     academicYears?: boolean | Classes$academicYearsArgs<ExtArgs>
     students?: boolean | Classes$studentsArgs<ExtArgs>
@@ -7584,14 +7584,14 @@ export namespace Prisma {
   export type $ClassesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Classes"
     objects: {
-      academicYears: Prisma.$Class_Academic_yearPayload<ExtArgs>[]
+      academicYears: Prisma.$ClassAcademicYearPayload<ExtArgs>[]
       students: Prisma.$StudentPayload<ExtArgs>[]
       subjects: Prisma.$SubjectsPayload<ExtArgs>[]
-      performance: Prisma.$Classes_performencePayload<ExtArgs> | null
+      performance: Prisma.$ClassesPerformencePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      class_name: string
+      className: string
     }, ExtArgs["result"]["classes"]>
     composites: {}
   }
@@ -7986,10 +7986,10 @@ export namespace Prisma {
    */
   export interface Prisma__ClassesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    academicYears<T extends Classes$academicYearsArgs<ExtArgs> = {}>(args?: Subset<T, Classes$academicYearsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Class_Academic_yearPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    academicYears<T extends Classes$academicYearsArgs<ExtArgs> = {}>(args?: Subset<T, Classes$academicYearsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassAcademicYearPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     students<T extends Classes$studentsArgs<ExtArgs> = {}>(args?: Subset<T, Classes$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     subjects<T extends Classes$subjectsArgs<ExtArgs> = {}>(args?: Subset<T, Classes$subjectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubjectsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    performance<T extends Classes$performanceArgs<ExtArgs> = {}>(args?: Subset<T, Classes$performanceArgs<ExtArgs>>): Prisma__Classes_performenceClient<$Result.GetResult<Prisma.$Classes_performencePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    performance<T extends Classes$performanceArgs<ExtArgs> = {}>(args?: Subset<T, Classes$performanceArgs<ExtArgs>>): Prisma__ClassesPerformenceClient<$Result.GetResult<Prisma.$ClassesPerformencePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8020,7 +8020,7 @@ export namespace Prisma {
    */
   interface ClassesFieldRefs {
     readonly id: FieldRef<"Classes", 'String'>
-    readonly class_name: FieldRef<"Classes", 'String'>
+    readonly className: FieldRef<"Classes", 'String'>
   }
     
 
@@ -8418,23 +8418,23 @@ export namespace Prisma {
    */
   export type Classes$academicYearsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Class_Academic_year
+     * Select specific fields to fetch from the ClassAcademicYear
      */
-    select?: Class_Academic_yearSelect<ExtArgs> | null
+    select?: ClassAcademicYearSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Class_Academic_year
+     * Omit specific fields from the ClassAcademicYear
      */
-    omit?: Class_Academic_yearOmit<ExtArgs> | null
+    omit?: ClassAcademicYearOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Class_Academic_yearInclude<ExtArgs> | null
-    where?: Class_Academic_yearWhereInput
-    orderBy?: Class_Academic_yearOrderByWithRelationInput | Class_Academic_yearOrderByWithRelationInput[]
-    cursor?: Class_Academic_yearWhereUniqueInput
+    include?: ClassAcademicYearInclude<ExtArgs> | null
+    where?: ClassAcademicYearWhereInput
+    orderBy?: ClassAcademicYearOrderByWithRelationInput | ClassAcademicYearOrderByWithRelationInput[]
+    cursor?: ClassAcademicYearWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: Class_Academic_yearScalarFieldEnum | Class_Academic_yearScalarFieldEnum[]
+    distinct?: ClassAcademicYearScalarFieldEnum | ClassAcademicYearScalarFieldEnum[]
   }
 
   /**
@@ -8490,18 +8490,18 @@ export namespace Prisma {
    */
   export type Classes$performanceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Classes_performence
+     * Select specific fields to fetch from the ClassesPerformence
      */
-    select?: Classes_performenceSelect<ExtArgs> | null
+    select?: ClassesPerformenceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Classes_performence
+     * Omit specific fields from the ClassesPerformence
      */
-    omit?: Classes_performenceOmit<ExtArgs> | null
+    omit?: ClassesPerformenceOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Classes_performenceInclude<ExtArgs> | null
-    where?: Classes_performenceWhereInput
+    include?: ClassesPerformenceInclude<ExtArgs> | null
+    where?: ClassesPerformenceWhereInput
   }
 
   /**
@@ -8535,8 +8535,8 @@ export namespace Prisma {
 
   export type SubjectsMinAggregateOutputType = {
     id: string | null
-    subject_name: string | null
-    subject_code: string | null
+    subjectName: string | null
+    subjectCode: string | null
     Description: string | null
     classId: string | null
     teacherId: string | null
@@ -8544,8 +8544,8 @@ export namespace Prisma {
 
   export type SubjectsMaxAggregateOutputType = {
     id: string | null
-    subject_name: string | null
-    subject_code: string | null
+    subjectName: string | null
+    subjectCode: string | null
     Description: string | null
     classId: string | null
     teacherId: string | null
@@ -8553,8 +8553,8 @@ export namespace Prisma {
 
   export type SubjectsCountAggregateOutputType = {
     id: number
-    subject_name: number
-    subject_code: number
+    subjectName: number
+    subjectCode: number
     Description: number
     classId: number
     teacherId: number
@@ -8564,8 +8564,8 @@ export namespace Prisma {
 
   export type SubjectsMinAggregateInputType = {
     id?: true
-    subject_name?: true
-    subject_code?: true
+    subjectName?: true
+    subjectCode?: true
     Description?: true
     classId?: true
     teacherId?: true
@@ -8573,8 +8573,8 @@ export namespace Prisma {
 
   export type SubjectsMaxAggregateInputType = {
     id?: true
-    subject_name?: true
-    subject_code?: true
+    subjectName?: true
+    subjectCode?: true
     Description?: true
     classId?: true
     teacherId?: true
@@ -8582,8 +8582,8 @@ export namespace Prisma {
 
   export type SubjectsCountAggregateInputType = {
     id?: true
-    subject_name?: true
-    subject_code?: true
+    subjectName?: true
+    subjectCode?: true
     Description?: true
     classId?: true
     teacherId?: true
@@ -8664,8 +8664,8 @@ export namespace Prisma {
 
   export type SubjectsGroupByOutputType = {
     id: string
-    subject_name: string
-    subject_code: string
+    subjectName: string
+    subjectCode: string
     Description: string
     classId: string
     teacherId: string
@@ -8690,8 +8690,8 @@ export namespace Prisma {
 
   export type SubjectsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    subject_name?: boolean
-    subject_code?: boolean
+    subjectName?: boolean
+    subjectCode?: boolean
     Description?: boolean
     classId?: boolean
     teacherId?: boolean
@@ -8706,8 +8706,8 @@ export namespace Prisma {
 
   export type SubjectsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    subject_name?: boolean
-    subject_code?: boolean
+    subjectName?: boolean
+    subjectCode?: boolean
     Description?: boolean
     classId?: boolean
     teacherId?: boolean
@@ -8717,8 +8717,8 @@ export namespace Prisma {
 
   export type SubjectsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    subject_name?: boolean
-    subject_code?: boolean
+    subjectName?: boolean
+    subjectCode?: boolean
     Description?: boolean
     classId?: boolean
     teacherId?: boolean
@@ -8728,14 +8728,14 @@ export namespace Prisma {
 
   export type SubjectsSelectScalar = {
     id?: boolean
-    subject_name?: boolean
-    subject_code?: boolean
+    subjectName?: boolean
+    subjectCode?: boolean
     Description?: boolean
     classId?: boolean
     teacherId?: boolean
   }
 
-  export type SubjectsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "subject_name" | "subject_code" | "Description" | "classId" | "teacherId", ExtArgs["result"]["subjects"]>
+  export type SubjectsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "subjectName" | "subjectCode" | "Description" | "classId" | "teacherId", ExtArgs["result"]["subjects"]>
   export type SubjectsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     class?: boolean | ClassesDefaultArgs<ExtArgs>
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
@@ -8766,8 +8766,8 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      subject_name: string
-      subject_code: string
+      subjectName: string
+      subjectCode: string
       Description: string
       classId: string
       teacherId: string
@@ -9201,8 +9201,8 @@ export namespace Prisma {
    */
   interface SubjectsFieldRefs {
     readonly id: FieldRef<"Subjects", 'String'>
-    readonly subject_name: FieldRef<"Subjects", 'String'>
-    readonly subject_code: FieldRef<"Subjects", 'String'>
+    readonly subjectName: FieldRef<"Subjects", 'String'>
+    readonly subjectCode: FieldRef<"Subjects", 'String'>
     readonly Description: FieldRef<"Subjects", 'String'>
     readonly classId: FieldRef<"Subjects", 'String'>
     readonly teacherId: FieldRef<"Subjects", 'String'>
@@ -9722,349 +9722,349 @@ export namespace Prisma {
 
 
   /**
-   * Model Academic_Years
+   * Model AcademicYears
    */
 
-  export type AggregateAcademic_Years = {
-    _count: Academic_YearsCountAggregateOutputType | null
-    _min: Academic_YearsMinAggregateOutputType | null
-    _max: Academic_YearsMaxAggregateOutputType | null
+  export type AggregateAcademicYears = {
+    _count: AcademicYearsCountAggregateOutputType | null
+    _min: AcademicYearsMinAggregateOutputType | null
+    _max: AcademicYearsMaxAggregateOutputType | null
   }
 
-  export type Academic_YearsMinAggregateOutputType = {
+  export type AcademicYearsMinAggregateOutputType = {
     id: string | null
-    year_name: string | null
-    Start_date: Date | null
-    end_date: Date | null
+    yearName: string | null
+    StartDate: Date | null
+    endDate: Date | null
     status: $Enums.Status | null
   }
 
-  export type Academic_YearsMaxAggregateOutputType = {
+  export type AcademicYearsMaxAggregateOutputType = {
     id: string | null
-    year_name: string | null
-    Start_date: Date | null
-    end_date: Date | null
+    yearName: string | null
+    StartDate: Date | null
+    endDate: Date | null
     status: $Enums.Status | null
   }
 
-  export type Academic_YearsCountAggregateOutputType = {
+  export type AcademicYearsCountAggregateOutputType = {
     id: number
-    year_name: number
-    Start_date: number
-    end_date: number
+    yearName: number
+    StartDate: number
+    endDate: number
     status: number
     _all: number
   }
 
 
-  export type Academic_YearsMinAggregateInputType = {
+  export type AcademicYearsMinAggregateInputType = {
     id?: true
-    year_name?: true
-    Start_date?: true
-    end_date?: true
+    yearName?: true
+    StartDate?: true
+    endDate?: true
     status?: true
   }
 
-  export type Academic_YearsMaxAggregateInputType = {
+  export type AcademicYearsMaxAggregateInputType = {
     id?: true
-    year_name?: true
-    Start_date?: true
-    end_date?: true
+    yearName?: true
+    StartDate?: true
+    endDate?: true
     status?: true
   }
 
-  export type Academic_YearsCountAggregateInputType = {
+  export type AcademicYearsCountAggregateInputType = {
     id?: true
-    year_name?: true
-    Start_date?: true
-    end_date?: true
+    yearName?: true
+    StartDate?: true
+    endDate?: true
     status?: true
     _all?: true
   }
 
-  export type Academic_YearsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AcademicYearsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Academic_Years to aggregate.
+     * Filter which AcademicYears to aggregate.
      */
-    where?: Academic_YearsWhereInput
+    where?: AcademicYearsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Academic_Years to fetch.
+     * Determine the order of AcademicYears to fetch.
      */
-    orderBy?: Academic_YearsOrderByWithRelationInput | Academic_YearsOrderByWithRelationInput[]
+    orderBy?: AcademicYearsOrderByWithRelationInput | AcademicYearsOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: Academic_YearsWhereUniqueInput
+    cursor?: AcademicYearsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Academic_Years from the position of the cursor.
+     * Take `±n` AcademicYears from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Academic_Years.
+     * Skip the first `n` AcademicYears.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Academic_Years
+     * Count returned AcademicYears
     **/
-    _count?: true | Academic_YearsCountAggregateInputType
+    _count?: true | AcademicYearsCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: Academic_YearsMinAggregateInputType
+    _min?: AcademicYearsMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: Academic_YearsMaxAggregateInputType
+    _max?: AcademicYearsMaxAggregateInputType
   }
 
-  export type GetAcademic_YearsAggregateType<T extends Academic_YearsAggregateArgs> = {
-        [P in keyof T & keyof AggregateAcademic_Years]: P extends '_count' | 'count'
+  export type GetAcademicYearsAggregateType<T extends AcademicYearsAggregateArgs> = {
+        [P in keyof T & keyof AggregateAcademicYears]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateAcademic_Years[P]>
-      : GetScalarType<T[P], AggregateAcademic_Years[P]>
+        : GetScalarType<T[P], AggregateAcademicYears[P]>
+      : GetScalarType<T[P], AggregateAcademicYears[P]>
   }
 
 
 
 
-  export type Academic_YearsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: Academic_YearsWhereInput
-    orderBy?: Academic_YearsOrderByWithAggregationInput | Academic_YearsOrderByWithAggregationInput[]
-    by: Academic_YearsScalarFieldEnum[] | Academic_YearsScalarFieldEnum
-    having?: Academic_YearsScalarWhereWithAggregatesInput
+  export type AcademicYearsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AcademicYearsWhereInput
+    orderBy?: AcademicYearsOrderByWithAggregationInput | AcademicYearsOrderByWithAggregationInput[]
+    by: AcademicYearsScalarFieldEnum[] | AcademicYearsScalarFieldEnum
+    having?: AcademicYearsScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: Academic_YearsCountAggregateInputType | true
-    _min?: Academic_YearsMinAggregateInputType
-    _max?: Academic_YearsMaxAggregateInputType
+    _count?: AcademicYearsCountAggregateInputType | true
+    _min?: AcademicYearsMinAggregateInputType
+    _max?: AcademicYearsMaxAggregateInputType
   }
 
-  export type Academic_YearsGroupByOutputType = {
+  export type AcademicYearsGroupByOutputType = {
     id: string
-    year_name: string
-    Start_date: Date
-    end_date: Date
+    yearName: string
+    StartDate: Date
+    endDate: Date
     status: $Enums.Status
-    _count: Academic_YearsCountAggregateOutputType | null
-    _min: Academic_YearsMinAggregateOutputType | null
-    _max: Academic_YearsMaxAggregateOutputType | null
+    _count: AcademicYearsCountAggregateOutputType | null
+    _min: AcademicYearsMinAggregateOutputType | null
+    _max: AcademicYearsMaxAggregateOutputType | null
   }
 
-  type GetAcademic_YearsGroupByPayload<T extends Academic_YearsGroupByArgs> = Prisma.PrismaPromise<
+  type GetAcademicYearsGroupByPayload<T extends AcademicYearsGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<Academic_YearsGroupByOutputType, T['by']> &
+      PickEnumerable<AcademicYearsGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof Academic_YearsGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof AcademicYearsGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], Academic_YearsGroupByOutputType[P]>
-            : GetScalarType<T[P], Academic_YearsGroupByOutputType[P]>
+              : GetScalarType<T[P], AcademicYearsGroupByOutputType[P]>
+            : GetScalarType<T[P], AcademicYearsGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type Academic_YearsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type AcademicYearsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    year_name?: boolean
-    Start_date?: boolean
-    end_date?: boolean
+    yearName?: boolean
+    StartDate?: boolean
+    endDate?: boolean
     status?: boolean
-    classes?: boolean | Academic_Years$classesArgs<ExtArgs>
-    terms?: boolean | Academic_Years$termsArgs<ExtArgs>
-    _count?: boolean | Academic_YearsCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["academic_Years"]>
+    classes?: boolean | AcademicYears$classesArgs<ExtArgs>
+    terms?: boolean | AcademicYears$termsArgs<ExtArgs>
+    _count?: boolean | AcademicYearsCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["academicYears"]>
 
-  export type Academic_YearsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type AcademicYearsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    year_name?: boolean
-    Start_date?: boolean
-    end_date?: boolean
+    yearName?: boolean
+    StartDate?: boolean
+    endDate?: boolean
     status?: boolean
-  }, ExtArgs["result"]["academic_Years"]>
+  }, ExtArgs["result"]["academicYears"]>
 
-  export type Academic_YearsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type AcademicYearsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    year_name?: boolean
-    Start_date?: boolean
-    end_date?: boolean
+    yearName?: boolean
+    StartDate?: boolean
+    endDate?: boolean
     status?: boolean
-  }, ExtArgs["result"]["academic_Years"]>
+  }, ExtArgs["result"]["academicYears"]>
 
-  export type Academic_YearsSelectScalar = {
+  export type AcademicYearsSelectScalar = {
     id?: boolean
-    year_name?: boolean
-    Start_date?: boolean
-    end_date?: boolean
+    yearName?: boolean
+    StartDate?: boolean
+    endDate?: boolean
     status?: boolean
   }
 
-  export type Academic_YearsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "year_name" | "Start_date" | "end_date" | "status", ExtArgs["result"]["academic_Years"]>
-  export type Academic_YearsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    classes?: boolean | Academic_Years$classesArgs<ExtArgs>
-    terms?: boolean | Academic_Years$termsArgs<ExtArgs>
-    _count?: boolean | Academic_YearsCountOutputTypeDefaultArgs<ExtArgs>
+  export type AcademicYearsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "yearName" | "StartDate" | "endDate" | "status", ExtArgs["result"]["academicYears"]>
+  export type AcademicYearsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    classes?: boolean | AcademicYears$classesArgs<ExtArgs>
+    terms?: boolean | AcademicYears$termsArgs<ExtArgs>
+    _count?: boolean | AcademicYearsCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type Academic_YearsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type Academic_YearsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type AcademicYearsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type AcademicYearsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
-  export type $Academic_YearsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Academic_Years"
+  export type $AcademicYearsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AcademicYears"
     objects: {
-      classes: Prisma.$Class_Academic_yearPayload<ExtArgs>[]
+      classes: Prisma.$ClassAcademicYearPayload<ExtArgs>[]
       terms: Prisma.$TermsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      year_name: string
-      Start_date: Date
-      end_date: Date
+      yearName: string
+      StartDate: Date
+      endDate: Date
       status: $Enums.Status
-    }, ExtArgs["result"]["academic_Years"]>
+    }, ExtArgs["result"]["academicYears"]>
     composites: {}
   }
 
-  type Academic_YearsGetPayload<S extends boolean | null | undefined | Academic_YearsDefaultArgs> = $Result.GetResult<Prisma.$Academic_YearsPayload, S>
+  type AcademicYearsGetPayload<S extends boolean | null | undefined | AcademicYearsDefaultArgs> = $Result.GetResult<Prisma.$AcademicYearsPayload, S>
 
-  type Academic_YearsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<Academic_YearsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: Academic_YearsCountAggregateInputType | true
+  type AcademicYearsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AcademicYearsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AcademicYearsCountAggregateInputType | true
     }
 
-  export interface Academic_YearsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Academic_Years'], meta: { name: 'Academic_Years' } }
+  export interface AcademicYearsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AcademicYears'], meta: { name: 'AcademicYears' } }
     /**
-     * Find zero or one Academic_Years that matches the filter.
-     * @param {Academic_YearsFindUniqueArgs} args - Arguments to find a Academic_Years
+     * Find zero or one AcademicYears that matches the filter.
+     * @param {AcademicYearsFindUniqueArgs} args - Arguments to find a AcademicYears
      * @example
-     * // Get one Academic_Years
-     * const academic_Years = await prisma.academic_Years.findUnique({
+     * // Get one AcademicYears
+     * const academicYears = await prisma.academicYears.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends Academic_YearsFindUniqueArgs>(args: SelectSubset<T, Academic_YearsFindUniqueArgs<ExtArgs>>): Prisma__Academic_YearsClient<$Result.GetResult<Prisma.$Academic_YearsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends AcademicYearsFindUniqueArgs>(args: SelectSubset<T, AcademicYearsFindUniqueArgs<ExtArgs>>): Prisma__AcademicYearsClient<$Result.GetResult<Prisma.$AcademicYearsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Academic_Years that matches the filter or throw an error with `error.code='P2025'`
+     * Find one AcademicYears that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {Academic_YearsFindUniqueOrThrowArgs} args - Arguments to find a Academic_Years
+     * @param {AcademicYearsFindUniqueOrThrowArgs} args - Arguments to find a AcademicYears
      * @example
-     * // Get one Academic_Years
-     * const academic_Years = await prisma.academic_Years.findUniqueOrThrow({
+     * // Get one AcademicYears
+     * const academicYears = await prisma.academicYears.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends Academic_YearsFindUniqueOrThrowArgs>(args: SelectSubset<T, Academic_YearsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__Academic_YearsClient<$Result.GetResult<Prisma.$Academic_YearsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends AcademicYearsFindUniqueOrThrowArgs>(args: SelectSubset<T, AcademicYearsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AcademicYearsClient<$Result.GetResult<Prisma.$AcademicYearsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Academic_Years that matches the filter.
+     * Find the first AcademicYears that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Academic_YearsFindFirstArgs} args - Arguments to find a Academic_Years
+     * @param {AcademicYearsFindFirstArgs} args - Arguments to find a AcademicYears
      * @example
-     * // Get one Academic_Years
-     * const academic_Years = await prisma.academic_Years.findFirst({
+     * // Get one AcademicYears
+     * const academicYears = await prisma.academicYears.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends Academic_YearsFindFirstArgs>(args?: SelectSubset<T, Academic_YearsFindFirstArgs<ExtArgs>>): Prisma__Academic_YearsClient<$Result.GetResult<Prisma.$Academic_YearsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends AcademicYearsFindFirstArgs>(args?: SelectSubset<T, AcademicYearsFindFirstArgs<ExtArgs>>): Prisma__AcademicYearsClient<$Result.GetResult<Prisma.$AcademicYearsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Academic_Years that matches the filter or
+     * Find the first AcademicYears that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Academic_YearsFindFirstOrThrowArgs} args - Arguments to find a Academic_Years
+     * @param {AcademicYearsFindFirstOrThrowArgs} args - Arguments to find a AcademicYears
      * @example
-     * // Get one Academic_Years
-     * const academic_Years = await prisma.academic_Years.findFirstOrThrow({
+     * // Get one AcademicYears
+     * const academicYears = await prisma.academicYears.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends Academic_YearsFindFirstOrThrowArgs>(args?: SelectSubset<T, Academic_YearsFindFirstOrThrowArgs<ExtArgs>>): Prisma__Academic_YearsClient<$Result.GetResult<Prisma.$Academic_YearsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends AcademicYearsFindFirstOrThrowArgs>(args?: SelectSubset<T, AcademicYearsFindFirstOrThrowArgs<ExtArgs>>): Prisma__AcademicYearsClient<$Result.GetResult<Prisma.$AcademicYearsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Academic_Years that matches the filter.
+     * Find zero or more AcademicYears that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Academic_YearsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {AcademicYearsFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Academic_Years
-     * const academic_Years = await prisma.academic_Years.findMany()
+     * // Get all AcademicYears
+     * const academicYears = await prisma.academicYears.findMany()
      * 
-     * // Get first 10 Academic_Years
-     * const academic_Years = await prisma.academic_Years.findMany({ take: 10 })
+     * // Get first 10 AcademicYears
+     * const academicYears = await prisma.academicYears.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const academic_YearsWithIdOnly = await prisma.academic_Years.findMany({ select: { id: true } })
+     * const academicYearsWithIdOnly = await prisma.academicYears.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends Academic_YearsFindManyArgs>(args?: SelectSubset<T, Academic_YearsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Academic_YearsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends AcademicYearsFindManyArgs>(args?: SelectSubset<T, AcademicYearsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AcademicYearsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Academic_Years.
-     * @param {Academic_YearsCreateArgs} args - Arguments to create a Academic_Years.
+     * Create a AcademicYears.
+     * @param {AcademicYearsCreateArgs} args - Arguments to create a AcademicYears.
      * @example
-     * // Create one Academic_Years
-     * const Academic_Years = await prisma.academic_Years.create({
+     * // Create one AcademicYears
+     * const AcademicYears = await prisma.academicYears.create({
      *   data: {
-     *     // ... data to create a Academic_Years
+     *     // ... data to create a AcademicYears
      *   }
      * })
      * 
      */
-    create<T extends Academic_YearsCreateArgs>(args: SelectSubset<T, Academic_YearsCreateArgs<ExtArgs>>): Prisma__Academic_YearsClient<$Result.GetResult<Prisma.$Academic_YearsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends AcademicYearsCreateArgs>(args: SelectSubset<T, AcademicYearsCreateArgs<ExtArgs>>): Prisma__AcademicYearsClient<$Result.GetResult<Prisma.$AcademicYearsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Academic_Years.
-     * @param {Academic_YearsCreateManyArgs} args - Arguments to create many Academic_Years.
+     * Create many AcademicYears.
+     * @param {AcademicYearsCreateManyArgs} args - Arguments to create many AcademicYears.
      * @example
-     * // Create many Academic_Years
-     * const academic_Years = await prisma.academic_Years.createMany({
+     * // Create many AcademicYears
+     * const academicYears = await prisma.academicYears.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends Academic_YearsCreateManyArgs>(args?: SelectSubset<T, Academic_YearsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends AcademicYearsCreateManyArgs>(args?: SelectSubset<T, AcademicYearsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Academic_Years and returns the data saved in the database.
-     * @param {Academic_YearsCreateManyAndReturnArgs} args - Arguments to create many Academic_Years.
+     * Create many AcademicYears and returns the data saved in the database.
+     * @param {AcademicYearsCreateManyAndReturnArgs} args - Arguments to create many AcademicYears.
      * @example
-     * // Create many Academic_Years
-     * const academic_Years = await prisma.academic_Years.createManyAndReturn({
+     * // Create many AcademicYears
+     * const academicYears = await prisma.academicYears.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Academic_Years and only return the `id`
-     * const academic_YearsWithIdOnly = await prisma.academic_Years.createManyAndReturn({
+     * // Create many AcademicYears and only return the `id`
+     * const academicYearsWithIdOnly = await prisma.academicYears.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -10074,28 +10074,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends Academic_YearsCreateManyAndReturnArgs>(args?: SelectSubset<T, Academic_YearsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Academic_YearsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends AcademicYearsCreateManyAndReturnArgs>(args?: SelectSubset<T, AcademicYearsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AcademicYearsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Academic_Years.
-     * @param {Academic_YearsDeleteArgs} args - Arguments to delete one Academic_Years.
+     * Delete a AcademicYears.
+     * @param {AcademicYearsDeleteArgs} args - Arguments to delete one AcademicYears.
      * @example
-     * // Delete one Academic_Years
-     * const Academic_Years = await prisma.academic_Years.delete({
+     * // Delete one AcademicYears
+     * const AcademicYears = await prisma.academicYears.delete({
      *   where: {
-     *     // ... filter to delete one Academic_Years
+     *     // ... filter to delete one AcademicYears
      *   }
      * })
      * 
      */
-    delete<T extends Academic_YearsDeleteArgs>(args: SelectSubset<T, Academic_YearsDeleteArgs<ExtArgs>>): Prisma__Academic_YearsClient<$Result.GetResult<Prisma.$Academic_YearsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends AcademicYearsDeleteArgs>(args: SelectSubset<T, AcademicYearsDeleteArgs<ExtArgs>>): Prisma__AcademicYearsClient<$Result.GetResult<Prisma.$AcademicYearsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Academic_Years.
-     * @param {Academic_YearsUpdateArgs} args - Arguments to update one Academic_Years.
+     * Update one AcademicYears.
+     * @param {AcademicYearsUpdateArgs} args - Arguments to update one AcademicYears.
      * @example
-     * // Update one Academic_Years
-     * const academic_Years = await prisma.academic_Years.update({
+     * // Update one AcademicYears
+     * const academicYears = await prisma.academicYears.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -10105,30 +10105,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends Academic_YearsUpdateArgs>(args: SelectSubset<T, Academic_YearsUpdateArgs<ExtArgs>>): Prisma__Academic_YearsClient<$Result.GetResult<Prisma.$Academic_YearsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends AcademicYearsUpdateArgs>(args: SelectSubset<T, AcademicYearsUpdateArgs<ExtArgs>>): Prisma__AcademicYearsClient<$Result.GetResult<Prisma.$AcademicYearsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Academic_Years.
-     * @param {Academic_YearsDeleteManyArgs} args - Arguments to filter Academic_Years to delete.
+     * Delete zero or more AcademicYears.
+     * @param {AcademicYearsDeleteManyArgs} args - Arguments to filter AcademicYears to delete.
      * @example
-     * // Delete a few Academic_Years
-     * const { count } = await prisma.academic_Years.deleteMany({
+     * // Delete a few AcademicYears
+     * const { count } = await prisma.academicYears.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends Academic_YearsDeleteManyArgs>(args?: SelectSubset<T, Academic_YearsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends AcademicYearsDeleteManyArgs>(args?: SelectSubset<T, AcademicYearsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Academic_Years.
+     * Update zero or more AcademicYears.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Academic_YearsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {AcademicYearsUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Academic_Years
-     * const academic_Years = await prisma.academic_Years.updateMany({
+     * // Update many AcademicYears
+     * const academicYears = await prisma.academicYears.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -10138,14 +10138,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends Academic_YearsUpdateManyArgs>(args: SelectSubset<T, Academic_YearsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends AcademicYearsUpdateManyArgs>(args: SelectSubset<T, AcademicYearsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Academic_Years and returns the data updated in the database.
-     * @param {Academic_YearsUpdateManyAndReturnArgs} args - Arguments to update many Academic_Years.
+     * Update zero or more AcademicYears and returns the data updated in the database.
+     * @param {AcademicYearsUpdateManyAndReturnArgs} args - Arguments to update many AcademicYears.
      * @example
-     * // Update many Academic_Years
-     * const academic_Years = await prisma.academic_Years.updateManyAndReturn({
+     * // Update many AcademicYears
+     * const academicYears = await prisma.academicYears.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -10154,8 +10154,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Academic_Years and only return the `id`
-     * const academic_YearsWithIdOnly = await prisma.academic_Years.updateManyAndReturn({
+     * // Update zero or more AcademicYears and only return the `id`
+     * const academicYearsWithIdOnly = await prisma.academicYears.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -10168,56 +10168,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends Academic_YearsUpdateManyAndReturnArgs>(args: SelectSubset<T, Academic_YearsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Academic_YearsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends AcademicYearsUpdateManyAndReturnArgs>(args: SelectSubset<T, AcademicYearsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AcademicYearsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Academic_Years.
-     * @param {Academic_YearsUpsertArgs} args - Arguments to update or create a Academic_Years.
+     * Create or update one AcademicYears.
+     * @param {AcademicYearsUpsertArgs} args - Arguments to update or create a AcademicYears.
      * @example
-     * // Update or create a Academic_Years
-     * const academic_Years = await prisma.academic_Years.upsert({
+     * // Update or create a AcademicYears
+     * const academicYears = await prisma.academicYears.upsert({
      *   create: {
-     *     // ... data to create a Academic_Years
+     *     // ... data to create a AcademicYears
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Academic_Years we want to update
+     *     // ... the filter for the AcademicYears we want to update
      *   }
      * })
      */
-    upsert<T extends Academic_YearsUpsertArgs>(args: SelectSubset<T, Academic_YearsUpsertArgs<ExtArgs>>): Prisma__Academic_YearsClient<$Result.GetResult<Prisma.$Academic_YearsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends AcademicYearsUpsertArgs>(args: SelectSubset<T, AcademicYearsUpsertArgs<ExtArgs>>): Prisma__AcademicYearsClient<$Result.GetResult<Prisma.$AcademicYearsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Academic_Years.
+     * Count the number of AcademicYears.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Academic_YearsCountArgs} args - Arguments to filter Academic_Years to count.
+     * @param {AcademicYearsCountArgs} args - Arguments to filter AcademicYears to count.
      * @example
-     * // Count the number of Academic_Years
-     * const count = await prisma.academic_Years.count({
+     * // Count the number of AcademicYears
+     * const count = await prisma.academicYears.count({
      *   where: {
-     *     // ... the filter for the Academic_Years we want to count
+     *     // ... the filter for the AcademicYears we want to count
      *   }
      * })
     **/
-    count<T extends Academic_YearsCountArgs>(
-      args?: Subset<T, Academic_YearsCountArgs>,
+    count<T extends AcademicYearsCountArgs>(
+      args?: Subset<T, AcademicYearsCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], Academic_YearsCountAggregateOutputType>
+          : GetScalarType<T['select'], AcademicYearsCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Academic_Years.
+     * Allows you to perform aggregations operations on a AcademicYears.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Academic_YearsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {AcademicYearsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -10237,13 +10237,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends Academic_YearsAggregateArgs>(args: Subset<T, Academic_YearsAggregateArgs>): Prisma.PrismaPromise<GetAcademic_YearsAggregateType<T>>
+    aggregate<T extends AcademicYearsAggregateArgs>(args: Subset<T, AcademicYearsAggregateArgs>): Prisma.PrismaPromise<GetAcademicYearsAggregateType<T>>
 
     /**
-     * Group by Academic_Years.
+     * Group by AcademicYears.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Academic_YearsGroupByArgs} args - Group by arguments.
+     * @param {AcademicYearsGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -10258,14 +10258,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends Academic_YearsGroupByArgs,
+      T extends AcademicYearsGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: Academic_YearsGroupByArgs['orderBy'] }
-        : { orderBy?: Academic_YearsGroupByArgs['orderBy'] },
+        ? { orderBy: AcademicYearsGroupByArgs['orderBy'] }
+        : { orderBy?: AcademicYearsGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -10314,23 +10314,23 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, Academic_YearsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAcademic_YearsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, AcademicYearsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAcademicYearsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Academic_Years model
+   * Fields of the AcademicYears model
    */
-  readonly fields: Academic_YearsFieldRefs;
+  readonly fields: AcademicYearsFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Academic_Years.
+   * The delegate class that acts as a "Promise-like" for AcademicYears.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__Academic_YearsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__AcademicYearsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    classes<T extends Academic_Years$classesArgs<ExtArgs> = {}>(args?: Subset<T, Academic_Years$classesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Class_Academic_yearPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    terms<T extends Academic_Years$termsArgs<ExtArgs> = {}>(args?: Subset<T, Academic_Years$termsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TermsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    classes<T extends AcademicYears$classesArgs<ExtArgs> = {}>(args?: Subset<T, AcademicYears$classesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassAcademicYearPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    terms<T extends AcademicYears$termsArgs<ExtArgs> = {}>(args?: Subset<T, AcademicYears$termsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TermsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10357,434 +10357,434 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Academic_Years model
+   * Fields of the AcademicYears model
    */
-  interface Academic_YearsFieldRefs {
-    readonly id: FieldRef<"Academic_Years", 'String'>
-    readonly year_name: FieldRef<"Academic_Years", 'String'>
-    readonly Start_date: FieldRef<"Academic_Years", 'DateTime'>
-    readonly end_date: FieldRef<"Academic_Years", 'DateTime'>
-    readonly status: FieldRef<"Academic_Years", 'Status'>
+  interface AcademicYearsFieldRefs {
+    readonly id: FieldRef<"AcademicYears", 'String'>
+    readonly yearName: FieldRef<"AcademicYears", 'String'>
+    readonly StartDate: FieldRef<"AcademicYears", 'DateTime'>
+    readonly endDate: FieldRef<"AcademicYears", 'DateTime'>
+    readonly status: FieldRef<"AcademicYears", 'Status'>
   }
     
 
   // Custom InputTypes
   /**
-   * Academic_Years findUnique
+   * AcademicYears findUnique
    */
-  export type Academic_YearsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AcademicYearsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Academic_Years
+     * Select specific fields to fetch from the AcademicYears
      */
-    select?: Academic_YearsSelect<ExtArgs> | null
+    select?: AcademicYearsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Academic_Years
+     * Omit specific fields from the AcademicYears
      */
-    omit?: Academic_YearsOmit<ExtArgs> | null
+    omit?: AcademicYearsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Academic_YearsInclude<ExtArgs> | null
+    include?: AcademicYearsInclude<ExtArgs> | null
     /**
-     * Filter, which Academic_Years to fetch.
+     * Filter, which AcademicYears to fetch.
      */
-    where: Academic_YearsWhereUniqueInput
+    where: AcademicYearsWhereUniqueInput
   }
 
   /**
-   * Academic_Years findUniqueOrThrow
+   * AcademicYears findUniqueOrThrow
    */
-  export type Academic_YearsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AcademicYearsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Academic_Years
+     * Select specific fields to fetch from the AcademicYears
      */
-    select?: Academic_YearsSelect<ExtArgs> | null
+    select?: AcademicYearsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Academic_Years
+     * Omit specific fields from the AcademicYears
      */
-    omit?: Academic_YearsOmit<ExtArgs> | null
+    omit?: AcademicYearsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Academic_YearsInclude<ExtArgs> | null
+    include?: AcademicYearsInclude<ExtArgs> | null
     /**
-     * Filter, which Academic_Years to fetch.
+     * Filter, which AcademicYears to fetch.
      */
-    where: Academic_YearsWhereUniqueInput
+    where: AcademicYearsWhereUniqueInput
   }
 
   /**
-   * Academic_Years findFirst
+   * AcademicYears findFirst
    */
-  export type Academic_YearsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AcademicYearsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Academic_Years
+     * Select specific fields to fetch from the AcademicYears
      */
-    select?: Academic_YearsSelect<ExtArgs> | null
+    select?: AcademicYearsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Academic_Years
+     * Omit specific fields from the AcademicYears
      */
-    omit?: Academic_YearsOmit<ExtArgs> | null
+    omit?: AcademicYearsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Academic_YearsInclude<ExtArgs> | null
+    include?: AcademicYearsInclude<ExtArgs> | null
     /**
-     * Filter, which Academic_Years to fetch.
+     * Filter, which AcademicYears to fetch.
      */
-    where?: Academic_YearsWhereInput
+    where?: AcademicYearsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Academic_Years to fetch.
+     * Determine the order of AcademicYears to fetch.
      */
-    orderBy?: Academic_YearsOrderByWithRelationInput | Academic_YearsOrderByWithRelationInput[]
+    orderBy?: AcademicYearsOrderByWithRelationInput | AcademicYearsOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Academic_Years.
+     * Sets the position for searching for AcademicYears.
      */
-    cursor?: Academic_YearsWhereUniqueInput
+    cursor?: AcademicYearsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Academic_Years from the position of the cursor.
+     * Take `±n` AcademicYears from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Academic_Years.
+     * Skip the first `n` AcademicYears.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Academic_Years.
+     * Filter by unique combinations of AcademicYears.
      */
-    distinct?: Academic_YearsScalarFieldEnum | Academic_YearsScalarFieldEnum[]
+    distinct?: AcademicYearsScalarFieldEnum | AcademicYearsScalarFieldEnum[]
   }
 
   /**
-   * Academic_Years findFirstOrThrow
+   * AcademicYears findFirstOrThrow
    */
-  export type Academic_YearsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AcademicYearsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Academic_Years
+     * Select specific fields to fetch from the AcademicYears
      */
-    select?: Academic_YearsSelect<ExtArgs> | null
+    select?: AcademicYearsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Academic_Years
+     * Omit specific fields from the AcademicYears
      */
-    omit?: Academic_YearsOmit<ExtArgs> | null
+    omit?: AcademicYearsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Academic_YearsInclude<ExtArgs> | null
+    include?: AcademicYearsInclude<ExtArgs> | null
     /**
-     * Filter, which Academic_Years to fetch.
+     * Filter, which AcademicYears to fetch.
      */
-    where?: Academic_YearsWhereInput
+    where?: AcademicYearsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Academic_Years to fetch.
+     * Determine the order of AcademicYears to fetch.
      */
-    orderBy?: Academic_YearsOrderByWithRelationInput | Academic_YearsOrderByWithRelationInput[]
+    orderBy?: AcademicYearsOrderByWithRelationInput | AcademicYearsOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Academic_Years.
+     * Sets the position for searching for AcademicYears.
      */
-    cursor?: Academic_YearsWhereUniqueInput
+    cursor?: AcademicYearsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Academic_Years from the position of the cursor.
+     * Take `±n` AcademicYears from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Academic_Years.
+     * Skip the first `n` AcademicYears.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Academic_Years.
+     * Filter by unique combinations of AcademicYears.
      */
-    distinct?: Academic_YearsScalarFieldEnum | Academic_YearsScalarFieldEnum[]
+    distinct?: AcademicYearsScalarFieldEnum | AcademicYearsScalarFieldEnum[]
   }
 
   /**
-   * Academic_Years findMany
+   * AcademicYears findMany
    */
-  export type Academic_YearsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AcademicYearsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Academic_Years
+     * Select specific fields to fetch from the AcademicYears
      */
-    select?: Academic_YearsSelect<ExtArgs> | null
+    select?: AcademicYearsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Academic_Years
+     * Omit specific fields from the AcademicYears
      */
-    omit?: Academic_YearsOmit<ExtArgs> | null
+    omit?: AcademicYearsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Academic_YearsInclude<ExtArgs> | null
+    include?: AcademicYearsInclude<ExtArgs> | null
     /**
-     * Filter, which Academic_Years to fetch.
+     * Filter, which AcademicYears to fetch.
      */
-    where?: Academic_YearsWhereInput
+    where?: AcademicYearsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Academic_Years to fetch.
+     * Determine the order of AcademicYears to fetch.
      */
-    orderBy?: Academic_YearsOrderByWithRelationInput | Academic_YearsOrderByWithRelationInput[]
+    orderBy?: AcademicYearsOrderByWithRelationInput | AcademicYearsOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Academic_Years.
+     * Sets the position for listing AcademicYears.
      */
-    cursor?: Academic_YearsWhereUniqueInput
+    cursor?: AcademicYearsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Academic_Years from the position of the cursor.
+     * Take `±n` AcademicYears from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Academic_Years.
+     * Skip the first `n` AcademicYears.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Academic_Years.
+     * Filter by unique combinations of AcademicYears.
      */
-    distinct?: Academic_YearsScalarFieldEnum | Academic_YearsScalarFieldEnum[]
+    distinct?: AcademicYearsScalarFieldEnum | AcademicYearsScalarFieldEnum[]
   }
 
   /**
-   * Academic_Years create
+   * AcademicYears create
    */
-  export type Academic_YearsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AcademicYearsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Academic_Years
+     * Select specific fields to fetch from the AcademicYears
      */
-    select?: Academic_YearsSelect<ExtArgs> | null
+    select?: AcademicYearsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Academic_Years
+     * Omit specific fields from the AcademicYears
      */
-    omit?: Academic_YearsOmit<ExtArgs> | null
+    omit?: AcademicYearsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Academic_YearsInclude<ExtArgs> | null
+    include?: AcademicYearsInclude<ExtArgs> | null
     /**
-     * The data needed to create a Academic_Years.
+     * The data needed to create a AcademicYears.
      */
-    data: XOR<Academic_YearsCreateInput, Academic_YearsUncheckedCreateInput>
+    data: XOR<AcademicYearsCreateInput, AcademicYearsUncheckedCreateInput>
   }
 
   /**
-   * Academic_Years createMany
+   * AcademicYears createMany
    */
-  export type Academic_YearsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AcademicYearsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Academic_Years.
+     * The data used to create many AcademicYears.
      */
-    data: Academic_YearsCreateManyInput | Academic_YearsCreateManyInput[]
+    data: AcademicYearsCreateManyInput | AcademicYearsCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Academic_Years createManyAndReturn
+   * AcademicYears createManyAndReturn
    */
-  export type Academic_YearsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AcademicYearsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Academic_Years
+     * Select specific fields to fetch from the AcademicYears
      */
-    select?: Academic_YearsSelectCreateManyAndReturn<ExtArgs> | null
+    select?: AcademicYearsSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Academic_Years
+     * Omit specific fields from the AcademicYears
      */
-    omit?: Academic_YearsOmit<ExtArgs> | null
+    omit?: AcademicYearsOmit<ExtArgs> | null
     /**
-     * The data used to create many Academic_Years.
+     * The data used to create many AcademicYears.
      */
-    data: Academic_YearsCreateManyInput | Academic_YearsCreateManyInput[]
+    data: AcademicYearsCreateManyInput | AcademicYearsCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Academic_Years update
+   * AcademicYears update
    */
-  export type Academic_YearsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AcademicYearsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Academic_Years
+     * Select specific fields to fetch from the AcademicYears
      */
-    select?: Academic_YearsSelect<ExtArgs> | null
+    select?: AcademicYearsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Academic_Years
+     * Omit specific fields from the AcademicYears
      */
-    omit?: Academic_YearsOmit<ExtArgs> | null
+    omit?: AcademicYearsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Academic_YearsInclude<ExtArgs> | null
+    include?: AcademicYearsInclude<ExtArgs> | null
     /**
-     * The data needed to update a Academic_Years.
+     * The data needed to update a AcademicYears.
      */
-    data: XOR<Academic_YearsUpdateInput, Academic_YearsUncheckedUpdateInput>
+    data: XOR<AcademicYearsUpdateInput, AcademicYearsUncheckedUpdateInput>
     /**
-     * Choose, which Academic_Years to update.
+     * Choose, which AcademicYears to update.
      */
-    where: Academic_YearsWhereUniqueInput
+    where: AcademicYearsWhereUniqueInput
   }
 
   /**
-   * Academic_Years updateMany
+   * AcademicYears updateMany
    */
-  export type Academic_YearsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AcademicYearsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Academic_Years.
+     * The data used to update AcademicYears.
      */
-    data: XOR<Academic_YearsUpdateManyMutationInput, Academic_YearsUncheckedUpdateManyInput>
+    data: XOR<AcademicYearsUpdateManyMutationInput, AcademicYearsUncheckedUpdateManyInput>
     /**
-     * Filter which Academic_Years to update
+     * Filter which AcademicYears to update
      */
-    where?: Academic_YearsWhereInput
+    where?: AcademicYearsWhereInput
     /**
-     * Limit how many Academic_Years to update.
+     * Limit how many AcademicYears to update.
      */
     limit?: number
   }
 
   /**
-   * Academic_Years updateManyAndReturn
+   * AcademicYears updateManyAndReturn
    */
-  export type Academic_YearsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AcademicYearsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Academic_Years
+     * Select specific fields to fetch from the AcademicYears
      */
-    select?: Academic_YearsSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: AcademicYearsSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Academic_Years
+     * Omit specific fields from the AcademicYears
      */
-    omit?: Academic_YearsOmit<ExtArgs> | null
+    omit?: AcademicYearsOmit<ExtArgs> | null
     /**
-     * The data used to update Academic_Years.
+     * The data used to update AcademicYears.
      */
-    data: XOR<Academic_YearsUpdateManyMutationInput, Academic_YearsUncheckedUpdateManyInput>
+    data: XOR<AcademicYearsUpdateManyMutationInput, AcademicYearsUncheckedUpdateManyInput>
     /**
-     * Filter which Academic_Years to update
+     * Filter which AcademicYears to update
      */
-    where?: Academic_YearsWhereInput
+    where?: AcademicYearsWhereInput
     /**
-     * Limit how many Academic_Years to update.
+     * Limit how many AcademicYears to update.
      */
     limit?: number
   }
 
   /**
-   * Academic_Years upsert
+   * AcademicYears upsert
    */
-  export type Academic_YearsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AcademicYearsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Academic_Years
+     * Select specific fields to fetch from the AcademicYears
      */
-    select?: Academic_YearsSelect<ExtArgs> | null
+    select?: AcademicYearsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Academic_Years
+     * Omit specific fields from the AcademicYears
      */
-    omit?: Academic_YearsOmit<ExtArgs> | null
+    omit?: AcademicYearsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Academic_YearsInclude<ExtArgs> | null
+    include?: AcademicYearsInclude<ExtArgs> | null
     /**
-     * The filter to search for the Academic_Years to update in case it exists.
+     * The filter to search for the AcademicYears to update in case it exists.
      */
-    where: Academic_YearsWhereUniqueInput
+    where: AcademicYearsWhereUniqueInput
     /**
-     * In case the Academic_Years found by the `where` argument doesn't exist, create a new Academic_Years with this data.
+     * In case the AcademicYears found by the `where` argument doesn't exist, create a new AcademicYears with this data.
      */
-    create: XOR<Academic_YearsCreateInput, Academic_YearsUncheckedCreateInput>
+    create: XOR<AcademicYearsCreateInput, AcademicYearsUncheckedCreateInput>
     /**
-     * In case the Academic_Years was found with the provided `where` argument, update it with this data.
+     * In case the AcademicYears was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<Academic_YearsUpdateInput, Academic_YearsUncheckedUpdateInput>
+    update: XOR<AcademicYearsUpdateInput, AcademicYearsUncheckedUpdateInput>
   }
 
   /**
-   * Academic_Years delete
+   * AcademicYears delete
    */
-  export type Academic_YearsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AcademicYearsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Academic_Years
+     * Select specific fields to fetch from the AcademicYears
      */
-    select?: Academic_YearsSelect<ExtArgs> | null
+    select?: AcademicYearsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Academic_Years
+     * Omit specific fields from the AcademicYears
      */
-    omit?: Academic_YearsOmit<ExtArgs> | null
+    omit?: AcademicYearsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Academic_YearsInclude<ExtArgs> | null
+    include?: AcademicYearsInclude<ExtArgs> | null
     /**
-     * Filter which Academic_Years to delete.
+     * Filter which AcademicYears to delete.
      */
-    where: Academic_YearsWhereUniqueInput
+    where: AcademicYearsWhereUniqueInput
   }
 
   /**
-   * Academic_Years deleteMany
+   * AcademicYears deleteMany
    */
-  export type Academic_YearsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AcademicYearsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Academic_Years to delete
+     * Filter which AcademicYears to delete
      */
-    where?: Academic_YearsWhereInput
+    where?: AcademicYearsWhereInput
     /**
-     * Limit how many Academic_Years to delete.
+     * Limit how many AcademicYears to delete.
      */
     limit?: number
   }
 
   /**
-   * Academic_Years.classes
+   * AcademicYears.classes
    */
-  export type Academic_Years$classesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AcademicYears$classesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Class_Academic_year
+     * Select specific fields to fetch from the ClassAcademicYear
      */
-    select?: Class_Academic_yearSelect<ExtArgs> | null
+    select?: ClassAcademicYearSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Class_Academic_year
+     * Omit specific fields from the ClassAcademicYear
      */
-    omit?: Class_Academic_yearOmit<ExtArgs> | null
+    omit?: ClassAcademicYearOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Class_Academic_yearInclude<ExtArgs> | null
-    where?: Class_Academic_yearWhereInput
-    orderBy?: Class_Academic_yearOrderByWithRelationInput | Class_Academic_yearOrderByWithRelationInput[]
-    cursor?: Class_Academic_yearWhereUniqueInput
+    include?: ClassAcademicYearInclude<ExtArgs> | null
+    where?: ClassAcademicYearWhereInput
+    orderBy?: ClassAcademicYearOrderByWithRelationInput | ClassAcademicYearOrderByWithRelationInput[]
+    cursor?: ClassAcademicYearWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: Class_Academic_yearScalarFieldEnum | Class_Academic_yearScalarFieldEnum[]
+    distinct?: ClassAcademicYearScalarFieldEnum | ClassAcademicYearScalarFieldEnum[]
   }
 
   /**
-   * Academic_Years.terms
+   * AcademicYears.terms
    */
-  export type Academic_Years$termsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AcademicYears$termsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Terms
      */
@@ -10806,21 +10806,21 @@ export namespace Prisma {
   }
 
   /**
-   * Academic_Years without action
+   * AcademicYears without action
    */
-  export type Academic_YearsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AcademicYearsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Academic_Years
+     * Select specific fields to fetch from the AcademicYears
      */
-    select?: Academic_YearsSelect<ExtArgs> | null
+    select?: AcademicYearsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Academic_Years
+     * Omit specific fields from the AcademicYears
      */
-    omit?: Academic_YearsOmit<ExtArgs> | null
+    omit?: AcademicYearsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Academic_YearsInclude<ExtArgs> | null
+    include?: AcademicYearsInclude<ExtArgs> | null
   }
 
 
@@ -10836,25 +10836,25 @@ export namespace Prisma {
 
   export type TermsMinAggregateOutputType = {
     id: string | null
-    term_name: string | null
-    Start_date: Date | null
-    end_date: Date | null
+    termName: string | null
+    StartDate: Date | null
+    endDate: Date | null
     yearId: string | null
   }
 
   export type TermsMaxAggregateOutputType = {
     id: string | null
-    term_name: string | null
-    Start_date: Date | null
-    end_date: Date | null
+    termName: string | null
+    StartDate: Date | null
+    endDate: Date | null
     yearId: string | null
   }
 
   export type TermsCountAggregateOutputType = {
     id: number
-    term_name: number
-    Start_date: number
-    end_date: number
+    termName: number
+    StartDate: number
+    endDate: number
     yearId: number
     _all: number
   }
@@ -10862,25 +10862,25 @@ export namespace Prisma {
 
   export type TermsMinAggregateInputType = {
     id?: true
-    term_name?: true
-    Start_date?: true
-    end_date?: true
+    termName?: true
+    StartDate?: true
+    endDate?: true
     yearId?: true
   }
 
   export type TermsMaxAggregateInputType = {
     id?: true
-    term_name?: true
-    Start_date?: true
-    end_date?: true
+    termName?: true
+    StartDate?: true
+    endDate?: true
     yearId?: true
   }
 
   export type TermsCountAggregateInputType = {
     id?: true
-    term_name?: true
-    Start_date?: true
-    end_date?: true
+    termName?: true
+    StartDate?: true
+    endDate?: true
     yearId?: true
     _all?: true
   }
@@ -10959,9 +10959,9 @@ export namespace Prisma {
 
   export type TermsGroupByOutputType = {
     id: string
-    term_name: string
-    Start_date: Date
-    end_date: Date
+    termName: string
+    StartDate: Date
+    endDate: Date
     yearId: string
     _count: TermsCountAggregateOutputType | null
     _min: TermsMinAggregateOutputType | null
@@ -10984,60 +10984,60 @@ export namespace Prisma {
 
   export type TermsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    term_name?: boolean
-    Start_date?: boolean
-    end_date?: boolean
+    termName?: boolean
+    StartDate?: boolean
+    endDate?: boolean
     yearId?: boolean
-    year?: boolean | Academic_YearsDefaultArgs<ExtArgs>
+    year?: boolean | AcademicYearsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["terms"]>
 
   export type TermsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    term_name?: boolean
-    Start_date?: boolean
-    end_date?: boolean
+    termName?: boolean
+    StartDate?: boolean
+    endDate?: boolean
     yearId?: boolean
-    year?: boolean | Academic_YearsDefaultArgs<ExtArgs>
+    year?: boolean | AcademicYearsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["terms"]>
 
   export type TermsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    term_name?: boolean
-    Start_date?: boolean
-    end_date?: boolean
+    termName?: boolean
+    StartDate?: boolean
+    endDate?: boolean
     yearId?: boolean
-    year?: boolean | Academic_YearsDefaultArgs<ExtArgs>
+    year?: boolean | AcademicYearsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["terms"]>
 
   export type TermsSelectScalar = {
     id?: boolean
-    term_name?: boolean
-    Start_date?: boolean
-    end_date?: boolean
+    termName?: boolean
+    StartDate?: boolean
+    endDate?: boolean
     yearId?: boolean
   }
 
-  export type TermsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "term_name" | "Start_date" | "end_date" | "yearId", ExtArgs["result"]["terms"]>
+  export type TermsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "termName" | "StartDate" | "endDate" | "yearId", ExtArgs["result"]["terms"]>
   export type TermsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    year?: boolean | Academic_YearsDefaultArgs<ExtArgs>
+    year?: boolean | AcademicYearsDefaultArgs<ExtArgs>
   }
   export type TermsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    year?: boolean | Academic_YearsDefaultArgs<ExtArgs>
+    year?: boolean | AcademicYearsDefaultArgs<ExtArgs>
   }
   export type TermsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    year?: boolean | Academic_YearsDefaultArgs<ExtArgs>
+    year?: boolean | AcademicYearsDefaultArgs<ExtArgs>
   }
 
   export type $TermsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Terms"
     objects: {
-      year: Prisma.$Academic_YearsPayload<ExtArgs>
+      year: Prisma.$AcademicYearsPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      term_name: string
-      Start_date: Date
-      end_date: Date
+      termName: string
+      StartDate: Date
+      endDate: Date
       yearId: string
     }, ExtArgs["result"]["terms"]>
     composites: {}
@@ -11433,7 +11433,7 @@ export namespace Prisma {
    */
   export interface Prisma__TermsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    year<T extends Academic_YearsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, Academic_YearsDefaultArgs<ExtArgs>>): Prisma__Academic_YearsClient<$Result.GetResult<Prisma.$Academic_YearsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    year<T extends AcademicYearsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AcademicYearsDefaultArgs<ExtArgs>>): Prisma__AcademicYearsClient<$Result.GetResult<Prisma.$AcademicYearsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11464,9 +11464,9 @@ export namespace Prisma {
    */
   interface TermsFieldRefs {
     readonly id: FieldRef<"Terms", 'String'>
-    readonly term_name: FieldRef<"Terms", 'String'>
-    readonly Start_date: FieldRef<"Terms", 'DateTime'>
-    readonly end_date: FieldRef<"Terms", 'DateTime'>
+    readonly termName: FieldRef<"Terms", 'String'>
+    readonly StartDate: FieldRef<"Terms", 'DateTime'>
+    readonly endDate: FieldRef<"Terms", 'DateTime'>
     readonly yearId: FieldRef<"Terms", 'String'>
   }
     
@@ -11888,321 +11888,321 @@ export namespace Prisma {
 
 
   /**
-   * Model Class_Academic_year
+   * Model ClassAcademicYear
    */
 
-  export type AggregateClass_Academic_year = {
-    _count: Class_Academic_yearCountAggregateOutputType | null
-    _min: Class_Academic_yearMinAggregateOutputType | null
-    _max: Class_Academic_yearMaxAggregateOutputType | null
+  export type AggregateClassAcademicYear = {
+    _count: ClassAcademicYearCountAggregateOutputType | null
+    _min: ClassAcademicYearMinAggregateOutputType | null
+    _max: ClassAcademicYearMaxAggregateOutputType | null
   }
 
-  export type Class_Academic_yearMinAggregateOutputType = {
+  export type ClassAcademicYearMinAggregateOutputType = {
     classId: string | null
     yearId: string | null
   }
 
-  export type Class_Academic_yearMaxAggregateOutputType = {
+  export type ClassAcademicYearMaxAggregateOutputType = {
     classId: string | null
     yearId: string | null
   }
 
-  export type Class_Academic_yearCountAggregateOutputType = {
+  export type ClassAcademicYearCountAggregateOutputType = {
     classId: number
     yearId: number
     _all: number
   }
 
 
-  export type Class_Academic_yearMinAggregateInputType = {
+  export type ClassAcademicYearMinAggregateInputType = {
     classId?: true
     yearId?: true
   }
 
-  export type Class_Academic_yearMaxAggregateInputType = {
+  export type ClassAcademicYearMaxAggregateInputType = {
     classId?: true
     yearId?: true
   }
 
-  export type Class_Academic_yearCountAggregateInputType = {
+  export type ClassAcademicYearCountAggregateInputType = {
     classId?: true
     yearId?: true
     _all?: true
   }
 
-  export type Class_Academic_yearAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassAcademicYearAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Class_Academic_year to aggregate.
+     * Filter which ClassAcademicYear to aggregate.
      */
-    where?: Class_Academic_yearWhereInput
+    where?: ClassAcademicYearWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Class_Academic_years to fetch.
+     * Determine the order of ClassAcademicYears to fetch.
      */
-    orderBy?: Class_Academic_yearOrderByWithRelationInput | Class_Academic_yearOrderByWithRelationInput[]
+    orderBy?: ClassAcademicYearOrderByWithRelationInput | ClassAcademicYearOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: Class_Academic_yearWhereUniqueInput
+    cursor?: ClassAcademicYearWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Class_Academic_years from the position of the cursor.
+     * Take `±n` ClassAcademicYears from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Class_Academic_years.
+     * Skip the first `n` ClassAcademicYears.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Class_Academic_years
+     * Count returned ClassAcademicYears
     **/
-    _count?: true | Class_Academic_yearCountAggregateInputType
+    _count?: true | ClassAcademicYearCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: Class_Academic_yearMinAggregateInputType
+    _min?: ClassAcademicYearMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: Class_Academic_yearMaxAggregateInputType
+    _max?: ClassAcademicYearMaxAggregateInputType
   }
 
-  export type GetClass_Academic_yearAggregateType<T extends Class_Academic_yearAggregateArgs> = {
-        [P in keyof T & keyof AggregateClass_Academic_year]: P extends '_count' | 'count'
+  export type GetClassAcademicYearAggregateType<T extends ClassAcademicYearAggregateArgs> = {
+        [P in keyof T & keyof AggregateClassAcademicYear]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateClass_Academic_year[P]>
-      : GetScalarType<T[P], AggregateClass_Academic_year[P]>
+        : GetScalarType<T[P], AggregateClassAcademicYear[P]>
+      : GetScalarType<T[P], AggregateClassAcademicYear[P]>
   }
 
 
 
 
-  export type Class_Academic_yearGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: Class_Academic_yearWhereInput
-    orderBy?: Class_Academic_yearOrderByWithAggregationInput | Class_Academic_yearOrderByWithAggregationInput[]
-    by: Class_Academic_yearScalarFieldEnum[] | Class_Academic_yearScalarFieldEnum
-    having?: Class_Academic_yearScalarWhereWithAggregatesInput
+  export type ClassAcademicYearGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ClassAcademicYearWhereInput
+    orderBy?: ClassAcademicYearOrderByWithAggregationInput | ClassAcademicYearOrderByWithAggregationInput[]
+    by: ClassAcademicYearScalarFieldEnum[] | ClassAcademicYearScalarFieldEnum
+    having?: ClassAcademicYearScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: Class_Academic_yearCountAggregateInputType | true
-    _min?: Class_Academic_yearMinAggregateInputType
-    _max?: Class_Academic_yearMaxAggregateInputType
+    _count?: ClassAcademicYearCountAggregateInputType | true
+    _min?: ClassAcademicYearMinAggregateInputType
+    _max?: ClassAcademicYearMaxAggregateInputType
   }
 
-  export type Class_Academic_yearGroupByOutputType = {
+  export type ClassAcademicYearGroupByOutputType = {
     classId: string
     yearId: string
-    _count: Class_Academic_yearCountAggregateOutputType | null
-    _min: Class_Academic_yearMinAggregateOutputType | null
-    _max: Class_Academic_yearMaxAggregateOutputType | null
+    _count: ClassAcademicYearCountAggregateOutputType | null
+    _min: ClassAcademicYearMinAggregateOutputType | null
+    _max: ClassAcademicYearMaxAggregateOutputType | null
   }
 
-  type GetClass_Academic_yearGroupByPayload<T extends Class_Academic_yearGroupByArgs> = Prisma.PrismaPromise<
+  type GetClassAcademicYearGroupByPayload<T extends ClassAcademicYearGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<Class_Academic_yearGroupByOutputType, T['by']> &
+      PickEnumerable<ClassAcademicYearGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof Class_Academic_yearGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof ClassAcademicYearGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], Class_Academic_yearGroupByOutputType[P]>
-            : GetScalarType<T[P], Class_Academic_yearGroupByOutputType[P]>
+              : GetScalarType<T[P], ClassAcademicYearGroupByOutputType[P]>
+            : GetScalarType<T[P], ClassAcademicYearGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type Class_Academic_yearSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ClassAcademicYearSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     classId?: boolean
     yearId?: boolean
     class?: boolean | ClassesDefaultArgs<ExtArgs>
-    year?: boolean | Academic_YearsDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["class_Academic_year"]>
+    year?: boolean | AcademicYearsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["classAcademicYear"]>
 
-  export type Class_Academic_yearSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ClassAcademicYearSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     classId?: boolean
     yearId?: boolean
     class?: boolean | ClassesDefaultArgs<ExtArgs>
-    year?: boolean | Academic_YearsDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["class_Academic_year"]>
+    year?: boolean | AcademicYearsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["classAcademicYear"]>
 
-  export type Class_Academic_yearSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ClassAcademicYearSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     classId?: boolean
     yearId?: boolean
     class?: boolean | ClassesDefaultArgs<ExtArgs>
-    year?: boolean | Academic_YearsDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["class_Academic_year"]>
+    year?: boolean | AcademicYearsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["classAcademicYear"]>
 
-  export type Class_Academic_yearSelectScalar = {
+  export type ClassAcademicYearSelectScalar = {
     classId?: boolean
     yearId?: boolean
   }
 
-  export type Class_Academic_yearOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"classId" | "yearId", ExtArgs["result"]["class_Academic_year"]>
-  export type Class_Academic_yearInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassAcademicYearOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"classId" | "yearId", ExtArgs["result"]["classAcademicYear"]>
+  export type ClassAcademicYearInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     class?: boolean | ClassesDefaultArgs<ExtArgs>
-    year?: boolean | Academic_YearsDefaultArgs<ExtArgs>
+    year?: boolean | AcademicYearsDefaultArgs<ExtArgs>
   }
-  export type Class_Academic_yearIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassAcademicYearIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     class?: boolean | ClassesDefaultArgs<ExtArgs>
-    year?: boolean | Academic_YearsDefaultArgs<ExtArgs>
+    year?: boolean | AcademicYearsDefaultArgs<ExtArgs>
   }
-  export type Class_Academic_yearIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassAcademicYearIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     class?: boolean | ClassesDefaultArgs<ExtArgs>
-    year?: boolean | Academic_YearsDefaultArgs<ExtArgs>
+    year?: boolean | AcademicYearsDefaultArgs<ExtArgs>
   }
 
-  export type $Class_Academic_yearPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Class_Academic_year"
+  export type $ClassAcademicYearPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ClassAcademicYear"
     objects: {
       class: Prisma.$ClassesPayload<ExtArgs>
-      year: Prisma.$Academic_YearsPayload<ExtArgs>
+      year: Prisma.$AcademicYearsPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       classId: string
       yearId: string
-    }, ExtArgs["result"]["class_Academic_year"]>
+    }, ExtArgs["result"]["classAcademicYear"]>
     composites: {}
   }
 
-  type Class_Academic_yearGetPayload<S extends boolean | null | undefined | Class_Academic_yearDefaultArgs> = $Result.GetResult<Prisma.$Class_Academic_yearPayload, S>
+  type ClassAcademicYearGetPayload<S extends boolean | null | undefined | ClassAcademicYearDefaultArgs> = $Result.GetResult<Prisma.$ClassAcademicYearPayload, S>
 
-  type Class_Academic_yearCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<Class_Academic_yearFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: Class_Academic_yearCountAggregateInputType | true
+  type ClassAcademicYearCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ClassAcademicYearFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ClassAcademicYearCountAggregateInputType | true
     }
 
-  export interface Class_Academic_yearDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Class_Academic_year'], meta: { name: 'Class_Academic_year' } }
+  export interface ClassAcademicYearDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ClassAcademicYear'], meta: { name: 'ClassAcademicYear' } }
     /**
-     * Find zero or one Class_Academic_year that matches the filter.
-     * @param {Class_Academic_yearFindUniqueArgs} args - Arguments to find a Class_Academic_year
+     * Find zero or one ClassAcademicYear that matches the filter.
+     * @param {ClassAcademicYearFindUniqueArgs} args - Arguments to find a ClassAcademicYear
      * @example
-     * // Get one Class_Academic_year
-     * const class_Academic_year = await prisma.class_Academic_year.findUnique({
+     * // Get one ClassAcademicYear
+     * const classAcademicYear = await prisma.classAcademicYear.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends Class_Academic_yearFindUniqueArgs>(args: SelectSubset<T, Class_Academic_yearFindUniqueArgs<ExtArgs>>): Prisma__Class_Academic_yearClient<$Result.GetResult<Prisma.$Class_Academic_yearPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends ClassAcademicYearFindUniqueArgs>(args: SelectSubset<T, ClassAcademicYearFindUniqueArgs<ExtArgs>>): Prisma__ClassAcademicYearClient<$Result.GetResult<Prisma.$ClassAcademicYearPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Class_Academic_year that matches the filter or throw an error with `error.code='P2025'`
+     * Find one ClassAcademicYear that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {Class_Academic_yearFindUniqueOrThrowArgs} args - Arguments to find a Class_Academic_year
+     * @param {ClassAcademicYearFindUniqueOrThrowArgs} args - Arguments to find a ClassAcademicYear
      * @example
-     * // Get one Class_Academic_year
-     * const class_Academic_year = await prisma.class_Academic_year.findUniqueOrThrow({
+     * // Get one ClassAcademicYear
+     * const classAcademicYear = await prisma.classAcademicYear.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends Class_Academic_yearFindUniqueOrThrowArgs>(args: SelectSubset<T, Class_Academic_yearFindUniqueOrThrowArgs<ExtArgs>>): Prisma__Class_Academic_yearClient<$Result.GetResult<Prisma.$Class_Academic_yearPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends ClassAcademicYearFindUniqueOrThrowArgs>(args: SelectSubset<T, ClassAcademicYearFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ClassAcademicYearClient<$Result.GetResult<Prisma.$ClassAcademicYearPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Class_Academic_year that matches the filter.
+     * Find the first ClassAcademicYear that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Class_Academic_yearFindFirstArgs} args - Arguments to find a Class_Academic_year
+     * @param {ClassAcademicYearFindFirstArgs} args - Arguments to find a ClassAcademicYear
      * @example
-     * // Get one Class_Academic_year
-     * const class_Academic_year = await prisma.class_Academic_year.findFirst({
+     * // Get one ClassAcademicYear
+     * const classAcademicYear = await prisma.classAcademicYear.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends Class_Academic_yearFindFirstArgs>(args?: SelectSubset<T, Class_Academic_yearFindFirstArgs<ExtArgs>>): Prisma__Class_Academic_yearClient<$Result.GetResult<Prisma.$Class_Academic_yearPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends ClassAcademicYearFindFirstArgs>(args?: SelectSubset<T, ClassAcademicYearFindFirstArgs<ExtArgs>>): Prisma__ClassAcademicYearClient<$Result.GetResult<Prisma.$ClassAcademicYearPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Class_Academic_year that matches the filter or
+     * Find the first ClassAcademicYear that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Class_Academic_yearFindFirstOrThrowArgs} args - Arguments to find a Class_Academic_year
+     * @param {ClassAcademicYearFindFirstOrThrowArgs} args - Arguments to find a ClassAcademicYear
      * @example
-     * // Get one Class_Academic_year
-     * const class_Academic_year = await prisma.class_Academic_year.findFirstOrThrow({
+     * // Get one ClassAcademicYear
+     * const classAcademicYear = await prisma.classAcademicYear.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends Class_Academic_yearFindFirstOrThrowArgs>(args?: SelectSubset<T, Class_Academic_yearFindFirstOrThrowArgs<ExtArgs>>): Prisma__Class_Academic_yearClient<$Result.GetResult<Prisma.$Class_Academic_yearPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends ClassAcademicYearFindFirstOrThrowArgs>(args?: SelectSubset<T, ClassAcademicYearFindFirstOrThrowArgs<ExtArgs>>): Prisma__ClassAcademicYearClient<$Result.GetResult<Prisma.$ClassAcademicYearPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Class_Academic_years that matches the filter.
+     * Find zero or more ClassAcademicYears that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Class_Academic_yearFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {ClassAcademicYearFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Class_Academic_years
-     * const class_Academic_years = await prisma.class_Academic_year.findMany()
+     * // Get all ClassAcademicYears
+     * const classAcademicYears = await prisma.classAcademicYear.findMany()
      * 
-     * // Get first 10 Class_Academic_years
-     * const class_Academic_years = await prisma.class_Academic_year.findMany({ take: 10 })
+     * // Get first 10 ClassAcademicYears
+     * const classAcademicYears = await prisma.classAcademicYear.findMany({ take: 10 })
      * 
      * // Only select the `classId`
-     * const class_Academic_yearWithClassIdOnly = await prisma.class_Academic_year.findMany({ select: { classId: true } })
+     * const classAcademicYearWithClassIdOnly = await prisma.classAcademicYear.findMany({ select: { classId: true } })
      * 
      */
-    findMany<T extends Class_Academic_yearFindManyArgs>(args?: SelectSubset<T, Class_Academic_yearFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Class_Academic_yearPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends ClassAcademicYearFindManyArgs>(args?: SelectSubset<T, ClassAcademicYearFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassAcademicYearPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Class_Academic_year.
-     * @param {Class_Academic_yearCreateArgs} args - Arguments to create a Class_Academic_year.
+     * Create a ClassAcademicYear.
+     * @param {ClassAcademicYearCreateArgs} args - Arguments to create a ClassAcademicYear.
      * @example
-     * // Create one Class_Academic_year
-     * const Class_Academic_year = await prisma.class_Academic_year.create({
+     * // Create one ClassAcademicYear
+     * const ClassAcademicYear = await prisma.classAcademicYear.create({
      *   data: {
-     *     // ... data to create a Class_Academic_year
+     *     // ... data to create a ClassAcademicYear
      *   }
      * })
      * 
      */
-    create<T extends Class_Academic_yearCreateArgs>(args: SelectSubset<T, Class_Academic_yearCreateArgs<ExtArgs>>): Prisma__Class_Academic_yearClient<$Result.GetResult<Prisma.$Class_Academic_yearPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends ClassAcademicYearCreateArgs>(args: SelectSubset<T, ClassAcademicYearCreateArgs<ExtArgs>>): Prisma__ClassAcademicYearClient<$Result.GetResult<Prisma.$ClassAcademicYearPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Class_Academic_years.
-     * @param {Class_Academic_yearCreateManyArgs} args - Arguments to create many Class_Academic_years.
+     * Create many ClassAcademicYears.
+     * @param {ClassAcademicYearCreateManyArgs} args - Arguments to create many ClassAcademicYears.
      * @example
-     * // Create many Class_Academic_years
-     * const class_Academic_year = await prisma.class_Academic_year.createMany({
+     * // Create many ClassAcademicYears
+     * const classAcademicYear = await prisma.classAcademicYear.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends Class_Academic_yearCreateManyArgs>(args?: SelectSubset<T, Class_Academic_yearCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends ClassAcademicYearCreateManyArgs>(args?: SelectSubset<T, ClassAcademicYearCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Class_Academic_years and returns the data saved in the database.
-     * @param {Class_Academic_yearCreateManyAndReturnArgs} args - Arguments to create many Class_Academic_years.
+     * Create many ClassAcademicYears and returns the data saved in the database.
+     * @param {ClassAcademicYearCreateManyAndReturnArgs} args - Arguments to create many ClassAcademicYears.
      * @example
-     * // Create many Class_Academic_years
-     * const class_Academic_year = await prisma.class_Academic_year.createManyAndReturn({
+     * // Create many ClassAcademicYears
+     * const classAcademicYear = await prisma.classAcademicYear.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Class_Academic_years and only return the `classId`
-     * const class_Academic_yearWithClassIdOnly = await prisma.class_Academic_year.createManyAndReturn({
+     * // Create many ClassAcademicYears and only return the `classId`
+     * const classAcademicYearWithClassIdOnly = await prisma.classAcademicYear.createManyAndReturn({
      *   select: { classId: true },
      *   data: [
      *     // ... provide data here
@@ -12212,28 +12212,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends Class_Academic_yearCreateManyAndReturnArgs>(args?: SelectSubset<T, Class_Academic_yearCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Class_Academic_yearPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends ClassAcademicYearCreateManyAndReturnArgs>(args?: SelectSubset<T, ClassAcademicYearCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassAcademicYearPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Class_Academic_year.
-     * @param {Class_Academic_yearDeleteArgs} args - Arguments to delete one Class_Academic_year.
+     * Delete a ClassAcademicYear.
+     * @param {ClassAcademicYearDeleteArgs} args - Arguments to delete one ClassAcademicYear.
      * @example
-     * // Delete one Class_Academic_year
-     * const Class_Academic_year = await prisma.class_Academic_year.delete({
+     * // Delete one ClassAcademicYear
+     * const ClassAcademicYear = await prisma.classAcademicYear.delete({
      *   where: {
-     *     // ... filter to delete one Class_Academic_year
+     *     // ... filter to delete one ClassAcademicYear
      *   }
      * })
      * 
      */
-    delete<T extends Class_Academic_yearDeleteArgs>(args: SelectSubset<T, Class_Academic_yearDeleteArgs<ExtArgs>>): Prisma__Class_Academic_yearClient<$Result.GetResult<Prisma.$Class_Academic_yearPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends ClassAcademicYearDeleteArgs>(args: SelectSubset<T, ClassAcademicYearDeleteArgs<ExtArgs>>): Prisma__ClassAcademicYearClient<$Result.GetResult<Prisma.$ClassAcademicYearPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Class_Academic_year.
-     * @param {Class_Academic_yearUpdateArgs} args - Arguments to update one Class_Academic_year.
+     * Update one ClassAcademicYear.
+     * @param {ClassAcademicYearUpdateArgs} args - Arguments to update one ClassAcademicYear.
      * @example
-     * // Update one Class_Academic_year
-     * const class_Academic_year = await prisma.class_Academic_year.update({
+     * // Update one ClassAcademicYear
+     * const classAcademicYear = await prisma.classAcademicYear.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -12243,30 +12243,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends Class_Academic_yearUpdateArgs>(args: SelectSubset<T, Class_Academic_yearUpdateArgs<ExtArgs>>): Prisma__Class_Academic_yearClient<$Result.GetResult<Prisma.$Class_Academic_yearPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends ClassAcademicYearUpdateArgs>(args: SelectSubset<T, ClassAcademicYearUpdateArgs<ExtArgs>>): Prisma__ClassAcademicYearClient<$Result.GetResult<Prisma.$ClassAcademicYearPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Class_Academic_years.
-     * @param {Class_Academic_yearDeleteManyArgs} args - Arguments to filter Class_Academic_years to delete.
+     * Delete zero or more ClassAcademicYears.
+     * @param {ClassAcademicYearDeleteManyArgs} args - Arguments to filter ClassAcademicYears to delete.
      * @example
-     * // Delete a few Class_Academic_years
-     * const { count } = await prisma.class_Academic_year.deleteMany({
+     * // Delete a few ClassAcademicYears
+     * const { count } = await prisma.classAcademicYear.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends Class_Academic_yearDeleteManyArgs>(args?: SelectSubset<T, Class_Academic_yearDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends ClassAcademicYearDeleteManyArgs>(args?: SelectSubset<T, ClassAcademicYearDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Class_Academic_years.
+     * Update zero or more ClassAcademicYears.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Class_Academic_yearUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {ClassAcademicYearUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Class_Academic_years
-     * const class_Academic_year = await prisma.class_Academic_year.updateMany({
+     * // Update many ClassAcademicYears
+     * const classAcademicYear = await prisma.classAcademicYear.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -12276,14 +12276,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends Class_Academic_yearUpdateManyArgs>(args: SelectSubset<T, Class_Academic_yearUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends ClassAcademicYearUpdateManyArgs>(args: SelectSubset<T, ClassAcademicYearUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Class_Academic_years and returns the data updated in the database.
-     * @param {Class_Academic_yearUpdateManyAndReturnArgs} args - Arguments to update many Class_Academic_years.
+     * Update zero or more ClassAcademicYears and returns the data updated in the database.
+     * @param {ClassAcademicYearUpdateManyAndReturnArgs} args - Arguments to update many ClassAcademicYears.
      * @example
-     * // Update many Class_Academic_years
-     * const class_Academic_year = await prisma.class_Academic_year.updateManyAndReturn({
+     * // Update many ClassAcademicYears
+     * const classAcademicYear = await prisma.classAcademicYear.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -12292,8 +12292,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Class_Academic_years and only return the `classId`
-     * const class_Academic_yearWithClassIdOnly = await prisma.class_Academic_year.updateManyAndReturn({
+     * // Update zero or more ClassAcademicYears and only return the `classId`
+     * const classAcademicYearWithClassIdOnly = await prisma.classAcademicYear.updateManyAndReturn({
      *   select: { classId: true },
      *   where: {
      *     // ... provide filter here
@@ -12306,56 +12306,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends Class_Academic_yearUpdateManyAndReturnArgs>(args: SelectSubset<T, Class_Academic_yearUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Class_Academic_yearPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends ClassAcademicYearUpdateManyAndReturnArgs>(args: SelectSubset<T, ClassAcademicYearUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassAcademicYearPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Class_Academic_year.
-     * @param {Class_Academic_yearUpsertArgs} args - Arguments to update or create a Class_Academic_year.
+     * Create or update one ClassAcademicYear.
+     * @param {ClassAcademicYearUpsertArgs} args - Arguments to update or create a ClassAcademicYear.
      * @example
-     * // Update or create a Class_Academic_year
-     * const class_Academic_year = await prisma.class_Academic_year.upsert({
+     * // Update or create a ClassAcademicYear
+     * const classAcademicYear = await prisma.classAcademicYear.upsert({
      *   create: {
-     *     // ... data to create a Class_Academic_year
+     *     // ... data to create a ClassAcademicYear
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Class_Academic_year we want to update
+     *     // ... the filter for the ClassAcademicYear we want to update
      *   }
      * })
      */
-    upsert<T extends Class_Academic_yearUpsertArgs>(args: SelectSubset<T, Class_Academic_yearUpsertArgs<ExtArgs>>): Prisma__Class_Academic_yearClient<$Result.GetResult<Prisma.$Class_Academic_yearPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends ClassAcademicYearUpsertArgs>(args: SelectSubset<T, ClassAcademicYearUpsertArgs<ExtArgs>>): Prisma__ClassAcademicYearClient<$Result.GetResult<Prisma.$ClassAcademicYearPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Class_Academic_years.
+     * Count the number of ClassAcademicYears.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Class_Academic_yearCountArgs} args - Arguments to filter Class_Academic_years to count.
+     * @param {ClassAcademicYearCountArgs} args - Arguments to filter ClassAcademicYears to count.
      * @example
-     * // Count the number of Class_Academic_years
-     * const count = await prisma.class_Academic_year.count({
+     * // Count the number of ClassAcademicYears
+     * const count = await prisma.classAcademicYear.count({
      *   where: {
-     *     // ... the filter for the Class_Academic_years we want to count
+     *     // ... the filter for the ClassAcademicYears we want to count
      *   }
      * })
     **/
-    count<T extends Class_Academic_yearCountArgs>(
-      args?: Subset<T, Class_Academic_yearCountArgs>,
+    count<T extends ClassAcademicYearCountArgs>(
+      args?: Subset<T, ClassAcademicYearCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], Class_Academic_yearCountAggregateOutputType>
+          : GetScalarType<T['select'], ClassAcademicYearCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Class_Academic_year.
+     * Allows you to perform aggregations operations on a ClassAcademicYear.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Class_Academic_yearAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {ClassAcademicYearAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -12375,13 +12375,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends Class_Academic_yearAggregateArgs>(args: Subset<T, Class_Academic_yearAggregateArgs>): Prisma.PrismaPromise<GetClass_Academic_yearAggregateType<T>>
+    aggregate<T extends ClassAcademicYearAggregateArgs>(args: Subset<T, ClassAcademicYearAggregateArgs>): Prisma.PrismaPromise<GetClassAcademicYearAggregateType<T>>
 
     /**
-     * Group by Class_Academic_year.
+     * Group by ClassAcademicYear.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Class_Academic_yearGroupByArgs} args - Group by arguments.
+     * @param {ClassAcademicYearGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -12396,14 +12396,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends Class_Academic_yearGroupByArgs,
+      T extends ClassAcademicYearGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: Class_Academic_yearGroupByArgs['orderBy'] }
-        : { orderBy?: Class_Academic_yearGroupByArgs['orderBy'] },
+        ? { orderBy: ClassAcademicYearGroupByArgs['orderBy'] }
+        : { orderBy?: ClassAcademicYearGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -12452,23 +12452,23 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, Class_Academic_yearGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetClass_Academic_yearGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, ClassAcademicYearGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetClassAcademicYearGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Class_Academic_year model
+   * Fields of the ClassAcademicYear model
    */
-  readonly fields: Class_Academic_yearFieldRefs;
+  readonly fields: ClassAcademicYearFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Class_Academic_year.
+   * The delegate class that acts as a "Promise-like" for ClassAcademicYear.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__Class_Academic_yearClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__ClassAcademicYearClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     class<T extends ClassesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClassesDefaultArgs<ExtArgs>>): Prisma__ClassesClient<$Result.GetResult<Prisma.$ClassesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    year<T extends Academic_YearsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, Academic_YearsDefaultArgs<ExtArgs>>): Prisma__Academic_YearsClient<$Result.GetResult<Prisma.$Academic_YearsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    year<T extends AcademicYearsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AcademicYearsDefaultArgs<ExtArgs>>): Prisma__AcademicYearsClient<$Result.GetResult<Prisma.$AcademicYearsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12495,427 +12495,427 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Class_Academic_year model
+   * Fields of the ClassAcademicYear model
    */
-  interface Class_Academic_yearFieldRefs {
-    readonly classId: FieldRef<"Class_Academic_year", 'String'>
-    readonly yearId: FieldRef<"Class_Academic_year", 'String'>
+  interface ClassAcademicYearFieldRefs {
+    readonly classId: FieldRef<"ClassAcademicYear", 'String'>
+    readonly yearId: FieldRef<"ClassAcademicYear", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * Class_Academic_year findUnique
+   * ClassAcademicYear findUnique
    */
-  export type Class_Academic_yearFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassAcademicYearFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Class_Academic_year
+     * Select specific fields to fetch from the ClassAcademicYear
      */
-    select?: Class_Academic_yearSelect<ExtArgs> | null
+    select?: ClassAcademicYearSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Class_Academic_year
+     * Omit specific fields from the ClassAcademicYear
      */
-    omit?: Class_Academic_yearOmit<ExtArgs> | null
+    omit?: ClassAcademicYearOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Class_Academic_yearInclude<ExtArgs> | null
+    include?: ClassAcademicYearInclude<ExtArgs> | null
     /**
-     * Filter, which Class_Academic_year to fetch.
+     * Filter, which ClassAcademicYear to fetch.
      */
-    where: Class_Academic_yearWhereUniqueInput
+    where: ClassAcademicYearWhereUniqueInput
   }
 
   /**
-   * Class_Academic_year findUniqueOrThrow
+   * ClassAcademicYear findUniqueOrThrow
    */
-  export type Class_Academic_yearFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassAcademicYearFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Class_Academic_year
+     * Select specific fields to fetch from the ClassAcademicYear
      */
-    select?: Class_Academic_yearSelect<ExtArgs> | null
+    select?: ClassAcademicYearSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Class_Academic_year
+     * Omit specific fields from the ClassAcademicYear
      */
-    omit?: Class_Academic_yearOmit<ExtArgs> | null
+    omit?: ClassAcademicYearOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Class_Academic_yearInclude<ExtArgs> | null
+    include?: ClassAcademicYearInclude<ExtArgs> | null
     /**
-     * Filter, which Class_Academic_year to fetch.
+     * Filter, which ClassAcademicYear to fetch.
      */
-    where: Class_Academic_yearWhereUniqueInput
+    where: ClassAcademicYearWhereUniqueInput
   }
 
   /**
-   * Class_Academic_year findFirst
+   * ClassAcademicYear findFirst
    */
-  export type Class_Academic_yearFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassAcademicYearFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Class_Academic_year
+     * Select specific fields to fetch from the ClassAcademicYear
      */
-    select?: Class_Academic_yearSelect<ExtArgs> | null
+    select?: ClassAcademicYearSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Class_Academic_year
+     * Omit specific fields from the ClassAcademicYear
      */
-    omit?: Class_Academic_yearOmit<ExtArgs> | null
+    omit?: ClassAcademicYearOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Class_Academic_yearInclude<ExtArgs> | null
+    include?: ClassAcademicYearInclude<ExtArgs> | null
     /**
-     * Filter, which Class_Academic_year to fetch.
+     * Filter, which ClassAcademicYear to fetch.
      */
-    where?: Class_Academic_yearWhereInput
+    where?: ClassAcademicYearWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Class_Academic_years to fetch.
+     * Determine the order of ClassAcademicYears to fetch.
      */
-    orderBy?: Class_Academic_yearOrderByWithRelationInput | Class_Academic_yearOrderByWithRelationInput[]
+    orderBy?: ClassAcademicYearOrderByWithRelationInput | ClassAcademicYearOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Class_Academic_years.
+     * Sets the position for searching for ClassAcademicYears.
      */
-    cursor?: Class_Academic_yearWhereUniqueInput
+    cursor?: ClassAcademicYearWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Class_Academic_years from the position of the cursor.
+     * Take `±n` ClassAcademicYears from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Class_Academic_years.
+     * Skip the first `n` ClassAcademicYears.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Class_Academic_years.
+     * Filter by unique combinations of ClassAcademicYears.
      */
-    distinct?: Class_Academic_yearScalarFieldEnum | Class_Academic_yearScalarFieldEnum[]
+    distinct?: ClassAcademicYearScalarFieldEnum | ClassAcademicYearScalarFieldEnum[]
   }
 
   /**
-   * Class_Academic_year findFirstOrThrow
+   * ClassAcademicYear findFirstOrThrow
    */
-  export type Class_Academic_yearFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassAcademicYearFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Class_Academic_year
+     * Select specific fields to fetch from the ClassAcademicYear
      */
-    select?: Class_Academic_yearSelect<ExtArgs> | null
+    select?: ClassAcademicYearSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Class_Academic_year
+     * Omit specific fields from the ClassAcademicYear
      */
-    omit?: Class_Academic_yearOmit<ExtArgs> | null
+    omit?: ClassAcademicYearOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Class_Academic_yearInclude<ExtArgs> | null
+    include?: ClassAcademicYearInclude<ExtArgs> | null
     /**
-     * Filter, which Class_Academic_year to fetch.
+     * Filter, which ClassAcademicYear to fetch.
      */
-    where?: Class_Academic_yearWhereInput
+    where?: ClassAcademicYearWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Class_Academic_years to fetch.
+     * Determine the order of ClassAcademicYears to fetch.
      */
-    orderBy?: Class_Academic_yearOrderByWithRelationInput | Class_Academic_yearOrderByWithRelationInput[]
+    orderBy?: ClassAcademicYearOrderByWithRelationInput | ClassAcademicYearOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Class_Academic_years.
+     * Sets the position for searching for ClassAcademicYears.
      */
-    cursor?: Class_Academic_yearWhereUniqueInput
+    cursor?: ClassAcademicYearWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Class_Academic_years from the position of the cursor.
+     * Take `±n` ClassAcademicYears from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Class_Academic_years.
+     * Skip the first `n` ClassAcademicYears.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Class_Academic_years.
+     * Filter by unique combinations of ClassAcademicYears.
      */
-    distinct?: Class_Academic_yearScalarFieldEnum | Class_Academic_yearScalarFieldEnum[]
+    distinct?: ClassAcademicYearScalarFieldEnum | ClassAcademicYearScalarFieldEnum[]
   }
 
   /**
-   * Class_Academic_year findMany
+   * ClassAcademicYear findMany
    */
-  export type Class_Academic_yearFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassAcademicYearFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Class_Academic_year
+     * Select specific fields to fetch from the ClassAcademicYear
      */
-    select?: Class_Academic_yearSelect<ExtArgs> | null
+    select?: ClassAcademicYearSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Class_Academic_year
+     * Omit specific fields from the ClassAcademicYear
      */
-    omit?: Class_Academic_yearOmit<ExtArgs> | null
+    omit?: ClassAcademicYearOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Class_Academic_yearInclude<ExtArgs> | null
+    include?: ClassAcademicYearInclude<ExtArgs> | null
     /**
-     * Filter, which Class_Academic_years to fetch.
+     * Filter, which ClassAcademicYears to fetch.
      */
-    where?: Class_Academic_yearWhereInput
+    where?: ClassAcademicYearWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Class_Academic_years to fetch.
+     * Determine the order of ClassAcademicYears to fetch.
      */
-    orderBy?: Class_Academic_yearOrderByWithRelationInput | Class_Academic_yearOrderByWithRelationInput[]
+    orderBy?: ClassAcademicYearOrderByWithRelationInput | ClassAcademicYearOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Class_Academic_years.
+     * Sets the position for listing ClassAcademicYears.
      */
-    cursor?: Class_Academic_yearWhereUniqueInput
+    cursor?: ClassAcademicYearWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Class_Academic_years from the position of the cursor.
+     * Take `±n` ClassAcademicYears from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Class_Academic_years.
+     * Skip the first `n` ClassAcademicYears.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Class_Academic_years.
+     * Filter by unique combinations of ClassAcademicYears.
      */
-    distinct?: Class_Academic_yearScalarFieldEnum | Class_Academic_yearScalarFieldEnum[]
+    distinct?: ClassAcademicYearScalarFieldEnum | ClassAcademicYearScalarFieldEnum[]
   }
 
   /**
-   * Class_Academic_year create
+   * ClassAcademicYear create
    */
-  export type Class_Academic_yearCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassAcademicYearCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Class_Academic_year
+     * Select specific fields to fetch from the ClassAcademicYear
      */
-    select?: Class_Academic_yearSelect<ExtArgs> | null
+    select?: ClassAcademicYearSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Class_Academic_year
+     * Omit specific fields from the ClassAcademicYear
      */
-    omit?: Class_Academic_yearOmit<ExtArgs> | null
+    omit?: ClassAcademicYearOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Class_Academic_yearInclude<ExtArgs> | null
+    include?: ClassAcademicYearInclude<ExtArgs> | null
     /**
-     * The data needed to create a Class_Academic_year.
+     * The data needed to create a ClassAcademicYear.
      */
-    data: XOR<Class_Academic_yearCreateInput, Class_Academic_yearUncheckedCreateInput>
+    data: XOR<ClassAcademicYearCreateInput, ClassAcademicYearUncheckedCreateInput>
   }
 
   /**
-   * Class_Academic_year createMany
+   * ClassAcademicYear createMany
    */
-  export type Class_Academic_yearCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassAcademicYearCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Class_Academic_years.
+     * The data used to create many ClassAcademicYears.
      */
-    data: Class_Academic_yearCreateManyInput | Class_Academic_yearCreateManyInput[]
+    data: ClassAcademicYearCreateManyInput | ClassAcademicYearCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Class_Academic_year createManyAndReturn
+   * ClassAcademicYear createManyAndReturn
    */
-  export type Class_Academic_yearCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassAcademicYearCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Class_Academic_year
+     * Select specific fields to fetch from the ClassAcademicYear
      */
-    select?: Class_Academic_yearSelectCreateManyAndReturn<ExtArgs> | null
+    select?: ClassAcademicYearSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Class_Academic_year
+     * Omit specific fields from the ClassAcademicYear
      */
-    omit?: Class_Academic_yearOmit<ExtArgs> | null
+    omit?: ClassAcademicYearOmit<ExtArgs> | null
     /**
-     * The data used to create many Class_Academic_years.
+     * The data used to create many ClassAcademicYears.
      */
-    data: Class_Academic_yearCreateManyInput | Class_Academic_yearCreateManyInput[]
+    data: ClassAcademicYearCreateManyInput | ClassAcademicYearCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Class_Academic_yearIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: ClassAcademicYearIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Class_Academic_year update
+   * ClassAcademicYear update
    */
-  export type Class_Academic_yearUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassAcademicYearUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Class_Academic_year
+     * Select specific fields to fetch from the ClassAcademicYear
      */
-    select?: Class_Academic_yearSelect<ExtArgs> | null
+    select?: ClassAcademicYearSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Class_Academic_year
+     * Omit specific fields from the ClassAcademicYear
      */
-    omit?: Class_Academic_yearOmit<ExtArgs> | null
+    omit?: ClassAcademicYearOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Class_Academic_yearInclude<ExtArgs> | null
+    include?: ClassAcademicYearInclude<ExtArgs> | null
     /**
-     * The data needed to update a Class_Academic_year.
+     * The data needed to update a ClassAcademicYear.
      */
-    data: XOR<Class_Academic_yearUpdateInput, Class_Academic_yearUncheckedUpdateInput>
+    data: XOR<ClassAcademicYearUpdateInput, ClassAcademicYearUncheckedUpdateInput>
     /**
-     * Choose, which Class_Academic_year to update.
+     * Choose, which ClassAcademicYear to update.
      */
-    where: Class_Academic_yearWhereUniqueInput
+    where: ClassAcademicYearWhereUniqueInput
   }
 
   /**
-   * Class_Academic_year updateMany
+   * ClassAcademicYear updateMany
    */
-  export type Class_Academic_yearUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassAcademicYearUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Class_Academic_years.
+     * The data used to update ClassAcademicYears.
      */
-    data: XOR<Class_Academic_yearUpdateManyMutationInput, Class_Academic_yearUncheckedUpdateManyInput>
+    data: XOR<ClassAcademicYearUpdateManyMutationInput, ClassAcademicYearUncheckedUpdateManyInput>
     /**
-     * Filter which Class_Academic_years to update
+     * Filter which ClassAcademicYears to update
      */
-    where?: Class_Academic_yearWhereInput
+    where?: ClassAcademicYearWhereInput
     /**
-     * Limit how many Class_Academic_years to update.
+     * Limit how many ClassAcademicYears to update.
      */
     limit?: number
   }
 
   /**
-   * Class_Academic_year updateManyAndReturn
+   * ClassAcademicYear updateManyAndReturn
    */
-  export type Class_Academic_yearUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassAcademicYearUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Class_Academic_year
+     * Select specific fields to fetch from the ClassAcademicYear
      */
-    select?: Class_Academic_yearSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: ClassAcademicYearSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Class_Academic_year
+     * Omit specific fields from the ClassAcademicYear
      */
-    omit?: Class_Academic_yearOmit<ExtArgs> | null
+    omit?: ClassAcademicYearOmit<ExtArgs> | null
     /**
-     * The data used to update Class_Academic_years.
+     * The data used to update ClassAcademicYears.
      */
-    data: XOR<Class_Academic_yearUpdateManyMutationInput, Class_Academic_yearUncheckedUpdateManyInput>
+    data: XOR<ClassAcademicYearUpdateManyMutationInput, ClassAcademicYearUncheckedUpdateManyInput>
     /**
-     * Filter which Class_Academic_years to update
+     * Filter which ClassAcademicYears to update
      */
-    where?: Class_Academic_yearWhereInput
+    where?: ClassAcademicYearWhereInput
     /**
-     * Limit how many Class_Academic_years to update.
+     * Limit how many ClassAcademicYears to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Class_Academic_yearIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: ClassAcademicYearIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Class_Academic_year upsert
+   * ClassAcademicYear upsert
    */
-  export type Class_Academic_yearUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassAcademicYearUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Class_Academic_year
+     * Select specific fields to fetch from the ClassAcademicYear
      */
-    select?: Class_Academic_yearSelect<ExtArgs> | null
+    select?: ClassAcademicYearSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Class_Academic_year
+     * Omit specific fields from the ClassAcademicYear
      */
-    omit?: Class_Academic_yearOmit<ExtArgs> | null
+    omit?: ClassAcademicYearOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Class_Academic_yearInclude<ExtArgs> | null
+    include?: ClassAcademicYearInclude<ExtArgs> | null
     /**
-     * The filter to search for the Class_Academic_year to update in case it exists.
+     * The filter to search for the ClassAcademicYear to update in case it exists.
      */
-    where: Class_Academic_yearWhereUniqueInput
+    where: ClassAcademicYearWhereUniqueInput
     /**
-     * In case the Class_Academic_year found by the `where` argument doesn't exist, create a new Class_Academic_year with this data.
+     * In case the ClassAcademicYear found by the `where` argument doesn't exist, create a new ClassAcademicYear with this data.
      */
-    create: XOR<Class_Academic_yearCreateInput, Class_Academic_yearUncheckedCreateInput>
+    create: XOR<ClassAcademicYearCreateInput, ClassAcademicYearUncheckedCreateInput>
     /**
-     * In case the Class_Academic_year was found with the provided `where` argument, update it with this data.
+     * In case the ClassAcademicYear was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<Class_Academic_yearUpdateInput, Class_Academic_yearUncheckedUpdateInput>
+    update: XOR<ClassAcademicYearUpdateInput, ClassAcademicYearUncheckedUpdateInput>
   }
 
   /**
-   * Class_Academic_year delete
+   * ClassAcademicYear delete
    */
-  export type Class_Academic_yearDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassAcademicYearDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Class_Academic_year
+     * Select specific fields to fetch from the ClassAcademicYear
      */
-    select?: Class_Academic_yearSelect<ExtArgs> | null
+    select?: ClassAcademicYearSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Class_Academic_year
+     * Omit specific fields from the ClassAcademicYear
      */
-    omit?: Class_Academic_yearOmit<ExtArgs> | null
+    omit?: ClassAcademicYearOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Class_Academic_yearInclude<ExtArgs> | null
+    include?: ClassAcademicYearInclude<ExtArgs> | null
     /**
-     * Filter which Class_Academic_year to delete.
+     * Filter which ClassAcademicYear to delete.
      */
-    where: Class_Academic_yearWhereUniqueInput
+    where: ClassAcademicYearWhereUniqueInput
   }
 
   /**
-   * Class_Academic_year deleteMany
+   * ClassAcademicYear deleteMany
    */
-  export type Class_Academic_yearDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassAcademicYearDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Class_Academic_years to delete
+     * Filter which ClassAcademicYears to delete
      */
-    where?: Class_Academic_yearWhereInput
+    where?: ClassAcademicYearWhereInput
     /**
-     * Limit how many Class_Academic_years to delete.
+     * Limit how many ClassAcademicYears to delete.
      */
     limit?: number
   }
 
   /**
-   * Class_Academic_year without action
+   * ClassAcademicYear without action
    */
-  export type Class_Academic_yearDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassAcademicYearDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Class_Academic_year
+     * Select specific fields to fetch from the ClassAcademicYear
      */
-    select?: Class_Academic_yearSelect<ExtArgs> | null
+    select?: ClassAcademicYearSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Class_Academic_year
+     * Omit specific fields from the ClassAcademicYear
      */
-    omit?: Class_Academic_yearOmit<ExtArgs> | null
+    omit?: ClassAcademicYearOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Class_Academic_yearInclude<ExtArgs> | null
+    include?: ClassAcademicYearInclude<ExtArgs> | null
   }
 
 
@@ -12932,86 +12932,86 @@ export namespace Prisma {
   }
 
   export type AssignmentsAvgAggregateOutputType = {
-    maximum_grade: number | null
+    maximumGrade: number | null
   }
 
   export type AssignmentsSumAggregateOutputType = {
-    maximum_grade: number | null
+    maximumGrade: number | null
   }
 
   export type AssignmentsMinAggregateOutputType = {
     id: string | null
-    assignment_title: string | null
-    assignment_description: string | null
-    due_date: Date | null
-    maximum_grade: number | null
+    assignmentTitle: string | null
+    assignmentDescription: string | null
+    dueDate: Date | null
+    maximumGrade: number | null
     attachment: string | null
-    Submission_instructions: string | null
+    SubmissionInstructions: string | null
     subjectId: string | null
   }
 
   export type AssignmentsMaxAggregateOutputType = {
     id: string | null
-    assignment_title: string | null
-    assignment_description: string | null
-    due_date: Date | null
-    maximum_grade: number | null
+    assignmentTitle: string | null
+    assignmentDescription: string | null
+    dueDate: Date | null
+    maximumGrade: number | null
     attachment: string | null
-    Submission_instructions: string | null
+    SubmissionInstructions: string | null
     subjectId: string | null
   }
 
   export type AssignmentsCountAggregateOutputType = {
     id: number
-    assignment_title: number
-    assignment_description: number
-    due_date: number
-    maximum_grade: number
+    assignmentTitle: number
+    assignmentDescription: number
+    dueDate: number
+    maximumGrade: number
     attachment: number
-    Submission_instructions: number
+    SubmissionInstructions: number
     subjectId: number
     _all: number
   }
 
 
   export type AssignmentsAvgAggregateInputType = {
-    maximum_grade?: true
+    maximumGrade?: true
   }
 
   export type AssignmentsSumAggregateInputType = {
-    maximum_grade?: true
+    maximumGrade?: true
   }
 
   export type AssignmentsMinAggregateInputType = {
     id?: true
-    assignment_title?: true
-    assignment_description?: true
-    due_date?: true
-    maximum_grade?: true
+    assignmentTitle?: true
+    assignmentDescription?: true
+    dueDate?: true
+    maximumGrade?: true
     attachment?: true
-    Submission_instructions?: true
+    SubmissionInstructions?: true
     subjectId?: true
   }
 
   export type AssignmentsMaxAggregateInputType = {
     id?: true
-    assignment_title?: true
-    assignment_description?: true
-    due_date?: true
-    maximum_grade?: true
+    assignmentTitle?: true
+    assignmentDescription?: true
+    dueDate?: true
+    maximumGrade?: true
     attachment?: true
-    Submission_instructions?: true
+    SubmissionInstructions?: true
     subjectId?: true
   }
 
   export type AssignmentsCountAggregateInputType = {
     id?: true
-    assignment_title?: true
-    assignment_description?: true
-    due_date?: true
-    maximum_grade?: true
+    assignmentTitle?: true
+    assignmentDescription?: true
+    dueDate?: true
+    maximumGrade?: true
     attachment?: true
-    Submission_instructions?: true
+    SubmissionInstructions?: true
     subjectId?: true
     _all?: true
   }
@@ -13104,12 +13104,12 @@ export namespace Prisma {
 
   export type AssignmentsGroupByOutputType = {
     id: string
-    assignment_title: string
-    assignment_description: string
-    due_date: Date
-    maximum_grade: number
+    assignmentTitle: string
+    assignmentDescription: string
+    dueDate: Date
+    maximumGrade: number
     attachment: string
-    Submission_instructions: string
+    SubmissionInstructions: string
     subjectId: string
     _count: AssignmentsCountAggregateOutputType | null
     _avg: AssignmentsAvgAggregateOutputType | null
@@ -13134,52 +13134,52 @@ export namespace Prisma {
 
   export type AssignmentsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    assignment_title?: boolean
-    assignment_description?: boolean
-    due_date?: boolean
-    maximum_grade?: boolean
+    assignmentTitle?: boolean
+    assignmentDescription?: boolean
+    dueDate?: boolean
+    maximumGrade?: boolean
     attachment?: boolean
-    Submission_instructions?: boolean
+    SubmissionInstructions?: boolean
     subjectId?: boolean
     subject?: boolean | SubjectsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["assignments"]>
 
   export type AssignmentsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    assignment_title?: boolean
-    assignment_description?: boolean
-    due_date?: boolean
-    maximum_grade?: boolean
+    assignmentTitle?: boolean
+    assignmentDescription?: boolean
+    dueDate?: boolean
+    maximumGrade?: boolean
     attachment?: boolean
-    Submission_instructions?: boolean
+    SubmissionInstructions?: boolean
     subjectId?: boolean
     subject?: boolean | SubjectsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["assignments"]>
 
   export type AssignmentsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    assignment_title?: boolean
-    assignment_description?: boolean
-    due_date?: boolean
-    maximum_grade?: boolean
+    assignmentTitle?: boolean
+    assignmentDescription?: boolean
+    dueDate?: boolean
+    maximumGrade?: boolean
     attachment?: boolean
-    Submission_instructions?: boolean
+    SubmissionInstructions?: boolean
     subjectId?: boolean
     subject?: boolean | SubjectsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["assignments"]>
 
   export type AssignmentsSelectScalar = {
     id?: boolean
-    assignment_title?: boolean
-    assignment_description?: boolean
-    due_date?: boolean
-    maximum_grade?: boolean
+    assignmentTitle?: boolean
+    assignmentDescription?: boolean
+    dueDate?: boolean
+    maximumGrade?: boolean
     attachment?: boolean
-    Submission_instructions?: boolean
+    SubmissionInstructions?: boolean
     subjectId?: boolean
   }
 
-  export type AssignmentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "assignment_title" | "assignment_description" | "due_date" | "maximum_grade" | "attachment" | "Submission_instructions" | "subjectId", ExtArgs["result"]["assignments"]>
+  export type AssignmentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "assignmentTitle" | "assignmentDescription" | "dueDate" | "maximumGrade" | "attachment" | "SubmissionInstructions" | "subjectId", ExtArgs["result"]["assignments"]>
   export type AssignmentsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     subject?: boolean | SubjectsDefaultArgs<ExtArgs>
   }
@@ -13197,12 +13197,12 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      assignment_title: string
-      assignment_description: string
-      due_date: Date
-      maximum_grade: number
+      assignmentTitle: string
+      assignmentDescription: string
+      dueDate: Date
+      maximumGrade: number
       attachment: string
-      Submission_instructions: string
+      SubmissionInstructions: string
       subjectId: string
     }, ExtArgs["result"]["assignments"]>
     composites: {}
@@ -13629,12 +13629,12 @@ export namespace Prisma {
    */
   interface AssignmentsFieldRefs {
     readonly id: FieldRef<"Assignments", 'String'>
-    readonly assignment_title: FieldRef<"Assignments", 'String'>
-    readonly assignment_description: FieldRef<"Assignments", 'String'>
-    readonly due_date: FieldRef<"Assignments", 'DateTime'>
-    readonly maximum_grade: FieldRef<"Assignments", 'Int'>
+    readonly assignmentTitle: FieldRef<"Assignments", 'String'>
+    readonly assignmentDescription: FieldRef<"Assignments", 'String'>
+    readonly dueDate: FieldRef<"Assignments", 'DateTime'>
+    readonly maximumGrade: FieldRef<"Assignments", 'Int'>
     readonly attachment: FieldRef<"Assignments", 'String'>
-    readonly Submission_instructions: FieldRef<"Assignments", 'String'>
+    readonly SubmissionInstructions: FieldRef<"Assignments", 'String'>
     readonly subjectId: FieldRef<"Assignments", 'String'>
   }
     
@@ -14067,34 +14067,34 @@ export namespace Prisma {
 
   export type LessonsMinAggregateOutputType = {
     id: string | null
-    lesson_title: string | null
-    lesson_description: string | null
-    lesson_date: Date | null
-    learning_objectinve: string | null
-    learning_material: string | null
-    Completion_status: $Enums.iscompleate | null
+    lessonTitle: string | null
+    lessonDescription: string | null
+    lessonDate: Date | null
+    learningObjectinve: string | null
+    learningMaterial: string | null
+    CompletionStatus: $Enums.iscompleate | null
     subjectId: string | null
   }
 
   export type LessonsMaxAggregateOutputType = {
     id: string | null
-    lesson_title: string | null
-    lesson_description: string | null
-    lesson_date: Date | null
-    learning_objectinve: string | null
-    learning_material: string | null
-    Completion_status: $Enums.iscompleate | null
+    lessonTitle: string | null
+    lessonDescription: string | null
+    lessonDate: Date | null
+    learningObjectinve: string | null
+    learningMaterial: string | null
+    CompletionStatus: $Enums.iscompleate | null
     subjectId: string | null
   }
 
   export type LessonsCountAggregateOutputType = {
     id: number
-    lesson_title: number
-    lesson_description: number
-    lesson_date: number
-    learning_objectinve: number
-    learning_material: number
-    Completion_status: number
+    lessonTitle: number
+    lessonDescription: number
+    lessonDate: number
+    learningObjectinve: number
+    learningMaterial: number
+    CompletionStatus: number
     subjectId: number
     _all: number
   }
@@ -14102,34 +14102,34 @@ export namespace Prisma {
 
   export type LessonsMinAggregateInputType = {
     id?: true
-    lesson_title?: true
-    lesson_description?: true
-    lesson_date?: true
-    learning_objectinve?: true
-    learning_material?: true
-    Completion_status?: true
+    lessonTitle?: true
+    lessonDescription?: true
+    lessonDate?: true
+    learningObjectinve?: true
+    learningMaterial?: true
+    CompletionStatus?: true
     subjectId?: true
   }
 
   export type LessonsMaxAggregateInputType = {
     id?: true
-    lesson_title?: true
-    lesson_description?: true
-    lesson_date?: true
-    learning_objectinve?: true
-    learning_material?: true
-    Completion_status?: true
+    lessonTitle?: true
+    lessonDescription?: true
+    lessonDate?: true
+    learningObjectinve?: true
+    learningMaterial?: true
+    CompletionStatus?: true
     subjectId?: true
   }
 
   export type LessonsCountAggregateInputType = {
     id?: true
-    lesson_title?: true
-    lesson_description?: true
-    lesson_date?: true
-    learning_objectinve?: true
-    learning_material?: true
-    Completion_status?: true
+    lessonTitle?: true
+    lessonDescription?: true
+    lessonDate?: true
+    learningObjectinve?: true
+    learningMaterial?: true
+    CompletionStatus?: true
     subjectId?: true
     _all?: true
   }
@@ -14208,12 +14208,12 @@ export namespace Prisma {
 
   export type LessonsGroupByOutputType = {
     id: string
-    lesson_title: string
-    lesson_description: string
-    lesson_date: Date
-    learning_objectinve: string
-    learning_material: string
-    Completion_status: $Enums.iscompleate
+    lessonTitle: string
+    lessonDescription: string
+    lessonDate: Date
+    learningObjectinve: string
+    learningMaterial: string
+    CompletionStatus: $Enums.iscompleate
     subjectId: string
     _count: LessonsCountAggregateOutputType | null
     _min: LessonsMinAggregateOutputType | null
@@ -14236,52 +14236,52 @@ export namespace Prisma {
 
   export type LessonsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    lesson_title?: boolean
-    lesson_description?: boolean
-    lesson_date?: boolean
-    learning_objectinve?: boolean
-    learning_material?: boolean
-    Completion_status?: boolean
+    lessonTitle?: boolean
+    lessonDescription?: boolean
+    lessonDate?: boolean
+    learningObjectinve?: boolean
+    learningMaterial?: boolean
+    CompletionStatus?: boolean
     subjectId?: boolean
     subject?: boolean | SubjectsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["lessons"]>
 
   export type LessonsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    lesson_title?: boolean
-    lesson_description?: boolean
-    lesson_date?: boolean
-    learning_objectinve?: boolean
-    learning_material?: boolean
-    Completion_status?: boolean
+    lessonTitle?: boolean
+    lessonDescription?: boolean
+    lessonDate?: boolean
+    learningObjectinve?: boolean
+    learningMaterial?: boolean
+    CompletionStatus?: boolean
     subjectId?: boolean
     subject?: boolean | SubjectsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["lessons"]>
 
   export type LessonsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    lesson_title?: boolean
-    lesson_description?: boolean
-    lesson_date?: boolean
-    learning_objectinve?: boolean
-    learning_material?: boolean
-    Completion_status?: boolean
+    lessonTitle?: boolean
+    lessonDescription?: boolean
+    lessonDate?: boolean
+    learningObjectinve?: boolean
+    learningMaterial?: boolean
+    CompletionStatus?: boolean
     subjectId?: boolean
     subject?: boolean | SubjectsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["lessons"]>
 
   export type LessonsSelectScalar = {
     id?: boolean
-    lesson_title?: boolean
-    lesson_description?: boolean
-    lesson_date?: boolean
-    learning_objectinve?: boolean
-    learning_material?: boolean
-    Completion_status?: boolean
+    lessonTitle?: boolean
+    lessonDescription?: boolean
+    lessonDate?: boolean
+    learningObjectinve?: boolean
+    learningMaterial?: boolean
+    CompletionStatus?: boolean
     subjectId?: boolean
   }
 
-  export type LessonsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "lesson_title" | "lesson_description" | "lesson_date" | "learning_objectinve" | "learning_material" | "Completion_status" | "subjectId", ExtArgs["result"]["lessons"]>
+  export type LessonsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "lessonTitle" | "lessonDescription" | "lessonDate" | "learningObjectinve" | "learningMaterial" | "CompletionStatus" | "subjectId", ExtArgs["result"]["lessons"]>
   export type LessonsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     subject?: boolean | SubjectsDefaultArgs<ExtArgs>
   }
@@ -14299,12 +14299,12 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      lesson_title: string
-      lesson_description: string
-      lesson_date: Date
-      learning_objectinve: string
-      learning_material: string
-      Completion_status: $Enums.iscompleate
+      lessonTitle: string
+      lessonDescription: string
+      lessonDate: Date
+      learningObjectinve: string
+      learningMaterial: string
+      CompletionStatus: $Enums.iscompleate
       subjectId: string
     }, ExtArgs["result"]["lessons"]>
     composites: {}
@@ -14731,12 +14731,12 @@ export namespace Prisma {
    */
   interface LessonsFieldRefs {
     readonly id: FieldRef<"Lessons", 'String'>
-    readonly lesson_title: FieldRef<"Lessons", 'String'>
-    readonly lesson_description: FieldRef<"Lessons", 'String'>
-    readonly lesson_date: FieldRef<"Lessons", 'DateTime'>
-    readonly learning_objectinve: FieldRef<"Lessons", 'String'>
-    readonly learning_material: FieldRef<"Lessons", 'String'>
-    readonly Completion_status: FieldRef<"Lessons", 'iscompleate'>
+    readonly lessonTitle: FieldRef<"Lessons", 'String'>
+    readonly lessonDescription: FieldRef<"Lessons", 'String'>
+    readonly lessonDate: FieldRef<"Lessons", 'DateTime'>
+    readonly learningObjectinve: FieldRef<"Lessons", 'String'>
+    readonly learningMaterial: FieldRef<"Lessons", 'String'>
+    readonly CompletionStatus: FieldRef<"Lessons", 'iscompleate'>
     readonly subjectId: FieldRef<"Lessons", 'String'>
   }
     
@@ -15170,68 +15170,68 @@ export namespace Prisma {
   }
 
   export type ExamsAvgAggregateOutputType = {
-    Maximum_grade: number | null
+    MaximumGrade: number | null
   }
 
   export type ExamsSumAggregateOutputType = {
-    Maximum_grade: number | null
+    MaximumGrade: number | null
   }
 
   export type ExamsMinAggregateOutputType = {
     id: string | null
-    exam_name: string | null
-    exam_date: Date | null
-    Maximum_grade: number | null
+    examName: string | null
+    examDate: Date | null
+    MaximumGrade: number | null
     subjectId: string | null
   }
 
   export type ExamsMaxAggregateOutputType = {
     id: string | null
-    exam_name: string | null
-    exam_date: Date | null
-    Maximum_grade: number | null
+    examName: string | null
+    examDate: Date | null
+    MaximumGrade: number | null
     subjectId: string | null
   }
 
   export type ExamsCountAggregateOutputType = {
     id: number
-    exam_name: number
-    exam_date: number
-    Maximum_grade: number
+    examName: number
+    examDate: number
+    MaximumGrade: number
     subjectId: number
     _all: number
   }
 
 
   export type ExamsAvgAggregateInputType = {
-    Maximum_grade?: true
+    MaximumGrade?: true
   }
 
   export type ExamsSumAggregateInputType = {
-    Maximum_grade?: true
+    MaximumGrade?: true
   }
 
   export type ExamsMinAggregateInputType = {
     id?: true
-    exam_name?: true
-    exam_date?: true
-    Maximum_grade?: true
+    examName?: true
+    examDate?: true
+    MaximumGrade?: true
     subjectId?: true
   }
 
   export type ExamsMaxAggregateInputType = {
     id?: true
-    exam_name?: true
-    exam_date?: true
-    Maximum_grade?: true
+    examName?: true
+    examDate?: true
+    MaximumGrade?: true
     subjectId?: true
   }
 
   export type ExamsCountAggregateInputType = {
     id?: true
-    exam_name?: true
-    exam_date?: true
-    Maximum_grade?: true
+    examName?: true
+    examDate?: true
+    MaximumGrade?: true
     subjectId?: true
     _all?: true
   }
@@ -15324,9 +15324,9 @@ export namespace Prisma {
 
   export type ExamsGroupByOutputType = {
     id: string
-    exam_name: string
-    exam_date: Date
-    Maximum_grade: number
+    examName: string
+    examDate: Date
+    MaximumGrade: number
     subjectId: string
     _count: ExamsCountAggregateOutputType | null
     _avg: ExamsAvgAggregateOutputType | null
@@ -15351,9 +15351,9 @@ export namespace Prisma {
 
   export type ExamsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    exam_name?: boolean
-    exam_date?: boolean
-    Maximum_grade?: boolean
+    examName?: boolean
+    examDate?: boolean
+    MaximumGrade?: boolean
     subjectId?: boolean
     subject?: boolean | SubjectsDefaultArgs<ExtArgs>
     submissions?: boolean | Exams$submissionsArgs<ExtArgs>
@@ -15362,31 +15362,31 @@ export namespace Prisma {
 
   export type ExamsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    exam_name?: boolean
-    exam_date?: boolean
-    Maximum_grade?: boolean
+    examName?: boolean
+    examDate?: boolean
+    MaximumGrade?: boolean
     subjectId?: boolean
     subject?: boolean | SubjectsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["exams"]>
 
   export type ExamsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    exam_name?: boolean
-    exam_date?: boolean
-    Maximum_grade?: boolean
+    examName?: boolean
+    examDate?: boolean
+    MaximumGrade?: boolean
     subjectId?: boolean
     subject?: boolean | SubjectsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["exams"]>
 
   export type ExamsSelectScalar = {
     id?: boolean
-    exam_name?: boolean
-    exam_date?: boolean
-    Maximum_grade?: boolean
+    examName?: boolean
+    examDate?: boolean
+    MaximumGrade?: boolean
     subjectId?: boolean
   }
 
-  export type ExamsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "exam_name" | "exam_date" | "Maximum_grade" | "subjectId", ExtArgs["result"]["exams"]>
+  export type ExamsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "examName" | "examDate" | "MaximumGrade" | "subjectId", ExtArgs["result"]["exams"]>
   export type ExamsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     subject?: boolean | SubjectsDefaultArgs<ExtArgs>
     submissions?: boolean | Exams$submissionsArgs<ExtArgs>
@@ -15403,13 +15403,13 @@ export namespace Prisma {
     name: "Exams"
     objects: {
       subject: Prisma.$SubjectsPayload<ExtArgs>
-      submissions: Prisma.$Exam_submissionsPayload<ExtArgs>[]
+      submissions: Prisma.$ExamSubmissionsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      exam_name: string
-      exam_date: Date
-      Maximum_grade: number
+      examName: string
+      examDate: Date
+      MaximumGrade: number
       subjectId: string
     }, ExtArgs["result"]["exams"]>
     composites: {}
@@ -15806,7 +15806,7 @@ export namespace Prisma {
   export interface Prisma__ExamsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     subject<T extends SubjectsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SubjectsDefaultArgs<ExtArgs>>): Prisma__SubjectsClient<$Result.GetResult<Prisma.$SubjectsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    submissions<T extends Exams$submissionsArgs<ExtArgs> = {}>(args?: Subset<T, Exams$submissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Exam_submissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    submissions<T extends Exams$submissionsArgs<ExtArgs> = {}>(args?: Subset<T, Exams$submissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamSubmissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -15837,9 +15837,9 @@ export namespace Prisma {
    */
   interface ExamsFieldRefs {
     readonly id: FieldRef<"Exams", 'String'>
-    readonly exam_name: FieldRef<"Exams", 'String'>
-    readonly exam_date: FieldRef<"Exams", 'DateTime'>
-    readonly Maximum_grade: FieldRef<"Exams", 'Int'>
+    readonly examName: FieldRef<"Exams", 'String'>
+    readonly examDate: FieldRef<"Exams", 'DateTime'>
+    readonly MaximumGrade: FieldRef<"Exams", 'Int'>
     readonly subjectId: FieldRef<"Exams", 'String'>
   }
     
@@ -16246,23 +16246,23 @@ export namespace Prisma {
    */
   export type Exams$submissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Exam_submissions
+     * Select specific fields to fetch from the ExamSubmissions
      */
-    select?: Exam_submissionsSelect<ExtArgs> | null
+    select?: ExamSubmissionsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Exam_submissions
+     * Omit specific fields from the ExamSubmissions
      */
-    omit?: Exam_submissionsOmit<ExtArgs> | null
+    omit?: ExamSubmissionsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Exam_submissionsInclude<ExtArgs> | null
-    where?: Exam_submissionsWhereInput
-    orderBy?: Exam_submissionsOrderByWithRelationInput | Exam_submissionsOrderByWithRelationInput[]
-    cursor?: Exam_submissionsWhereUniqueInput
+    include?: ExamSubmissionsInclude<ExtArgs> | null
+    where?: ExamSubmissionsWhereInput
+    orderBy?: ExamSubmissionsOrderByWithRelationInput | ExamSubmissionsOrderByWithRelationInput[]
+    cursor?: ExamSubmissionsWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: Exam_submissionsScalarFieldEnum | Exam_submissionsScalarFieldEnum[]
+    distinct?: ExamSubmissionsScalarFieldEnum | ExamSubmissionsScalarFieldEnum[]
   }
 
   /**
@@ -16285,391 +16285,391 @@ export namespace Prisma {
 
 
   /**
-   * Model Learning_progresses
+   * Model LearningProgresses
    */
 
-  export type AggregateLearning_progresses = {
-    _count: Learning_progressesCountAggregateOutputType | null
-    _avg: Learning_progressesAvgAggregateOutputType | null
-    _sum: Learning_progressesSumAggregateOutputType | null
-    _min: Learning_progressesMinAggregateOutputType | null
-    _max: Learning_progressesMaxAggregateOutputType | null
+  export type AggregateLearningProgresses = {
+    _count: LearningProgressesCountAggregateOutputType | null
+    _avg: LearningProgressesAvgAggregateOutputType | null
+    _sum: LearningProgressesSumAggregateOutputType | null
+    _min: LearningProgressesMinAggregateOutputType | null
+    _max: LearningProgressesMaxAggregateOutputType | null
   }
 
-  export type Learning_progressesAvgAggregateOutputType = {
-    subjects_averages: number | null
-    overall_avreages: number | null
-    attendence_percentage: number | null
+  export type LearningProgressesAvgAggregateOutputType = {
+    subjectsAverages: number | null
+    overallAvreages: number | null
+    attendencePercentage: number | null
   }
 
-  export type Learning_progressesSumAggregateOutputType = {
-    subjects_averages: number | null
-    overall_avreages: number | null
-    attendence_percentage: number | null
+  export type LearningProgressesSumAggregateOutputType = {
+    subjectsAverages: number | null
+    overallAvreages: number | null
+    attendencePercentage: number | null
   }
 
-  export type Learning_progressesMinAggregateOutputType = {
+  export type LearningProgressesMinAggregateOutputType = {
     id: string | null
-    subjects_averages: number | null
-    overall_avreages: number | null
-    attendence_percentage: number | null
-    learning_status: $Enums.Status | null
+    subjectsAverages: number | null
+    overallAvreages: number | null
+    attendencePercentage: number | null
+    learningStatus: $Enums.Status | null
   }
 
-  export type Learning_progressesMaxAggregateOutputType = {
+  export type LearningProgressesMaxAggregateOutputType = {
     id: string | null
-    subjects_averages: number | null
-    overall_avreages: number | null
-    attendence_percentage: number | null
-    learning_status: $Enums.Status | null
+    subjectsAverages: number | null
+    overallAvreages: number | null
+    attendencePercentage: number | null
+    learningStatus: $Enums.Status | null
   }
 
-  export type Learning_progressesCountAggregateOutputType = {
+  export type LearningProgressesCountAggregateOutputType = {
     id: number
-    subjects_averages: number
-    overall_avreages: number
-    attendence_percentage: number
-    learning_status: number
+    subjectsAverages: number
+    overallAvreages: number
+    attendencePercentage: number
+    learningStatus: number
     _all: number
   }
 
 
-  export type Learning_progressesAvgAggregateInputType = {
-    subjects_averages?: true
-    overall_avreages?: true
-    attendence_percentage?: true
+  export type LearningProgressesAvgAggregateInputType = {
+    subjectsAverages?: true
+    overallAvreages?: true
+    attendencePercentage?: true
   }
 
-  export type Learning_progressesSumAggregateInputType = {
-    subjects_averages?: true
-    overall_avreages?: true
-    attendence_percentage?: true
+  export type LearningProgressesSumAggregateInputType = {
+    subjectsAverages?: true
+    overallAvreages?: true
+    attendencePercentage?: true
   }
 
-  export type Learning_progressesMinAggregateInputType = {
+  export type LearningProgressesMinAggregateInputType = {
     id?: true
-    subjects_averages?: true
-    overall_avreages?: true
-    attendence_percentage?: true
-    learning_status?: true
+    subjectsAverages?: true
+    overallAvreages?: true
+    attendencePercentage?: true
+    learningStatus?: true
   }
 
-  export type Learning_progressesMaxAggregateInputType = {
+  export type LearningProgressesMaxAggregateInputType = {
     id?: true
-    subjects_averages?: true
-    overall_avreages?: true
-    attendence_percentage?: true
-    learning_status?: true
+    subjectsAverages?: true
+    overallAvreages?: true
+    attendencePercentage?: true
+    learningStatus?: true
   }
 
-  export type Learning_progressesCountAggregateInputType = {
+  export type LearningProgressesCountAggregateInputType = {
     id?: true
-    subjects_averages?: true
-    overall_avreages?: true
-    attendence_percentage?: true
-    learning_status?: true
+    subjectsAverages?: true
+    overallAvreages?: true
+    attendencePercentage?: true
+    learningStatus?: true
     _all?: true
   }
 
-  export type Learning_progressesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LearningProgressesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Learning_progresses to aggregate.
+     * Filter which LearningProgresses to aggregate.
      */
-    where?: Learning_progressesWhereInput
+    where?: LearningProgressesWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Learning_progresses to fetch.
+     * Determine the order of LearningProgresses to fetch.
      */
-    orderBy?: Learning_progressesOrderByWithRelationInput | Learning_progressesOrderByWithRelationInput[]
+    orderBy?: LearningProgressesOrderByWithRelationInput | LearningProgressesOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: Learning_progressesWhereUniqueInput
+    cursor?: LearningProgressesWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Learning_progresses from the position of the cursor.
+     * Take `±n` LearningProgresses from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Learning_progresses.
+     * Skip the first `n` LearningProgresses.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Learning_progresses
+     * Count returned LearningProgresses
     **/
-    _count?: true | Learning_progressesCountAggregateInputType
+    _count?: true | LearningProgressesCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: Learning_progressesAvgAggregateInputType
+    _avg?: LearningProgressesAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: Learning_progressesSumAggregateInputType
+    _sum?: LearningProgressesSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: Learning_progressesMinAggregateInputType
+    _min?: LearningProgressesMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: Learning_progressesMaxAggregateInputType
+    _max?: LearningProgressesMaxAggregateInputType
   }
 
-  export type GetLearning_progressesAggregateType<T extends Learning_progressesAggregateArgs> = {
-        [P in keyof T & keyof AggregateLearning_progresses]: P extends '_count' | 'count'
+  export type GetLearningProgressesAggregateType<T extends LearningProgressesAggregateArgs> = {
+        [P in keyof T & keyof AggregateLearningProgresses]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateLearning_progresses[P]>
-      : GetScalarType<T[P], AggregateLearning_progresses[P]>
+        : GetScalarType<T[P], AggregateLearningProgresses[P]>
+      : GetScalarType<T[P], AggregateLearningProgresses[P]>
   }
 
 
 
 
-  export type Learning_progressesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: Learning_progressesWhereInput
-    orderBy?: Learning_progressesOrderByWithAggregationInput | Learning_progressesOrderByWithAggregationInput[]
-    by: Learning_progressesScalarFieldEnum[] | Learning_progressesScalarFieldEnum
-    having?: Learning_progressesScalarWhereWithAggregatesInput
+  export type LearningProgressesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LearningProgressesWhereInput
+    orderBy?: LearningProgressesOrderByWithAggregationInput | LearningProgressesOrderByWithAggregationInput[]
+    by: LearningProgressesScalarFieldEnum[] | LearningProgressesScalarFieldEnum
+    having?: LearningProgressesScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: Learning_progressesCountAggregateInputType | true
-    _avg?: Learning_progressesAvgAggregateInputType
-    _sum?: Learning_progressesSumAggregateInputType
-    _min?: Learning_progressesMinAggregateInputType
-    _max?: Learning_progressesMaxAggregateInputType
+    _count?: LearningProgressesCountAggregateInputType | true
+    _avg?: LearningProgressesAvgAggregateInputType
+    _sum?: LearningProgressesSumAggregateInputType
+    _min?: LearningProgressesMinAggregateInputType
+    _max?: LearningProgressesMaxAggregateInputType
   }
 
-  export type Learning_progressesGroupByOutputType = {
+  export type LearningProgressesGroupByOutputType = {
     id: string
-    subjects_averages: number
-    overall_avreages: number
-    attendence_percentage: number
-    learning_status: $Enums.Status
-    _count: Learning_progressesCountAggregateOutputType | null
-    _avg: Learning_progressesAvgAggregateOutputType | null
-    _sum: Learning_progressesSumAggregateOutputType | null
-    _min: Learning_progressesMinAggregateOutputType | null
-    _max: Learning_progressesMaxAggregateOutputType | null
+    subjectsAverages: number
+    overallAvreages: number
+    attendencePercentage: number
+    learningStatus: $Enums.Status
+    _count: LearningProgressesCountAggregateOutputType | null
+    _avg: LearningProgressesAvgAggregateOutputType | null
+    _sum: LearningProgressesSumAggregateOutputType | null
+    _min: LearningProgressesMinAggregateOutputType | null
+    _max: LearningProgressesMaxAggregateOutputType | null
   }
 
-  type GetLearning_progressesGroupByPayload<T extends Learning_progressesGroupByArgs> = Prisma.PrismaPromise<
+  type GetLearningProgressesGroupByPayload<T extends LearningProgressesGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<Learning_progressesGroupByOutputType, T['by']> &
+      PickEnumerable<LearningProgressesGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof Learning_progressesGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof LearningProgressesGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], Learning_progressesGroupByOutputType[P]>
-            : GetScalarType<T[P], Learning_progressesGroupByOutputType[P]>
+              : GetScalarType<T[P], LearningProgressesGroupByOutputType[P]>
+            : GetScalarType<T[P], LearningProgressesGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type Learning_progressesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type LearningProgressesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    subjects_averages?: boolean
-    overall_avreages?: boolean
-    attendence_percentage?: boolean
-    learning_status?: boolean
-    student?: boolean | Learning_progresses$studentArgs<ExtArgs>
-    progressNotes?: boolean | Learning_progresses$progressNotesArgs<ExtArgs>
-    _count?: boolean | Learning_progressesCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["learning_progresses"]>
+    subjectsAverages?: boolean
+    overallAvreages?: boolean
+    attendencePercentage?: boolean
+    learningStatus?: boolean
+    student?: boolean | LearningProgresses$studentArgs<ExtArgs>
+    progressNotes?: boolean | LearningProgresses$progressNotesArgs<ExtArgs>
+    _count?: boolean | LearningProgressesCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["learningProgresses"]>
 
-  export type Learning_progressesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type LearningProgressesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    subjects_averages?: boolean
-    overall_avreages?: boolean
-    attendence_percentage?: boolean
-    learning_status?: boolean
-  }, ExtArgs["result"]["learning_progresses"]>
+    subjectsAverages?: boolean
+    overallAvreages?: boolean
+    attendencePercentage?: boolean
+    learningStatus?: boolean
+  }, ExtArgs["result"]["learningProgresses"]>
 
-  export type Learning_progressesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type LearningProgressesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    subjects_averages?: boolean
-    overall_avreages?: boolean
-    attendence_percentage?: boolean
-    learning_status?: boolean
-  }, ExtArgs["result"]["learning_progresses"]>
+    subjectsAverages?: boolean
+    overallAvreages?: boolean
+    attendencePercentage?: boolean
+    learningStatus?: boolean
+  }, ExtArgs["result"]["learningProgresses"]>
 
-  export type Learning_progressesSelectScalar = {
+  export type LearningProgressesSelectScalar = {
     id?: boolean
-    subjects_averages?: boolean
-    overall_avreages?: boolean
-    attendence_percentage?: boolean
-    learning_status?: boolean
+    subjectsAverages?: boolean
+    overallAvreages?: boolean
+    attendencePercentage?: boolean
+    learningStatus?: boolean
   }
 
-  export type Learning_progressesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "subjects_averages" | "overall_avreages" | "attendence_percentage" | "learning_status", ExtArgs["result"]["learning_progresses"]>
-  export type Learning_progressesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    student?: boolean | Learning_progresses$studentArgs<ExtArgs>
-    progressNotes?: boolean | Learning_progresses$progressNotesArgs<ExtArgs>
-    _count?: boolean | Learning_progressesCountOutputTypeDefaultArgs<ExtArgs>
+  export type LearningProgressesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "subjectsAverages" | "overallAvreages" | "attendencePercentage" | "learningStatus", ExtArgs["result"]["learningProgresses"]>
+  export type LearningProgressesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    student?: boolean | LearningProgresses$studentArgs<ExtArgs>
+    progressNotes?: boolean | LearningProgresses$progressNotesArgs<ExtArgs>
+    _count?: boolean | LearningProgressesCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type Learning_progressesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type Learning_progressesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type LearningProgressesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type LearningProgressesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
-  export type $Learning_progressesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Learning_progresses"
+  export type $LearningProgressesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LearningProgresses"
     objects: {
       student: Prisma.$StudentPayload<ExtArgs> | null
-      progressNotes: Prisma.$Progress_notesPayload<ExtArgs>[]
+      progressNotes: Prisma.$ProgressNotesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      subjects_averages: number
-      overall_avreages: number
-      attendence_percentage: number
-      learning_status: $Enums.Status
-    }, ExtArgs["result"]["learning_progresses"]>
+      subjectsAverages: number
+      overallAvreages: number
+      attendencePercentage: number
+      learningStatus: $Enums.Status
+    }, ExtArgs["result"]["learningProgresses"]>
     composites: {}
   }
 
-  type Learning_progressesGetPayload<S extends boolean | null | undefined | Learning_progressesDefaultArgs> = $Result.GetResult<Prisma.$Learning_progressesPayload, S>
+  type LearningProgressesGetPayload<S extends boolean | null | undefined | LearningProgressesDefaultArgs> = $Result.GetResult<Prisma.$LearningProgressesPayload, S>
 
-  type Learning_progressesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<Learning_progressesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: Learning_progressesCountAggregateInputType | true
+  type LearningProgressesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LearningProgressesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LearningProgressesCountAggregateInputType | true
     }
 
-  export interface Learning_progressesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Learning_progresses'], meta: { name: 'Learning_progresses' } }
+  export interface LearningProgressesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LearningProgresses'], meta: { name: 'LearningProgresses' } }
     /**
-     * Find zero or one Learning_progresses that matches the filter.
-     * @param {Learning_progressesFindUniqueArgs} args - Arguments to find a Learning_progresses
+     * Find zero or one LearningProgresses that matches the filter.
+     * @param {LearningProgressesFindUniqueArgs} args - Arguments to find a LearningProgresses
      * @example
-     * // Get one Learning_progresses
-     * const learning_progresses = await prisma.learning_progresses.findUnique({
+     * // Get one LearningProgresses
+     * const learningProgresses = await prisma.learningProgresses.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends Learning_progressesFindUniqueArgs>(args: SelectSubset<T, Learning_progressesFindUniqueArgs<ExtArgs>>): Prisma__Learning_progressesClient<$Result.GetResult<Prisma.$Learning_progressesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends LearningProgressesFindUniqueArgs>(args: SelectSubset<T, LearningProgressesFindUniqueArgs<ExtArgs>>): Prisma__LearningProgressesClient<$Result.GetResult<Prisma.$LearningProgressesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Learning_progresses that matches the filter or throw an error with `error.code='P2025'`
+     * Find one LearningProgresses that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {Learning_progressesFindUniqueOrThrowArgs} args - Arguments to find a Learning_progresses
+     * @param {LearningProgressesFindUniqueOrThrowArgs} args - Arguments to find a LearningProgresses
      * @example
-     * // Get one Learning_progresses
-     * const learning_progresses = await prisma.learning_progresses.findUniqueOrThrow({
+     * // Get one LearningProgresses
+     * const learningProgresses = await prisma.learningProgresses.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends Learning_progressesFindUniqueOrThrowArgs>(args: SelectSubset<T, Learning_progressesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__Learning_progressesClient<$Result.GetResult<Prisma.$Learning_progressesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends LearningProgressesFindUniqueOrThrowArgs>(args: SelectSubset<T, LearningProgressesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LearningProgressesClient<$Result.GetResult<Prisma.$LearningProgressesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Learning_progresses that matches the filter.
+     * Find the first LearningProgresses that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Learning_progressesFindFirstArgs} args - Arguments to find a Learning_progresses
+     * @param {LearningProgressesFindFirstArgs} args - Arguments to find a LearningProgresses
      * @example
-     * // Get one Learning_progresses
-     * const learning_progresses = await prisma.learning_progresses.findFirst({
+     * // Get one LearningProgresses
+     * const learningProgresses = await prisma.learningProgresses.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends Learning_progressesFindFirstArgs>(args?: SelectSubset<T, Learning_progressesFindFirstArgs<ExtArgs>>): Prisma__Learning_progressesClient<$Result.GetResult<Prisma.$Learning_progressesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends LearningProgressesFindFirstArgs>(args?: SelectSubset<T, LearningProgressesFindFirstArgs<ExtArgs>>): Prisma__LearningProgressesClient<$Result.GetResult<Prisma.$LearningProgressesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Learning_progresses that matches the filter or
+     * Find the first LearningProgresses that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Learning_progressesFindFirstOrThrowArgs} args - Arguments to find a Learning_progresses
+     * @param {LearningProgressesFindFirstOrThrowArgs} args - Arguments to find a LearningProgresses
      * @example
-     * // Get one Learning_progresses
-     * const learning_progresses = await prisma.learning_progresses.findFirstOrThrow({
+     * // Get one LearningProgresses
+     * const learningProgresses = await prisma.learningProgresses.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends Learning_progressesFindFirstOrThrowArgs>(args?: SelectSubset<T, Learning_progressesFindFirstOrThrowArgs<ExtArgs>>): Prisma__Learning_progressesClient<$Result.GetResult<Prisma.$Learning_progressesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends LearningProgressesFindFirstOrThrowArgs>(args?: SelectSubset<T, LearningProgressesFindFirstOrThrowArgs<ExtArgs>>): Prisma__LearningProgressesClient<$Result.GetResult<Prisma.$LearningProgressesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Learning_progresses that matches the filter.
+     * Find zero or more LearningProgresses that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Learning_progressesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {LearningProgressesFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Learning_progresses
-     * const learning_progresses = await prisma.learning_progresses.findMany()
+     * // Get all LearningProgresses
+     * const learningProgresses = await prisma.learningProgresses.findMany()
      * 
-     * // Get first 10 Learning_progresses
-     * const learning_progresses = await prisma.learning_progresses.findMany({ take: 10 })
+     * // Get first 10 LearningProgresses
+     * const learningProgresses = await prisma.learningProgresses.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const learning_progressesWithIdOnly = await prisma.learning_progresses.findMany({ select: { id: true } })
+     * const learningProgressesWithIdOnly = await prisma.learningProgresses.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends Learning_progressesFindManyArgs>(args?: SelectSubset<T, Learning_progressesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Learning_progressesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends LearningProgressesFindManyArgs>(args?: SelectSubset<T, LearningProgressesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LearningProgressesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Learning_progresses.
-     * @param {Learning_progressesCreateArgs} args - Arguments to create a Learning_progresses.
+     * Create a LearningProgresses.
+     * @param {LearningProgressesCreateArgs} args - Arguments to create a LearningProgresses.
      * @example
-     * // Create one Learning_progresses
-     * const Learning_progresses = await prisma.learning_progresses.create({
+     * // Create one LearningProgresses
+     * const LearningProgresses = await prisma.learningProgresses.create({
      *   data: {
-     *     // ... data to create a Learning_progresses
+     *     // ... data to create a LearningProgresses
      *   }
      * })
      * 
      */
-    create<T extends Learning_progressesCreateArgs>(args: SelectSubset<T, Learning_progressesCreateArgs<ExtArgs>>): Prisma__Learning_progressesClient<$Result.GetResult<Prisma.$Learning_progressesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends LearningProgressesCreateArgs>(args: SelectSubset<T, LearningProgressesCreateArgs<ExtArgs>>): Prisma__LearningProgressesClient<$Result.GetResult<Prisma.$LearningProgressesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Learning_progresses.
-     * @param {Learning_progressesCreateManyArgs} args - Arguments to create many Learning_progresses.
+     * Create many LearningProgresses.
+     * @param {LearningProgressesCreateManyArgs} args - Arguments to create many LearningProgresses.
      * @example
-     * // Create many Learning_progresses
-     * const learning_progresses = await prisma.learning_progresses.createMany({
+     * // Create many LearningProgresses
+     * const learningProgresses = await prisma.learningProgresses.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends Learning_progressesCreateManyArgs>(args?: SelectSubset<T, Learning_progressesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends LearningProgressesCreateManyArgs>(args?: SelectSubset<T, LearningProgressesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Learning_progresses and returns the data saved in the database.
-     * @param {Learning_progressesCreateManyAndReturnArgs} args - Arguments to create many Learning_progresses.
+     * Create many LearningProgresses and returns the data saved in the database.
+     * @param {LearningProgressesCreateManyAndReturnArgs} args - Arguments to create many LearningProgresses.
      * @example
-     * // Create many Learning_progresses
-     * const learning_progresses = await prisma.learning_progresses.createManyAndReturn({
+     * // Create many LearningProgresses
+     * const learningProgresses = await prisma.learningProgresses.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Learning_progresses and only return the `id`
-     * const learning_progressesWithIdOnly = await prisma.learning_progresses.createManyAndReturn({
+     * // Create many LearningProgresses and only return the `id`
+     * const learningProgressesWithIdOnly = await prisma.learningProgresses.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -16679,28 +16679,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends Learning_progressesCreateManyAndReturnArgs>(args?: SelectSubset<T, Learning_progressesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Learning_progressesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends LearningProgressesCreateManyAndReturnArgs>(args?: SelectSubset<T, LearningProgressesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LearningProgressesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Learning_progresses.
-     * @param {Learning_progressesDeleteArgs} args - Arguments to delete one Learning_progresses.
+     * Delete a LearningProgresses.
+     * @param {LearningProgressesDeleteArgs} args - Arguments to delete one LearningProgresses.
      * @example
-     * // Delete one Learning_progresses
-     * const Learning_progresses = await prisma.learning_progresses.delete({
+     * // Delete one LearningProgresses
+     * const LearningProgresses = await prisma.learningProgresses.delete({
      *   where: {
-     *     // ... filter to delete one Learning_progresses
+     *     // ... filter to delete one LearningProgresses
      *   }
      * })
      * 
      */
-    delete<T extends Learning_progressesDeleteArgs>(args: SelectSubset<T, Learning_progressesDeleteArgs<ExtArgs>>): Prisma__Learning_progressesClient<$Result.GetResult<Prisma.$Learning_progressesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends LearningProgressesDeleteArgs>(args: SelectSubset<T, LearningProgressesDeleteArgs<ExtArgs>>): Prisma__LearningProgressesClient<$Result.GetResult<Prisma.$LearningProgressesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Learning_progresses.
-     * @param {Learning_progressesUpdateArgs} args - Arguments to update one Learning_progresses.
+     * Update one LearningProgresses.
+     * @param {LearningProgressesUpdateArgs} args - Arguments to update one LearningProgresses.
      * @example
-     * // Update one Learning_progresses
-     * const learning_progresses = await prisma.learning_progresses.update({
+     * // Update one LearningProgresses
+     * const learningProgresses = await prisma.learningProgresses.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -16710,30 +16710,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends Learning_progressesUpdateArgs>(args: SelectSubset<T, Learning_progressesUpdateArgs<ExtArgs>>): Prisma__Learning_progressesClient<$Result.GetResult<Prisma.$Learning_progressesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends LearningProgressesUpdateArgs>(args: SelectSubset<T, LearningProgressesUpdateArgs<ExtArgs>>): Prisma__LearningProgressesClient<$Result.GetResult<Prisma.$LearningProgressesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Learning_progresses.
-     * @param {Learning_progressesDeleteManyArgs} args - Arguments to filter Learning_progresses to delete.
+     * Delete zero or more LearningProgresses.
+     * @param {LearningProgressesDeleteManyArgs} args - Arguments to filter LearningProgresses to delete.
      * @example
-     * // Delete a few Learning_progresses
-     * const { count } = await prisma.learning_progresses.deleteMany({
+     * // Delete a few LearningProgresses
+     * const { count } = await prisma.learningProgresses.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends Learning_progressesDeleteManyArgs>(args?: SelectSubset<T, Learning_progressesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends LearningProgressesDeleteManyArgs>(args?: SelectSubset<T, LearningProgressesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Learning_progresses.
+     * Update zero or more LearningProgresses.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Learning_progressesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {LearningProgressesUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Learning_progresses
-     * const learning_progresses = await prisma.learning_progresses.updateMany({
+     * // Update many LearningProgresses
+     * const learningProgresses = await prisma.learningProgresses.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -16743,14 +16743,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends Learning_progressesUpdateManyArgs>(args: SelectSubset<T, Learning_progressesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends LearningProgressesUpdateManyArgs>(args: SelectSubset<T, LearningProgressesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Learning_progresses and returns the data updated in the database.
-     * @param {Learning_progressesUpdateManyAndReturnArgs} args - Arguments to update many Learning_progresses.
+     * Update zero or more LearningProgresses and returns the data updated in the database.
+     * @param {LearningProgressesUpdateManyAndReturnArgs} args - Arguments to update many LearningProgresses.
      * @example
-     * // Update many Learning_progresses
-     * const learning_progresses = await prisma.learning_progresses.updateManyAndReturn({
+     * // Update many LearningProgresses
+     * const learningProgresses = await prisma.learningProgresses.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -16759,8 +16759,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Learning_progresses and only return the `id`
-     * const learning_progressesWithIdOnly = await prisma.learning_progresses.updateManyAndReturn({
+     * // Update zero or more LearningProgresses and only return the `id`
+     * const learningProgressesWithIdOnly = await prisma.learningProgresses.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -16773,56 +16773,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends Learning_progressesUpdateManyAndReturnArgs>(args: SelectSubset<T, Learning_progressesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Learning_progressesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends LearningProgressesUpdateManyAndReturnArgs>(args: SelectSubset<T, LearningProgressesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LearningProgressesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Learning_progresses.
-     * @param {Learning_progressesUpsertArgs} args - Arguments to update or create a Learning_progresses.
+     * Create or update one LearningProgresses.
+     * @param {LearningProgressesUpsertArgs} args - Arguments to update or create a LearningProgresses.
      * @example
-     * // Update or create a Learning_progresses
-     * const learning_progresses = await prisma.learning_progresses.upsert({
+     * // Update or create a LearningProgresses
+     * const learningProgresses = await prisma.learningProgresses.upsert({
      *   create: {
-     *     // ... data to create a Learning_progresses
+     *     // ... data to create a LearningProgresses
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Learning_progresses we want to update
+     *     // ... the filter for the LearningProgresses we want to update
      *   }
      * })
      */
-    upsert<T extends Learning_progressesUpsertArgs>(args: SelectSubset<T, Learning_progressesUpsertArgs<ExtArgs>>): Prisma__Learning_progressesClient<$Result.GetResult<Prisma.$Learning_progressesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends LearningProgressesUpsertArgs>(args: SelectSubset<T, LearningProgressesUpsertArgs<ExtArgs>>): Prisma__LearningProgressesClient<$Result.GetResult<Prisma.$LearningProgressesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Learning_progresses.
+     * Count the number of LearningProgresses.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Learning_progressesCountArgs} args - Arguments to filter Learning_progresses to count.
+     * @param {LearningProgressesCountArgs} args - Arguments to filter LearningProgresses to count.
      * @example
-     * // Count the number of Learning_progresses
-     * const count = await prisma.learning_progresses.count({
+     * // Count the number of LearningProgresses
+     * const count = await prisma.learningProgresses.count({
      *   where: {
-     *     // ... the filter for the Learning_progresses we want to count
+     *     // ... the filter for the LearningProgresses we want to count
      *   }
      * })
     **/
-    count<T extends Learning_progressesCountArgs>(
-      args?: Subset<T, Learning_progressesCountArgs>,
+    count<T extends LearningProgressesCountArgs>(
+      args?: Subset<T, LearningProgressesCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], Learning_progressesCountAggregateOutputType>
+          : GetScalarType<T['select'], LearningProgressesCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Learning_progresses.
+     * Allows you to perform aggregations operations on a LearningProgresses.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Learning_progressesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {LearningProgressesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -16842,13 +16842,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends Learning_progressesAggregateArgs>(args: Subset<T, Learning_progressesAggregateArgs>): Prisma.PrismaPromise<GetLearning_progressesAggregateType<T>>
+    aggregate<T extends LearningProgressesAggregateArgs>(args: Subset<T, LearningProgressesAggregateArgs>): Prisma.PrismaPromise<GetLearningProgressesAggregateType<T>>
 
     /**
-     * Group by Learning_progresses.
+     * Group by LearningProgresses.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Learning_progressesGroupByArgs} args - Group by arguments.
+     * @param {LearningProgressesGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -16863,14 +16863,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends Learning_progressesGroupByArgs,
+      T extends LearningProgressesGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: Learning_progressesGroupByArgs['orderBy'] }
-        : { orderBy?: Learning_progressesGroupByArgs['orderBy'] },
+        ? { orderBy: LearningProgressesGroupByArgs['orderBy'] }
+        : { orderBy?: LearningProgressesGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -16919,23 +16919,23 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, Learning_progressesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLearning_progressesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, LearningProgressesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLearningProgressesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Learning_progresses model
+   * Fields of the LearningProgresses model
    */
-  readonly fields: Learning_progressesFieldRefs;
+  readonly fields: LearningProgressesFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Learning_progresses.
+   * The delegate class that acts as a "Promise-like" for LearningProgresses.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__Learning_progressesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__LearningProgressesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    student<T extends Learning_progresses$studentArgs<ExtArgs> = {}>(args?: Subset<T, Learning_progresses$studentArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    progressNotes<T extends Learning_progresses$progressNotesArgs<ExtArgs> = {}>(args?: Subset<T, Learning_progresses$progressNotesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Progress_notesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    student<T extends LearningProgresses$studentArgs<ExtArgs> = {}>(args?: Subset<T, LearningProgresses$studentArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    progressNotes<T extends LearningProgresses$progressNotesArgs<ExtArgs> = {}>(args?: Subset<T, LearningProgresses$progressNotesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressNotesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -16962,410 +16962,410 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Learning_progresses model
+   * Fields of the LearningProgresses model
    */
-  interface Learning_progressesFieldRefs {
-    readonly id: FieldRef<"Learning_progresses", 'String'>
-    readonly subjects_averages: FieldRef<"Learning_progresses", 'Int'>
-    readonly overall_avreages: FieldRef<"Learning_progresses", 'Int'>
-    readonly attendence_percentage: FieldRef<"Learning_progresses", 'Int'>
-    readonly learning_status: FieldRef<"Learning_progresses", 'Status'>
+  interface LearningProgressesFieldRefs {
+    readonly id: FieldRef<"LearningProgresses", 'String'>
+    readonly subjectsAverages: FieldRef<"LearningProgresses", 'Int'>
+    readonly overallAvreages: FieldRef<"LearningProgresses", 'Int'>
+    readonly attendencePercentage: FieldRef<"LearningProgresses", 'Int'>
+    readonly learningStatus: FieldRef<"LearningProgresses", 'Status'>
   }
     
 
   // Custom InputTypes
   /**
-   * Learning_progresses findUnique
+   * LearningProgresses findUnique
    */
-  export type Learning_progressesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LearningProgressesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Learning_progresses
+     * Select specific fields to fetch from the LearningProgresses
      */
-    select?: Learning_progressesSelect<ExtArgs> | null
+    select?: LearningProgressesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Learning_progresses
+     * Omit specific fields from the LearningProgresses
      */
-    omit?: Learning_progressesOmit<ExtArgs> | null
+    omit?: LearningProgressesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Learning_progressesInclude<ExtArgs> | null
+    include?: LearningProgressesInclude<ExtArgs> | null
     /**
-     * Filter, which Learning_progresses to fetch.
+     * Filter, which LearningProgresses to fetch.
      */
-    where: Learning_progressesWhereUniqueInput
+    where: LearningProgressesWhereUniqueInput
   }
 
   /**
-   * Learning_progresses findUniqueOrThrow
+   * LearningProgresses findUniqueOrThrow
    */
-  export type Learning_progressesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LearningProgressesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Learning_progresses
+     * Select specific fields to fetch from the LearningProgresses
      */
-    select?: Learning_progressesSelect<ExtArgs> | null
+    select?: LearningProgressesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Learning_progresses
+     * Omit specific fields from the LearningProgresses
      */
-    omit?: Learning_progressesOmit<ExtArgs> | null
+    omit?: LearningProgressesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Learning_progressesInclude<ExtArgs> | null
+    include?: LearningProgressesInclude<ExtArgs> | null
     /**
-     * Filter, which Learning_progresses to fetch.
+     * Filter, which LearningProgresses to fetch.
      */
-    where: Learning_progressesWhereUniqueInput
+    where: LearningProgressesWhereUniqueInput
   }
 
   /**
-   * Learning_progresses findFirst
+   * LearningProgresses findFirst
    */
-  export type Learning_progressesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LearningProgressesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Learning_progresses
+     * Select specific fields to fetch from the LearningProgresses
      */
-    select?: Learning_progressesSelect<ExtArgs> | null
+    select?: LearningProgressesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Learning_progresses
+     * Omit specific fields from the LearningProgresses
      */
-    omit?: Learning_progressesOmit<ExtArgs> | null
+    omit?: LearningProgressesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Learning_progressesInclude<ExtArgs> | null
+    include?: LearningProgressesInclude<ExtArgs> | null
     /**
-     * Filter, which Learning_progresses to fetch.
+     * Filter, which LearningProgresses to fetch.
      */
-    where?: Learning_progressesWhereInput
+    where?: LearningProgressesWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Learning_progresses to fetch.
+     * Determine the order of LearningProgresses to fetch.
      */
-    orderBy?: Learning_progressesOrderByWithRelationInput | Learning_progressesOrderByWithRelationInput[]
+    orderBy?: LearningProgressesOrderByWithRelationInput | LearningProgressesOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Learning_progresses.
+     * Sets the position for searching for LearningProgresses.
      */
-    cursor?: Learning_progressesWhereUniqueInput
+    cursor?: LearningProgressesWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Learning_progresses from the position of the cursor.
+     * Take `±n` LearningProgresses from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Learning_progresses.
+     * Skip the first `n` LearningProgresses.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Learning_progresses.
+     * Filter by unique combinations of LearningProgresses.
      */
-    distinct?: Learning_progressesScalarFieldEnum | Learning_progressesScalarFieldEnum[]
+    distinct?: LearningProgressesScalarFieldEnum | LearningProgressesScalarFieldEnum[]
   }
 
   /**
-   * Learning_progresses findFirstOrThrow
+   * LearningProgresses findFirstOrThrow
    */
-  export type Learning_progressesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LearningProgressesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Learning_progresses
+     * Select specific fields to fetch from the LearningProgresses
      */
-    select?: Learning_progressesSelect<ExtArgs> | null
+    select?: LearningProgressesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Learning_progresses
+     * Omit specific fields from the LearningProgresses
      */
-    omit?: Learning_progressesOmit<ExtArgs> | null
+    omit?: LearningProgressesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Learning_progressesInclude<ExtArgs> | null
+    include?: LearningProgressesInclude<ExtArgs> | null
     /**
-     * Filter, which Learning_progresses to fetch.
+     * Filter, which LearningProgresses to fetch.
      */
-    where?: Learning_progressesWhereInput
+    where?: LearningProgressesWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Learning_progresses to fetch.
+     * Determine the order of LearningProgresses to fetch.
      */
-    orderBy?: Learning_progressesOrderByWithRelationInput | Learning_progressesOrderByWithRelationInput[]
+    orderBy?: LearningProgressesOrderByWithRelationInput | LearningProgressesOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Learning_progresses.
+     * Sets the position for searching for LearningProgresses.
      */
-    cursor?: Learning_progressesWhereUniqueInput
+    cursor?: LearningProgressesWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Learning_progresses from the position of the cursor.
+     * Take `±n` LearningProgresses from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Learning_progresses.
+     * Skip the first `n` LearningProgresses.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Learning_progresses.
+     * Filter by unique combinations of LearningProgresses.
      */
-    distinct?: Learning_progressesScalarFieldEnum | Learning_progressesScalarFieldEnum[]
+    distinct?: LearningProgressesScalarFieldEnum | LearningProgressesScalarFieldEnum[]
   }
 
   /**
-   * Learning_progresses findMany
+   * LearningProgresses findMany
    */
-  export type Learning_progressesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LearningProgressesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Learning_progresses
+     * Select specific fields to fetch from the LearningProgresses
      */
-    select?: Learning_progressesSelect<ExtArgs> | null
+    select?: LearningProgressesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Learning_progresses
+     * Omit specific fields from the LearningProgresses
      */
-    omit?: Learning_progressesOmit<ExtArgs> | null
+    omit?: LearningProgressesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Learning_progressesInclude<ExtArgs> | null
+    include?: LearningProgressesInclude<ExtArgs> | null
     /**
-     * Filter, which Learning_progresses to fetch.
+     * Filter, which LearningProgresses to fetch.
      */
-    where?: Learning_progressesWhereInput
+    where?: LearningProgressesWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Learning_progresses to fetch.
+     * Determine the order of LearningProgresses to fetch.
      */
-    orderBy?: Learning_progressesOrderByWithRelationInput | Learning_progressesOrderByWithRelationInput[]
+    orderBy?: LearningProgressesOrderByWithRelationInput | LearningProgressesOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Learning_progresses.
+     * Sets the position for listing LearningProgresses.
      */
-    cursor?: Learning_progressesWhereUniqueInput
+    cursor?: LearningProgressesWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Learning_progresses from the position of the cursor.
+     * Take `±n` LearningProgresses from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Learning_progresses.
+     * Skip the first `n` LearningProgresses.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Learning_progresses.
+     * Filter by unique combinations of LearningProgresses.
      */
-    distinct?: Learning_progressesScalarFieldEnum | Learning_progressesScalarFieldEnum[]
+    distinct?: LearningProgressesScalarFieldEnum | LearningProgressesScalarFieldEnum[]
   }
 
   /**
-   * Learning_progresses create
+   * LearningProgresses create
    */
-  export type Learning_progressesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LearningProgressesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Learning_progresses
+     * Select specific fields to fetch from the LearningProgresses
      */
-    select?: Learning_progressesSelect<ExtArgs> | null
+    select?: LearningProgressesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Learning_progresses
+     * Omit specific fields from the LearningProgresses
      */
-    omit?: Learning_progressesOmit<ExtArgs> | null
+    omit?: LearningProgressesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Learning_progressesInclude<ExtArgs> | null
+    include?: LearningProgressesInclude<ExtArgs> | null
     /**
-     * The data needed to create a Learning_progresses.
+     * The data needed to create a LearningProgresses.
      */
-    data: XOR<Learning_progressesCreateInput, Learning_progressesUncheckedCreateInput>
+    data: XOR<LearningProgressesCreateInput, LearningProgressesUncheckedCreateInput>
   }
 
   /**
-   * Learning_progresses createMany
+   * LearningProgresses createMany
    */
-  export type Learning_progressesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LearningProgressesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Learning_progresses.
+     * The data used to create many LearningProgresses.
      */
-    data: Learning_progressesCreateManyInput | Learning_progressesCreateManyInput[]
+    data: LearningProgressesCreateManyInput | LearningProgressesCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Learning_progresses createManyAndReturn
+   * LearningProgresses createManyAndReturn
    */
-  export type Learning_progressesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LearningProgressesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Learning_progresses
+     * Select specific fields to fetch from the LearningProgresses
      */
-    select?: Learning_progressesSelectCreateManyAndReturn<ExtArgs> | null
+    select?: LearningProgressesSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Learning_progresses
+     * Omit specific fields from the LearningProgresses
      */
-    omit?: Learning_progressesOmit<ExtArgs> | null
+    omit?: LearningProgressesOmit<ExtArgs> | null
     /**
-     * The data used to create many Learning_progresses.
+     * The data used to create many LearningProgresses.
      */
-    data: Learning_progressesCreateManyInput | Learning_progressesCreateManyInput[]
+    data: LearningProgressesCreateManyInput | LearningProgressesCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Learning_progresses update
+   * LearningProgresses update
    */
-  export type Learning_progressesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LearningProgressesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Learning_progresses
+     * Select specific fields to fetch from the LearningProgresses
      */
-    select?: Learning_progressesSelect<ExtArgs> | null
+    select?: LearningProgressesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Learning_progresses
+     * Omit specific fields from the LearningProgresses
      */
-    omit?: Learning_progressesOmit<ExtArgs> | null
+    omit?: LearningProgressesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Learning_progressesInclude<ExtArgs> | null
+    include?: LearningProgressesInclude<ExtArgs> | null
     /**
-     * The data needed to update a Learning_progresses.
+     * The data needed to update a LearningProgresses.
      */
-    data: XOR<Learning_progressesUpdateInput, Learning_progressesUncheckedUpdateInput>
+    data: XOR<LearningProgressesUpdateInput, LearningProgressesUncheckedUpdateInput>
     /**
-     * Choose, which Learning_progresses to update.
+     * Choose, which LearningProgresses to update.
      */
-    where: Learning_progressesWhereUniqueInput
+    where: LearningProgressesWhereUniqueInput
   }
 
   /**
-   * Learning_progresses updateMany
+   * LearningProgresses updateMany
    */
-  export type Learning_progressesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LearningProgressesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Learning_progresses.
+     * The data used to update LearningProgresses.
      */
-    data: XOR<Learning_progressesUpdateManyMutationInput, Learning_progressesUncheckedUpdateManyInput>
+    data: XOR<LearningProgressesUpdateManyMutationInput, LearningProgressesUncheckedUpdateManyInput>
     /**
-     * Filter which Learning_progresses to update
+     * Filter which LearningProgresses to update
      */
-    where?: Learning_progressesWhereInput
+    where?: LearningProgressesWhereInput
     /**
-     * Limit how many Learning_progresses to update.
+     * Limit how many LearningProgresses to update.
      */
     limit?: number
   }
 
   /**
-   * Learning_progresses updateManyAndReturn
+   * LearningProgresses updateManyAndReturn
    */
-  export type Learning_progressesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LearningProgressesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Learning_progresses
+     * Select specific fields to fetch from the LearningProgresses
      */
-    select?: Learning_progressesSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: LearningProgressesSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Learning_progresses
+     * Omit specific fields from the LearningProgresses
      */
-    omit?: Learning_progressesOmit<ExtArgs> | null
+    omit?: LearningProgressesOmit<ExtArgs> | null
     /**
-     * The data used to update Learning_progresses.
+     * The data used to update LearningProgresses.
      */
-    data: XOR<Learning_progressesUpdateManyMutationInput, Learning_progressesUncheckedUpdateManyInput>
+    data: XOR<LearningProgressesUpdateManyMutationInput, LearningProgressesUncheckedUpdateManyInput>
     /**
-     * Filter which Learning_progresses to update
+     * Filter which LearningProgresses to update
      */
-    where?: Learning_progressesWhereInput
+    where?: LearningProgressesWhereInput
     /**
-     * Limit how many Learning_progresses to update.
+     * Limit how many LearningProgresses to update.
      */
     limit?: number
   }
 
   /**
-   * Learning_progresses upsert
+   * LearningProgresses upsert
    */
-  export type Learning_progressesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LearningProgressesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Learning_progresses
+     * Select specific fields to fetch from the LearningProgresses
      */
-    select?: Learning_progressesSelect<ExtArgs> | null
+    select?: LearningProgressesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Learning_progresses
+     * Omit specific fields from the LearningProgresses
      */
-    omit?: Learning_progressesOmit<ExtArgs> | null
+    omit?: LearningProgressesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Learning_progressesInclude<ExtArgs> | null
+    include?: LearningProgressesInclude<ExtArgs> | null
     /**
-     * The filter to search for the Learning_progresses to update in case it exists.
+     * The filter to search for the LearningProgresses to update in case it exists.
      */
-    where: Learning_progressesWhereUniqueInput
+    where: LearningProgressesWhereUniqueInput
     /**
-     * In case the Learning_progresses found by the `where` argument doesn't exist, create a new Learning_progresses with this data.
+     * In case the LearningProgresses found by the `where` argument doesn't exist, create a new LearningProgresses with this data.
      */
-    create: XOR<Learning_progressesCreateInput, Learning_progressesUncheckedCreateInput>
+    create: XOR<LearningProgressesCreateInput, LearningProgressesUncheckedCreateInput>
     /**
-     * In case the Learning_progresses was found with the provided `where` argument, update it with this data.
+     * In case the LearningProgresses was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<Learning_progressesUpdateInput, Learning_progressesUncheckedUpdateInput>
+    update: XOR<LearningProgressesUpdateInput, LearningProgressesUncheckedUpdateInput>
   }
 
   /**
-   * Learning_progresses delete
+   * LearningProgresses delete
    */
-  export type Learning_progressesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LearningProgressesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Learning_progresses
+     * Select specific fields to fetch from the LearningProgresses
      */
-    select?: Learning_progressesSelect<ExtArgs> | null
+    select?: LearningProgressesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Learning_progresses
+     * Omit specific fields from the LearningProgresses
      */
-    omit?: Learning_progressesOmit<ExtArgs> | null
+    omit?: LearningProgressesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Learning_progressesInclude<ExtArgs> | null
+    include?: LearningProgressesInclude<ExtArgs> | null
     /**
-     * Filter which Learning_progresses to delete.
+     * Filter which LearningProgresses to delete.
      */
-    where: Learning_progressesWhereUniqueInput
+    where: LearningProgressesWhereUniqueInput
   }
 
   /**
-   * Learning_progresses deleteMany
+   * LearningProgresses deleteMany
    */
-  export type Learning_progressesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LearningProgressesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Learning_progresses to delete
+     * Filter which LearningProgresses to delete
      */
-    where?: Learning_progressesWhereInput
+    where?: LearningProgressesWhereInput
     /**
-     * Limit how many Learning_progresses to delete.
+     * Limit how many LearningProgresses to delete.
      */
     limit?: number
   }
 
   /**
-   * Learning_progresses.student
+   * LearningProgresses.student
    */
-  export type Learning_progresses$studentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LearningProgresses$studentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Student
      */
@@ -17382,424 +17382,424 @@ export namespace Prisma {
   }
 
   /**
-   * Learning_progresses.progressNotes
+   * LearningProgresses.progressNotes
    */
-  export type Learning_progresses$progressNotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LearningProgresses$progressNotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Progress_notes
+     * Select specific fields to fetch from the ProgressNotes
      */
-    select?: Progress_notesSelect<ExtArgs> | null
+    select?: ProgressNotesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Progress_notes
+     * Omit specific fields from the ProgressNotes
      */
-    omit?: Progress_notesOmit<ExtArgs> | null
+    omit?: ProgressNotesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Progress_notesInclude<ExtArgs> | null
-    where?: Progress_notesWhereInput
-    orderBy?: Progress_notesOrderByWithRelationInput | Progress_notesOrderByWithRelationInput[]
-    cursor?: Progress_notesWhereUniqueInput
+    include?: ProgressNotesInclude<ExtArgs> | null
+    where?: ProgressNotesWhereInput
+    orderBy?: ProgressNotesOrderByWithRelationInput | ProgressNotesOrderByWithRelationInput[]
+    cursor?: ProgressNotesWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: Progress_notesScalarFieldEnum | Progress_notesScalarFieldEnum[]
+    distinct?: ProgressNotesScalarFieldEnum | ProgressNotesScalarFieldEnum[]
   }
 
   /**
-   * Learning_progresses without action
+   * LearningProgresses without action
    */
-  export type Learning_progressesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LearningProgressesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Learning_progresses
+     * Select specific fields to fetch from the LearningProgresses
      */
-    select?: Learning_progressesSelect<ExtArgs> | null
+    select?: LearningProgressesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Learning_progresses
+     * Omit specific fields from the LearningProgresses
      */
-    omit?: Learning_progressesOmit<ExtArgs> | null
+    omit?: LearningProgressesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Learning_progressesInclude<ExtArgs> | null
+    include?: LearningProgressesInclude<ExtArgs> | null
   }
 
 
   /**
-   * Model Progress_notes
+   * Model ProgressNotes
    */
 
-  export type AggregateProgress_notes = {
-    _count: Progress_notesCountAggregateOutputType | null
-    _min: Progress_notesMinAggregateOutputType | null
-    _max: Progress_notesMaxAggregateOutputType | null
+  export type AggregateProgressNotes = {
+    _count: ProgressNotesCountAggregateOutputType | null
+    _min: ProgressNotesMinAggregateOutputType | null
+    _max: ProgressNotesMaxAggregateOutputType | null
   }
 
-  export type Progress_notesMinAggregateOutputType = {
+  export type ProgressNotesMinAggregateOutputType = {
     id: string | null
-    note_date: Date | null
-    note_observation: string | null
+    noteDate: Date | null
+    noteObservation: string | null
     Strengths: string | null
-    areas_for_improvement: string | null
+    areasForImprovement: string | null
     teacherId: string | null
     learningProgressId: string | null
   }
 
-  export type Progress_notesMaxAggregateOutputType = {
+  export type ProgressNotesMaxAggregateOutputType = {
     id: string | null
-    note_date: Date | null
-    note_observation: string | null
+    noteDate: Date | null
+    noteObservation: string | null
     Strengths: string | null
-    areas_for_improvement: string | null
+    areasForImprovement: string | null
     teacherId: string | null
     learningProgressId: string | null
   }
 
-  export type Progress_notesCountAggregateOutputType = {
+  export type ProgressNotesCountAggregateOutputType = {
     id: number
-    note_date: number
-    note_observation: number
+    noteDate: number
+    noteObservation: number
     Strengths: number
-    areas_for_improvement: number
+    areasForImprovement: number
     teacherId: number
     learningProgressId: number
     _all: number
   }
 
 
-  export type Progress_notesMinAggregateInputType = {
+  export type ProgressNotesMinAggregateInputType = {
     id?: true
-    note_date?: true
-    note_observation?: true
+    noteDate?: true
+    noteObservation?: true
     Strengths?: true
-    areas_for_improvement?: true
+    areasForImprovement?: true
     teacherId?: true
     learningProgressId?: true
   }
 
-  export type Progress_notesMaxAggregateInputType = {
+  export type ProgressNotesMaxAggregateInputType = {
     id?: true
-    note_date?: true
-    note_observation?: true
+    noteDate?: true
+    noteObservation?: true
     Strengths?: true
-    areas_for_improvement?: true
+    areasForImprovement?: true
     teacherId?: true
     learningProgressId?: true
   }
 
-  export type Progress_notesCountAggregateInputType = {
+  export type ProgressNotesCountAggregateInputType = {
     id?: true
-    note_date?: true
-    note_observation?: true
+    noteDate?: true
+    noteObservation?: true
     Strengths?: true
-    areas_for_improvement?: true
+    areasForImprovement?: true
     teacherId?: true
     learningProgressId?: true
     _all?: true
   }
 
-  export type Progress_notesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProgressNotesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Progress_notes to aggregate.
+     * Filter which ProgressNotes to aggregate.
      */
-    where?: Progress_notesWhereInput
+    where?: ProgressNotesWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Progress_notes to fetch.
+     * Determine the order of ProgressNotes to fetch.
      */
-    orderBy?: Progress_notesOrderByWithRelationInput | Progress_notesOrderByWithRelationInput[]
+    orderBy?: ProgressNotesOrderByWithRelationInput | ProgressNotesOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: Progress_notesWhereUniqueInput
+    cursor?: ProgressNotesWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Progress_notes from the position of the cursor.
+     * Take `±n` ProgressNotes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Progress_notes.
+     * Skip the first `n` ProgressNotes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Progress_notes
+     * Count returned ProgressNotes
     **/
-    _count?: true | Progress_notesCountAggregateInputType
+    _count?: true | ProgressNotesCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: Progress_notesMinAggregateInputType
+    _min?: ProgressNotesMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: Progress_notesMaxAggregateInputType
+    _max?: ProgressNotesMaxAggregateInputType
   }
 
-  export type GetProgress_notesAggregateType<T extends Progress_notesAggregateArgs> = {
-        [P in keyof T & keyof AggregateProgress_notes]: P extends '_count' | 'count'
+  export type GetProgressNotesAggregateType<T extends ProgressNotesAggregateArgs> = {
+        [P in keyof T & keyof AggregateProgressNotes]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateProgress_notes[P]>
-      : GetScalarType<T[P], AggregateProgress_notes[P]>
+        : GetScalarType<T[P], AggregateProgressNotes[P]>
+      : GetScalarType<T[P], AggregateProgressNotes[P]>
   }
 
 
 
 
-  export type Progress_notesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: Progress_notesWhereInput
-    orderBy?: Progress_notesOrderByWithAggregationInput | Progress_notesOrderByWithAggregationInput[]
-    by: Progress_notesScalarFieldEnum[] | Progress_notesScalarFieldEnum
-    having?: Progress_notesScalarWhereWithAggregatesInput
+  export type ProgressNotesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProgressNotesWhereInput
+    orderBy?: ProgressNotesOrderByWithAggregationInput | ProgressNotesOrderByWithAggregationInput[]
+    by: ProgressNotesScalarFieldEnum[] | ProgressNotesScalarFieldEnum
+    having?: ProgressNotesScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: Progress_notesCountAggregateInputType | true
-    _min?: Progress_notesMinAggregateInputType
-    _max?: Progress_notesMaxAggregateInputType
+    _count?: ProgressNotesCountAggregateInputType | true
+    _min?: ProgressNotesMinAggregateInputType
+    _max?: ProgressNotesMaxAggregateInputType
   }
 
-  export type Progress_notesGroupByOutputType = {
+  export type ProgressNotesGroupByOutputType = {
     id: string
-    note_date: Date
-    note_observation: string
+    noteDate: Date
+    noteObservation: string
     Strengths: string
-    areas_for_improvement: string
+    areasForImprovement: string
     teacherId: string
     learningProgressId: string
-    _count: Progress_notesCountAggregateOutputType | null
-    _min: Progress_notesMinAggregateOutputType | null
-    _max: Progress_notesMaxAggregateOutputType | null
+    _count: ProgressNotesCountAggregateOutputType | null
+    _min: ProgressNotesMinAggregateOutputType | null
+    _max: ProgressNotesMaxAggregateOutputType | null
   }
 
-  type GetProgress_notesGroupByPayload<T extends Progress_notesGroupByArgs> = Prisma.PrismaPromise<
+  type GetProgressNotesGroupByPayload<T extends ProgressNotesGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<Progress_notesGroupByOutputType, T['by']> &
+      PickEnumerable<ProgressNotesGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof Progress_notesGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof ProgressNotesGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], Progress_notesGroupByOutputType[P]>
-            : GetScalarType<T[P], Progress_notesGroupByOutputType[P]>
+              : GetScalarType<T[P], ProgressNotesGroupByOutputType[P]>
+            : GetScalarType<T[P], ProgressNotesGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type Progress_notesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ProgressNotesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    note_date?: boolean
-    note_observation?: boolean
+    noteDate?: boolean
+    noteObservation?: boolean
     Strengths?: boolean
-    areas_for_improvement?: boolean
+    areasForImprovement?: boolean
     teacherId?: boolean
     learningProgressId?: boolean
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
-    learning_progress?: boolean | Learning_progressesDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["progress_notes"]>
+    learningProgress?: boolean | LearningProgressesDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["progressNotes"]>
 
-  export type Progress_notesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ProgressNotesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    note_date?: boolean
-    note_observation?: boolean
+    noteDate?: boolean
+    noteObservation?: boolean
     Strengths?: boolean
-    areas_for_improvement?: boolean
+    areasForImprovement?: boolean
     teacherId?: boolean
     learningProgressId?: boolean
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
-    learning_progress?: boolean | Learning_progressesDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["progress_notes"]>
+    learningProgress?: boolean | LearningProgressesDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["progressNotes"]>
 
-  export type Progress_notesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ProgressNotesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    note_date?: boolean
-    note_observation?: boolean
+    noteDate?: boolean
+    noteObservation?: boolean
     Strengths?: boolean
-    areas_for_improvement?: boolean
+    areasForImprovement?: boolean
     teacherId?: boolean
     learningProgressId?: boolean
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
-    learning_progress?: boolean | Learning_progressesDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["progress_notes"]>
+    learningProgress?: boolean | LearningProgressesDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["progressNotes"]>
 
-  export type Progress_notesSelectScalar = {
+  export type ProgressNotesSelectScalar = {
     id?: boolean
-    note_date?: boolean
-    note_observation?: boolean
+    noteDate?: boolean
+    noteObservation?: boolean
     Strengths?: boolean
-    areas_for_improvement?: boolean
+    areasForImprovement?: boolean
     teacherId?: boolean
     learningProgressId?: boolean
   }
 
-  export type Progress_notesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "note_date" | "note_observation" | "Strengths" | "areas_for_improvement" | "teacherId" | "learningProgressId", ExtArgs["result"]["progress_notes"]>
-  export type Progress_notesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProgressNotesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "noteDate" | "noteObservation" | "Strengths" | "areasForImprovement" | "teacherId" | "learningProgressId", ExtArgs["result"]["progressNotes"]>
+  export type ProgressNotesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
-    learning_progress?: boolean | Learning_progressesDefaultArgs<ExtArgs>
+    learningProgress?: boolean | LearningProgressesDefaultArgs<ExtArgs>
   }
-  export type Progress_notesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProgressNotesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
-    learning_progress?: boolean | Learning_progressesDefaultArgs<ExtArgs>
+    learningProgress?: boolean | LearningProgressesDefaultArgs<ExtArgs>
   }
-  export type Progress_notesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProgressNotesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
-    learning_progress?: boolean | Learning_progressesDefaultArgs<ExtArgs>
+    learningProgress?: boolean | LearningProgressesDefaultArgs<ExtArgs>
   }
 
-  export type $Progress_notesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Progress_notes"
+  export type $ProgressNotesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProgressNotes"
     objects: {
       teacher: Prisma.$TeacherPayload<ExtArgs>
-      learning_progress: Prisma.$Learning_progressesPayload<ExtArgs>
+      learningProgress: Prisma.$LearningProgressesPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      note_date: Date
-      note_observation: string
+      noteDate: Date
+      noteObservation: string
       Strengths: string
-      areas_for_improvement: string
+      areasForImprovement: string
       teacherId: string
       learningProgressId: string
-    }, ExtArgs["result"]["progress_notes"]>
+    }, ExtArgs["result"]["progressNotes"]>
     composites: {}
   }
 
-  type Progress_notesGetPayload<S extends boolean | null | undefined | Progress_notesDefaultArgs> = $Result.GetResult<Prisma.$Progress_notesPayload, S>
+  type ProgressNotesGetPayload<S extends boolean | null | undefined | ProgressNotesDefaultArgs> = $Result.GetResult<Prisma.$ProgressNotesPayload, S>
 
-  type Progress_notesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<Progress_notesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: Progress_notesCountAggregateInputType | true
+  type ProgressNotesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProgressNotesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProgressNotesCountAggregateInputType | true
     }
 
-  export interface Progress_notesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Progress_notes'], meta: { name: 'Progress_notes' } }
+  export interface ProgressNotesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProgressNotes'], meta: { name: 'ProgressNotes' } }
     /**
-     * Find zero or one Progress_notes that matches the filter.
-     * @param {Progress_notesFindUniqueArgs} args - Arguments to find a Progress_notes
+     * Find zero or one ProgressNotes that matches the filter.
+     * @param {ProgressNotesFindUniqueArgs} args - Arguments to find a ProgressNotes
      * @example
-     * // Get one Progress_notes
-     * const progress_notes = await prisma.progress_notes.findUnique({
+     * // Get one ProgressNotes
+     * const progressNotes = await prisma.progressNotes.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends Progress_notesFindUniqueArgs>(args: SelectSubset<T, Progress_notesFindUniqueArgs<ExtArgs>>): Prisma__Progress_notesClient<$Result.GetResult<Prisma.$Progress_notesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends ProgressNotesFindUniqueArgs>(args: SelectSubset<T, ProgressNotesFindUniqueArgs<ExtArgs>>): Prisma__ProgressNotesClient<$Result.GetResult<Prisma.$ProgressNotesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Progress_notes that matches the filter or throw an error with `error.code='P2025'`
+     * Find one ProgressNotes that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {Progress_notesFindUniqueOrThrowArgs} args - Arguments to find a Progress_notes
+     * @param {ProgressNotesFindUniqueOrThrowArgs} args - Arguments to find a ProgressNotes
      * @example
-     * // Get one Progress_notes
-     * const progress_notes = await prisma.progress_notes.findUniqueOrThrow({
+     * // Get one ProgressNotes
+     * const progressNotes = await prisma.progressNotes.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends Progress_notesFindUniqueOrThrowArgs>(args: SelectSubset<T, Progress_notesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__Progress_notesClient<$Result.GetResult<Prisma.$Progress_notesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends ProgressNotesFindUniqueOrThrowArgs>(args: SelectSubset<T, ProgressNotesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProgressNotesClient<$Result.GetResult<Prisma.$ProgressNotesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Progress_notes that matches the filter.
+     * Find the first ProgressNotes that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Progress_notesFindFirstArgs} args - Arguments to find a Progress_notes
+     * @param {ProgressNotesFindFirstArgs} args - Arguments to find a ProgressNotes
      * @example
-     * // Get one Progress_notes
-     * const progress_notes = await prisma.progress_notes.findFirst({
+     * // Get one ProgressNotes
+     * const progressNotes = await prisma.progressNotes.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends Progress_notesFindFirstArgs>(args?: SelectSubset<T, Progress_notesFindFirstArgs<ExtArgs>>): Prisma__Progress_notesClient<$Result.GetResult<Prisma.$Progress_notesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends ProgressNotesFindFirstArgs>(args?: SelectSubset<T, ProgressNotesFindFirstArgs<ExtArgs>>): Prisma__ProgressNotesClient<$Result.GetResult<Prisma.$ProgressNotesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Progress_notes that matches the filter or
+     * Find the first ProgressNotes that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Progress_notesFindFirstOrThrowArgs} args - Arguments to find a Progress_notes
+     * @param {ProgressNotesFindFirstOrThrowArgs} args - Arguments to find a ProgressNotes
      * @example
-     * // Get one Progress_notes
-     * const progress_notes = await prisma.progress_notes.findFirstOrThrow({
+     * // Get one ProgressNotes
+     * const progressNotes = await prisma.progressNotes.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends Progress_notesFindFirstOrThrowArgs>(args?: SelectSubset<T, Progress_notesFindFirstOrThrowArgs<ExtArgs>>): Prisma__Progress_notesClient<$Result.GetResult<Prisma.$Progress_notesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends ProgressNotesFindFirstOrThrowArgs>(args?: SelectSubset<T, ProgressNotesFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProgressNotesClient<$Result.GetResult<Prisma.$ProgressNotesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Progress_notes that matches the filter.
+     * Find zero or more ProgressNotes that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Progress_notesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {ProgressNotesFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Progress_notes
-     * const progress_notes = await prisma.progress_notes.findMany()
+     * // Get all ProgressNotes
+     * const progressNotes = await prisma.progressNotes.findMany()
      * 
-     * // Get first 10 Progress_notes
-     * const progress_notes = await prisma.progress_notes.findMany({ take: 10 })
+     * // Get first 10 ProgressNotes
+     * const progressNotes = await prisma.progressNotes.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const progress_notesWithIdOnly = await prisma.progress_notes.findMany({ select: { id: true } })
+     * const progressNotesWithIdOnly = await prisma.progressNotes.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends Progress_notesFindManyArgs>(args?: SelectSubset<T, Progress_notesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Progress_notesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends ProgressNotesFindManyArgs>(args?: SelectSubset<T, ProgressNotesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressNotesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Progress_notes.
-     * @param {Progress_notesCreateArgs} args - Arguments to create a Progress_notes.
+     * Create a ProgressNotes.
+     * @param {ProgressNotesCreateArgs} args - Arguments to create a ProgressNotes.
      * @example
-     * // Create one Progress_notes
-     * const Progress_notes = await prisma.progress_notes.create({
+     * // Create one ProgressNotes
+     * const ProgressNotes = await prisma.progressNotes.create({
      *   data: {
-     *     // ... data to create a Progress_notes
+     *     // ... data to create a ProgressNotes
      *   }
      * })
      * 
      */
-    create<T extends Progress_notesCreateArgs>(args: SelectSubset<T, Progress_notesCreateArgs<ExtArgs>>): Prisma__Progress_notesClient<$Result.GetResult<Prisma.$Progress_notesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends ProgressNotesCreateArgs>(args: SelectSubset<T, ProgressNotesCreateArgs<ExtArgs>>): Prisma__ProgressNotesClient<$Result.GetResult<Prisma.$ProgressNotesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Progress_notes.
-     * @param {Progress_notesCreateManyArgs} args - Arguments to create many Progress_notes.
+     * Create many ProgressNotes.
+     * @param {ProgressNotesCreateManyArgs} args - Arguments to create many ProgressNotes.
      * @example
-     * // Create many Progress_notes
-     * const progress_notes = await prisma.progress_notes.createMany({
+     * // Create many ProgressNotes
+     * const progressNotes = await prisma.progressNotes.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends Progress_notesCreateManyArgs>(args?: SelectSubset<T, Progress_notesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends ProgressNotesCreateManyArgs>(args?: SelectSubset<T, ProgressNotesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Progress_notes and returns the data saved in the database.
-     * @param {Progress_notesCreateManyAndReturnArgs} args - Arguments to create many Progress_notes.
+     * Create many ProgressNotes and returns the data saved in the database.
+     * @param {ProgressNotesCreateManyAndReturnArgs} args - Arguments to create many ProgressNotes.
      * @example
-     * // Create many Progress_notes
-     * const progress_notes = await prisma.progress_notes.createManyAndReturn({
+     * // Create many ProgressNotes
+     * const progressNotes = await prisma.progressNotes.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Progress_notes and only return the `id`
-     * const progress_notesWithIdOnly = await prisma.progress_notes.createManyAndReturn({
+     * // Create many ProgressNotes and only return the `id`
+     * const progressNotesWithIdOnly = await prisma.progressNotes.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -17809,28 +17809,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends Progress_notesCreateManyAndReturnArgs>(args?: SelectSubset<T, Progress_notesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Progress_notesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends ProgressNotesCreateManyAndReturnArgs>(args?: SelectSubset<T, ProgressNotesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressNotesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Progress_notes.
-     * @param {Progress_notesDeleteArgs} args - Arguments to delete one Progress_notes.
+     * Delete a ProgressNotes.
+     * @param {ProgressNotesDeleteArgs} args - Arguments to delete one ProgressNotes.
      * @example
-     * // Delete one Progress_notes
-     * const Progress_notes = await prisma.progress_notes.delete({
+     * // Delete one ProgressNotes
+     * const ProgressNotes = await prisma.progressNotes.delete({
      *   where: {
-     *     // ... filter to delete one Progress_notes
+     *     // ... filter to delete one ProgressNotes
      *   }
      * })
      * 
      */
-    delete<T extends Progress_notesDeleteArgs>(args: SelectSubset<T, Progress_notesDeleteArgs<ExtArgs>>): Prisma__Progress_notesClient<$Result.GetResult<Prisma.$Progress_notesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends ProgressNotesDeleteArgs>(args: SelectSubset<T, ProgressNotesDeleteArgs<ExtArgs>>): Prisma__ProgressNotesClient<$Result.GetResult<Prisma.$ProgressNotesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Progress_notes.
-     * @param {Progress_notesUpdateArgs} args - Arguments to update one Progress_notes.
+     * Update one ProgressNotes.
+     * @param {ProgressNotesUpdateArgs} args - Arguments to update one ProgressNotes.
      * @example
-     * // Update one Progress_notes
-     * const progress_notes = await prisma.progress_notes.update({
+     * // Update one ProgressNotes
+     * const progressNotes = await prisma.progressNotes.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -17840,30 +17840,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends Progress_notesUpdateArgs>(args: SelectSubset<T, Progress_notesUpdateArgs<ExtArgs>>): Prisma__Progress_notesClient<$Result.GetResult<Prisma.$Progress_notesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends ProgressNotesUpdateArgs>(args: SelectSubset<T, ProgressNotesUpdateArgs<ExtArgs>>): Prisma__ProgressNotesClient<$Result.GetResult<Prisma.$ProgressNotesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Progress_notes.
-     * @param {Progress_notesDeleteManyArgs} args - Arguments to filter Progress_notes to delete.
+     * Delete zero or more ProgressNotes.
+     * @param {ProgressNotesDeleteManyArgs} args - Arguments to filter ProgressNotes to delete.
      * @example
-     * // Delete a few Progress_notes
-     * const { count } = await prisma.progress_notes.deleteMany({
+     * // Delete a few ProgressNotes
+     * const { count } = await prisma.progressNotes.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends Progress_notesDeleteManyArgs>(args?: SelectSubset<T, Progress_notesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends ProgressNotesDeleteManyArgs>(args?: SelectSubset<T, ProgressNotesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Progress_notes.
+     * Update zero or more ProgressNotes.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Progress_notesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {ProgressNotesUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Progress_notes
-     * const progress_notes = await prisma.progress_notes.updateMany({
+     * // Update many ProgressNotes
+     * const progressNotes = await prisma.progressNotes.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -17873,14 +17873,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends Progress_notesUpdateManyArgs>(args: SelectSubset<T, Progress_notesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends ProgressNotesUpdateManyArgs>(args: SelectSubset<T, ProgressNotesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Progress_notes and returns the data updated in the database.
-     * @param {Progress_notesUpdateManyAndReturnArgs} args - Arguments to update many Progress_notes.
+     * Update zero or more ProgressNotes and returns the data updated in the database.
+     * @param {ProgressNotesUpdateManyAndReturnArgs} args - Arguments to update many ProgressNotes.
      * @example
-     * // Update many Progress_notes
-     * const progress_notes = await prisma.progress_notes.updateManyAndReturn({
+     * // Update many ProgressNotes
+     * const progressNotes = await prisma.progressNotes.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -17889,8 +17889,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Progress_notes and only return the `id`
-     * const progress_notesWithIdOnly = await prisma.progress_notes.updateManyAndReturn({
+     * // Update zero or more ProgressNotes and only return the `id`
+     * const progressNotesWithIdOnly = await prisma.progressNotes.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -17903,56 +17903,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends Progress_notesUpdateManyAndReturnArgs>(args: SelectSubset<T, Progress_notesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Progress_notesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends ProgressNotesUpdateManyAndReturnArgs>(args: SelectSubset<T, ProgressNotesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressNotesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Progress_notes.
-     * @param {Progress_notesUpsertArgs} args - Arguments to update or create a Progress_notes.
+     * Create or update one ProgressNotes.
+     * @param {ProgressNotesUpsertArgs} args - Arguments to update or create a ProgressNotes.
      * @example
-     * // Update or create a Progress_notes
-     * const progress_notes = await prisma.progress_notes.upsert({
+     * // Update or create a ProgressNotes
+     * const progressNotes = await prisma.progressNotes.upsert({
      *   create: {
-     *     // ... data to create a Progress_notes
+     *     // ... data to create a ProgressNotes
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Progress_notes we want to update
+     *     // ... the filter for the ProgressNotes we want to update
      *   }
      * })
      */
-    upsert<T extends Progress_notesUpsertArgs>(args: SelectSubset<T, Progress_notesUpsertArgs<ExtArgs>>): Prisma__Progress_notesClient<$Result.GetResult<Prisma.$Progress_notesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends ProgressNotesUpsertArgs>(args: SelectSubset<T, ProgressNotesUpsertArgs<ExtArgs>>): Prisma__ProgressNotesClient<$Result.GetResult<Prisma.$ProgressNotesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Progress_notes.
+     * Count the number of ProgressNotes.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Progress_notesCountArgs} args - Arguments to filter Progress_notes to count.
+     * @param {ProgressNotesCountArgs} args - Arguments to filter ProgressNotes to count.
      * @example
-     * // Count the number of Progress_notes
-     * const count = await prisma.progress_notes.count({
+     * // Count the number of ProgressNotes
+     * const count = await prisma.progressNotes.count({
      *   where: {
-     *     // ... the filter for the Progress_notes we want to count
+     *     // ... the filter for the ProgressNotes we want to count
      *   }
      * })
     **/
-    count<T extends Progress_notesCountArgs>(
-      args?: Subset<T, Progress_notesCountArgs>,
+    count<T extends ProgressNotesCountArgs>(
+      args?: Subset<T, ProgressNotesCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], Progress_notesCountAggregateOutputType>
+          : GetScalarType<T['select'], ProgressNotesCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Progress_notes.
+     * Allows you to perform aggregations operations on a ProgressNotes.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Progress_notesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {ProgressNotesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -17972,13 +17972,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends Progress_notesAggregateArgs>(args: Subset<T, Progress_notesAggregateArgs>): Prisma.PrismaPromise<GetProgress_notesAggregateType<T>>
+    aggregate<T extends ProgressNotesAggregateArgs>(args: Subset<T, ProgressNotesAggregateArgs>): Prisma.PrismaPromise<GetProgressNotesAggregateType<T>>
 
     /**
-     * Group by Progress_notes.
+     * Group by ProgressNotes.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Progress_notesGroupByArgs} args - Group by arguments.
+     * @param {ProgressNotesGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -17993,14 +17993,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends Progress_notesGroupByArgs,
+      T extends ProgressNotesGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: Progress_notesGroupByArgs['orderBy'] }
-        : { orderBy?: Progress_notesGroupByArgs['orderBy'] },
+        ? { orderBy: ProgressNotesGroupByArgs['orderBy'] }
+        : { orderBy?: ProgressNotesGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -18049,23 +18049,23 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, Progress_notesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProgress_notesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, ProgressNotesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProgressNotesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Progress_notes model
+   * Fields of the ProgressNotes model
    */
-  readonly fields: Progress_notesFieldRefs;
+  readonly fields: ProgressNotesFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Progress_notes.
+   * The delegate class that acts as a "Promise-like" for ProgressNotes.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__Progress_notesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__ProgressNotesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     teacher<T extends TeacherDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeacherDefaultArgs<ExtArgs>>): Prisma__TeacherClient<$Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    learning_progress<T extends Learning_progressesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, Learning_progressesDefaultArgs<ExtArgs>>): Prisma__Learning_progressesClient<$Result.GetResult<Prisma.$Learning_progressesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    learningProgress<T extends LearningProgressesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LearningProgressesDefaultArgs<ExtArgs>>): Prisma__LearningProgressesClient<$Result.GetResult<Prisma.$LearningProgressesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -18092,882 +18092,882 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Progress_notes model
+   * Fields of the ProgressNotes model
    */
-  interface Progress_notesFieldRefs {
-    readonly id: FieldRef<"Progress_notes", 'String'>
-    readonly note_date: FieldRef<"Progress_notes", 'DateTime'>
-    readonly note_observation: FieldRef<"Progress_notes", 'String'>
-    readonly Strengths: FieldRef<"Progress_notes", 'String'>
-    readonly areas_for_improvement: FieldRef<"Progress_notes", 'String'>
-    readonly teacherId: FieldRef<"Progress_notes", 'String'>
-    readonly learningProgressId: FieldRef<"Progress_notes", 'String'>
+  interface ProgressNotesFieldRefs {
+    readonly id: FieldRef<"ProgressNotes", 'String'>
+    readonly noteDate: FieldRef<"ProgressNotes", 'DateTime'>
+    readonly noteObservation: FieldRef<"ProgressNotes", 'String'>
+    readonly Strengths: FieldRef<"ProgressNotes", 'String'>
+    readonly areasForImprovement: FieldRef<"ProgressNotes", 'String'>
+    readonly teacherId: FieldRef<"ProgressNotes", 'String'>
+    readonly learningProgressId: FieldRef<"ProgressNotes", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * Progress_notes findUnique
+   * ProgressNotes findUnique
    */
-  export type Progress_notesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProgressNotesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Progress_notes
+     * Select specific fields to fetch from the ProgressNotes
      */
-    select?: Progress_notesSelect<ExtArgs> | null
+    select?: ProgressNotesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Progress_notes
+     * Omit specific fields from the ProgressNotes
      */
-    omit?: Progress_notesOmit<ExtArgs> | null
+    omit?: ProgressNotesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Progress_notesInclude<ExtArgs> | null
+    include?: ProgressNotesInclude<ExtArgs> | null
     /**
-     * Filter, which Progress_notes to fetch.
+     * Filter, which ProgressNotes to fetch.
      */
-    where: Progress_notesWhereUniqueInput
+    where: ProgressNotesWhereUniqueInput
   }
 
   /**
-   * Progress_notes findUniqueOrThrow
+   * ProgressNotes findUniqueOrThrow
    */
-  export type Progress_notesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProgressNotesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Progress_notes
+     * Select specific fields to fetch from the ProgressNotes
      */
-    select?: Progress_notesSelect<ExtArgs> | null
+    select?: ProgressNotesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Progress_notes
+     * Omit specific fields from the ProgressNotes
      */
-    omit?: Progress_notesOmit<ExtArgs> | null
+    omit?: ProgressNotesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Progress_notesInclude<ExtArgs> | null
+    include?: ProgressNotesInclude<ExtArgs> | null
     /**
-     * Filter, which Progress_notes to fetch.
+     * Filter, which ProgressNotes to fetch.
      */
-    where: Progress_notesWhereUniqueInput
+    where: ProgressNotesWhereUniqueInput
   }
 
   /**
-   * Progress_notes findFirst
+   * ProgressNotes findFirst
    */
-  export type Progress_notesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProgressNotesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Progress_notes
+     * Select specific fields to fetch from the ProgressNotes
      */
-    select?: Progress_notesSelect<ExtArgs> | null
+    select?: ProgressNotesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Progress_notes
+     * Omit specific fields from the ProgressNotes
      */
-    omit?: Progress_notesOmit<ExtArgs> | null
+    omit?: ProgressNotesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Progress_notesInclude<ExtArgs> | null
+    include?: ProgressNotesInclude<ExtArgs> | null
     /**
-     * Filter, which Progress_notes to fetch.
+     * Filter, which ProgressNotes to fetch.
      */
-    where?: Progress_notesWhereInput
+    where?: ProgressNotesWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Progress_notes to fetch.
+     * Determine the order of ProgressNotes to fetch.
      */
-    orderBy?: Progress_notesOrderByWithRelationInput | Progress_notesOrderByWithRelationInput[]
+    orderBy?: ProgressNotesOrderByWithRelationInput | ProgressNotesOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Progress_notes.
+     * Sets the position for searching for ProgressNotes.
      */
-    cursor?: Progress_notesWhereUniqueInput
+    cursor?: ProgressNotesWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Progress_notes from the position of the cursor.
+     * Take `±n` ProgressNotes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Progress_notes.
+     * Skip the first `n` ProgressNotes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Progress_notes.
+     * Filter by unique combinations of ProgressNotes.
      */
-    distinct?: Progress_notesScalarFieldEnum | Progress_notesScalarFieldEnum[]
+    distinct?: ProgressNotesScalarFieldEnum | ProgressNotesScalarFieldEnum[]
   }
 
   /**
-   * Progress_notes findFirstOrThrow
+   * ProgressNotes findFirstOrThrow
    */
-  export type Progress_notesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProgressNotesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Progress_notes
+     * Select specific fields to fetch from the ProgressNotes
      */
-    select?: Progress_notesSelect<ExtArgs> | null
+    select?: ProgressNotesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Progress_notes
+     * Omit specific fields from the ProgressNotes
      */
-    omit?: Progress_notesOmit<ExtArgs> | null
+    omit?: ProgressNotesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Progress_notesInclude<ExtArgs> | null
+    include?: ProgressNotesInclude<ExtArgs> | null
     /**
-     * Filter, which Progress_notes to fetch.
+     * Filter, which ProgressNotes to fetch.
      */
-    where?: Progress_notesWhereInput
+    where?: ProgressNotesWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Progress_notes to fetch.
+     * Determine the order of ProgressNotes to fetch.
      */
-    orderBy?: Progress_notesOrderByWithRelationInput | Progress_notesOrderByWithRelationInput[]
+    orderBy?: ProgressNotesOrderByWithRelationInput | ProgressNotesOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Progress_notes.
+     * Sets the position for searching for ProgressNotes.
      */
-    cursor?: Progress_notesWhereUniqueInput
+    cursor?: ProgressNotesWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Progress_notes from the position of the cursor.
+     * Take `±n` ProgressNotes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Progress_notes.
+     * Skip the first `n` ProgressNotes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Progress_notes.
+     * Filter by unique combinations of ProgressNotes.
      */
-    distinct?: Progress_notesScalarFieldEnum | Progress_notesScalarFieldEnum[]
+    distinct?: ProgressNotesScalarFieldEnum | ProgressNotesScalarFieldEnum[]
   }
 
   /**
-   * Progress_notes findMany
+   * ProgressNotes findMany
    */
-  export type Progress_notesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProgressNotesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Progress_notes
+     * Select specific fields to fetch from the ProgressNotes
      */
-    select?: Progress_notesSelect<ExtArgs> | null
+    select?: ProgressNotesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Progress_notes
+     * Omit specific fields from the ProgressNotes
      */
-    omit?: Progress_notesOmit<ExtArgs> | null
+    omit?: ProgressNotesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Progress_notesInclude<ExtArgs> | null
+    include?: ProgressNotesInclude<ExtArgs> | null
     /**
-     * Filter, which Progress_notes to fetch.
+     * Filter, which ProgressNotes to fetch.
      */
-    where?: Progress_notesWhereInput
+    where?: ProgressNotesWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Progress_notes to fetch.
+     * Determine the order of ProgressNotes to fetch.
      */
-    orderBy?: Progress_notesOrderByWithRelationInput | Progress_notesOrderByWithRelationInput[]
+    orderBy?: ProgressNotesOrderByWithRelationInput | ProgressNotesOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Progress_notes.
+     * Sets the position for listing ProgressNotes.
      */
-    cursor?: Progress_notesWhereUniqueInput
+    cursor?: ProgressNotesWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Progress_notes from the position of the cursor.
+     * Take `±n` ProgressNotes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Progress_notes.
+     * Skip the first `n` ProgressNotes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Progress_notes.
+     * Filter by unique combinations of ProgressNotes.
      */
-    distinct?: Progress_notesScalarFieldEnum | Progress_notesScalarFieldEnum[]
+    distinct?: ProgressNotesScalarFieldEnum | ProgressNotesScalarFieldEnum[]
   }
 
   /**
-   * Progress_notes create
+   * ProgressNotes create
    */
-  export type Progress_notesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProgressNotesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Progress_notes
+     * Select specific fields to fetch from the ProgressNotes
      */
-    select?: Progress_notesSelect<ExtArgs> | null
+    select?: ProgressNotesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Progress_notes
+     * Omit specific fields from the ProgressNotes
      */
-    omit?: Progress_notesOmit<ExtArgs> | null
+    omit?: ProgressNotesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Progress_notesInclude<ExtArgs> | null
+    include?: ProgressNotesInclude<ExtArgs> | null
     /**
-     * The data needed to create a Progress_notes.
+     * The data needed to create a ProgressNotes.
      */
-    data: XOR<Progress_notesCreateInput, Progress_notesUncheckedCreateInput>
+    data: XOR<ProgressNotesCreateInput, ProgressNotesUncheckedCreateInput>
   }
 
   /**
-   * Progress_notes createMany
+   * ProgressNotes createMany
    */
-  export type Progress_notesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProgressNotesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Progress_notes.
+     * The data used to create many ProgressNotes.
      */
-    data: Progress_notesCreateManyInput | Progress_notesCreateManyInput[]
+    data: ProgressNotesCreateManyInput | ProgressNotesCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Progress_notes createManyAndReturn
+   * ProgressNotes createManyAndReturn
    */
-  export type Progress_notesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProgressNotesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Progress_notes
+     * Select specific fields to fetch from the ProgressNotes
      */
-    select?: Progress_notesSelectCreateManyAndReturn<ExtArgs> | null
+    select?: ProgressNotesSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Progress_notes
+     * Omit specific fields from the ProgressNotes
      */
-    omit?: Progress_notesOmit<ExtArgs> | null
+    omit?: ProgressNotesOmit<ExtArgs> | null
     /**
-     * The data used to create many Progress_notes.
+     * The data used to create many ProgressNotes.
      */
-    data: Progress_notesCreateManyInput | Progress_notesCreateManyInput[]
+    data: ProgressNotesCreateManyInput | ProgressNotesCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Progress_notesIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: ProgressNotesIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Progress_notes update
+   * ProgressNotes update
    */
-  export type Progress_notesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProgressNotesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Progress_notes
+     * Select specific fields to fetch from the ProgressNotes
      */
-    select?: Progress_notesSelect<ExtArgs> | null
+    select?: ProgressNotesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Progress_notes
+     * Omit specific fields from the ProgressNotes
      */
-    omit?: Progress_notesOmit<ExtArgs> | null
+    omit?: ProgressNotesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Progress_notesInclude<ExtArgs> | null
+    include?: ProgressNotesInclude<ExtArgs> | null
     /**
-     * The data needed to update a Progress_notes.
+     * The data needed to update a ProgressNotes.
      */
-    data: XOR<Progress_notesUpdateInput, Progress_notesUncheckedUpdateInput>
+    data: XOR<ProgressNotesUpdateInput, ProgressNotesUncheckedUpdateInput>
     /**
-     * Choose, which Progress_notes to update.
+     * Choose, which ProgressNotes to update.
      */
-    where: Progress_notesWhereUniqueInput
+    where: ProgressNotesWhereUniqueInput
   }
 
   /**
-   * Progress_notes updateMany
+   * ProgressNotes updateMany
    */
-  export type Progress_notesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProgressNotesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Progress_notes.
+     * The data used to update ProgressNotes.
      */
-    data: XOR<Progress_notesUpdateManyMutationInput, Progress_notesUncheckedUpdateManyInput>
+    data: XOR<ProgressNotesUpdateManyMutationInput, ProgressNotesUncheckedUpdateManyInput>
     /**
-     * Filter which Progress_notes to update
+     * Filter which ProgressNotes to update
      */
-    where?: Progress_notesWhereInput
+    where?: ProgressNotesWhereInput
     /**
-     * Limit how many Progress_notes to update.
+     * Limit how many ProgressNotes to update.
      */
     limit?: number
   }
 
   /**
-   * Progress_notes updateManyAndReturn
+   * ProgressNotes updateManyAndReturn
    */
-  export type Progress_notesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProgressNotesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Progress_notes
+     * Select specific fields to fetch from the ProgressNotes
      */
-    select?: Progress_notesSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: ProgressNotesSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Progress_notes
+     * Omit specific fields from the ProgressNotes
      */
-    omit?: Progress_notesOmit<ExtArgs> | null
+    omit?: ProgressNotesOmit<ExtArgs> | null
     /**
-     * The data used to update Progress_notes.
+     * The data used to update ProgressNotes.
      */
-    data: XOR<Progress_notesUpdateManyMutationInput, Progress_notesUncheckedUpdateManyInput>
+    data: XOR<ProgressNotesUpdateManyMutationInput, ProgressNotesUncheckedUpdateManyInput>
     /**
-     * Filter which Progress_notes to update
+     * Filter which ProgressNotes to update
      */
-    where?: Progress_notesWhereInput
+    where?: ProgressNotesWhereInput
     /**
-     * Limit how many Progress_notes to update.
+     * Limit how many ProgressNotes to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Progress_notesIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: ProgressNotesIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Progress_notes upsert
+   * ProgressNotes upsert
    */
-  export type Progress_notesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProgressNotesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Progress_notes
+     * Select specific fields to fetch from the ProgressNotes
      */
-    select?: Progress_notesSelect<ExtArgs> | null
+    select?: ProgressNotesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Progress_notes
+     * Omit specific fields from the ProgressNotes
      */
-    omit?: Progress_notesOmit<ExtArgs> | null
+    omit?: ProgressNotesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Progress_notesInclude<ExtArgs> | null
+    include?: ProgressNotesInclude<ExtArgs> | null
     /**
-     * The filter to search for the Progress_notes to update in case it exists.
+     * The filter to search for the ProgressNotes to update in case it exists.
      */
-    where: Progress_notesWhereUniqueInput
+    where: ProgressNotesWhereUniqueInput
     /**
-     * In case the Progress_notes found by the `where` argument doesn't exist, create a new Progress_notes with this data.
+     * In case the ProgressNotes found by the `where` argument doesn't exist, create a new ProgressNotes with this data.
      */
-    create: XOR<Progress_notesCreateInput, Progress_notesUncheckedCreateInput>
+    create: XOR<ProgressNotesCreateInput, ProgressNotesUncheckedCreateInput>
     /**
-     * In case the Progress_notes was found with the provided `where` argument, update it with this data.
+     * In case the ProgressNotes was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<Progress_notesUpdateInput, Progress_notesUncheckedUpdateInput>
+    update: XOR<ProgressNotesUpdateInput, ProgressNotesUncheckedUpdateInput>
   }
 
   /**
-   * Progress_notes delete
+   * ProgressNotes delete
    */
-  export type Progress_notesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProgressNotesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Progress_notes
+     * Select specific fields to fetch from the ProgressNotes
      */
-    select?: Progress_notesSelect<ExtArgs> | null
+    select?: ProgressNotesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Progress_notes
+     * Omit specific fields from the ProgressNotes
      */
-    omit?: Progress_notesOmit<ExtArgs> | null
+    omit?: ProgressNotesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Progress_notesInclude<ExtArgs> | null
+    include?: ProgressNotesInclude<ExtArgs> | null
     /**
-     * Filter which Progress_notes to delete.
+     * Filter which ProgressNotes to delete.
      */
-    where: Progress_notesWhereUniqueInput
+    where: ProgressNotesWhereUniqueInput
   }
 
   /**
-   * Progress_notes deleteMany
+   * ProgressNotes deleteMany
    */
-  export type Progress_notesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProgressNotesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Progress_notes to delete
+     * Filter which ProgressNotes to delete
      */
-    where?: Progress_notesWhereInput
+    where?: ProgressNotesWhereInput
     /**
-     * Limit how many Progress_notes to delete.
+     * Limit how many ProgressNotes to delete.
      */
     limit?: number
   }
 
   /**
-   * Progress_notes without action
+   * ProgressNotes without action
    */
-  export type Progress_notesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProgressNotesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Progress_notes
+     * Select specific fields to fetch from the ProgressNotes
      */
-    select?: Progress_notesSelect<ExtArgs> | null
+    select?: ProgressNotesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Progress_notes
+     * Omit specific fields from the ProgressNotes
      */
-    omit?: Progress_notesOmit<ExtArgs> | null
+    omit?: ProgressNotesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Progress_notesInclude<ExtArgs> | null
+    include?: ProgressNotesInclude<ExtArgs> | null
   }
 
 
   /**
-   * Model Classes_performence
+   * Model ClassesPerformence
    */
 
-  export type AggregateClasses_performence = {
-    _count: Classes_performenceCountAggregateOutputType | null
-    _avg: Classes_performenceAvgAggregateOutputType | null
-    _sum: Classes_performenceSumAggregateOutputType | null
-    _min: Classes_performenceMinAggregateOutputType | null
-    _max: Classes_performenceMaxAggregateOutputType | null
+  export type AggregateClassesPerformence = {
+    _count: ClassesPerformenceCountAggregateOutputType | null
+    _avg: ClassesPerformenceAvgAggregateOutputType | null
+    _sum: ClassesPerformenceSumAggregateOutputType | null
+    _min: ClassesPerformenceMinAggregateOutputType | null
+    _max: ClassesPerformenceMaxAggregateOutputType | null
   }
 
-  export type Classes_performenceAvgAggregateOutputType = {
-    class_avg: number | null
-    highest_grade: number | null
-    lowest_grade: number | null
-    assignments_compleation_rate: number | null
-    attendence_rate: number | null
-    student_requiring_support: number | null
+  export type ClassesPerformenceAvgAggregateOutputType = {
+    classAvg: number | null
+    highestGrade: number | null
+    lowestGrade: number | null
+    assignmentsCompleationRate: number | null
+    attendenceRate: number | null
+    studentRequiringSupport: number | null
   }
 
-  export type Classes_performenceSumAggregateOutputType = {
-    class_avg: number | null
-    highest_grade: number | null
-    lowest_grade: number | null
-    assignments_compleation_rate: number | null
-    attendence_rate: number | null
-    student_requiring_support: number | null
+  export type ClassesPerformenceSumAggregateOutputType = {
+    classAvg: number | null
+    highestGrade: number | null
+    lowestGrade: number | null
+    assignmentsCompleationRate: number | null
+    attendenceRate: number | null
+    studentRequiringSupport: number | null
   }
 
-  export type Classes_performenceMinAggregateOutputType = {
+  export type ClassesPerformenceMinAggregateOutputType = {
     id: string | null
-    class_avg: number | null
-    highest_grade: number | null
-    lowest_grade: number | null
-    assignments_compleation_rate: number | null
-    attendence_rate: number | null
-    student_requiring_support: number | null
-    class_status: $Enums.Status | null
+    classAvg: number | null
+    highestGrade: number | null
+    lowestGrade: number | null
+    assignmentsCompleationRate: number | null
+    attendenceRate: number | null
+    studentRequiringSupport: number | null
+    classStatus: $Enums.Status | null
     classId: string | null
   }
 
-  export type Classes_performenceMaxAggregateOutputType = {
+  export type ClassesPerformenceMaxAggregateOutputType = {
     id: string | null
-    class_avg: number | null
-    highest_grade: number | null
-    lowest_grade: number | null
-    assignments_compleation_rate: number | null
-    attendence_rate: number | null
-    student_requiring_support: number | null
-    class_status: $Enums.Status | null
+    classAvg: number | null
+    highestGrade: number | null
+    lowestGrade: number | null
+    assignmentsCompleationRate: number | null
+    attendenceRate: number | null
+    studentRequiringSupport: number | null
+    classStatus: $Enums.Status | null
     classId: string | null
   }
 
-  export type Classes_performenceCountAggregateOutputType = {
+  export type ClassesPerformenceCountAggregateOutputType = {
     id: number
-    class_avg: number
-    highest_grade: number
-    lowest_grade: number
-    assignments_compleation_rate: number
-    attendence_rate: number
-    student_requiring_support: number
-    class_status: number
+    classAvg: number
+    highestGrade: number
+    lowestGrade: number
+    assignmentsCompleationRate: number
+    attendenceRate: number
+    studentRequiringSupport: number
+    classStatus: number
     classId: number
     _all: number
   }
 
 
-  export type Classes_performenceAvgAggregateInputType = {
-    class_avg?: true
-    highest_grade?: true
-    lowest_grade?: true
-    assignments_compleation_rate?: true
-    attendence_rate?: true
-    student_requiring_support?: true
+  export type ClassesPerformenceAvgAggregateInputType = {
+    classAvg?: true
+    highestGrade?: true
+    lowestGrade?: true
+    assignmentsCompleationRate?: true
+    attendenceRate?: true
+    studentRequiringSupport?: true
   }
 
-  export type Classes_performenceSumAggregateInputType = {
-    class_avg?: true
-    highest_grade?: true
-    lowest_grade?: true
-    assignments_compleation_rate?: true
-    attendence_rate?: true
-    student_requiring_support?: true
+  export type ClassesPerformenceSumAggregateInputType = {
+    classAvg?: true
+    highestGrade?: true
+    lowestGrade?: true
+    assignmentsCompleationRate?: true
+    attendenceRate?: true
+    studentRequiringSupport?: true
   }
 
-  export type Classes_performenceMinAggregateInputType = {
+  export type ClassesPerformenceMinAggregateInputType = {
     id?: true
-    class_avg?: true
-    highest_grade?: true
-    lowest_grade?: true
-    assignments_compleation_rate?: true
-    attendence_rate?: true
-    student_requiring_support?: true
-    class_status?: true
+    classAvg?: true
+    highestGrade?: true
+    lowestGrade?: true
+    assignmentsCompleationRate?: true
+    attendenceRate?: true
+    studentRequiringSupport?: true
+    classStatus?: true
     classId?: true
   }
 
-  export type Classes_performenceMaxAggregateInputType = {
+  export type ClassesPerformenceMaxAggregateInputType = {
     id?: true
-    class_avg?: true
-    highest_grade?: true
-    lowest_grade?: true
-    assignments_compleation_rate?: true
-    attendence_rate?: true
-    student_requiring_support?: true
-    class_status?: true
+    classAvg?: true
+    highestGrade?: true
+    lowestGrade?: true
+    assignmentsCompleationRate?: true
+    attendenceRate?: true
+    studentRequiringSupport?: true
+    classStatus?: true
     classId?: true
   }
 
-  export type Classes_performenceCountAggregateInputType = {
+  export type ClassesPerformenceCountAggregateInputType = {
     id?: true
-    class_avg?: true
-    highest_grade?: true
-    lowest_grade?: true
-    assignments_compleation_rate?: true
-    attendence_rate?: true
-    student_requiring_support?: true
-    class_status?: true
+    classAvg?: true
+    highestGrade?: true
+    lowestGrade?: true
+    assignmentsCompleationRate?: true
+    attendenceRate?: true
+    studentRequiringSupport?: true
+    classStatus?: true
     classId?: true
     _all?: true
   }
 
-  export type Classes_performenceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassesPerformenceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Classes_performence to aggregate.
+     * Filter which ClassesPerformence to aggregate.
      */
-    where?: Classes_performenceWhereInput
+    where?: ClassesPerformenceWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Classes_performences to fetch.
+     * Determine the order of ClassesPerformences to fetch.
      */
-    orderBy?: Classes_performenceOrderByWithRelationInput | Classes_performenceOrderByWithRelationInput[]
+    orderBy?: ClassesPerformenceOrderByWithRelationInput | ClassesPerformenceOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: Classes_performenceWhereUniqueInput
+    cursor?: ClassesPerformenceWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Classes_performences from the position of the cursor.
+     * Take `±n` ClassesPerformences from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Classes_performences.
+     * Skip the first `n` ClassesPerformences.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Classes_performences
+     * Count returned ClassesPerformences
     **/
-    _count?: true | Classes_performenceCountAggregateInputType
+    _count?: true | ClassesPerformenceCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: Classes_performenceAvgAggregateInputType
+    _avg?: ClassesPerformenceAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: Classes_performenceSumAggregateInputType
+    _sum?: ClassesPerformenceSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: Classes_performenceMinAggregateInputType
+    _min?: ClassesPerformenceMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: Classes_performenceMaxAggregateInputType
+    _max?: ClassesPerformenceMaxAggregateInputType
   }
 
-  export type GetClasses_performenceAggregateType<T extends Classes_performenceAggregateArgs> = {
-        [P in keyof T & keyof AggregateClasses_performence]: P extends '_count' | 'count'
+  export type GetClassesPerformenceAggregateType<T extends ClassesPerformenceAggregateArgs> = {
+        [P in keyof T & keyof AggregateClassesPerformence]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateClasses_performence[P]>
-      : GetScalarType<T[P], AggregateClasses_performence[P]>
+        : GetScalarType<T[P], AggregateClassesPerformence[P]>
+      : GetScalarType<T[P], AggregateClassesPerformence[P]>
   }
 
 
 
 
-  export type Classes_performenceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: Classes_performenceWhereInput
-    orderBy?: Classes_performenceOrderByWithAggregationInput | Classes_performenceOrderByWithAggregationInput[]
-    by: Classes_performenceScalarFieldEnum[] | Classes_performenceScalarFieldEnum
-    having?: Classes_performenceScalarWhereWithAggregatesInput
+  export type ClassesPerformenceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ClassesPerformenceWhereInput
+    orderBy?: ClassesPerformenceOrderByWithAggregationInput | ClassesPerformenceOrderByWithAggregationInput[]
+    by: ClassesPerformenceScalarFieldEnum[] | ClassesPerformenceScalarFieldEnum
+    having?: ClassesPerformenceScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: Classes_performenceCountAggregateInputType | true
-    _avg?: Classes_performenceAvgAggregateInputType
-    _sum?: Classes_performenceSumAggregateInputType
-    _min?: Classes_performenceMinAggregateInputType
-    _max?: Classes_performenceMaxAggregateInputType
+    _count?: ClassesPerformenceCountAggregateInputType | true
+    _avg?: ClassesPerformenceAvgAggregateInputType
+    _sum?: ClassesPerformenceSumAggregateInputType
+    _min?: ClassesPerformenceMinAggregateInputType
+    _max?: ClassesPerformenceMaxAggregateInputType
   }
 
-  export type Classes_performenceGroupByOutputType = {
+  export type ClassesPerformenceGroupByOutputType = {
     id: string
-    class_avg: number
-    highest_grade: number
-    lowest_grade: number
-    assignments_compleation_rate: number
-    attendence_rate: number
-    student_requiring_support: number
-    class_status: $Enums.Status
+    classAvg: number
+    highestGrade: number
+    lowestGrade: number
+    assignmentsCompleationRate: number
+    attendenceRate: number
+    studentRequiringSupport: number
+    classStatus: $Enums.Status
     classId: string
-    _count: Classes_performenceCountAggregateOutputType | null
-    _avg: Classes_performenceAvgAggregateOutputType | null
-    _sum: Classes_performenceSumAggregateOutputType | null
-    _min: Classes_performenceMinAggregateOutputType | null
-    _max: Classes_performenceMaxAggregateOutputType | null
+    _count: ClassesPerformenceCountAggregateOutputType | null
+    _avg: ClassesPerformenceAvgAggregateOutputType | null
+    _sum: ClassesPerformenceSumAggregateOutputType | null
+    _min: ClassesPerformenceMinAggregateOutputType | null
+    _max: ClassesPerformenceMaxAggregateOutputType | null
   }
 
-  type GetClasses_performenceGroupByPayload<T extends Classes_performenceGroupByArgs> = Prisma.PrismaPromise<
+  type GetClassesPerformenceGroupByPayload<T extends ClassesPerformenceGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<Classes_performenceGroupByOutputType, T['by']> &
+      PickEnumerable<ClassesPerformenceGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof Classes_performenceGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof ClassesPerformenceGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], Classes_performenceGroupByOutputType[P]>
-            : GetScalarType<T[P], Classes_performenceGroupByOutputType[P]>
+              : GetScalarType<T[P], ClassesPerformenceGroupByOutputType[P]>
+            : GetScalarType<T[P], ClassesPerformenceGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type Classes_performenceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ClassesPerformenceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    class_avg?: boolean
-    highest_grade?: boolean
-    lowest_grade?: boolean
-    assignments_compleation_rate?: boolean
-    attendence_rate?: boolean
-    student_requiring_support?: boolean
-    class_status?: boolean
+    classAvg?: boolean
+    highestGrade?: boolean
+    lowestGrade?: boolean
+    assignmentsCompleationRate?: boolean
+    attendenceRate?: boolean
+    studentRequiringSupport?: boolean
+    classStatus?: boolean
     classId?: boolean
     class?: boolean | ClassesDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["classes_performence"]>
+  }, ExtArgs["result"]["classesPerformence"]>
 
-  export type Classes_performenceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ClassesPerformenceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    class_avg?: boolean
-    highest_grade?: boolean
-    lowest_grade?: boolean
-    assignments_compleation_rate?: boolean
-    attendence_rate?: boolean
-    student_requiring_support?: boolean
-    class_status?: boolean
+    classAvg?: boolean
+    highestGrade?: boolean
+    lowestGrade?: boolean
+    assignmentsCompleationRate?: boolean
+    attendenceRate?: boolean
+    studentRequiringSupport?: boolean
+    classStatus?: boolean
     classId?: boolean
     class?: boolean | ClassesDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["classes_performence"]>
+  }, ExtArgs["result"]["classesPerformence"]>
 
-  export type Classes_performenceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ClassesPerformenceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    class_avg?: boolean
-    highest_grade?: boolean
-    lowest_grade?: boolean
-    assignments_compleation_rate?: boolean
-    attendence_rate?: boolean
-    student_requiring_support?: boolean
-    class_status?: boolean
+    classAvg?: boolean
+    highestGrade?: boolean
+    lowestGrade?: boolean
+    assignmentsCompleationRate?: boolean
+    attendenceRate?: boolean
+    studentRequiringSupport?: boolean
+    classStatus?: boolean
     classId?: boolean
     class?: boolean | ClassesDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["classes_performence"]>
+  }, ExtArgs["result"]["classesPerformence"]>
 
-  export type Classes_performenceSelectScalar = {
+  export type ClassesPerformenceSelectScalar = {
     id?: boolean
-    class_avg?: boolean
-    highest_grade?: boolean
-    lowest_grade?: boolean
-    assignments_compleation_rate?: boolean
-    attendence_rate?: boolean
-    student_requiring_support?: boolean
-    class_status?: boolean
+    classAvg?: boolean
+    highestGrade?: boolean
+    lowestGrade?: boolean
+    assignmentsCompleationRate?: boolean
+    attendenceRate?: boolean
+    studentRequiringSupport?: boolean
+    classStatus?: boolean
     classId?: boolean
   }
 
-  export type Classes_performenceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "class_avg" | "highest_grade" | "lowest_grade" | "assignments_compleation_rate" | "attendence_rate" | "student_requiring_support" | "class_status" | "classId", ExtArgs["result"]["classes_performence"]>
-  export type Classes_performenceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassesPerformenceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "classAvg" | "highestGrade" | "lowestGrade" | "assignmentsCompleationRate" | "attendenceRate" | "studentRequiringSupport" | "classStatus" | "classId", ExtArgs["result"]["classesPerformence"]>
+  export type ClassesPerformenceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     class?: boolean | ClassesDefaultArgs<ExtArgs>
   }
-  export type Classes_performenceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassesPerformenceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     class?: boolean | ClassesDefaultArgs<ExtArgs>
   }
-  export type Classes_performenceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassesPerformenceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     class?: boolean | ClassesDefaultArgs<ExtArgs>
   }
 
-  export type $Classes_performencePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Classes_performence"
+  export type $ClassesPerformencePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ClassesPerformence"
     objects: {
       class: Prisma.$ClassesPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      class_avg: number
-      highest_grade: number
-      lowest_grade: number
-      assignments_compleation_rate: number
-      attendence_rate: number
-      student_requiring_support: number
-      class_status: $Enums.Status
+      classAvg: number
+      highestGrade: number
+      lowestGrade: number
+      assignmentsCompleationRate: number
+      attendenceRate: number
+      studentRequiringSupport: number
+      classStatus: $Enums.Status
       classId: string
-    }, ExtArgs["result"]["classes_performence"]>
+    }, ExtArgs["result"]["classesPerformence"]>
     composites: {}
   }
 
-  type Classes_performenceGetPayload<S extends boolean | null | undefined | Classes_performenceDefaultArgs> = $Result.GetResult<Prisma.$Classes_performencePayload, S>
+  type ClassesPerformenceGetPayload<S extends boolean | null | undefined | ClassesPerformenceDefaultArgs> = $Result.GetResult<Prisma.$ClassesPerformencePayload, S>
 
-  type Classes_performenceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<Classes_performenceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: Classes_performenceCountAggregateInputType | true
+  type ClassesPerformenceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ClassesPerformenceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ClassesPerformenceCountAggregateInputType | true
     }
 
-  export interface Classes_performenceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Classes_performence'], meta: { name: 'Classes_performence' } }
+  export interface ClassesPerformenceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ClassesPerformence'], meta: { name: 'ClassesPerformence' } }
     /**
-     * Find zero or one Classes_performence that matches the filter.
-     * @param {Classes_performenceFindUniqueArgs} args - Arguments to find a Classes_performence
+     * Find zero or one ClassesPerformence that matches the filter.
+     * @param {ClassesPerformenceFindUniqueArgs} args - Arguments to find a ClassesPerformence
      * @example
-     * // Get one Classes_performence
-     * const classes_performence = await prisma.classes_performence.findUnique({
+     * // Get one ClassesPerformence
+     * const classesPerformence = await prisma.classesPerformence.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends Classes_performenceFindUniqueArgs>(args: SelectSubset<T, Classes_performenceFindUniqueArgs<ExtArgs>>): Prisma__Classes_performenceClient<$Result.GetResult<Prisma.$Classes_performencePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends ClassesPerformenceFindUniqueArgs>(args: SelectSubset<T, ClassesPerformenceFindUniqueArgs<ExtArgs>>): Prisma__ClassesPerformenceClient<$Result.GetResult<Prisma.$ClassesPerformencePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Classes_performence that matches the filter or throw an error with `error.code='P2025'`
+     * Find one ClassesPerformence that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {Classes_performenceFindUniqueOrThrowArgs} args - Arguments to find a Classes_performence
+     * @param {ClassesPerformenceFindUniqueOrThrowArgs} args - Arguments to find a ClassesPerformence
      * @example
-     * // Get one Classes_performence
-     * const classes_performence = await prisma.classes_performence.findUniqueOrThrow({
+     * // Get one ClassesPerformence
+     * const classesPerformence = await prisma.classesPerformence.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends Classes_performenceFindUniqueOrThrowArgs>(args: SelectSubset<T, Classes_performenceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__Classes_performenceClient<$Result.GetResult<Prisma.$Classes_performencePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends ClassesPerformenceFindUniqueOrThrowArgs>(args: SelectSubset<T, ClassesPerformenceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ClassesPerformenceClient<$Result.GetResult<Prisma.$ClassesPerformencePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Classes_performence that matches the filter.
+     * Find the first ClassesPerformence that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Classes_performenceFindFirstArgs} args - Arguments to find a Classes_performence
+     * @param {ClassesPerformenceFindFirstArgs} args - Arguments to find a ClassesPerformence
      * @example
-     * // Get one Classes_performence
-     * const classes_performence = await prisma.classes_performence.findFirst({
+     * // Get one ClassesPerformence
+     * const classesPerformence = await prisma.classesPerformence.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends Classes_performenceFindFirstArgs>(args?: SelectSubset<T, Classes_performenceFindFirstArgs<ExtArgs>>): Prisma__Classes_performenceClient<$Result.GetResult<Prisma.$Classes_performencePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends ClassesPerformenceFindFirstArgs>(args?: SelectSubset<T, ClassesPerformenceFindFirstArgs<ExtArgs>>): Prisma__ClassesPerformenceClient<$Result.GetResult<Prisma.$ClassesPerformencePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Classes_performence that matches the filter or
+     * Find the first ClassesPerformence that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Classes_performenceFindFirstOrThrowArgs} args - Arguments to find a Classes_performence
+     * @param {ClassesPerformenceFindFirstOrThrowArgs} args - Arguments to find a ClassesPerformence
      * @example
-     * // Get one Classes_performence
-     * const classes_performence = await prisma.classes_performence.findFirstOrThrow({
+     * // Get one ClassesPerformence
+     * const classesPerformence = await prisma.classesPerformence.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends Classes_performenceFindFirstOrThrowArgs>(args?: SelectSubset<T, Classes_performenceFindFirstOrThrowArgs<ExtArgs>>): Prisma__Classes_performenceClient<$Result.GetResult<Prisma.$Classes_performencePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends ClassesPerformenceFindFirstOrThrowArgs>(args?: SelectSubset<T, ClassesPerformenceFindFirstOrThrowArgs<ExtArgs>>): Prisma__ClassesPerformenceClient<$Result.GetResult<Prisma.$ClassesPerformencePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Classes_performences that matches the filter.
+     * Find zero or more ClassesPerformences that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Classes_performenceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {ClassesPerformenceFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Classes_performences
-     * const classes_performences = await prisma.classes_performence.findMany()
+     * // Get all ClassesPerformences
+     * const classesPerformences = await prisma.classesPerformence.findMany()
      * 
-     * // Get first 10 Classes_performences
-     * const classes_performences = await prisma.classes_performence.findMany({ take: 10 })
+     * // Get first 10 ClassesPerformences
+     * const classesPerformences = await prisma.classesPerformence.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const classes_performenceWithIdOnly = await prisma.classes_performence.findMany({ select: { id: true } })
+     * const classesPerformenceWithIdOnly = await prisma.classesPerformence.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends Classes_performenceFindManyArgs>(args?: SelectSubset<T, Classes_performenceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Classes_performencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends ClassesPerformenceFindManyArgs>(args?: SelectSubset<T, ClassesPerformenceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassesPerformencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Classes_performence.
-     * @param {Classes_performenceCreateArgs} args - Arguments to create a Classes_performence.
+     * Create a ClassesPerformence.
+     * @param {ClassesPerformenceCreateArgs} args - Arguments to create a ClassesPerformence.
      * @example
-     * // Create one Classes_performence
-     * const Classes_performence = await prisma.classes_performence.create({
+     * // Create one ClassesPerformence
+     * const ClassesPerformence = await prisma.classesPerformence.create({
      *   data: {
-     *     // ... data to create a Classes_performence
+     *     // ... data to create a ClassesPerformence
      *   }
      * })
      * 
      */
-    create<T extends Classes_performenceCreateArgs>(args: SelectSubset<T, Classes_performenceCreateArgs<ExtArgs>>): Prisma__Classes_performenceClient<$Result.GetResult<Prisma.$Classes_performencePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends ClassesPerformenceCreateArgs>(args: SelectSubset<T, ClassesPerformenceCreateArgs<ExtArgs>>): Prisma__ClassesPerformenceClient<$Result.GetResult<Prisma.$ClassesPerformencePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Classes_performences.
-     * @param {Classes_performenceCreateManyArgs} args - Arguments to create many Classes_performences.
+     * Create many ClassesPerformences.
+     * @param {ClassesPerformenceCreateManyArgs} args - Arguments to create many ClassesPerformences.
      * @example
-     * // Create many Classes_performences
-     * const classes_performence = await prisma.classes_performence.createMany({
+     * // Create many ClassesPerformences
+     * const classesPerformence = await prisma.classesPerformence.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends Classes_performenceCreateManyArgs>(args?: SelectSubset<T, Classes_performenceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends ClassesPerformenceCreateManyArgs>(args?: SelectSubset<T, ClassesPerformenceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Classes_performences and returns the data saved in the database.
-     * @param {Classes_performenceCreateManyAndReturnArgs} args - Arguments to create many Classes_performences.
+     * Create many ClassesPerformences and returns the data saved in the database.
+     * @param {ClassesPerformenceCreateManyAndReturnArgs} args - Arguments to create many ClassesPerformences.
      * @example
-     * // Create many Classes_performences
-     * const classes_performence = await prisma.classes_performence.createManyAndReturn({
+     * // Create many ClassesPerformences
+     * const classesPerformence = await prisma.classesPerformence.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Classes_performences and only return the `id`
-     * const classes_performenceWithIdOnly = await prisma.classes_performence.createManyAndReturn({
+     * // Create many ClassesPerformences and only return the `id`
+     * const classesPerformenceWithIdOnly = await prisma.classesPerformence.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -18977,28 +18977,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends Classes_performenceCreateManyAndReturnArgs>(args?: SelectSubset<T, Classes_performenceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Classes_performencePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends ClassesPerformenceCreateManyAndReturnArgs>(args?: SelectSubset<T, ClassesPerformenceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassesPerformencePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Classes_performence.
-     * @param {Classes_performenceDeleteArgs} args - Arguments to delete one Classes_performence.
+     * Delete a ClassesPerformence.
+     * @param {ClassesPerformenceDeleteArgs} args - Arguments to delete one ClassesPerformence.
      * @example
-     * // Delete one Classes_performence
-     * const Classes_performence = await prisma.classes_performence.delete({
+     * // Delete one ClassesPerformence
+     * const ClassesPerformence = await prisma.classesPerformence.delete({
      *   where: {
-     *     // ... filter to delete one Classes_performence
+     *     // ... filter to delete one ClassesPerformence
      *   }
      * })
      * 
      */
-    delete<T extends Classes_performenceDeleteArgs>(args: SelectSubset<T, Classes_performenceDeleteArgs<ExtArgs>>): Prisma__Classes_performenceClient<$Result.GetResult<Prisma.$Classes_performencePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends ClassesPerformenceDeleteArgs>(args: SelectSubset<T, ClassesPerformenceDeleteArgs<ExtArgs>>): Prisma__ClassesPerformenceClient<$Result.GetResult<Prisma.$ClassesPerformencePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Classes_performence.
-     * @param {Classes_performenceUpdateArgs} args - Arguments to update one Classes_performence.
+     * Update one ClassesPerformence.
+     * @param {ClassesPerformenceUpdateArgs} args - Arguments to update one ClassesPerformence.
      * @example
-     * // Update one Classes_performence
-     * const classes_performence = await prisma.classes_performence.update({
+     * // Update one ClassesPerformence
+     * const classesPerformence = await prisma.classesPerformence.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -19008,30 +19008,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends Classes_performenceUpdateArgs>(args: SelectSubset<T, Classes_performenceUpdateArgs<ExtArgs>>): Prisma__Classes_performenceClient<$Result.GetResult<Prisma.$Classes_performencePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends ClassesPerformenceUpdateArgs>(args: SelectSubset<T, ClassesPerformenceUpdateArgs<ExtArgs>>): Prisma__ClassesPerformenceClient<$Result.GetResult<Prisma.$ClassesPerformencePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Classes_performences.
-     * @param {Classes_performenceDeleteManyArgs} args - Arguments to filter Classes_performences to delete.
+     * Delete zero or more ClassesPerformences.
+     * @param {ClassesPerformenceDeleteManyArgs} args - Arguments to filter ClassesPerformences to delete.
      * @example
-     * // Delete a few Classes_performences
-     * const { count } = await prisma.classes_performence.deleteMany({
+     * // Delete a few ClassesPerformences
+     * const { count } = await prisma.classesPerformence.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends Classes_performenceDeleteManyArgs>(args?: SelectSubset<T, Classes_performenceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends ClassesPerformenceDeleteManyArgs>(args?: SelectSubset<T, ClassesPerformenceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Classes_performences.
+     * Update zero or more ClassesPerformences.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Classes_performenceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {ClassesPerformenceUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Classes_performences
-     * const classes_performence = await prisma.classes_performence.updateMany({
+     * // Update many ClassesPerformences
+     * const classesPerformence = await prisma.classesPerformence.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -19041,14 +19041,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends Classes_performenceUpdateManyArgs>(args: SelectSubset<T, Classes_performenceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends ClassesPerformenceUpdateManyArgs>(args: SelectSubset<T, ClassesPerformenceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Classes_performences and returns the data updated in the database.
-     * @param {Classes_performenceUpdateManyAndReturnArgs} args - Arguments to update many Classes_performences.
+     * Update zero or more ClassesPerformences and returns the data updated in the database.
+     * @param {ClassesPerformenceUpdateManyAndReturnArgs} args - Arguments to update many ClassesPerformences.
      * @example
-     * // Update many Classes_performences
-     * const classes_performence = await prisma.classes_performence.updateManyAndReturn({
+     * // Update many ClassesPerformences
+     * const classesPerformence = await prisma.classesPerformence.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -19057,8 +19057,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Classes_performences and only return the `id`
-     * const classes_performenceWithIdOnly = await prisma.classes_performence.updateManyAndReturn({
+     * // Update zero or more ClassesPerformences and only return the `id`
+     * const classesPerformenceWithIdOnly = await prisma.classesPerformence.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -19071,56 +19071,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends Classes_performenceUpdateManyAndReturnArgs>(args: SelectSubset<T, Classes_performenceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Classes_performencePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends ClassesPerformenceUpdateManyAndReturnArgs>(args: SelectSubset<T, ClassesPerformenceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassesPerformencePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Classes_performence.
-     * @param {Classes_performenceUpsertArgs} args - Arguments to update or create a Classes_performence.
+     * Create or update one ClassesPerformence.
+     * @param {ClassesPerformenceUpsertArgs} args - Arguments to update or create a ClassesPerformence.
      * @example
-     * // Update or create a Classes_performence
-     * const classes_performence = await prisma.classes_performence.upsert({
+     * // Update or create a ClassesPerformence
+     * const classesPerformence = await prisma.classesPerformence.upsert({
      *   create: {
-     *     // ... data to create a Classes_performence
+     *     // ... data to create a ClassesPerformence
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Classes_performence we want to update
+     *     // ... the filter for the ClassesPerformence we want to update
      *   }
      * })
      */
-    upsert<T extends Classes_performenceUpsertArgs>(args: SelectSubset<T, Classes_performenceUpsertArgs<ExtArgs>>): Prisma__Classes_performenceClient<$Result.GetResult<Prisma.$Classes_performencePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends ClassesPerformenceUpsertArgs>(args: SelectSubset<T, ClassesPerformenceUpsertArgs<ExtArgs>>): Prisma__ClassesPerformenceClient<$Result.GetResult<Prisma.$ClassesPerformencePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Classes_performences.
+     * Count the number of ClassesPerformences.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Classes_performenceCountArgs} args - Arguments to filter Classes_performences to count.
+     * @param {ClassesPerformenceCountArgs} args - Arguments to filter ClassesPerformences to count.
      * @example
-     * // Count the number of Classes_performences
-     * const count = await prisma.classes_performence.count({
+     * // Count the number of ClassesPerformences
+     * const count = await prisma.classesPerformence.count({
      *   where: {
-     *     // ... the filter for the Classes_performences we want to count
+     *     // ... the filter for the ClassesPerformences we want to count
      *   }
      * })
     **/
-    count<T extends Classes_performenceCountArgs>(
-      args?: Subset<T, Classes_performenceCountArgs>,
+    count<T extends ClassesPerformenceCountArgs>(
+      args?: Subset<T, ClassesPerformenceCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], Classes_performenceCountAggregateOutputType>
+          : GetScalarType<T['select'], ClassesPerformenceCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Classes_performence.
+     * Allows you to perform aggregations operations on a ClassesPerformence.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Classes_performenceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {ClassesPerformenceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -19140,13 +19140,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends Classes_performenceAggregateArgs>(args: Subset<T, Classes_performenceAggregateArgs>): Prisma.PrismaPromise<GetClasses_performenceAggregateType<T>>
+    aggregate<T extends ClassesPerformenceAggregateArgs>(args: Subset<T, ClassesPerformenceAggregateArgs>): Prisma.PrismaPromise<GetClassesPerformenceAggregateType<T>>
 
     /**
-     * Group by Classes_performence.
+     * Group by ClassesPerformence.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Classes_performenceGroupByArgs} args - Group by arguments.
+     * @param {ClassesPerformenceGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -19161,14 +19161,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends Classes_performenceGroupByArgs,
+      T extends ClassesPerformenceGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: Classes_performenceGroupByArgs['orderBy'] }
-        : { orderBy?: Classes_performenceGroupByArgs['orderBy'] },
+        ? { orderBy: ClassesPerformenceGroupByArgs['orderBy'] }
+        : { orderBy?: ClassesPerformenceGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -19217,20 +19217,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, Classes_performenceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetClasses_performenceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, ClassesPerformenceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetClassesPerformenceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Classes_performence model
+   * Fields of the ClassesPerformence model
    */
-  readonly fields: Classes_performenceFieldRefs;
+  readonly fields: ClassesPerformenceFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Classes_performence.
+   * The delegate class that acts as a "Promise-like" for ClassesPerformence.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__Classes_performenceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__ClassesPerformenceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     class<T extends ClassesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClassesDefaultArgs<ExtArgs>>): Prisma__ClassesClient<$Result.GetResult<Prisma.$ClassesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
@@ -19259,434 +19259,434 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Classes_performence model
+   * Fields of the ClassesPerformence model
    */
-  interface Classes_performenceFieldRefs {
-    readonly id: FieldRef<"Classes_performence", 'String'>
-    readonly class_avg: FieldRef<"Classes_performence", 'Int'>
-    readonly highest_grade: FieldRef<"Classes_performence", 'Int'>
-    readonly lowest_grade: FieldRef<"Classes_performence", 'Int'>
-    readonly assignments_compleation_rate: FieldRef<"Classes_performence", 'Int'>
-    readonly attendence_rate: FieldRef<"Classes_performence", 'Int'>
-    readonly student_requiring_support: FieldRef<"Classes_performence", 'Int'>
-    readonly class_status: FieldRef<"Classes_performence", 'Status'>
-    readonly classId: FieldRef<"Classes_performence", 'String'>
+  interface ClassesPerformenceFieldRefs {
+    readonly id: FieldRef<"ClassesPerformence", 'String'>
+    readonly classAvg: FieldRef<"ClassesPerformence", 'Int'>
+    readonly highestGrade: FieldRef<"ClassesPerformence", 'Int'>
+    readonly lowestGrade: FieldRef<"ClassesPerformence", 'Int'>
+    readonly assignmentsCompleationRate: FieldRef<"ClassesPerformence", 'Int'>
+    readonly attendenceRate: FieldRef<"ClassesPerformence", 'Int'>
+    readonly studentRequiringSupport: FieldRef<"ClassesPerformence", 'Int'>
+    readonly classStatus: FieldRef<"ClassesPerformence", 'Status'>
+    readonly classId: FieldRef<"ClassesPerformence", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * Classes_performence findUnique
+   * ClassesPerformence findUnique
    */
-  export type Classes_performenceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassesPerformenceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Classes_performence
+     * Select specific fields to fetch from the ClassesPerformence
      */
-    select?: Classes_performenceSelect<ExtArgs> | null
+    select?: ClassesPerformenceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Classes_performence
+     * Omit specific fields from the ClassesPerformence
      */
-    omit?: Classes_performenceOmit<ExtArgs> | null
+    omit?: ClassesPerformenceOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Classes_performenceInclude<ExtArgs> | null
+    include?: ClassesPerformenceInclude<ExtArgs> | null
     /**
-     * Filter, which Classes_performence to fetch.
+     * Filter, which ClassesPerformence to fetch.
      */
-    where: Classes_performenceWhereUniqueInput
+    where: ClassesPerformenceWhereUniqueInput
   }
 
   /**
-   * Classes_performence findUniqueOrThrow
+   * ClassesPerformence findUniqueOrThrow
    */
-  export type Classes_performenceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassesPerformenceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Classes_performence
+     * Select specific fields to fetch from the ClassesPerformence
      */
-    select?: Classes_performenceSelect<ExtArgs> | null
+    select?: ClassesPerformenceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Classes_performence
+     * Omit specific fields from the ClassesPerformence
      */
-    omit?: Classes_performenceOmit<ExtArgs> | null
+    omit?: ClassesPerformenceOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Classes_performenceInclude<ExtArgs> | null
+    include?: ClassesPerformenceInclude<ExtArgs> | null
     /**
-     * Filter, which Classes_performence to fetch.
+     * Filter, which ClassesPerformence to fetch.
      */
-    where: Classes_performenceWhereUniqueInput
+    where: ClassesPerformenceWhereUniqueInput
   }
 
   /**
-   * Classes_performence findFirst
+   * ClassesPerformence findFirst
    */
-  export type Classes_performenceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassesPerformenceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Classes_performence
+     * Select specific fields to fetch from the ClassesPerformence
      */
-    select?: Classes_performenceSelect<ExtArgs> | null
+    select?: ClassesPerformenceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Classes_performence
+     * Omit specific fields from the ClassesPerformence
      */
-    omit?: Classes_performenceOmit<ExtArgs> | null
+    omit?: ClassesPerformenceOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Classes_performenceInclude<ExtArgs> | null
+    include?: ClassesPerformenceInclude<ExtArgs> | null
     /**
-     * Filter, which Classes_performence to fetch.
+     * Filter, which ClassesPerformence to fetch.
      */
-    where?: Classes_performenceWhereInput
+    where?: ClassesPerformenceWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Classes_performences to fetch.
+     * Determine the order of ClassesPerformences to fetch.
      */
-    orderBy?: Classes_performenceOrderByWithRelationInput | Classes_performenceOrderByWithRelationInput[]
+    orderBy?: ClassesPerformenceOrderByWithRelationInput | ClassesPerformenceOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Classes_performences.
+     * Sets the position for searching for ClassesPerformences.
      */
-    cursor?: Classes_performenceWhereUniqueInput
+    cursor?: ClassesPerformenceWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Classes_performences from the position of the cursor.
+     * Take `±n` ClassesPerformences from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Classes_performences.
+     * Skip the first `n` ClassesPerformences.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Classes_performences.
+     * Filter by unique combinations of ClassesPerformences.
      */
-    distinct?: Classes_performenceScalarFieldEnum | Classes_performenceScalarFieldEnum[]
+    distinct?: ClassesPerformenceScalarFieldEnum | ClassesPerformenceScalarFieldEnum[]
   }
 
   /**
-   * Classes_performence findFirstOrThrow
+   * ClassesPerformence findFirstOrThrow
    */
-  export type Classes_performenceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassesPerformenceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Classes_performence
+     * Select specific fields to fetch from the ClassesPerformence
      */
-    select?: Classes_performenceSelect<ExtArgs> | null
+    select?: ClassesPerformenceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Classes_performence
+     * Omit specific fields from the ClassesPerformence
      */
-    omit?: Classes_performenceOmit<ExtArgs> | null
+    omit?: ClassesPerformenceOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Classes_performenceInclude<ExtArgs> | null
+    include?: ClassesPerformenceInclude<ExtArgs> | null
     /**
-     * Filter, which Classes_performence to fetch.
+     * Filter, which ClassesPerformence to fetch.
      */
-    where?: Classes_performenceWhereInput
+    where?: ClassesPerformenceWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Classes_performences to fetch.
+     * Determine the order of ClassesPerformences to fetch.
      */
-    orderBy?: Classes_performenceOrderByWithRelationInput | Classes_performenceOrderByWithRelationInput[]
+    orderBy?: ClassesPerformenceOrderByWithRelationInput | ClassesPerformenceOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Classes_performences.
+     * Sets the position for searching for ClassesPerformences.
      */
-    cursor?: Classes_performenceWhereUniqueInput
+    cursor?: ClassesPerformenceWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Classes_performences from the position of the cursor.
+     * Take `±n` ClassesPerformences from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Classes_performences.
+     * Skip the first `n` ClassesPerformences.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Classes_performences.
+     * Filter by unique combinations of ClassesPerformences.
      */
-    distinct?: Classes_performenceScalarFieldEnum | Classes_performenceScalarFieldEnum[]
+    distinct?: ClassesPerformenceScalarFieldEnum | ClassesPerformenceScalarFieldEnum[]
   }
 
   /**
-   * Classes_performence findMany
+   * ClassesPerformence findMany
    */
-  export type Classes_performenceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassesPerformenceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Classes_performence
+     * Select specific fields to fetch from the ClassesPerformence
      */
-    select?: Classes_performenceSelect<ExtArgs> | null
+    select?: ClassesPerformenceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Classes_performence
+     * Omit specific fields from the ClassesPerformence
      */
-    omit?: Classes_performenceOmit<ExtArgs> | null
+    omit?: ClassesPerformenceOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Classes_performenceInclude<ExtArgs> | null
+    include?: ClassesPerformenceInclude<ExtArgs> | null
     /**
-     * Filter, which Classes_performences to fetch.
+     * Filter, which ClassesPerformences to fetch.
      */
-    where?: Classes_performenceWhereInput
+    where?: ClassesPerformenceWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Classes_performences to fetch.
+     * Determine the order of ClassesPerformences to fetch.
      */
-    orderBy?: Classes_performenceOrderByWithRelationInput | Classes_performenceOrderByWithRelationInput[]
+    orderBy?: ClassesPerformenceOrderByWithRelationInput | ClassesPerformenceOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Classes_performences.
+     * Sets the position for listing ClassesPerformences.
      */
-    cursor?: Classes_performenceWhereUniqueInput
+    cursor?: ClassesPerformenceWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Classes_performences from the position of the cursor.
+     * Take `±n` ClassesPerformences from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Classes_performences.
+     * Skip the first `n` ClassesPerformences.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Classes_performences.
+     * Filter by unique combinations of ClassesPerformences.
      */
-    distinct?: Classes_performenceScalarFieldEnum | Classes_performenceScalarFieldEnum[]
+    distinct?: ClassesPerformenceScalarFieldEnum | ClassesPerformenceScalarFieldEnum[]
   }
 
   /**
-   * Classes_performence create
+   * ClassesPerformence create
    */
-  export type Classes_performenceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassesPerformenceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Classes_performence
+     * Select specific fields to fetch from the ClassesPerformence
      */
-    select?: Classes_performenceSelect<ExtArgs> | null
+    select?: ClassesPerformenceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Classes_performence
+     * Omit specific fields from the ClassesPerformence
      */
-    omit?: Classes_performenceOmit<ExtArgs> | null
+    omit?: ClassesPerformenceOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Classes_performenceInclude<ExtArgs> | null
+    include?: ClassesPerformenceInclude<ExtArgs> | null
     /**
-     * The data needed to create a Classes_performence.
+     * The data needed to create a ClassesPerformence.
      */
-    data: XOR<Classes_performenceCreateInput, Classes_performenceUncheckedCreateInput>
+    data: XOR<ClassesPerformenceCreateInput, ClassesPerformenceUncheckedCreateInput>
   }
 
   /**
-   * Classes_performence createMany
+   * ClassesPerformence createMany
    */
-  export type Classes_performenceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassesPerformenceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Classes_performences.
+     * The data used to create many ClassesPerformences.
      */
-    data: Classes_performenceCreateManyInput | Classes_performenceCreateManyInput[]
+    data: ClassesPerformenceCreateManyInput | ClassesPerformenceCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Classes_performence createManyAndReturn
+   * ClassesPerformence createManyAndReturn
    */
-  export type Classes_performenceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassesPerformenceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Classes_performence
+     * Select specific fields to fetch from the ClassesPerformence
      */
-    select?: Classes_performenceSelectCreateManyAndReturn<ExtArgs> | null
+    select?: ClassesPerformenceSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Classes_performence
+     * Omit specific fields from the ClassesPerformence
      */
-    omit?: Classes_performenceOmit<ExtArgs> | null
+    omit?: ClassesPerformenceOmit<ExtArgs> | null
     /**
-     * The data used to create many Classes_performences.
+     * The data used to create many ClassesPerformences.
      */
-    data: Classes_performenceCreateManyInput | Classes_performenceCreateManyInput[]
+    data: ClassesPerformenceCreateManyInput | ClassesPerformenceCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Classes_performenceIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: ClassesPerformenceIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Classes_performence update
+   * ClassesPerformence update
    */
-  export type Classes_performenceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassesPerformenceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Classes_performence
+     * Select specific fields to fetch from the ClassesPerformence
      */
-    select?: Classes_performenceSelect<ExtArgs> | null
+    select?: ClassesPerformenceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Classes_performence
+     * Omit specific fields from the ClassesPerformence
      */
-    omit?: Classes_performenceOmit<ExtArgs> | null
+    omit?: ClassesPerformenceOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Classes_performenceInclude<ExtArgs> | null
+    include?: ClassesPerformenceInclude<ExtArgs> | null
     /**
-     * The data needed to update a Classes_performence.
+     * The data needed to update a ClassesPerformence.
      */
-    data: XOR<Classes_performenceUpdateInput, Classes_performenceUncheckedUpdateInput>
+    data: XOR<ClassesPerformenceUpdateInput, ClassesPerformenceUncheckedUpdateInput>
     /**
-     * Choose, which Classes_performence to update.
+     * Choose, which ClassesPerformence to update.
      */
-    where: Classes_performenceWhereUniqueInput
+    where: ClassesPerformenceWhereUniqueInput
   }
 
   /**
-   * Classes_performence updateMany
+   * ClassesPerformence updateMany
    */
-  export type Classes_performenceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassesPerformenceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Classes_performences.
+     * The data used to update ClassesPerformences.
      */
-    data: XOR<Classes_performenceUpdateManyMutationInput, Classes_performenceUncheckedUpdateManyInput>
+    data: XOR<ClassesPerformenceUpdateManyMutationInput, ClassesPerformenceUncheckedUpdateManyInput>
     /**
-     * Filter which Classes_performences to update
+     * Filter which ClassesPerformences to update
      */
-    where?: Classes_performenceWhereInput
+    where?: ClassesPerformenceWhereInput
     /**
-     * Limit how many Classes_performences to update.
+     * Limit how many ClassesPerformences to update.
      */
     limit?: number
   }
 
   /**
-   * Classes_performence updateManyAndReturn
+   * ClassesPerformence updateManyAndReturn
    */
-  export type Classes_performenceUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassesPerformenceUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Classes_performence
+     * Select specific fields to fetch from the ClassesPerformence
      */
-    select?: Classes_performenceSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: ClassesPerformenceSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Classes_performence
+     * Omit specific fields from the ClassesPerformence
      */
-    omit?: Classes_performenceOmit<ExtArgs> | null
+    omit?: ClassesPerformenceOmit<ExtArgs> | null
     /**
-     * The data used to update Classes_performences.
+     * The data used to update ClassesPerformences.
      */
-    data: XOR<Classes_performenceUpdateManyMutationInput, Classes_performenceUncheckedUpdateManyInput>
+    data: XOR<ClassesPerformenceUpdateManyMutationInput, ClassesPerformenceUncheckedUpdateManyInput>
     /**
-     * Filter which Classes_performences to update
+     * Filter which ClassesPerformences to update
      */
-    where?: Classes_performenceWhereInput
+    where?: ClassesPerformenceWhereInput
     /**
-     * Limit how many Classes_performences to update.
+     * Limit how many ClassesPerformences to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Classes_performenceIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: ClassesPerformenceIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Classes_performence upsert
+   * ClassesPerformence upsert
    */
-  export type Classes_performenceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassesPerformenceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Classes_performence
+     * Select specific fields to fetch from the ClassesPerformence
      */
-    select?: Classes_performenceSelect<ExtArgs> | null
+    select?: ClassesPerformenceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Classes_performence
+     * Omit specific fields from the ClassesPerformence
      */
-    omit?: Classes_performenceOmit<ExtArgs> | null
+    omit?: ClassesPerformenceOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Classes_performenceInclude<ExtArgs> | null
+    include?: ClassesPerformenceInclude<ExtArgs> | null
     /**
-     * The filter to search for the Classes_performence to update in case it exists.
+     * The filter to search for the ClassesPerformence to update in case it exists.
      */
-    where: Classes_performenceWhereUniqueInput
+    where: ClassesPerformenceWhereUniqueInput
     /**
-     * In case the Classes_performence found by the `where` argument doesn't exist, create a new Classes_performence with this data.
+     * In case the ClassesPerformence found by the `where` argument doesn't exist, create a new ClassesPerformence with this data.
      */
-    create: XOR<Classes_performenceCreateInput, Classes_performenceUncheckedCreateInput>
+    create: XOR<ClassesPerformenceCreateInput, ClassesPerformenceUncheckedCreateInput>
     /**
-     * In case the Classes_performence was found with the provided `where` argument, update it with this data.
+     * In case the ClassesPerformence was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<Classes_performenceUpdateInput, Classes_performenceUncheckedUpdateInput>
+    update: XOR<ClassesPerformenceUpdateInput, ClassesPerformenceUncheckedUpdateInput>
   }
 
   /**
-   * Classes_performence delete
+   * ClassesPerformence delete
    */
-  export type Classes_performenceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassesPerformenceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Classes_performence
+     * Select specific fields to fetch from the ClassesPerformence
      */
-    select?: Classes_performenceSelect<ExtArgs> | null
+    select?: ClassesPerformenceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Classes_performence
+     * Omit specific fields from the ClassesPerformence
      */
-    omit?: Classes_performenceOmit<ExtArgs> | null
+    omit?: ClassesPerformenceOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Classes_performenceInclude<ExtArgs> | null
+    include?: ClassesPerformenceInclude<ExtArgs> | null
     /**
-     * Filter which Classes_performence to delete.
+     * Filter which ClassesPerformence to delete.
      */
-    where: Classes_performenceWhereUniqueInput
+    where: ClassesPerformenceWhereUniqueInput
   }
 
   /**
-   * Classes_performence deleteMany
+   * ClassesPerformence deleteMany
    */
-  export type Classes_performenceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassesPerformenceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Classes_performences to delete
+     * Filter which ClassesPerformences to delete
      */
-    where?: Classes_performenceWhereInput
+    where?: ClassesPerformenceWhereInput
     /**
-     * Limit how many Classes_performences to delete.
+     * Limit how many ClassesPerformences to delete.
      */
     limit?: number
   }
 
   /**
-   * Classes_performence without action
+   * ClassesPerformence without action
    */
-  export type Classes_performenceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClassesPerformenceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Classes_performence
+     * Select specific fields to fetch from the ClassesPerformence
      */
-    select?: Classes_performenceSelect<ExtArgs> | null
+    select?: ClassesPerformenceSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Classes_performence
+     * Omit specific fields from the ClassesPerformence
      */
-    omit?: Classes_performenceOmit<ExtArgs> | null
+    omit?: ClassesPerformenceOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Classes_performenceInclude<ExtArgs> | null
+    include?: ClassesPerformenceInclude<ExtArgs> | null
   }
 
 
@@ -19703,36 +19703,36 @@ export namespace Prisma {
   }
 
   export type AttendencesAvgAggregateOutputType = {
-    attendance_percentage: number | null
+    attendancePercentage: number | null
   }
 
   export type AttendencesSumAggregateOutputType = {
-    attendance_percentage: number | null
+    attendancePercentage: number | null
   }
 
   export type AttendencesMinAggregateOutputType = {
     id: string | null
-    attendance_date: Date | null
-    attendance_status: string | null
-    attendance_percentage: number | null
+    attendanceDate: Date | null
+    attendanceStatus: string | null
+    attendancePercentage: number | null
     studentId: string | null
     subjectId: string | null
   }
 
   export type AttendencesMaxAggregateOutputType = {
     id: string | null
-    attendance_date: Date | null
-    attendance_status: string | null
-    attendance_percentage: number | null
+    attendanceDate: Date | null
+    attendanceStatus: string | null
+    attendancePercentage: number | null
     studentId: string | null
     subjectId: string | null
   }
 
   export type AttendencesCountAggregateOutputType = {
     id: number
-    attendance_date: number
-    attendance_status: number
-    attendance_percentage: number
+    attendanceDate: number
+    attendanceStatus: number
+    attendancePercentage: number
     studentId: number
     subjectId: number
     _all: number
@@ -19740,36 +19740,36 @@ export namespace Prisma {
 
 
   export type AttendencesAvgAggregateInputType = {
-    attendance_percentage?: true
+    attendancePercentage?: true
   }
 
   export type AttendencesSumAggregateInputType = {
-    attendance_percentage?: true
+    attendancePercentage?: true
   }
 
   export type AttendencesMinAggregateInputType = {
     id?: true
-    attendance_date?: true
-    attendance_status?: true
-    attendance_percentage?: true
+    attendanceDate?: true
+    attendanceStatus?: true
+    attendancePercentage?: true
     studentId?: true
     subjectId?: true
   }
 
   export type AttendencesMaxAggregateInputType = {
     id?: true
-    attendance_date?: true
-    attendance_status?: true
-    attendance_percentage?: true
+    attendanceDate?: true
+    attendanceStatus?: true
+    attendancePercentage?: true
     studentId?: true
     subjectId?: true
   }
 
   export type AttendencesCountAggregateInputType = {
     id?: true
-    attendance_date?: true
-    attendance_status?: true
-    attendance_percentage?: true
+    attendanceDate?: true
+    attendanceStatus?: true
+    attendancePercentage?: true
     studentId?: true
     subjectId?: true
     _all?: true
@@ -19863,9 +19863,9 @@ export namespace Prisma {
 
   export type AttendencesGroupByOutputType = {
     id: string
-    attendance_date: Date
-    attendance_status: string
-    attendance_percentage: number
+    attendanceDate: Date
+    attendanceStatus: string
+    attendancePercentage: number
     studentId: string
     subjectId: string
     _count: AttendencesCountAggregateOutputType | null
@@ -19891,9 +19891,9 @@ export namespace Prisma {
 
   export type AttendencesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    attendance_date?: boolean
-    attendance_status?: boolean
-    attendance_percentage?: boolean
+    attendanceDate?: boolean
+    attendanceStatus?: boolean
+    attendancePercentage?: boolean
     studentId?: boolean
     subjectId?: boolean
     student?: boolean | StudentDefaultArgs<ExtArgs>
@@ -19902,9 +19902,9 @@ export namespace Prisma {
 
   export type AttendencesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    attendance_date?: boolean
-    attendance_status?: boolean
-    attendance_percentage?: boolean
+    attendanceDate?: boolean
+    attendanceStatus?: boolean
+    attendancePercentage?: boolean
     studentId?: boolean
     subjectId?: boolean
     student?: boolean | StudentDefaultArgs<ExtArgs>
@@ -19913,9 +19913,9 @@ export namespace Prisma {
 
   export type AttendencesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    attendance_date?: boolean
-    attendance_status?: boolean
-    attendance_percentage?: boolean
+    attendanceDate?: boolean
+    attendanceStatus?: boolean
+    attendancePercentage?: boolean
     studentId?: boolean
     subjectId?: boolean
     student?: boolean | StudentDefaultArgs<ExtArgs>
@@ -19924,14 +19924,14 @@ export namespace Prisma {
 
   export type AttendencesSelectScalar = {
     id?: boolean
-    attendance_date?: boolean
-    attendance_status?: boolean
-    attendance_percentage?: boolean
+    attendanceDate?: boolean
+    attendanceStatus?: boolean
+    attendancePercentage?: boolean
     studentId?: boolean
     subjectId?: boolean
   }
 
-  export type AttendencesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "attendance_date" | "attendance_status" | "attendance_percentage" | "studentId" | "subjectId", ExtArgs["result"]["attendences"]>
+  export type AttendencesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "attendanceDate" | "attendanceStatus" | "attendancePercentage" | "studentId" | "subjectId", ExtArgs["result"]["attendences"]>
   export type AttendencesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     student?: boolean | StudentDefaultArgs<ExtArgs>
     subject?: boolean | SubjectsDefaultArgs<ExtArgs>
@@ -19953,9 +19953,9 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      attendance_date: Date
-      attendance_status: string
-      attendance_percentage: number
+      attendanceDate: Date
+      attendanceStatus: string
+      attendancePercentage: number
       studentId: string
       subjectId: string
     }, ExtArgs["result"]["attendences"]>
@@ -20384,9 +20384,9 @@ export namespace Prisma {
    */
   interface AttendencesFieldRefs {
     readonly id: FieldRef<"Attendences", 'String'>
-    readonly attendance_date: FieldRef<"Attendences", 'DateTime'>
-    readonly attendance_status: FieldRef<"Attendences", 'String'>
-    readonly attendance_percentage: FieldRef<"Attendences", 'Int'>
+    readonly attendanceDate: FieldRef<"Attendences", 'DateTime'>
+    readonly attendanceStatus: FieldRef<"Attendences", 'String'>
+    readonly attendancePercentage: FieldRef<"Attendences", 'Int'>
     readonly studentId: FieldRef<"Attendences", 'String'>
     readonly subjectId: FieldRef<"Attendences", 'String'>
   }
@@ -20809,26 +20809,26 @@ export namespace Prisma {
 
 
   /**
-   * Model Exam_submissions
+   * Model ExamSubmissions
    */
 
-  export type AggregateExam_submissions = {
-    _count: Exam_submissionsCountAggregateOutputType | null
-    _avg: Exam_submissionsAvgAggregateOutputType | null
-    _sum: Exam_submissionsSumAggregateOutputType | null
-    _min: Exam_submissionsMinAggregateOutputType | null
-    _max: Exam_submissionsMaxAggregateOutputType | null
+  export type AggregateExamSubmissions = {
+    _count: ExamSubmissionsCountAggregateOutputType | null
+    _avg: ExamSubmissionsAvgAggregateOutputType | null
+    _sum: ExamSubmissionsSumAggregateOutputType | null
+    _min: ExamSubmissionsMinAggregateOutputType | null
+    _max: ExamSubmissionsMaxAggregateOutputType | null
   }
 
-  export type Exam_submissionsAvgAggregateOutputType = {
+  export type ExamSubmissionsAvgAggregateOutputType = {
     score: number | null
   }
 
-  export type Exam_submissionsSumAggregateOutputType = {
+  export type ExamSubmissionsSumAggregateOutputType = {
     score: number | null
   }
 
-  export type Exam_submissionsMinAggregateOutputType = {
+  export type ExamSubmissionsMinAggregateOutputType = {
     id: string | null
     examId: string | null
     studentId: string | null
@@ -20836,7 +20836,7 @@ export namespace Prisma {
     takenAt: Date | null
   }
 
-  export type Exam_submissionsMaxAggregateOutputType = {
+  export type ExamSubmissionsMaxAggregateOutputType = {
     id: string | null
     examId: string | null
     studentId: string | null
@@ -20844,7 +20844,7 @@ export namespace Prisma {
     takenAt: Date | null
   }
 
-  export type Exam_submissionsCountAggregateOutputType = {
+  export type ExamSubmissionsCountAggregateOutputType = {
     id: number
     examId: number
     studentId: number
@@ -20854,15 +20854,15 @@ export namespace Prisma {
   }
 
 
-  export type Exam_submissionsAvgAggregateInputType = {
+  export type ExamSubmissionsAvgAggregateInputType = {
     score?: true
   }
 
-  export type Exam_submissionsSumAggregateInputType = {
+  export type ExamSubmissionsSumAggregateInputType = {
     score?: true
   }
 
-  export type Exam_submissionsMinAggregateInputType = {
+  export type ExamSubmissionsMinAggregateInputType = {
     id?: true
     examId?: true
     studentId?: true
@@ -20870,7 +20870,7 @@ export namespace Prisma {
     takenAt?: true
   }
 
-  export type Exam_submissionsMaxAggregateInputType = {
+  export type ExamSubmissionsMaxAggregateInputType = {
     id?: true
     examId?: true
     studentId?: true
@@ -20878,7 +20878,7 @@ export namespace Prisma {
     takenAt?: true
   }
 
-  export type Exam_submissionsCountAggregateInputType = {
+  export type ExamSubmissionsCountAggregateInputType = {
     id?: true
     examId?: true
     studentId?: true
@@ -20887,120 +20887,120 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type Exam_submissionsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ExamSubmissionsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Exam_submissions to aggregate.
+     * Filter which ExamSubmissions to aggregate.
      */
-    where?: Exam_submissionsWhereInput
+    where?: ExamSubmissionsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Exam_submissions to fetch.
+     * Determine the order of ExamSubmissions to fetch.
      */
-    orderBy?: Exam_submissionsOrderByWithRelationInput | Exam_submissionsOrderByWithRelationInput[]
+    orderBy?: ExamSubmissionsOrderByWithRelationInput | ExamSubmissionsOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: Exam_submissionsWhereUniqueInput
+    cursor?: ExamSubmissionsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Exam_submissions from the position of the cursor.
+     * Take `±n` ExamSubmissions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Exam_submissions.
+     * Skip the first `n` ExamSubmissions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Exam_submissions
+     * Count returned ExamSubmissions
     **/
-    _count?: true | Exam_submissionsCountAggregateInputType
+    _count?: true | ExamSubmissionsCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: Exam_submissionsAvgAggregateInputType
+    _avg?: ExamSubmissionsAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: Exam_submissionsSumAggregateInputType
+    _sum?: ExamSubmissionsSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: Exam_submissionsMinAggregateInputType
+    _min?: ExamSubmissionsMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: Exam_submissionsMaxAggregateInputType
+    _max?: ExamSubmissionsMaxAggregateInputType
   }
 
-  export type GetExam_submissionsAggregateType<T extends Exam_submissionsAggregateArgs> = {
-        [P in keyof T & keyof AggregateExam_submissions]: P extends '_count' | 'count'
+  export type GetExamSubmissionsAggregateType<T extends ExamSubmissionsAggregateArgs> = {
+        [P in keyof T & keyof AggregateExamSubmissions]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateExam_submissions[P]>
-      : GetScalarType<T[P], AggregateExam_submissions[P]>
+        : GetScalarType<T[P], AggregateExamSubmissions[P]>
+      : GetScalarType<T[P], AggregateExamSubmissions[P]>
   }
 
 
 
 
-  export type Exam_submissionsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: Exam_submissionsWhereInput
-    orderBy?: Exam_submissionsOrderByWithAggregationInput | Exam_submissionsOrderByWithAggregationInput[]
-    by: Exam_submissionsScalarFieldEnum[] | Exam_submissionsScalarFieldEnum
-    having?: Exam_submissionsScalarWhereWithAggregatesInput
+  export type ExamSubmissionsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExamSubmissionsWhereInput
+    orderBy?: ExamSubmissionsOrderByWithAggregationInput | ExamSubmissionsOrderByWithAggregationInput[]
+    by: ExamSubmissionsScalarFieldEnum[] | ExamSubmissionsScalarFieldEnum
+    having?: ExamSubmissionsScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: Exam_submissionsCountAggregateInputType | true
-    _avg?: Exam_submissionsAvgAggregateInputType
-    _sum?: Exam_submissionsSumAggregateInputType
-    _min?: Exam_submissionsMinAggregateInputType
-    _max?: Exam_submissionsMaxAggregateInputType
+    _count?: ExamSubmissionsCountAggregateInputType | true
+    _avg?: ExamSubmissionsAvgAggregateInputType
+    _sum?: ExamSubmissionsSumAggregateInputType
+    _min?: ExamSubmissionsMinAggregateInputType
+    _max?: ExamSubmissionsMaxAggregateInputType
   }
 
-  export type Exam_submissionsGroupByOutputType = {
+  export type ExamSubmissionsGroupByOutputType = {
     id: string
     examId: string
     studentId: string
     score: number | null
     takenAt: Date
-    _count: Exam_submissionsCountAggregateOutputType | null
-    _avg: Exam_submissionsAvgAggregateOutputType | null
-    _sum: Exam_submissionsSumAggregateOutputType | null
-    _min: Exam_submissionsMinAggregateOutputType | null
-    _max: Exam_submissionsMaxAggregateOutputType | null
+    _count: ExamSubmissionsCountAggregateOutputType | null
+    _avg: ExamSubmissionsAvgAggregateOutputType | null
+    _sum: ExamSubmissionsSumAggregateOutputType | null
+    _min: ExamSubmissionsMinAggregateOutputType | null
+    _max: ExamSubmissionsMaxAggregateOutputType | null
   }
 
-  type GetExam_submissionsGroupByPayload<T extends Exam_submissionsGroupByArgs> = Prisma.PrismaPromise<
+  type GetExamSubmissionsGroupByPayload<T extends ExamSubmissionsGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<Exam_submissionsGroupByOutputType, T['by']> &
+      PickEnumerable<ExamSubmissionsGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof Exam_submissionsGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof ExamSubmissionsGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], Exam_submissionsGroupByOutputType[P]>
-            : GetScalarType<T[P], Exam_submissionsGroupByOutputType[P]>
+              : GetScalarType<T[P], ExamSubmissionsGroupByOutputType[P]>
+            : GetScalarType<T[P], ExamSubmissionsGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type Exam_submissionsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ExamSubmissionsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     examId?: boolean
     studentId?: boolean
@@ -21008,9 +21008,9 @@ export namespace Prisma {
     takenAt?: boolean
     exam?: boolean | ExamsDefaultArgs<ExtArgs>
     student?: boolean | StudentDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["exam_submissions"]>
+  }, ExtArgs["result"]["examSubmissions"]>
 
-  export type Exam_submissionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ExamSubmissionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     examId?: boolean
     studentId?: boolean
@@ -21018,9 +21018,9 @@ export namespace Prisma {
     takenAt?: boolean
     exam?: boolean | ExamsDefaultArgs<ExtArgs>
     student?: boolean | StudentDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["exam_submissions"]>
+  }, ExtArgs["result"]["examSubmissions"]>
 
-  export type Exam_submissionsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ExamSubmissionsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     examId?: boolean
     studentId?: boolean
@@ -21028,9 +21028,9 @@ export namespace Prisma {
     takenAt?: boolean
     exam?: boolean | ExamsDefaultArgs<ExtArgs>
     student?: boolean | StudentDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["exam_submissions"]>
+  }, ExtArgs["result"]["examSubmissions"]>
 
-  export type Exam_submissionsSelectScalar = {
+  export type ExamSubmissionsSelectScalar = {
     id?: boolean
     examId?: boolean
     studentId?: boolean
@@ -21038,22 +21038,22 @@ export namespace Prisma {
     takenAt?: boolean
   }
 
-  export type Exam_submissionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "examId" | "studentId" | "score" | "takenAt", ExtArgs["result"]["exam_submissions"]>
-  export type Exam_submissionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ExamSubmissionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "examId" | "studentId" | "score" | "takenAt", ExtArgs["result"]["examSubmissions"]>
+  export type ExamSubmissionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     exam?: boolean | ExamsDefaultArgs<ExtArgs>
     student?: boolean | StudentDefaultArgs<ExtArgs>
   }
-  export type Exam_submissionsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ExamSubmissionsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     exam?: boolean | ExamsDefaultArgs<ExtArgs>
     student?: boolean | StudentDefaultArgs<ExtArgs>
   }
-  export type Exam_submissionsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ExamSubmissionsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     exam?: boolean | ExamsDefaultArgs<ExtArgs>
     student?: boolean | StudentDefaultArgs<ExtArgs>
   }
 
-  export type $Exam_submissionsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Exam_submissions"
+  export type $ExamSubmissionsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ExamSubmissions"
     objects: {
       exam: Prisma.$ExamsPayload<ExtArgs>
       student: Prisma.$StudentPayload<ExtArgs>
@@ -21064,136 +21064,136 @@ export namespace Prisma {
       studentId: string
       score: number | null
       takenAt: Date
-    }, ExtArgs["result"]["exam_submissions"]>
+    }, ExtArgs["result"]["examSubmissions"]>
     composites: {}
   }
 
-  type Exam_submissionsGetPayload<S extends boolean | null | undefined | Exam_submissionsDefaultArgs> = $Result.GetResult<Prisma.$Exam_submissionsPayload, S>
+  type ExamSubmissionsGetPayload<S extends boolean | null | undefined | ExamSubmissionsDefaultArgs> = $Result.GetResult<Prisma.$ExamSubmissionsPayload, S>
 
-  type Exam_submissionsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<Exam_submissionsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: Exam_submissionsCountAggregateInputType | true
+  type ExamSubmissionsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ExamSubmissionsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ExamSubmissionsCountAggregateInputType | true
     }
 
-  export interface Exam_submissionsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Exam_submissions'], meta: { name: 'Exam_submissions' } }
+  export interface ExamSubmissionsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ExamSubmissions'], meta: { name: 'ExamSubmissions' } }
     /**
-     * Find zero or one Exam_submissions that matches the filter.
-     * @param {Exam_submissionsFindUniqueArgs} args - Arguments to find a Exam_submissions
+     * Find zero or one ExamSubmissions that matches the filter.
+     * @param {ExamSubmissionsFindUniqueArgs} args - Arguments to find a ExamSubmissions
      * @example
-     * // Get one Exam_submissions
-     * const exam_submissions = await prisma.exam_submissions.findUnique({
+     * // Get one ExamSubmissions
+     * const examSubmissions = await prisma.examSubmissions.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends Exam_submissionsFindUniqueArgs>(args: SelectSubset<T, Exam_submissionsFindUniqueArgs<ExtArgs>>): Prisma__Exam_submissionsClient<$Result.GetResult<Prisma.$Exam_submissionsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends ExamSubmissionsFindUniqueArgs>(args: SelectSubset<T, ExamSubmissionsFindUniqueArgs<ExtArgs>>): Prisma__ExamSubmissionsClient<$Result.GetResult<Prisma.$ExamSubmissionsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Exam_submissions that matches the filter or throw an error with `error.code='P2025'`
+     * Find one ExamSubmissions that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {Exam_submissionsFindUniqueOrThrowArgs} args - Arguments to find a Exam_submissions
+     * @param {ExamSubmissionsFindUniqueOrThrowArgs} args - Arguments to find a ExamSubmissions
      * @example
-     * // Get one Exam_submissions
-     * const exam_submissions = await prisma.exam_submissions.findUniqueOrThrow({
+     * // Get one ExamSubmissions
+     * const examSubmissions = await prisma.examSubmissions.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends Exam_submissionsFindUniqueOrThrowArgs>(args: SelectSubset<T, Exam_submissionsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__Exam_submissionsClient<$Result.GetResult<Prisma.$Exam_submissionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends ExamSubmissionsFindUniqueOrThrowArgs>(args: SelectSubset<T, ExamSubmissionsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ExamSubmissionsClient<$Result.GetResult<Prisma.$ExamSubmissionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Exam_submissions that matches the filter.
+     * Find the first ExamSubmissions that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Exam_submissionsFindFirstArgs} args - Arguments to find a Exam_submissions
+     * @param {ExamSubmissionsFindFirstArgs} args - Arguments to find a ExamSubmissions
      * @example
-     * // Get one Exam_submissions
-     * const exam_submissions = await prisma.exam_submissions.findFirst({
+     * // Get one ExamSubmissions
+     * const examSubmissions = await prisma.examSubmissions.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends Exam_submissionsFindFirstArgs>(args?: SelectSubset<T, Exam_submissionsFindFirstArgs<ExtArgs>>): Prisma__Exam_submissionsClient<$Result.GetResult<Prisma.$Exam_submissionsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends ExamSubmissionsFindFirstArgs>(args?: SelectSubset<T, ExamSubmissionsFindFirstArgs<ExtArgs>>): Prisma__ExamSubmissionsClient<$Result.GetResult<Prisma.$ExamSubmissionsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Exam_submissions that matches the filter or
+     * Find the first ExamSubmissions that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Exam_submissionsFindFirstOrThrowArgs} args - Arguments to find a Exam_submissions
+     * @param {ExamSubmissionsFindFirstOrThrowArgs} args - Arguments to find a ExamSubmissions
      * @example
-     * // Get one Exam_submissions
-     * const exam_submissions = await prisma.exam_submissions.findFirstOrThrow({
+     * // Get one ExamSubmissions
+     * const examSubmissions = await prisma.examSubmissions.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends Exam_submissionsFindFirstOrThrowArgs>(args?: SelectSubset<T, Exam_submissionsFindFirstOrThrowArgs<ExtArgs>>): Prisma__Exam_submissionsClient<$Result.GetResult<Prisma.$Exam_submissionsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends ExamSubmissionsFindFirstOrThrowArgs>(args?: SelectSubset<T, ExamSubmissionsFindFirstOrThrowArgs<ExtArgs>>): Prisma__ExamSubmissionsClient<$Result.GetResult<Prisma.$ExamSubmissionsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Exam_submissions that matches the filter.
+     * Find zero or more ExamSubmissions that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Exam_submissionsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {ExamSubmissionsFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Exam_submissions
-     * const exam_submissions = await prisma.exam_submissions.findMany()
+     * // Get all ExamSubmissions
+     * const examSubmissions = await prisma.examSubmissions.findMany()
      * 
-     * // Get first 10 Exam_submissions
-     * const exam_submissions = await prisma.exam_submissions.findMany({ take: 10 })
+     * // Get first 10 ExamSubmissions
+     * const examSubmissions = await prisma.examSubmissions.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const exam_submissionsWithIdOnly = await prisma.exam_submissions.findMany({ select: { id: true } })
+     * const examSubmissionsWithIdOnly = await prisma.examSubmissions.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends Exam_submissionsFindManyArgs>(args?: SelectSubset<T, Exam_submissionsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Exam_submissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends ExamSubmissionsFindManyArgs>(args?: SelectSubset<T, ExamSubmissionsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamSubmissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Exam_submissions.
-     * @param {Exam_submissionsCreateArgs} args - Arguments to create a Exam_submissions.
+     * Create a ExamSubmissions.
+     * @param {ExamSubmissionsCreateArgs} args - Arguments to create a ExamSubmissions.
      * @example
-     * // Create one Exam_submissions
-     * const Exam_submissions = await prisma.exam_submissions.create({
+     * // Create one ExamSubmissions
+     * const ExamSubmissions = await prisma.examSubmissions.create({
      *   data: {
-     *     // ... data to create a Exam_submissions
+     *     // ... data to create a ExamSubmissions
      *   }
      * })
      * 
      */
-    create<T extends Exam_submissionsCreateArgs>(args: SelectSubset<T, Exam_submissionsCreateArgs<ExtArgs>>): Prisma__Exam_submissionsClient<$Result.GetResult<Prisma.$Exam_submissionsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends ExamSubmissionsCreateArgs>(args: SelectSubset<T, ExamSubmissionsCreateArgs<ExtArgs>>): Prisma__ExamSubmissionsClient<$Result.GetResult<Prisma.$ExamSubmissionsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Exam_submissions.
-     * @param {Exam_submissionsCreateManyArgs} args - Arguments to create many Exam_submissions.
+     * Create many ExamSubmissions.
+     * @param {ExamSubmissionsCreateManyArgs} args - Arguments to create many ExamSubmissions.
      * @example
-     * // Create many Exam_submissions
-     * const exam_submissions = await prisma.exam_submissions.createMany({
+     * // Create many ExamSubmissions
+     * const examSubmissions = await prisma.examSubmissions.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends Exam_submissionsCreateManyArgs>(args?: SelectSubset<T, Exam_submissionsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends ExamSubmissionsCreateManyArgs>(args?: SelectSubset<T, ExamSubmissionsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Exam_submissions and returns the data saved in the database.
-     * @param {Exam_submissionsCreateManyAndReturnArgs} args - Arguments to create many Exam_submissions.
+     * Create many ExamSubmissions and returns the data saved in the database.
+     * @param {ExamSubmissionsCreateManyAndReturnArgs} args - Arguments to create many ExamSubmissions.
      * @example
-     * // Create many Exam_submissions
-     * const exam_submissions = await prisma.exam_submissions.createManyAndReturn({
+     * // Create many ExamSubmissions
+     * const examSubmissions = await prisma.examSubmissions.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Exam_submissions and only return the `id`
-     * const exam_submissionsWithIdOnly = await prisma.exam_submissions.createManyAndReturn({
+     * // Create many ExamSubmissions and only return the `id`
+     * const examSubmissionsWithIdOnly = await prisma.examSubmissions.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -21203,28 +21203,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends Exam_submissionsCreateManyAndReturnArgs>(args?: SelectSubset<T, Exam_submissionsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Exam_submissionsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends ExamSubmissionsCreateManyAndReturnArgs>(args?: SelectSubset<T, ExamSubmissionsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamSubmissionsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Exam_submissions.
-     * @param {Exam_submissionsDeleteArgs} args - Arguments to delete one Exam_submissions.
+     * Delete a ExamSubmissions.
+     * @param {ExamSubmissionsDeleteArgs} args - Arguments to delete one ExamSubmissions.
      * @example
-     * // Delete one Exam_submissions
-     * const Exam_submissions = await prisma.exam_submissions.delete({
+     * // Delete one ExamSubmissions
+     * const ExamSubmissions = await prisma.examSubmissions.delete({
      *   where: {
-     *     // ... filter to delete one Exam_submissions
+     *     // ... filter to delete one ExamSubmissions
      *   }
      * })
      * 
      */
-    delete<T extends Exam_submissionsDeleteArgs>(args: SelectSubset<T, Exam_submissionsDeleteArgs<ExtArgs>>): Prisma__Exam_submissionsClient<$Result.GetResult<Prisma.$Exam_submissionsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends ExamSubmissionsDeleteArgs>(args: SelectSubset<T, ExamSubmissionsDeleteArgs<ExtArgs>>): Prisma__ExamSubmissionsClient<$Result.GetResult<Prisma.$ExamSubmissionsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Exam_submissions.
-     * @param {Exam_submissionsUpdateArgs} args - Arguments to update one Exam_submissions.
+     * Update one ExamSubmissions.
+     * @param {ExamSubmissionsUpdateArgs} args - Arguments to update one ExamSubmissions.
      * @example
-     * // Update one Exam_submissions
-     * const exam_submissions = await prisma.exam_submissions.update({
+     * // Update one ExamSubmissions
+     * const examSubmissions = await prisma.examSubmissions.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -21234,30 +21234,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends Exam_submissionsUpdateArgs>(args: SelectSubset<T, Exam_submissionsUpdateArgs<ExtArgs>>): Prisma__Exam_submissionsClient<$Result.GetResult<Prisma.$Exam_submissionsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends ExamSubmissionsUpdateArgs>(args: SelectSubset<T, ExamSubmissionsUpdateArgs<ExtArgs>>): Prisma__ExamSubmissionsClient<$Result.GetResult<Prisma.$ExamSubmissionsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Exam_submissions.
-     * @param {Exam_submissionsDeleteManyArgs} args - Arguments to filter Exam_submissions to delete.
+     * Delete zero or more ExamSubmissions.
+     * @param {ExamSubmissionsDeleteManyArgs} args - Arguments to filter ExamSubmissions to delete.
      * @example
-     * // Delete a few Exam_submissions
-     * const { count } = await prisma.exam_submissions.deleteMany({
+     * // Delete a few ExamSubmissions
+     * const { count } = await prisma.examSubmissions.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends Exam_submissionsDeleteManyArgs>(args?: SelectSubset<T, Exam_submissionsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends ExamSubmissionsDeleteManyArgs>(args?: SelectSubset<T, ExamSubmissionsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Exam_submissions.
+     * Update zero or more ExamSubmissions.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Exam_submissionsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {ExamSubmissionsUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Exam_submissions
-     * const exam_submissions = await prisma.exam_submissions.updateMany({
+     * // Update many ExamSubmissions
+     * const examSubmissions = await prisma.examSubmissions.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -21267,14 +21267,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends Exam_submissionsUpdateManyArgs>(args: SelectSubset<T, Exam_submissionsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends ExamSubmissionsUpdateManyArgs>(args: SelectSubset<T, ExamSubmissionsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Exam_submissions and returns the data updated in the database.
-     * @param {Exam_submissionsUpdateManyAndReturnArgs} args - Arguments to update many Exam_submissions.
+     * Update zero or more ExamSubmissions and returns the data updated in the database.
+     * @param {ExamSubmissionsUpdateManyAndReturnArgs} args - Arguments to update many ExamSubmissions.
      * @example
-     * // Update many Exam_submissions
-     * const exam_submissions = await prisma.exam_submissions.updateManyAndReturn({
+     * // Update many ExamSubmissions
+     * const examSubmissions = await prisma.examSubmissions.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -21283,8 +21283,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Exam_submissions and only return the `id`
-     * const exam_submissionsWithIdOnly = await prisma.exam_submissions.updateManyAndReturn({
+     * // Update zero or more ExamSubmissions and only return the `id`
+     * const examSubmissionsWithIdOnly = await prisma.examSubmissions.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -21297,56 +21297,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends Exam_submissionsUpdateManyAndReturnArgs>(args: SelectSubset<T, Exam_submissionsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Exam_submissionsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends ExamSubmissionsUpdateManyAndReturnArgs>(args: SelectSubset<T, ExamSubmissionsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamSubmissionsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Exam_submissions.
-     * @param {Exam_submissionsUpsertArgs} args - Arguments to update or create a Exam_submissions.
+     * Create or update one ExamSubmissions.
+     * @param {ExamSubmissionsUpsertArgs} args - Arguments to update or create a ExamSubmissions.
      * @example
-     * // Update or create a Exam_submissions
-     * const exam_submissions = await prisma.exam_submissions.upsert({
+     * // Update or create a ExamSubmissions
+     * const examSubmissions = await prisma.examSubmissions.upsert({
      *   create: {
-     *     // ... data to create a Exam_submissions
+     *     // ... data to create a ExamSubmissions
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Exam_submissions we want to update
+     *     // ... the filter for the ExamSubmissions we want to update
      *   }
      * })
      */
-    upsert<T extends Exam_submissionsUpsertArgs>(args: SelectSubset<T, Exam_submissionsUpsertArgs<ExtArgs>>): Prisma__Exam_submissionsClient<$Result.GetResult<Prisma.$Exam_submissionsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends ExamSubmissionsUpsertArgs>(args: SelectSubset<T, ExamSubmissionsUpsertArgs<ExtArgs>>): Prisma__ExamSubmissionsClient<$Result.GetResult<Prisma.$ExamSubmissionsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Exam_submissions.
+     * Count the number of ExamSubmissions.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Exam_submissionsCountArgs} args - Arguments to filter Exam_submissions to count.
+     * @param {ExamSubmissionsCountArgs} args - Arguments to filter ExamSubmissions to count.
      * @example
-     * // Count the number of Exam_submissions
-     * const count = await prisma.exam_submissions.count({
+     * // Count the number of ExamSubmissions
+     * const count = await prisma.examSubmissions.count({
      *   where: {
-     *     // ... the filter for the Exam_submissions we want to count
+     *     // ... the filter for the ExamSubmissions we want to count
      *   }
      * })
     **/
-    count<T extends Exam_submissionsCountArgs>(
-      args?: Subset<T, Exam_submissionsCountArgs>,
+    count<T extends ExamSubmissionsCountArgs>(
+      args?: Subset<T, ExamSubmissionsCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], Exam_submissionsCountAggregateOutputType>
+          : GetScalarType<T['select'], ExamSubmissionsCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Exam_submissions.
+     * Allows you to perform aggregations operations on a ExamSubmissions.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Exam_submissionsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {ExamSubmissionsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -21366,13 +21366,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends Exam_submissionsAggregateArgs>(args: Subset<T, Exam_submissionsAggregateArgs>): Prisma.PrismaPromise<GetExam_submissionsAggregateType<T>>
+    aggregate<T extends ExamSubmissionsAggregateArgs>(args: Subset<T, ExamSubmissionsAggregateArgs>): Prisma.PrismaPromise<GetExamSubmissionsAggregateType<T>>
 
     /**
-     * Group by Exam_submissions.
+     * Group by ExamSubmissions.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Exam_submissionsGroupByArgs} args - Group by arguments.
+     * @param {ExamSubmissionsGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -21387,14 +21387,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends Exam_submissionsGroupByArgs,
+      T extends ExamSubmissionsGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: Exam_submissionsGroupByArgs['orderBy'] }
-        : { orderBy?: Exam_submissionsGroupByArgs['orderBy'] },
+        ? { orderBy: ExamSubmissionsGroupByArgs['orderBy'] }
+        : { orderBy?: ExamSubmissionsGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -21443,20 +21443,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, Exam_submissionsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetExam_submissionsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, ExamSubmissionsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetExamSubmissionsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Exam_submissions model
+   * Fields of the ExamSubmissions model
    */
-  readonly fields: Exam_submissionsFieldRefs;
+  readonly fields: ExamSubmissionsFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Exam_submissions.
+   * The delegate class that acts as a "Promise-like" for ExamSubmissions.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__Exam_submissionsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__ExamSubmissionsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     exam<T extends ExamsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ExamsDefaultArgs<ExtArgs>>): Prisma__ExamsClient<$Result.GetResult<Prisma.$ExamsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     student<T extends StudentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentDefaultArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
@@ -21486,430 +21486,430 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Exam_submissions model
+   * Fields of the ExamSubmissions model
    */
-  interface Exam_submissionsFieldRefs {
-    readonly id: FieldRef<"Exam_submissions", 'String'>
-    readonly examId: FieldRef<"Exam_submissions", 'String'>
-    readonly studentId: FieldRef<"Exam_submissions", 'String'>
-    readonly score: FieldRef<"Exam_submissions", 'Int'>
-    readonly takenAt: FieldRef<"Exam_submissions", 'DateTime'>
+  interface ExamSubmissionsFieldRefs {
+    readonly id: FieldRef<"ExamSubmissions", 'String'>
+    readonly examId: FieldRef<"ExamSubmissions", 'String'>
+    readonly studentId: FieldRef<"ExamSubmissions", 'String'>
+    readonly score: FieldRef<"ExamSubmissions", 'Int'>
+    readonly takenAt: FieldRef<"ExamSubmissions", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * Exam_submissions findUnique
+   * ExamSubmissions findUnique
    */
-  export type Exam_submissionsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ExamSubmissionsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Exam_submissions
+     * Select specific fields to fetch from the ExamSubmissions
      */
-    select?: Exam_submissionsSelect<ExtArgs> | null
+    select?: ExamSubmissionsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Exam_submissions
+     * Omit specific fields from the ExamSubmissions
      */
-    omit?: Exam_submissionsOmit<ExtArgs> | null
+    omit?: ExamSubmissionsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Exam_submissionsInclude<ExtArgs> | null
+    include?: ExamSubmissionsInclude<ExtArgs> | null
     /**
-     * Filter, which Exam_submissions to fetch.
+     * Filter, which ExamSubmissions to fetch.
      */
-    where: Exam_submissionsWhereUniqueInput
+    where: ExamSubmissionsWhereUniqueInput
   }
 
   /**
-   * Exam_submissions findUniqueOrThrow
+   * ExamSubmissions findUniqueOrThrow
    */
-  export type Exam_submissionsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ExamSubmissionsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Exam_submissions
+     * Select specific fields to fetch from the ExamSubmissions
      */
-    select?: Exam_submissionsSelect<ExtArgs> | null
+    select?: ExamSubmissionsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Exam_submissions
+     * Omit specific fields from the ExamSubmissions
      */
-    omit?: Exam_submissionsOmit<ExtArgs> | null
+    omit?: ExamSubmissionsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Exam_submissionsInclude<ExtArgs> | null
+    include?: ExamSubmissionsInclude<ExtArgs> | null
     /**
-     * Filter, which Exam_submissions to fetch.
+     * Filter, which ExamSubmissions to fetch.
      */
-    where: Exam_submissionsWhereUniqueInput
+    where: ExamSubmissionsWhereUniqueInput
   }
 
   /**
-   * Exam_submissions findFirst
+   * ExamSubmissions findFirst
    */
-  export type Exam_submissionsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ExamSubmissionsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Exam_submissions
+     * Select specific fields to fetch from the ExamSubmissions
      */
-    select?: Exam_submissionsSelect<ExtArgs> | null
+    select?: ExamSubmissionsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Exam_submissions
+     * Omit specific fields from the ExamSubmissions
      */
-    omit?: Exam_submissionsOmit<ExtArgs> | null
+    omit?: ExamSubmissionsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Exam_submissionsInclude<ExtArgs> | null
+    include?: ExamSubmissionsInclude<ExtArgs> | null
     /**
-     * Filter, which Exam_submissions to fetch.
+     * Filter, which ExamSubmissions to fetch.
      */
-    where?: Exam_submissionsWhereInput
+    where?: ExamSubmissionsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Exam_submissions to fetch.
+     * Determine the order of ExamSubmissions to fetch.
      */
-    orderBy?: Exam_submissionsOrderByWithRelationInput | Exam_submissionsOrderByWithRelationInput[]
+    orderBy?: ExamSubmissionsOrderByWithRelationInput | ExamSubmissionsOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Exam_submissions.
+     * Sets the position for searching for ExamSubmissions.
      */
-    cursor?: Exam_submissionsWhereUniqueInput
+    cursor?: ExamSubmissionsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Exam_submissions from the position of the cursor.
+     * Take `±n` ExamSubmissions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Exam_submissions.
+     * Skip the first `n` ExamSubmissions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Exam_submissions.
+     * Filter by unique combinations of ExamSubmissions.
      */
-    distinct?: Exam_submissionsScalarFieldEnum | Exam_submissionsScalarFieldEnum[]
+    distinct?: ExamSubmissionsScalarFieldEnum | ExamSubmissionsScalarFieldEnum[]
   }
 
   /**
-   * Exam_submissions findFirstOrThrow
+   * ExamSubmissions findFirstOrThrow
    */
-  export type Exam_submissionsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ExamSubmissionsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Exam_submissions
+     * Select specific fields to fetch from the ExamSubmissions
      */
-    select?: Exam_submissionsSelect<ExtArgs> | null
+    select?: ExamSubmissionsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Exam_submissions
+     * Omit specific fields from the ExamSubmissions
      */
-    omit?: Exam_submissionsOmit<ExtArgs> | null
+    omit?: ExamSubmissionsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Exam_submissionsInclude<ExtArgs> | null
+    include?: ExamSubmissionsInclude<ExtArgs> | null
     /**
-     * Filter, which Exam_submissions to fetch.
+     * Filter, which ExamSubmissions to fetch.
      */
-    where?: Exam_submissionsWhereInput
+    where?: ExamSubmissionsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Exam_submissions to fetch.
+     * Determine the order of ExamSubmissions to fetch.
      */
-    orderBy?: Exam_submissionsOrderByWithRelationInput | Exam_submissionsOrderByWithRelationInput[]
+    orderBy?: ExamSubmissionsOrderByWithRelationInput | ExamSubmissionsOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Exam_submissions.
+     * Sets the position for searching for ExamSubmissions.
      */
-    cursor?: Exam_submissionsWhereUniqueInput
+    cursor?: ExamSubmissionsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Exam_submissions from the position of the cursor.
+     * Take `±n` ExamSubmissions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Exam_submissions.
+     * Skip the first `n` ExamSubmissions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Exam_submissions.
+     * Filter by unique combinations of ExamSubmissions.
      */
-    distinct?: Exam_submissionsScalarFieldEnum | Exam_submissionsScalarFieldEnum[]
+    distinct?: ExamSubmissionsScalarFieldEnum | ExamSubmissionsScalarFieldEnum[]
   }
 
   /**
-   * Exam_submissions findMany
+   * ExamSubmissions findMany
    */
-  export type Exam_submissionsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ExamSubmissionsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Exam_submissions
+     * Select specific fields to fetch from the ExamSubmissions
      */
-    select?: Exam_submissionsSelect<ExtArgs> | null
+    select?: ExamSubmissionsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Exam_submissions
+     * Omit specific fields from the ExamSubmissions
      */
-    omit?: Exam_submissionsOmit<ExtArgs> | null
+    omit?: ExamSubmissionsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Exam_submissionsInclude<ExtArgs> | null
+    include?: ExamSubmissionsInclude<ExtArgs> | null
     /**
-     * Filter, which Exam_submissions to fetch.
+     * Filter, which ExamSubmissions to fetch.
      */
-    where?: Exam_submissionsWhereInput
+    where?: ExamSubmissionsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Exam_submissions to fetch.
+     * Determine the order of ExamSubmissions to fetch.
      */
-    orderBy?: Exam_submissionsOrderByWithRelationInput | Exam_submissionsOrderByWithRelationInput[]
+    orderBy?: ExamSubmissionsOrderByWithRelationInput | ExamSubmissionsOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Exam_submissions.
+     * Sets the position for listing ExamSubmissions.
      */
-    cursor?: Exam_submissionsWhereUniqueInput
+    cursor?: ExamSubmissionsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Exam_submissions from the position of the cursor.
+     * Take `±n` ExamSubmissions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Exam_submissions.
+     * Skip the first `n` ExamSubmissions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Exam_submissions.
+     * Filter by unique combinations of ExamSubmissions.
      */
-    distinct?: Exam_submissionsScalarFieldEnum | Exam_submissionsScalarFieldEnum[]
+    distinct?: ExamSubmissionsScalarFieldEnum | ExamSubmissionsScalarFieldEnum[]
   }
 
   /**
-   * Exam_submissions create
+   * ExamSubmissions create
    */
-  export type Exam_submissionsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ExamSubmissionsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Exam_submissions
+     * Select specific fields to fetch from the ExamSubmissions
      */
-    select?: Exam_submissionsSelect<ExtArgs> | null
+    select?: ExamSubmissionsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Exam_submissions
+     * Omit specific fields from the ExamSubmissions
      */
-    omit?: Exam_submissionsOmit<ExtArgs> | null
+    omit?: ExamSubmissionsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Exam_submissionsInclude<ExtArgs> | null
+    include?: ExamSubmissionsInclude<ExtArgs> | null
     /**
-     * The data needed to create a Exam_submissions.
+     * The data needed to create a ExamSubmissions.
      */
-    data: XOR<Exam_submissionsCreateInput, Exam_submissionsUncheckedCreateInput>
+    data: XOR<ExamSubmissionsCreateInput, ExamSubmissionsUncheckedCreateInput>
   }
 
   /**
-   * Exam_submissions createMany
+   * ExamSubmissions createMany
    */
-  export type Exam_submissionsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ExamSubmissionsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Exam_submissions.
+     * The data used to create many ExamSubmissions.
      */
-    data: Exam_submissionsCreateManyInput | Exam_submissionsCreateManyInput[]
+    data: ExamSubmissionsCreateManyInput | ExamSubmissionsCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Exam_submissions createManyAndReturn
+   * ExamSubmissions createManyAndReturn
    */
-  export type Exam_submissionsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ExamSubmissionsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Exam_submissions
+     * Select specific fields to fetch from the ExamSubmissions
      */
-    select?: Exam_submissionsSelectCreateManyAndReturn<ExtArgs> | null
+    select?: ExamSubmissionsSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Exam_submissions
+     * Omit specific fields from the ExamSubmissions
      */
-    omit?: Exam_submissionsOmit<ExtArgs> | null
+    omit?: ExamSubmissionsOmit<ExtArgs> | null
     /**
-     * The data used to create many Exam_submissions.
+     * The data used to create many ExamSubmissions.
      */
-    data: Exam_submissionsCreateManyInput | Exam_submissionsCreateManyInput[]
+    data: ExamSubmissionsCreateManyInput | ExamSubmissionsCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Exam_submissionsIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: ExamSubmissionsIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Exam_submissions update
+   * ExamSubmissions update
    */
-  export type Exam_submissionsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ExamSubmissionsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Exam_submissions
+     * Select specific fields to fetch from the ExamSubmissions
      */
-    select?: Exam_submissionsSelect<ExtArgs> | null
+    select?: ExamSubmissionsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Exam_submissions
+     * Omit specific fields from the ExamSubmissions
      */
-    omit?: Exam_submissionsOmit<ExtArgs> | null
+    omit?: ExamSubmissionsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Exam_submissionsInclude<ExtArgs> | null
+    include?: ExamSubmissionsInclude<ExtArgs> | null
     /**
-     * The data needed to update a Exam_submissions.
+     * The data needed to update a ExamSubmissions.
      */
-    data: XOR<Exam_submissionsUpdateInput, Exam_submissionsUncheckedUpdateInput>
+    data: XOR<ExamSubmissionsUpdateInput, ExamSubmissionsUncheckedUpdateInput>
     /**
-     * Choose, which Exam_submissions to update.
+     * Choose, which ExamSubmissions to update.
      */
-    where: Exam_submissionsWhereUniqueInput
+    where: ExamSubmissionsWhereUniqueInput
   }
 
   /**
-   * Exam_submissions updateMany
+   * ExamSubmissions updateMany
    */
-  export type Exam_submissionsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ExamSubmissionsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Exam_submissions.
+     * The data used to update ExamSubmissions.
      */
-    data: XOR<Exam_submissionsUpdateManyMutationInput, Exam_submissionsUncheckedUpdateManyInput>
+    data: XOR<ExamSubmissionsUpdateManyMutationInput, ExamSubmissionsUncheckedUpdateManyInput>
     /**
-     * Filter which Exam_submissions to update
+     * Filter which ExamSubmissions to update
      */
-    where?: Exam_submissionsWhereInput
+    where?: ExamSubmissionsWhereInput
     /**
-     * Limit how many Exam_submissions to update.
+     * Limit how many ExamSubmissions to update.
      */
     limit?: number
   }
 
   /**
-   * Exam_submissions updateManyAndReturn
+   * ExamSubmissions updateManyAndReturn
    */
-  export type Exam_submissionsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ExamSubmissionsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Exam_submissions
+     * Select specific fields to fetch from the ExamSubmissions
      */
-    select?: Exam_submissionsSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: ExamSubmissionsSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Exam_submissions
+     * Omit specific fields from the ExamSubmissions
      */
-    omit?: Exam_submissionsOmit<ExtArgs> | null
+    omit?: ExamSubmissionsOmit<ExtArgs> | null
     /**
-     * The data used to update Exam_submissions.
+     * The data used to update ExamSubmissions.
      */
-    data: XOR<Exam_submissionsUpdateManyMutationInput, Exam_submissionsUncheckedUpdateManyInput>
+    data: XOR<ExamSubmissionsUpdateManyMutationInput, ExamSubmissionsUncheckedUpdateManyInput>
     /**
-     * Filter which Exam_submissions to update
+     * Filter which ExamSubmissions to update
      */
-    where?: Exam_submissionsWhereInput
+    where?: ExamSubmissionsWhereInput
     /**
-     * Limit how many Exam_submissions to update.
+     * Limit how many ExamSubmissions to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Exam_submissionsIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: ExamSubmissionsIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Exam_submissions upsert
+   * ExamSubmissions upsert
    */
-  export type Exam_submissionsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ExamSubmissionsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Exam_submissions
+     * Select specific fields to fetch from the ExamSubmissions
      */
-    select?: Exam_submissionsSelect<ExtArgs> | null
+    select?: ExamSubmissionsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Exam_submissions
+     * Omit specific fields from the ExamSubmissions
      */
-    omit?: Exam_submissionsOmit<ExtArgs> | null
+    omit?: ExamSubmissionsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Exam_submissionsInclude<ExtArgs> | null
+    include?: ExamSubmissionsInclude<ExtArgs> | null
     /**
-     * The filter to search for the Exam_submissions to update in case it exists.
+     * The filter to search for the ExamSubmissions to update in case it exists.
      */
-    where: Exam_submissionsWhereUniqueInput
+    where: ExamSubmissionsWhereUniqueInput
     /**
-     * In case the Exam_submissions found by the `where` argument doesn't exist, create a new Exam_submissions with this data.
+     * In case the ExamSubmissions found by the `where` argument doesn't exist, create a new ExamSubmissions with this data.
      */
-    create: XOR<Exam_submissionsCreateInput, Exam_submissionsUncheckedCreateInput>
+    create: XOR<ExamSubmissionsCreateInput, ExamSubmissionsUncheckedCreateInput>
     /**
-     * In case the Exam_submissions was found with the provided `where` argument, update it with this data.
+     * In case the ExamSubmissions was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<Exam_submissionsUpdateInput, Exam_submissionsUncheckedUpdateInput>
+    update: XOR<ExamSubmissionsUpdateInput, ExamSubmissionsUncheckedUpdateInput>
   }
 
   /**
-   * Exam_submissions delete
+   * ExamSubmissions delete
    */
-  export type Exam_submissionsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ExamSubmissionsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Exam_submissions
+     * Select specific fields to fetch from the ExamSubmissions
      */
-    select?: Exam_submissionsSelect<ExtArgs> | null
+    select?: ExamSubmissionsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Exam_submissions
+     * Omit specific fields from the ExamSubmissions
      */
-    omit?: Exam_submissionsOmit<ExtArgs> | null
+    omit?: ExamSubmissionsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Exam_submissionsInclude<ExtArgs> | null
+    include?: ExamSubmissionsInclude<ExtArgs> | null
     /**
-     * Filter which Exam_submissions to delete.
+     * Filter which ExamSubmissions to delete.
      */
-    where: Exam_submissionsWhereUniqueInput
+    where: ExamSubmissionsWhereUniqueInput
   }
 
   /**
-   * Exam_submissions deleteMany
+   * ExamSubmissions deleteMany
    */
-  export type Exam_submissionsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ExamSubmissionsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Exam_submissions to delete
+     * Filter which ExamSubmissions to delete
      */
-    where?: Exam_submissionsWhereInput
+    where?: ExamSubmissionsWhereInput
     /**
-     * Limit how many Exam_submissions to delete.
+     * Limit how many ExamSubmissions to delete.
      */
     limit?: number
   }
 
   /**
-   * Exam_submissions without action
+   * ExamSubmissions without action
    */
-  export type Exam_submissionsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ExamSubmissionsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Exam_submissions
+     * Select specific fields to fetch from the ExamSubmissions
      */
-    select?: Exam_submissionsSelect<ExtArgs> | null
+    select?: ExamSubmissionsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Exam_submissions
+     * Omit specific fields from the ExamSubmissions
      */
-    omit?: Exam_submissionsOmit<ExtArgs> | null
+    omit?: ExamSubmissionsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Exam_submissionsInclude<ExtArgs> | null
+    include?: ExamSubmissionsInclude<ExtArgs> | null
   }
 
 
@@ -21933,7 +21933,7 @@ export namespace Prisma {
     username: 'username',
     password: 'password',
     role: 'role',
-    account_status: 'account_status',
+    accountStatus: 'accountStatus',
     createdAt: 'createdAt'
   };
 
@@ -21955,11 +21955,11 @@ export namespace Prisma {
   export const TeacherScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    employ_id: 'employ_id',
+    employId: 'employId',
     email: 'email',
-    phonenumber: 'phonenumber',
+    phoneNumber: 'phoneNumber',
     specilization: 'specilization',
-    account_status: 'account_status'
+    accountStatus: 'accountStatus'
   };
 
   export type TeacherScalarFieldEnum = (typeof TeacherScalarFieldEnum)[keyof typeof TeacherScalarFieldEnum]
@@ -21967,15 +21967,15 @@ export namespace Prisma {
 
   export const StudentScalarFieldEnum: {
     id: 'id',
-    student_id: 'student_id',
-    first_name: 'first_name',
-    last_name: 'last_name',
+    studentId: 'studentId',
+    firstName: 'firstName',
+    lastName: 'lastName',
     email: 'email',
-    account_status: 'account_status',
-    date_of_birth: 'date_of_birth',
-    phonenumber: 'phonenumber',
-    enrollment_date: 'enrollment_date',
-    learning_progress_id: 'learning_progress_id',
+    accountStatus: 'accountStatus',
+    dateOfBirth: 'dateOfBirth',
+    phoneNumber: 'phoneNumber',
+    enrollmentDate: 'enrollmentDate',
+    learningProgressId: 'learningProgressId',
     classId: 'classId',
     gender: 'gender'
   };
@@ -21985,7 +21985,7 @@ export namespace Prisma {
 
   export const ClassesScalarFieldEnum: {
     id: 'id',
-    class_name: 'class_name'
+    className: 'className'
   };
 
   export type ClassesScalarFieldEnum = (typeof ClassesScalarFieldEnum)[keyof typeof ClassesScalarFieldEnum]
@@ -21993,8 +21993,8 @@ export namespace Prisma {
 
   export const SubjectsScalarFieldEnum: {
     id: 'id',
-    subject_name: 'subject_name',
-    subject_code: 'subject_code',
+    subjectName: 'subjectName',
+    subjectCode: 'subjectCode',
     Description: 'Description',
     classId: 'classId',
     teacherId: 'teacherId'
@@ -22003,44 +22003,44 @@ export namespace Prisma {
   export type SubjectsScalarFieldEnum = (typeof SubjectsScalarFieldEnum)[keyof typeof SubjectsScalarFieldEnum]
 
 
-  export const Academic_YearsScalarFieldEnum: {
+  export const AcademicYearsScalarFieldEnum: {
     id: 'id',
-    year_name: 'year_name',
-    Start_date: 'Start_date',
-    end_date: 'end_date',
+    yearName: 'yearName',
+    StartDate: 'StartDate',
+    endDate: 'endDate',
     status: 'status'
   };
 
-  export type Academic_YearsScalarFieldEnum = (typeof Academic_YearsScalarFieldEnum)[keyof typeof Academic_YearsScalarFieldEnum]
+  export type AcademicYearsScalarFieldEnum = (typeof AcademicYearsScalarFieldEnum)[keyof typeof AcademicYearsScalarFieldEnum]
 
 
   export const TermsScalarFieldEnum: {
     id: 'id',
-    term_name: 'term_name',
-    Start_date: 'Start_date',
-    end_date: 'end_date',
+    termName: 'termName',
+    StartDate: 'StartDate',
+    endDate: 'endDate',
     yearId: 'yearId'
   };
 
   export type TermsScalarFieldEnum = (typeof TermsScalarFieldEnum)[keyof typeof TermsScalarFieldEnum]
 
 
-  export const Class_Academic_yearScalarFieldEnum: {
+  export const ClassAcademicYearScalarFieldEnum: {
     classId: 'classId',
     yearId: 'yearId'
   };
 
-  export type Class_Academic_yearScalarFieldEnum = (typeof Class_Academic_yearScalarFieldEnum)[keyof typeof Class_Academic_yearScalarFieldEnum]
+  export type ClassAcademicYearScalarFieldEnum = (typeof ClassAcademicYearScalarFieldEnum)[keyof typeof ClassAcademicYearScalarFieldEnum]
 
 
   export const AssignmentsScalarFieldEnum: {
     id: 'id',
-    assignment_title: 'assignment_title',
-    assignment_description: 'assignment_description',
-    due_date: 'due_date',
-    maximum_grade: 'maximum_grade',
+    assignmentTitle: 'assignmentTitle',
+    assignmentDescription: 'assignmentDescription',
+    dueDate: 'dueDate',
+    maximumGrade: 'maximumGrade',
     attachment: 'attachment',
-    Submission_instructions: 'Submission_instructions',
+    SubmissionInstructions: 'SubmissionInstructions',
     subjectId: 'subjectId'
   };
 
@@ -22049,12 +22049,12 @@ export namespace Prisma {
 
   export const LessonsScalarFieldEnum: {
     id: 'id',
-    lesson_title: 'lesson_title',
-    lesson_description: 'lesson_description',
-    lesson_date: 'lesson_date',
-    learning_objectinve: 'learning_objectinve',
-    learning_material: 'learning_material',
-    Completion_status: 'Completion_status',
+    lessonTitle: 'lessonTitle',
+    lessonDescription: 'lessonDescription',
+    lessonDate: 'lessonDate',
+    learningObjectinve: 'learningObjectinve',
+    learningMaterial: 'learningMaterial',
+    CompletionStatus: 'CompletionStatus',
     subjectId: 'subjectId'
   };
 
@@ -22063,59 +22063,59 @@ export namespace Prisma {
 
   export const ExamsScalarFieldEnum: {
     id: 'id',
-    exam_name: 'exam_name',
-    exam_date: 'exam_date',
-    Maximum_grade: 'Maximum_grade',
+    examName: 'examName',
+    examDate: 'examDate',
+    MaximumGrade: 'MaximumGrade',
     subjectId: 'subjectId'
   };
 
   export type ExamsScalarFieldEnum = (typeof ExamsScalarFieldEnum)[keyof typeof ExamsScalarFieldEnum]
 
 
-  export const Learning_progressesScalarFieldEnum: {
+  export const LearningProgressesScalarFieldEnum: {
     id: 'id',
-    subjects_averages: 'subjects_averages',
-    overall_avreages: 'overall_avreages',
-    attendence_percentage: 'attendence_percentage',
-    learning_status: 'learning_status'
+    subjectsAverages: 'subjectsAverages',
+    overallAvreages: 'overallAvreages',
+    attendencePercentage: 'attendencePercentage',
+    learningStatus: 'learningStatus'
   };
 
-  export type Learning_progressesScalarFieldEnum = (typeof Learning_progressesScalarFieldEnum)[keyof typeof Learning_progressesScalarFieldEnum]
+  export type LearningProgressesScalarFieldEnum = (typeof LearningProgressesScalarFieldEnum)[keyof typeof LearningProgressesScalarFieldEnum]
 
 
-  export const Progress_notesScalarFieldEnum: {
+  export const ProgressNotesScalarFieldEnum: {
     id: 'id',
-    note_date: 'note_date',
-    note_observation: 'note_observation',
+    noteDate: 'noteDate',
+    noteObservation: 'noteObservation',
     Strengths: 'Strengths',
-    areas_for_improvement: 'areas_for_improvement',
+    areasForImprovement: 'areasForImprovement',
     teacherId: 'teacherId',
     learningProgressId: 'learningProgressId'
   };
 
-  export type Progress_notesScalarFieldEnum = (typeof Progress_notesScalarFieldEnum)[keyof typeof Progress_notesScalarFieldEnum]
+  export type ProgressNotesScalarFieldEnum = (typeof ProgressNotesScalarFieldEnum)[keyof typeof ProgressNotesScalarFieldEnum]
 
 
-  export const Classes_performenceScalarFieldEnum: {
+  export const ClassesPerformenceScalarFieldEnum: {
     id: 'id',
-    class_avg: 'class_avg',
-    highest_grade: 'highest_grade',
-    lowest_grade: 'lowest_grade',
-    assignments_compleation_rate: 'assignments_compleation_rate',
-    attendence_rate: 'attendence_rate',
-    student_requiring_support: 'student_requiring_support',
-    class_status: 'class_status',
+    classAvg: 'classAvg',
+    highestGrade: 'highestGrade',
+    lowestGrade: 'lowestGrade',
+    assignmentsCompleationRate: 'assignmentsCompleationRate',
+    attendenceRate: 'attendenceRate',
+    studentRequiringSupport: 'studentRequiringSupport',
+    classStatus: 'classStatus',
     classId: 'classId'
   };
 
-  export type Classes_performenceScalarFieldEnum = (typeof Classes_performenceScalarFieldEnum)[keyof typeof Classes_performenceScalarFieldEnum]
+  export type ClassesPerformenceScalarFieldEnum = (typeof ClassesPerformenceScalarFieldEnum)[keyof typeof ClassesPerformenceScalarFieldEnum]
 
 
   export const AttendencesScalarFieldEnum: {
     id: 'id',
-    attendance_date: 'attendance_date',
-    attendance_status: 'attendance_status',
-    attendance_percentage: 'attendance_percentage',
+    attendanceDate: 'attendanceDate',
+    attendanceStatus: 'attendanceStatus',
+    attendancePercentage: 'attendancePercentage',
     studentId: 'studentId',
     subjectId: 'subjectId'
   };
@@ -22123,7 +22123,7 @@ export namespace Prisma {
   export type AttendencesScalarFieldEnum = (typeof AttendencesScalarFieldEnum)[keyof typeof AttendencesScalarFieldEnum]
 
 
-  export const Exam_submissionsScalarFieldEnum: {
+  export const ExamSubmissionsScalarFieldEnum: {
     id: 'id',
     examId: 'examId',
     studentId: 'studentId',
@@ -22131,7 +22131,7 @@ export namespace Prisma {
     takenAt: 'takenAt'
   };
 
-  export type Exam_submissionsScalarFieldEnum = (typeof Exam_submissionsScalarFieldEnum)[keyof typeof Exam_submissionsScalarFieldEnum]
+  export type ExamSubmissionsScalarFieldEnum = (typeof ExamSubmissionsScalarFieldEnum)[keyof typeof ExamSubmissionsScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -22294,7 +22294,7 @@ export namespace Prisma {
     username?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     role?: EnumRoleFilter<"User"> | $Enums.Role
-    account_status?: BoolFilter<"User"> | boolean
+    accountStatus?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
     teacher?: XOR<TeacherNullableScalarRelationFilter, TeacherWhereInput> | null
     student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
@@ -22307,7 +22307,7 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     role?: SortOrder
-    account_status?: SortOrder
+    accountStatus?: SortOrder
     createdAt?: SortOrder
     teacher?: TeacherOrderByWithRelationInput
     student?: StudentOrderByWithRelationInput
@@ -22323,7 +22323,7 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     role?: EnumRoleFilter<"User"> | $Enums.Role
-    account_status?: BoolFilter<"User"> | boolean
+    accountStatus?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
     teacher?: XOR<TeacherNullableScalarRelationFilter, TeacherWhereInput> | null
     student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
@@ -22336,7 +22336,7 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     role?: SortOrder
-    account_status?: SortOrder
+    accountStatus?: SortOrder
     createdAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -22352,7 +22352,7 @@ export namespace Prisma {
     username?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
-    account_status?: BoolWithAggregatesFilter<"User"> | boolean
+    accountStatus?: BoolWithAggregatesFilter<"User"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
@@ -22422,53 +22422,53 @@ export namespace Prisma {
     NOT?: TeacherWhereInput | TeacherWhereInput[]
     id?: StringFilter<"Teacher"> | string
     name?: StringFilter<"Teacher"> | string
-    employ_id?: IntFilter<"Teacher"> | number
+    employId?: IntFilter<"Teacher"> | number
     email?: StringFilter<"Teacher"> | string
-    phonenumber?: StringFilter<"Teacher"> | string
+    phoneNumber?: StringFilter<"Teacher"> | string
     specilization?: StringFilter<"Teacher"> | string
-    account_status?: BoolFilter<"Teacher"> | boolean
+    accountStatus?: BoolFilter<"Teacher"> | boolean
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     subjects?: SubjectsListRelationFilter
-    progressNotes?: Progress_notesListRelationFilter
+    progressNotes?: ProgressNotesListRelationFilter
   }
 
   export type TeacherOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    employ_id?: SortOrder
+    employId?: SortOrder
     email?: SortOrder
-    phonenumber?: SortOrder
+    phoneNumber?: SortOrder
     specilization?: SortOrder
-    account_status?: SortOrder
+    accountStatus?: SortOrder
     user?: UserOrderByWithRelationInput
     subjects?: SubjectsOrderByRelationAggregateInput
-    progressNotes?: Progress_notesOrderByRelationAggregateInput
+    progressNotes?: ProgressNotesOrderByRelationAggregateInput
   }
 
   export type TeacherWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    employ_id?: number
+    employId?: number
     AND?: TeacherWhereInput | TeacherWhereInput[]
     OR?: TeacherWhereInput[]
     NOT?: TeacherWhereInput | TeacherWhereInput[]
     name?: StringFilter<"Teacher"> | string
     email?: StringFilter<"Teacher"> | string
-    phonenumber?: StringFilter<"Teacher"> | string
+    phoneNumber?: StringFilter<"Teacher"> | string
     specilization?: StringFilter<"Teacher"> | string
-    account_status?: BoolFilter<"Teacher"> | boolean
+    accountStatus?: BoolFilter<"Teacher"> | boolean
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     subjects?: SubjectsListRelationFilter
-    progressNotes?: Progress_notesListRelationFilter
-  }, "id" | "employ_id">
+    progressNotes?: ProgressNotesListRelationFilter
+  }, "id" | "employId">
 
   export type TeacherOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    employ_id?: SortOrder
+    employId?: SortOrder
     email?: SortOrder
-    phonenumber?: SortOrder
+    phoneNumber?: SortOrder
     specilization?: SortOrder
-    account_status?: SortOrder
+    accountStatus?: SortOrder
     _count?: TeacherCountOrderByAggregateInput
     _avg?: TeacherAvgOrderByAggregateInput
     _max?: TeacherMaxOrderByAggregateInput
@@ -22482,11 +22482,11 @@ export namespace Prisma {
     NOT?: TeacherScalarWhereWithAggregatesInput | TeacherScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Teacher"> | string
     name?: StringWithAggregatesFilter<"Teacher"> | string
-    employ_id?: IntWithAggregatesFilter<"Teacher"> | number
+    employId?: IntWithAggregatesFilter<"Teacher"> | number
     email?: StringWithAggregatesFilter<"Teacher"> | string
-    phonenumber?: StringWithAggregatesFilter<"Teacher"> | string
+    phoneNumber?: StringWithAggregatesFilter<"Teacher"> | string
     specilization?: StringWithAggregatesFilter<"Teacher"> | string
-    account_status?: BoolWithAggregatesFilter<"Teacher"> | boolean
+    accountStatus?: BoolWithAggregatesFilter<"Teacher"> | boolean
   }
 
   export type StudentWhereInput = {
@@ -22494,78 +22494,78 @@ export namespace Prisma {
     OR?: StudentWhereInput[]
     NOT?: StudentWhereInput | StudentWhereInput[]
     id?: StringFilter<"Student"> | string
-    student_id?: IntFilter<"Student"> | number
-    first_name?: StringFilter<"Student"> | string
-    last_name?: StringFilter<"Student"> | string
+    studentId?: IntFilter<"Student"> | number
+    firstName?: StringFilter<"Student"> | string
+    lastName?: StringFilter<"Student"> | string
     email?: StringFilter<"Student"> | string
-    account_status?: BoolFilter<"Student"> | boolean
-    date_of_birth?: DateTimeFilter<"Student"> | Date | string
-    phonenumber?: StringNullableFilter<"Student"> | string | null
-    enrollment_date?: DateTimeFilter<"Student"> | Date | string
-    learning_progress_id?: StringFilter<"Student"> | string
+    accountStatus?: BoolFilter<"Student"> | boolean
+    dateOfBirth?: DateTimeFilter<"Student"> | Date | string
+    phoneNumber?: StringNullableFilter<"Student"> | string | null
+    enrollmentDate?: DateTimeFilter<"Student"> | Date | string
+    learningProgressId?: StringFilter<"Student"> | string
     classId?: StringNullableFilter<"Student"> | string | null
     gender?: EnumGenderFilter<"Student"> | $Enums.Gender
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     class?: XOR<ClassesNullableScalarRelationFilter, ClassesWhereInput> | null
-    learning_progress?: XOR<Learning_progressesScalarRelationFilter, Learning_progressesWhereInput>
+    learningProgress?: XOR<LearningProgressesScalarRelationFilter, LearningProgressesWhereInput>
     attendances?: AttendencesListRelationFilter
-    examSubmissions?: Exam_submissionsListRelationFilter
+    examSubmissions?: ExamSubmissionsListRelationFilter
   }
 
   export type StudentOrderByWithRelationInput = {
     id?: SortOrder
-    student_id?: SortOrder
-    first_name?: SortOrder
-    last_name?: SortOrder
+    studentId?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
     email?: SortOrder
-    account_status?: SortOrder
-    date_of_birth?: SortOrder
-    phonenumber?: SortOrderInput | SortOrder
-    enrollment_date?: SortOrder
-    learning_progress_id?: SortOrder
+    accountStatus?: SortOrder
+    dateOfBirth?: SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    enrollmentDate?: SortOrder
+    learningProgressId?: SortOrder
     classId?: SortOrderInput | SortOrder
     gender?: SortOrder
     user?: UserOrderByWithRelationInput
     class?: ClassesOrderByWithRelationInput
-    learning_progress?: Learning_progressesOrderByWithRelationInput
+    learningProgress?: LearningProgressesOrderByWithRelationInput
     attendances?: AttendencesOrderByRelationAggregateInput
-    examSubmissions?: Exam_submissionsOrderByRelationAggregateInput
+    examSubmissions?: ExamSubmissionsOrderByRelationAggregateInput
   }
 
   export type StudentWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    student_id?: number
-    learning_progress_id?: string
+    studentId?: number
+    learningProgressId?: string
     AND?: StudentWhereInput | StudentWhereInput[]
     OR?: StudentWhereInput[]
     NOT?: StudentWhereInput | StudentWhereInput[]
-    first_name?: StringFilter<"Student"> | string
-    last_name?: StringFilter<"Student"> | string
+    firstName?: StringFilter<"Student"> | string
+    lastName?: StringFilter<"Student"> | string
     email?: StringFilter<"Student"> | string
-    account_status?: BoolFilter<"Student"> | boolean
-    date_of_birth?: DateTimeFilter<"Student"> | Date | string
-    phonenumber?: StringNullableFilter<"Student"> | string | null
-    enrollment_date?: DateTimeFilter<"Student"> | Date | string
+    accountStatus?: BoolFilter<"Student"> | boolean
+    dateOfBirth?: DateTimeFilter<"Student"> | Date | string
+    phoneNumber?: StringNullableFilter<"Student"> | string | null
+    enrollmentDate?: DateTimeFilter<"Student"> | Date | string
     classId?: StringNullableFilter<"Student"> | string | null
     gender?: EnumGenderFilter<"Student"> | $Enums.Gender
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     class?: XOR<ClassesNullableScalarRelationFilter, ClassesWhereInput> | null
-    learning_progress?: XOR<Learning_progressesScalarRelationFilter, Learning_progressesWhereInput>
+    learningProgress?: XOR<LearningProgressesScalarRelationFilter, LearningProgressesWhereInput>
     attendances?: AttendencesListRelationFilter
-    examSubmissions?: Exam_submissionsListRelationFilter
-  }, "id" | "student_id" | "learning_progress_id">
+    examSubmissions?: ExamSubmissionsListRelationFilter
+  }, "id" | "studentId" | "learningProgressId">
 
   export type StudentOrderByWithAggregationInput = {
     id?: SortOrder
-    student_id?: SortOrder
-    first_name?: SortOrder
-    last_name?: SortOrder
+    studentId?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
     email?: SortOrder
-    account_status?: SortOrder
-    date_of_birth?: SortOrder
-    phonenumber?: SortOrderInput | SortOrder
-    enrollment_date?: SortOrder
-    learning_progress_id?: SortOrder
+    accountStatus?: SortOrder
+    dateOfBirth?: SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    enrollmentDate?: SortOrder
+    learningProgressId?: SortOrder
     classId?: SortOrderInput | SortOrder
     gender?: SortOrder
     _count?: StudentCountOrderByAggregateInput
@@ -22580,15 +22580,15 @@ export namespace Prisma {
     OR?: StudentScalarWhereWithAggregatesInput[]
     NOT?: StudentScalarWhereWithAggregatesInput | StudentScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Student"> | string
-    student_id?: IntWithAggregatesFilter<"Student"> | number
-    first_name?: StringWithAggregatesFilter<"Student"> | string
-    last_name?: StringWithAggregatesFilter<"Student"> | string
+    studentId?: IntWithAggregatesFilter<"Student"> | number
+    firstName?: StringWithAggregatesFilter<"Student"> | string
+    lastName?: StringWithAggregatesFilter<"Student"> | string
     email?: StringWithAggregatesFilter<"Student"> | string
-    account_status?: BoolWithAggregatesFilter<"Student"> | boolean
-    date_of_birth?: DateTimeWithAggregatesFilter<"Student"> | Date | string
-    phonenumber?: StringNullableWithAggregatesFilter<"Student"> | string | null
-    enrollment_date?: DateTimeWithAggregatesFilter<"Student"> | Date | string
-    learning_progress_id?: StringWithAggregatesFilter<"Student"> | string
+    accountStatus?: BoolWithAggregatesFilter<"Student"> | boolean
+    dateOfBirth?: DateTimeWithAggregatesFilter<"Student"> | Date | string
+    phoneNumber?: StringNullableWithAggregatesFilter<"Student"> | string | null
+    enrollmentDate?: DateTimeWithAggregatesFilter<"Student"> | Date | string
+    learningProgressId?: StringWithAggregatesFilter<"Student"> | string
     classId?: StringNullableWithAggregatesFilter<"Student"> | string | null
     gender?: EnumGenderWithAggregatesFilter<"Student"> | $Enums.Gender
   }
@@ -22598,20 +22598,20 @@ export namespace Prisma {
     OR?: ClassesWhereInput[]
     NOT?: ClassesWhereInput | ClassesWhereInput[]
     id?: StringFilter<"Classes"> | string
-    class_name?: StringFilter<"Classes"> | string
-    academicYears?: Class_Academic_yearListRelationFilter
+    className?: StringFilter<"Classes"> | string
+    academicYears?: ClassAcademicYearListRelationFilter
     students?: StudentListRelationFilter
     subjects?: SubjectsListRelationFilter
-    performance?: XOR<Classes_performenceNullableScalarRelationFilter, Classes_performenceWhereInput> | null
+    performance?: XOR<ClassesPerformenceNullableScalarRelationFilter, ClassesPerformenceWhereInput> | null
   }
 
   export type ClassesOrderByWithRelationInput = {
     id?: SortOrder
-    class_name?: SortOrder
-    academicYears?: Class_Academic_yearOrderByRelationAggregateInput
+    className?: SortOrder
+    academicYears?: ClassAcademicYearOrderByRelationAggregateInput
     students?: StudentOrderByRelationAggregateInput
     subjects?: SubjectsOrderByRelationAggregateInput
-    performance?: Classes_performenceOrderByWithRelationInput
+    performance?: ClassesPerformenceOrderByWithRelationInput
   }
 
   export type ClassesWhereUniqueInput = Prisma.AtLeast<{
@@ -22619,16 +22619,16 @@ export namespace Prisma {
     AND?: ClassesWhereInput | ClassesWhereInput[]
     OR?: ClassesWhereInput[]
     NOT?: ClassesWhereInput | ClassesWhereInput[]
-    class_name?: StringFilter<"Classes"> | string
-    academicYears?: Class_Academic_yearListRelationFilter
+    className?: StringFilter<"Classes"> | string
+    academicYears?: ClassAcademicYearListRelationFilter
     students?: StudentListRelationFilter
     subjects?: SubjectsListRelationFilter
-    performance?: XOR<Classes_performenceNullableScalarRelationFilter, Classes_performenceWhereInput> | null
+    performance?: XOR<ClassesPerformenceNullableScalarRelationFilter, ClassesPerformenceWhereInput> | null
   }, "id">
 
   export type ClassesOrderByWithAggregationInput = {
     id?: SortOrder
-    class_name?: SortOrder
+    className?: SortOrder
     _count?: ClassesCountOrderByAggregateInput
     _max?: ClassesMaxOrderByAggregateInput
     _min?: ClassesMinOrderByAggregateInput
@@ -22639,7 +22639,7 @@ export namespace Prisma {
     OR?: ClassesScalarWhereWithAggregatesInput[]
     NOT?: ClassesScalarWhereWithAggregatesInput | ClassesScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Classes"> | string
-    class_name?: StringWithAggregatesFilter<"Classes"> | string
+    className?: StringWithAggregatesFilter<"Classes"> | string
   }
 
   export type SubjectsWhereInput = {
@@ -22647,8 +22647,8 @@ export namespace Prisma {
     OR?: SubjectsWhereInput[]
     NOT?: SubjectsWhereInput | SubjectsWhereInput[]
     id?: StringFilter<"Subjects"> | string
-    subject_name?: StringFilter<"Subjects"> | string
-    subject_code?: StringFilter<"Subjects"> | string
+    subjectName?: StringFilter<"Subjects"> | string
+    subjectCode?: StringFilter<"Subjects"> | string
     Description?: StringFilter<"Subjects"> | string
     classId?: StringFilter<"Subjects"> | string
     teacherId?: StringFilter<"Subjects"> | string
@@ -22662,8 +22662,8 @@ export namespace Prisma {
 
   export type SubjectsOrderByWithRelationInput = {
     id?: SortOrder
-    subject_name?: SortOrder
-    subject_code?: SortOrder
+    subjectName?: SortOrder
+    subjectCode?: SortOrder
     Description?: SortOrder
     classId?: SortOrder
     teacherId?: SortOrder
@@ -22680,8 +22680,8 @@ export namespace Prisma {
     AND?: SubjectsWhereInput | SubjectsWhereInput[]
     OR?: SubjectsWhereInput[]
     NOT?: SubjectsWhereInput | SubjectsWhereInput[]
-    subject_name?: StringFilter<"Subjects"> | string
-    subject_code?: StringFilter<"Subjects"> | string
+    subjectName?: StringFilter<"Subjects"> | string
+    subjectCode?: StringFilter<"Subjects"> | string
     Description?: StringFilter<"Subjects"> | string
     classId?: StringFilter<"Subjects"> | string
     teacherId?: StringFilter<"Subjects"> | string
@@ -22695,8 +22695,8 @@ export namespace Prisma {
 
   export type SubjectsOrderByWithAggregationInput = {
     id?: SortOrder
-    subject_name?: SortOrder
-    subject_code?: SortOrder
+    subjectName?: SortOrder
+    subjectCode?: SortOrder
     Description?: SortOrder
     classId?: SortOrder
     teacherId?: SortOrder
@@ -22710,69 +22710,69 @@ export namespace Prisma {
     OR?: SubjectsScalarWhereWithAggregatesInput[]
     NOT?: SubjectsScalarWhereWithAggregatesInput | SubjectsScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Subjects"> | string
-    subject_name?: StringWithAggregatesFilter<"Subjects"> | string
-    subject_code?: StringWithAggregatesFilter<"Subjects"> | string
+    subjectName?: StringWithAggregatesFilter<"Subjects"> | string
+    subjectCode?: StringWithAggregatesFilter<"Subjects"> | string
     Description?: StringWithAggregatesFilter<"Subjects"> | string
     classId?: StringWithAggregatesFilter<"Subjects"> | string
     teacherId?: StringWithAggregatesFilter<"Subjects"> | string
   }
 
-  export type Academic_YearsWhereInput = {
-    AND?: Academic_YearsWhereInput | Academic_YearsWhereInput[]
-    OR?: Academic_YearsWhereInput[]
-    NOT?: Academic_YearsWhereInput | Academic_YearsWhereInput[]
-    id?: StringFilter<"Academic_Years"> | string
-    year_name?: StringFilter<"Academic_Years"> | string
-    Start_date?: DateTimeFilter<"Academic_Years"> | Date | string
-    end_date?: DateTimeFilter<"Academic_Years"> | Date | string
-    status?: EnumStatusFilter<"Academic_Years"> | $Enums.Status
-    classes?: Class_Academic_yearListRelationFilter
+  export type AcademicYearsWhereInput = {
+    AND?: AcademicYearsWhereInput | AcademicYearsWhereInput[]
+    OR?: AcademicYearsWhereInput[]
+    NOT?: AcademicYearsWhereInput | AcademicYearsWhereInput[]
+    id?: StringFilter<"AcademicYears"> | string
+    yearName?: StringFilter<"AcademicYears"> | string
+    StartDate?: DateTimeFilter<"AcademicYears"> | Date | string
+    endDate?: DateTimeFilter<"AcademicYears"> | Date | string
+    status?: EnumStatusFilter<"AcademicYears"> | $Enums.Status
+    classes?: ClassAcademicYearListRelationFilter
     terms?: TermsListRelationFilter
   }
 
-  export type Academic_YearsOrderByWithRelationInput = {
+  export type AcademicYearsOrderByWithRelationInput = {
     id?: SortOrder
-    year_name?: SortOrder
-    Start_date?: SortOrder
-    end_date?: SortOrder
+    yearName?: SortOrder
+    StartDate?: SortOrder
+    endDate?: SortOrder
     status?: SortOrder
-    classes?: Class_Academic_yearOrderByRelationAggregateInput
+    classes?: ClassAcademicYearOrderByRelationAggregateInput
     terms?: TermsOrderByRelationAggregateInput
   }
 
-  export type Academic_YearsWhereUniqueInput = Prisma.AtLeast<{
+  export type AcademicYearsWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: Academic_YearsWhereInput | Academic_YearsWhereInput[]
-    OR?: Academic_YearsWhereInput[]
-    NOT?: Academic_YearsWhereInput | Academic_YearsWhereInput[]
-    year_name?: StringFilter<"Academic_Years"> | string
-    Start_date?: DateTimeFilter<"Academic_Years"> | Date | string
-    end_date?: DateTimeFilter<"Academic_Years"> | Date | string
-    status?: EnumStatusFilter<"Academic_Years"> | $Enums.Status
-    classes?: Class_Academic_yearListRelationFilter
+    AND?: AcademicYearsWhereInput | AcademicYearsWhereInput[]
+    OR?: AcademicYearsWhereInput[]
+    NOT?: AcademicYearsWhereInput | AcademicYearsWhereInput[]
+    yearName?: StringFilter<"AcademicYears"> | string
+    StartDate?: DateTimeFilter<"AcademicYears"> | Date | string
+    endDate?: DateTimeFilter<"AcademicYears"> | Date | string
+    status?: EnumStatusFilter<"AcademicYears"> | $Enums.Status
+    classes?: ClassAcademicYearListRelationFilter
     terms?: TermsListRelationFilter
   }, "id">
 
-  export type Academic_YearsOrderByWithAggregationInput = {
+  export type AcademicYearsOrderByWithAggregationInput = {
     id?: SortOrder
-    year_name?: SortOrder
-    Start_date?: SortOrder
-    end_date?: SortOrder
+    yearName?: SortOrder
+    StartDate?: SortOrder
+    endDate?: SortOrder
     status?: SortOrder
-    _count?: Academic_YearsCountOrderByAggregateInput
-    _max?: Academic_YearsMaxOrderByAggregateInput
-    _min?: Academic_YearsMinOrderByAggregateInput
+    _count?: AcademicYearsCountOrderByAggregateInput
+    _max?: AcademicYearsMaxOrderByAggregateInput
+    _min?: AcademicYearsMinOrderByAggregateInput
   }
 
-  export type Academic_YearsScalarWhereWithAggregatesInput = {
-    AND?: Academic_YearsScalarWhereWithAggregatesInput | Academic_YearsScalarWhereWithAggregatesInput[]
-    OR?: Academic_YearsScalarWhereWithAggregatesInput[]
-    NOT?: Academic_YearsScalarWhereWithAggregatesInput | Academic_YearsScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Academic_Years"> | string
-    year_name?: StringWithAggregatesFilter<"Academic_Years"> | string
-    Start_date?: DateTimeWithAggregatesFilter<"Academic_Years"> | Date | string
-    end_date?: DateTimeWithAggregatesFilter<"Academic_Years"> | Date | string
-    status?: EnumStatusWithAggregatesFilter<"Academic_Years"> | $Enums.Status
+  export type AcademicYearsScalarWhereWithAggregatesInput = {
+    AND?: AcademicYearsScalarWhereWithAggregatesInput | AcademicYearsScalarWhereWithAggregatesInput[]
+    OR?: AcademicYearsScalarWhereWithAggregatesInput[]
+    NOT?: AcademicYearsScalarWhereWithAggregatesInput | AcademicYearsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AcademicYears"> | string
+    yearName?: StringWithAggregatesFilter<"AcademicYears"> | string
+    StartDate?: DateTimeWithAggregatesFilter<"AcademicYears"> | Date | string
+    endDate?: DateTimeWithAggregatesFilter<"AcademicYears"> | Date | string
+    status?: EnumStatusWithAggregatesFilter<"AcademicYears"> | $Enums.Status
   }
 
   export type TermsWhereInput = {
@@ -22780,20 +22780,20 @@ export namespace Prisma {
     OR?: TermsWhereInput[]
     NOT?: TermsWhereInput | TermsWhereInput[]
     id?: StringFilter<"Terms"> | string
-    term_name?: StringFilter<"Terms"> | string
-    Start_date?: DateTimeFilter<"Terms"> | Date | string
-    end_date?: DateTimeFilter<"Terms"> | Date | string
+    termName?: StringFilter<"Terms"> | string
+    StartDate?: DateTimeFilter<"Terms"> | Date | string
+    endDate?: DateTimeFilter<"Terms"> | Date | string
     yearId?: StringFilter<"Terms"> | string
-    year?: XOR<Academic_YearsScalarRelationFilter, Academic_YearsWhereInput>
+    year?: XOR<AcademicYearsScalarRelationFilter, AcademicYearsWhereInput>
   }
 
   export type TermsOrderByWithRelationInput = {
     id?: SortOrder
-    term_name?: SortOrder
-    Start_date?: SortOrder
-    end_date?: SortOrder
+    termName?: SortOrder
+    StartDate?: SortOrder
+    endDate?: SortOrder
     yearId?: SortOrder
-    year?: Academic_YearsOrderByWithRelationInput
+    year?: AcademicYearsOrderByWithRelationInput
   }
 
   export type TermsWhereUniqueInput = Prisma.AtLeast<{
@@ -22801,18 +22801,18 @@ export namespace Prisma {
     AND?: TermsWhereInput | TermsWhereInput[]
     OR?: TermsWhereInput[]
     NOT?: TermsWhereInput | TermsWhereInput[]
-    term_name?: StringFilter<"Terms"> | string
-    Start_date?: DateTimeFilter<"Terms"> | Date | string
-    end_date?: DateTimeFilter<"Terms"> | Date | string
+    termName?: StringFilter<"Terms"> | string
+    StartDate?: DateTimeFilter<"Terms"> | Date | string
+    endDate?: DateTimeFilter<"Terms"> | Date | string
     yearId?: StringFilter<"Terms"> | string
-    year?: XOR<Academic_YearsScalarRelationFilter, Academic_YearsWhereInput>
+    year?: XOR<AcademicYearsScalarRelationFilter, AcademicYearsWhereInput>
   }, "id">
 
   export type TermsOrderByWithAggregationInput = {
     id?: SortOrder
-    term_name?: SortOrder
-    Start_date?: SortOrder
-    end_date?: SortOrder
+    termName?: SortOrder
+    StartDate?: SortOrder
+    endDate?: SortOrder
     yearId?: SortOrder
     _count?: TermsCountOrderByAggregateInput
     _max?: TermsMaxOrderByAggregateInput
@@ -22824,54 +22824,54 @@ export namespace Prisma {
     OR?: TermsScalarWhereWithAggregatesInput[]
     NOT?: TermsScalarWhereWithAggregatesInput | TermsScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Terms"> | string
-    term_name?: StringWithAggregatesFilter<"Terms"> | string
-    Start_date?: DateTimeWithAggregatesFilter<"Terms"> | Date | string
-    end_date?: DateTimeWithAggregatesFilter<"Terms"> | Date | string
+    termName?: StringWithAggregatesFilter<"Terms"> | string
+    StartDate?: DateTimeWithAggregatesFilter<"Terms"> | Date | string
+    endDate?: DateTimeWithAggregatesFilter<"Terms"> | Date | string
     yearId?: StringWithAggregatesFilter<"Terms"> | string
   }
 
-  export type Class_Academic_yearWhereInput = {
-    AND?: Class_Academic_yearWhereInput | Class_Academic_yearWhereInput[]
-    OR?: Class_Academic_yearWhereInput[]
-    NOT?: Class_Academic_yearWhereInput | Class_Academic_yearWhereInput[]
-    classId?: StringFilter<"Class_Academic_year"> | string
-    yearId?: StringFilter<"Class_Academic_year"> | string
+  export type ClassAcademicYearWhereInput = {
+    AND?: ClassAcademicYearWhereInput | ClassAcademicYearWhereInput[]
+    OR?: ClassAcademicYearWhereInput[]
+    NOT?: ClassAcademicYearWhereInput | ClassAcademicYearWhereInput[]
+    classId?: StringFilter<"ClassAcademicYear"> | string
+    yearId?: StringFilter<"ClassAcademicYear"> | string
     class?: XOR<ClassesScalarRelationFilter, ClassesWhereInput>
-    year?: XOR<Academic_YearsScalarRelationFilter, Academic_YearsWhereInput>
+    year?: XOR<AcademicYearsScalarRelationFilter, AcademicYearsWhereInput>
   }
 
-  export type Class_Academic_yearOrderByWithRelationInput = {
+  export type ClassAcademicYearOrderByWithRelationInput = {
     classId?: SortOrder
     yearId?: SortOrder
     class?: ClassesOrderByWithRelationInput
-    year?: Academic_YearsOrderByWithRelationInput
+    year?: AcademicYearsOrderByWithRelationInput
   }
 
-  export type Class_Academic_yearWhereUniqueInput = Prisma.AtLeast<{
-    classId_yearId?: Class_Academic_yearClassIdYearIdCompoundUniqueInput
-    AND?: Class_Academic_yearWhereInput | Class_Academic_yearWhereInput[]
-    OR?: Class_Academic_yearWhereInput[]
-    NOT?: Class_Academic_yearWhereInput | Class_Academic_yearWhereInput[]
-    classId?: StringFilter<"Class_Academic_year"> | string
-    yearId?: StringFilter<"Class_Academic_year"> | string
+  export type ClassAcademicYearWhereUniqueInput = Prisma.AtLeast<{
+    classId_yearId?: ClassAcademicYearClassIdYearIdCompoundUniqueInput
+    AND?: ClassAcademicYearWhereInput | ClassAcademicYearWhereInput[]
+    OR?: ClassAcademicYearWhereInput[]
+    NOT?: ClassAcademicYearWhereInput | ClassAcademicYearWhereInput[]
+    classId?: StringFilter<"ClassAcademicYear"> | string
+    yearId?: StringFilter<"ClassAcademicYear"> | string
     class?: XOR<ClassesScalarRelationFilter, ClassesWhereInput>
-    year?: XOR<Academic_YearsScalarRelationFilter, Academic_YearsWhereInput>
+    year?: XOR<AcademicYearsScalarRelationFilter, AcademicYearsWhereInput>
   }, "classId_yearId">
 
-  export type Class_Academic_yearOrderByWithAggregationInput = {
+  export type ClassAcademicYearOrderByWithAggregationInput = {
     classId?: SortOrder
     yearId?: SortOrder
-    _count?: Class_Academic_yearCountOrderByAggregateInput
-    _max?: Class_Academic_yearMaxOrderByAggregateInput
-    _min?: Class_Academic_yearMinOrderByAggregateInput
+    _count?: ClassAcademicYearCountOrderByAggregateInput
+    _max?: ClassAcademicYearMaxOrderByAggregateInput
+    _min?: ClassAcademicYearMinOrderByAggregateInput
   }
 
-  export type Class_Academic_yearScalarWhereWithAggregatesInput = {
-    AND?: Class_Academic_yearScalarWhereWithAggregatesInput | Class_Academic_yearScalarWhereWithAggregatesInput[]
-    OR?: Class_Academic_yearScalarWhereWithAggregatesInput[]
-    NOT?: Class_Academic_yearScalarWhereWithAggregatesInput | Class_Academic_yearScalarWhereWithAggregatesInput[]
-    classId?: StringWithAggregatesFilter<"Class_Academic_year"> | string
-    yearId?: StringWithAggregatesFilter<"Class_Academic_year"> | string
+  export type ClassAcademicYearScalarWhereWithAggregatesInput = {
+    AND?: ClassAcademicYearScalarWhereWithAggregatesInput | ClassAcademicYearScalarWhereWithAggregatesInput[]
+    OR?: ClassAcademicYearScalarWhereWithAggregatesInput[]
+    NOT?: ClassAcademicYearScalarWhereWithAggregatesInput | ClassAcademicYearScalarWhereWithAggregatesInput[]
+    classId?: StringWithAggregatesFilter<"ClassAcademicYear"> | string
+    yearId?: StringWithAggregatesFilter<"ClassAcademicYear"> | string
   }
 
   export type AssignmentsWhereInput = {
@@ -22879,24 +22879,24 @@ export namespace Prisma {
     OR?: AssignmentsWhereInput[]
     NOT?: AssignmentsWhereInput | AssignmentsWhereInput[]
     id?: StringFilter<"Assignments"> | string
-    assignment_title?: StringFilter<"Assignments"> | string
-    assignment_description?: StringFilter<"Assignments"> | string
-    due_date?: DateTimeFilter<"Assignments"> | Date | string
-    maximum_grade?: IntFilter<"Assignments"> | number
+    assignmentTitle?: StringFilter<"Assignments"> | string
+    assignmentDescription?: StringFilter<"Assignments"> | string
+    dueDate?: DateTimeFilter<"Assignments"> | Date | string
+    maximumGrade?: IntFilter<"Assignments"> | number
     attachment?: StringFilter<"Assignments"> | string
-    Submission_instructions?: StringFilter<"Assignments"> | string
+    SubmissionInstructions?: StringFilter<"Assignments"> | string
     subjectId?: StringFilter<"Assignments"> | string
     subject?: XOR<SubjectsScalarRelationFilter, SubjectsWhereInput>
   }
 
   export type AssignmentsOrderByWithRelationInput = {
     id?: SortOrder
-    assignment_title?: SortOrder
-    assignment_description?: SortOrder
-    due_date?: SortOrder
-    maximum_grade?: SortOrder
+    assignmentTitle?: SortOrder
+    assignmentDescription?: SortOrder
+    dueDate?: SortOrder
+    maximumGrade?: SortOrder
     attachment?: SortOrder
-    Submission_instructions?: SortOrder
+    SubmissionInstructions?: SortOrder
     subjectId?: SortOrder
     subject?: SubjectsOrderByWithRelationInput
   }
@@ -22906,24 +22906,24 @@ export namespace Prisma {
     AND?: AssignmentsWhereInput | AssignmentsWhereInput[]
     OR?: AssignmentsWhereInput[]
     NOT?: AssignmentsWhereInput | AssignmentsWhereInput[]
-    assignment_title?: StringFilter<"Assignments"> | string
-    assignment_description?: StringFilter<"Assignments"> | string
-    due_date?: DateTimeFilter<"Assignments"> | Date | string
-    maximum_grade?: IntFilter<"Assignments"> | number
+    assignmentTitle?: StringFilter<"Assignments"> | string
+    assignmentDescription?: StringFilter<"Assignments"> | string
+    dueDate?: DateTimeFilter<"Assignments"> | Date | string
+    maximumGrade?: IntFilter<"Assignments"> | number
     attachment?: StringFilter<"Assignments"> | string
-    Submission_instructions?: StringFilter<"Assignments"> | string
+    SubmissionInstructions?: StringFilter<"Assignments"> | string
     subjectId?: StringFilter<"Assignments"> | string
     subject?: XOR<SubjectsScalarRelationFilter, SubjectsWhereInput>
   }, "id">
 
   export type AssignmentsOrderByWithAggregationInput = {
     id?: SortOrder
-    assignment_title?: SortOrder
-    assignment_description?: SortOrder
-    due_date?: SortOrder
-    maximum_grade?: SortOrder
+    assignmentTitle?: SortOrder
+    assignmentDescription?: SortOrder
+    dueDate?: SortOrder
+    maximumGrade?: SortOrder
     attachment?: SortOrder
-    Submission_instructions?: SortOrder
+    SubmissionInstructions?: SortOrder
     subjectId?: SortOrder
     _count?: AssignmentsCountOrderByAggregateInput
     _avg?: AssignmentsAvgOrderByAggregateInput
@@ -22937,12 +22937,12 @@ export namespace Prisma {
     OR?: AssignmentsScalarWhereWithAggregatesInput[]
     NOT?: AssignmentsScalarWhereWithAggregatesInput | AssignmentsScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Assignments"> | string
-    assignment_title?: StringWithAggregatesFilter<"Assignments"> | string
-    assignment_description?: StringWithAggregatesFilter<"Assignments"> | string
-    due_date?: DateTimeWithAggregatesFilter<"Assignments"> | Date | string
-    maximum_grade?: IntWithAggregatesFilter<"Assignments"> | number
+    assignmentTitle?: StringWithAggregatesFilter<"Assignments"> | string
+    assignmentDescription?: StringWithAggregatesFilter<"Assignments"> | string
+    dueDate?: DateTimeWithAggregatesFilter<"Assignments"> | Date | string
+    maximumGrade?: IntWithAggregatesFilter<"Assignments"> | number
     attachment?: StringWithAggregatesFilter<"Assignments"> | string
-    Submission_instructions?: StringWithAggregatesFilter<"Assignments"> | string
+    SubmissionInstructions?: StringWithAggregatesFilter<"Assignments"> | string
     subjectId?: StringWithAggregatesFilter<"Assignments"> | string
   }
 
@@ -22951,24 +22951,24 @@ export namespace Prisma {
     OR?: LessonsWhereInput[]
     NOT?: LessonsWhereInput | LessonsWhereInput[]
     id?: StringFilter<"Lessons"> | string
-    lesson_title?: StringFilter<"Lessons"> | string
-    lesson_description?: StringFilter<"Lessons"> | string
-    lesson_date?: DateTimeFilter<"Lessons"> | Date | string
-    learning_objectinve?: StringFilter<"Lessons"> | string
-    learning_material?: StringFilter<"Lessons"> | string
-    Completion_status?: EnumiscompleateFilter<"Lessons"> | $Enums.iscompleate
+    lessonTitle?: StringFilter<"Lessons"> | string
+    lessonDescription?: StringFilter<"Lessons"> | string
+    lessonDate?: DateTimeFilter<"Lessons"> | Date | string
+    learningObjectinve?: StringFilter<"Lessons"> | string
+    learningMaterial?: StringFilter<"Lessons"> | string
+    CompletionStatus?: EnumiscompleateFilter<"Lessons"> | $Enums.iscompleate
     subjectId?: StringFilter<"Lessons"> | string
     subject?: XOR<SubjectsScalarRelationFilter, SubjectsWhereInput>
   }
 
   export type LessonsOrderByWithRelationInput = {
     id?: SortOrder
-    lesson_title?: SortOrder
-    lesson_description?: SortOrder
-    lesson_date?: SortOrder
-    learning_objectinve?: SortOrder
-    learning_material?: SortOrder
-    Completion_status?: SortOrder
+    lessonTitle?: SortOrder
+    lessonDescription?: SortOrder
+    lessonDate?: SortOrder
+    learningObjectinve?: SortOrder
+    learningMaterial?: SortOrder
+    CompletionStatus?: SortOrder
     subjectId?: SortOrder
     subject?: SubjectsOrderByWithRelationInput
   }
@@ -22978,24 +22978,24 @@ export namespace Prisma {
     AND?: LessonsWhereInput | LessonsWhereInput[]
     OR?: LessonsWhereInput[]
     NOT?: LessonsWhereInput | LessonsWhereInput[]
-    lesson_title?: StringFilter<"Lessons"> | string
-    lesson_description?: StringFilter<"Lessons"> | string
-    lesson_date?: DateTimeFilter<"Lessons"> | Date | string
-    learning_objectinve?: StringFilter<"Lessons"> | string
-    learning_material?: StringFilter<"Lessons"> | string
-    Completion_status?: EnumiscompleateFilter<"Lessons"> | $Enums.iscompleate
+    lessonTitle?: StringFilter<"Lessons"> | string
+    lessonDescription?: StringFilter<"Lessons"> | string
+    lessonDate?: DateTimeFilter<"Lessons"> | Date | string
+    learningObjectinve?: StringFilter<"Lessons"> | string
+    learningMaterial?: StringFilter<"Lessons"> | string
+    CompletionStatus?: EnumiscompleateFilter<"Lessons"> | $Enums.iscompleate
     subjectId?: StringFilter<"Lessons"> | string
     subject?: XOR<SubjectsScalarRelationFilter, SubjectsWhereInput>
   }, "id">
 
   export type LessonsOrderByWithAggregationInput = {
     id?: SortOrder
-    lesson_title?: SortOrder
-    lesson_description?: SortOrder
-    lesson_date?: SortOrder
-    learning_objectinve?: SortOrder
-    learning_material?: SortOrder
-    Completion_status?: SortOrder
+    lessonTitle?: SortOrder
+    lessonDescription?: SortOrder
+    lessonDate?: SortOrder
+    learningObjectinve?: SortOrder
+    learningMaterial?: SortOrder
+    CompletionStatus?: SortOrder
     subjectId?: SortOrder
     _count?: LessonsCountOrderByAggregateInput
     _max?: LessonsMaxOrderByAggregateInput
@@ -23007,12 +23007,12 @@ export namespace Prisma {
     OR?: LessonsScalarWhereWithAggregatesInput[]
     NOT?: LessonsScalarWhereWithAggregatesInput | LessonsScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Lessons"> | string
-    lesson_title?: StringWithAggregatesFilter<"Lessons"> | string
-    lesson_description?: StringWithAggregatesFilter<"Lessons"> | string
-    lesson_date?: DateTimeWithAggregatesFilter<"Lessons"> | Date | string
-    learning_objectinve?: StringWithAggregatesFilter<"Lessons"> | string
-    learning_material?: StringWithAggregatesFilter<"Lessons"> | string
-    Completion_status?: EnumiscompleateWithAggregatesFilter<"Lessons"> | $Enums.iscompleate
+    lessonTitle?: StringWithAggregatesFilter<"Lessons"> | string
+    lessonDescription?: StringWithAggregatesFilter<"Lessons"> | string
+    lessonDate?: DateTimeWithAggregatesFilter<"Lessons"> | Date | string
+    learningObjectinve?: StringWithAggregatesFilter<"Lessons"> | string
+    learningMaterial?: StringWithAggregatesFilter<"Lessons"> | string
+    CompletionStatus?: EnumiscompleateWithAggregatesFilter<"Lessons"> | $Enums.iscompleate
     subjectId?: StringWithAggregatesFilter<"Lessons"> | string
   }
 
@@ -23021,22 +23021,22 @@ export namespace Prisma {
     OR?: ExamsWhereInput[]
     NOT?: ExamsWhereInput | ExamsWhereInput[]
     id?: StringFilter<"Exams"> | string
-    exam_name?: StringFilter<"Exams"> | string
-    exam_date?: DateTimeFilter<"Exams"> | Date | string
-    Maximum_grade?: IntFilter<"Exams"> | number
+    examName?: StringFilter<"Exams"> | string
+    examDate?: DateTimeFilter<"Exams"> | Date | string
+    MaximumGrade?: IntFilter<"Exams"> | number
     subjectId?: StringFilter<"Exams"> | string
     subject?: XOR<SubjectsScalarRelationFilter, SubjectsWhereInput>
-    submissions?: Exam_submissionsListRelationFilter
+    submissions?: ExamSubmissionsListRelationFilter
   }
 
   export type ExamsOrderByWithRelationInput = {
     id?: SortOrder
-    exam_name?: SortOrder
-    exam_date?: SortOrder
-    Maximum_grade?: SortOrder
+    examName?: SortOrder
+    examDate?: SortOrder
+    MaximumGrade?: SortOrder
     subjectId?: SortOrder
     subject?: SubjectsOrderByWithRelationInput
-    submissions?: Exam_submissionsOrderByRelationAggregateInput
+    submissions?: ExamSubmissionsOrderByRelationAggregateInput
   }
 
   export type ExamsWhereUniqueInput = Prisma.AtLeast<{
@@ -23044,19 +23044,19 @@ export namespace Prisma {
     AND?: ExamsWhereInput | ExamsWhereInput[]
     OR?: ExamsWhereInput[]
     NOT?: ExamsWhereInput | ExamsWhereInput[]
-    exam_name?: StringFilter<"Exams"> | string
-    exam_date?: DateTimeFilter<"Exams"> | Date | string
-    Maximum_grade?: IntFilter<"Exams"> | number
+    examName?: StringFilter<"Exams"> | string
+    examDate?: DateTimeFilter<"Exams"> | Date | string
+    MaximumGrade?: IntFilter<"Exams"> | number
     subjectId?: StringFilter<"Exams"> | string
     subject?: XOR<SubjectsScalarRelationFilter, SubjectsWhereInput>
-    submissions?: Exam_submissionsListRelationFilter
+    submissions?: ExamSubmissionsListRelationFilter
   }, "id">
 
   export type ExamsOrderByWithAggregationInput = {
     id?: SortOrder
-    exam_name?: SortOrder
-    exam_date?: SortOrder
-    Maximum_grade?: SortOrder
+    examName?: SortOrder
+    examDate?: SortOrder
+    MaximumGrade?: SortOrder
     subjectId?: SortOrder
     _count?: ExamsCountOrderByAggregateInput
     _avg?: ExamsAvgOrderByAggregateInput
@@ -23070,215 +23070,215 @@ export namespace Prisma {
     OR?: ExamsScalarWhereWithAggregatesInput[]
     NOT?: ExamsScalarWhereWithAggregatesInput | ExamsScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Exams"> | string
-    exam_name?: StringWithAggregatesFilter<"Exams"> | string
-    exam_date?: DateTimeWithAggregatesFilter<"Exams"> | Date | string
-    Maximum_grade?: IntWithAggregatesFilter<"Exams"> | number
+    examName?: StringWithAggregatesFilter<"Exams"> | string
+    examDate?: DateTimeWithAggregatesFilter<"Exams"> | Date | string
+    MaximumGrade?: IntWithAggregatesFilter<"Exams"> | number
     subjectId?: StringWithAggregatesFilter<"Exams"> | string
   }
 
-  export type Learning_progressesWhereInput = {
-    AND?: Learning_progressesWhereInput | Learning_progressesWhereInput[]
-    OR?: Learning_progressesWhereInput[]
-    NOT?: Learning_progressesWhereInput | Learning_progressesWhereInput[]
-    id?: StringFilter<"Learning_progresses"> | string
-    subjects_averages?: IntFilter<"Learning_progresses"> | number
-    overall_avreages?: IntFilter<"Learning_progresses"> | number
-    attendence_percentage?: IntFilter<"Learning_progresses"> | number
-    learning_status?: EnumStatusFilter<"Learning_progresses"> | $Enums.Status
+  export type LearningProgressesWhereInput = {
+    AND?: LearningProgressesWhereInput | LearningProgressesWhereInput[]
+    OR?: LearningProgressesWhereInput[]
+    NOT?: LearningProgressesWhereInput | LearningProgressesWhereInput[]
+    id?: StringFilter<"LearningProgresses"> | string
+    subjectsAverages?: IntFilter<"LearningProgresses"> | number
+    overallAvreages?: IntFilter<"LearningProgresses"> | number
+    attendencePercentage?: IntFilter<"LearningProgresses"> | number
+    learningStatus?: EnumStatusFilter<"LearningProgresses"> | $Enums.Status
     student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
-    progressNotes?: Progress_notesListRelationFilter
+    progressNotes?: ProgressNotesListRelationFilter
   }
 
-  export type Learning_progressesOrderByWithRelationInput = {
+  export type LearningProgressesOrderByWithRelationInput = {
     id?: SortOrder
-    subjects_averages?: SortOrder
-    overall_avreages?: SortOrder
-    attendence_percentage?: SortOrder
-    learning_status?: SortOrder
+    subjectsAverages?: SortOrder
+    overallAvreages?: SortOrder
+    attendencePercentage?: SortOrder
+    learningStatus?: SortOrder
     student?: StudentOrderByWithRelationInput
-    progressNotes?: Progress_notesOrderByRelationAggregateInput
+    progressNotes?: ProgressNotesOrderByRelationAggregateInput
   }
 
-  export type Learning_progressesWhereUniqueInput = Prisma.AtLeast<{
+  export type LearningProgressesWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: Learning_progressesWhereInput | Learning_progressesWhereInput[]
-    OR?: Learning_progressesWhereInput[]
-    NOT?: Learning_progressesWhereInput | Learning_progressesWhereInput[]
-    subjects_averages?: IntFilter<"Learning_progresses"> | number
-    overall_avreages?: IntFilter<"Learning_progresses"> | number
-    attendence_percentage?: IntFilter<"Learning_progresses"> | number
-    learning_status?: EnumStatusFilter<"Learning_progresses"> | $Enums.Status
+    AND?: LearningProgressesWhereInput | LearningProgressesWhereInput[]
+    OR?: LearningProgressesWhereInput[]
+    NOT?: LearningProgressesWhereInput | LearningProgressesWhereInput[]
+    subjectsAverages?: IntFilter<"LearningProgresses"> | number
+    overallAvreages?: IntFilter<"LearningProgresses"> | number
+    attendencePercentage?: IntFilter<"LearningProgresses"> | number
+    learningStatus?: EnumStatusFilter<"LearningProgresses"> | $Enums.Status
     student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
-    progressNotes?: Progress_notesListRelationFilter
+    progressNotes?: ProgressNotesListRelationFilter
   }, "id">
 
-  export type Learning_progressesOrderByWithAggregationInput = {
+  export type LearningProgressesOrderByWithAggregationInput = {
     id?: SortOrder
-    subjects_averages?: SortOrder
-    overall_avreages?: SortOrder
-    attendence_percentage?: SortOrder
-    learning_status?: SortOrder
-    _count?: Learning_progressesCountOrderByAggregateInput
-    _avg?: Learning_progressesAvgOrderByAggregateInput
-    _max?: Learning_progressesMaxOrderByAggregateInput
-    _min?: Learning_progressesMinOrderByAggregateInput
-    _sum?: Learning_progressesSumOrderByAggregateInput
+    subjectsAverages?: SortOrder
+    overallAvreages?: SortOrder
+    attendencePercentage?: SortOrder
+    learningStatus?: SortOrder
+    _count?: LearningProgressesCountOrderByAggregateInput
+    _avg?: LearningProgressesAvgOrderByAggregateInput
+    _max?: LearningProgressesMaxOrderByAggregateInput
+    _min?: LearningProgressesMinOrderByAggregateInput
+    _sum?: LearningProgressesSumOrderByAggregateInput
   }
 
-  export type Learning_progressesScalarWhereWithAggregatesInput = {
-    AND?: Learning_progressesScalarWhereWithAggregatesInput | Learning_progressesScalarWhereWithAggregatesInput[]
-    OR?: Learning_progressesScalarWhereWithAggregatesInput[]
-    NOT?: Learning_progressesScalarWhereWithAggregatesInput | Learning_progressesScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Learning_progresses"> | string
-    subjects_averages?: IntWithAggregatesFilter<"Learning_progresses"> | number
-    overall_avreages?: IntWithAggregatesFilter<"Learning_progresses"> | number
-    attendence_percentage?: IntWithAggregatesFilter<"Learning_progresses"> | number
-    learning_status?: EnumStatusWithAggregatesFilter<"Learning_progresses"> | $Enums.Status
+  export type LearningProgressesScalarWhereWithAggregatesInput = {
+    AND?: LearningProgressesScalarWhereWithAggregatesInput | LearningProgressesScalarWhereWithAggregatesInput[]
+    OR?: LearningProgressesScalarWhereWithAggregatesInput[]
+    NOT?: LearningProgressesScalarWhereWithAggregatesInput | LearningProgressesScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"LearningProgresses"> | string
+    subjectsAverages?: IntWithAggregatesFilter<"LearningProgresses"> | number
+    overallAvreages?: IntWithAggregatesFilter<"LearningProgresses"> | number
+    attendencePercentage?: IntWithAggregatesFilter<"LearningProgresses"> | number
+    learningStatus?: EnumStatusWithAggregatesFilter<"LearningProgresses"> | $Enums.Status
   }
 
-  export type Progress_notesWhereInput = {
-    AND?: Progress_notesWhereInput | Progress_notesWhereInput[]
-    OR?: Progress_notesWhereInput[]
-    NOT?: Progress_notesWhereInput | Progress_notesWhereInput[]
-    id?: StringFilter<"Progress_notes"> | string
-    note_date?: DateTimeFilter<"Progress_notes"> | Date | string
-    note_observation?: StringFilter<"Progress_notes"> | string
-    Strengths?: StringFilter<"Progress_notes"> | string
-    areas_for_improvement?: StringFilter<"Progress_notes"> | string
-    teacherId?: StringFilter<"Progress_notes"> | string
-    learningProgressId?: StringFilter<"Progress_notes"> | string
+  export type ProgressNotesWhereInput = {
+    AND?: ProgressNotesWhereInput | ProgressNotesWhereInput[]
+    OR?: ProgressNotesWhereInput[]
+    NOT?: ProgressNotesWhereInput | ProgressNotesWhereInput[]
+    id?: StringFilter<"ProgressNotes"> | string
+    noteDate?: DateTimeFilter<"ProgressNotes"> | Date | string
+    noteObservation?: StringFilter<"ProgressNotes"> | string
+    Strengths?: StringFilter<"ProgressNotes"> | string
+    areasForImprovement?: StringFilter<"ProgressNotes"> | string
+    teacherId?: StringFilter<"ProgressNotes"> | string
+    learningProgressId?: StringFilter<"ProgressNotes"> | string
     teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
-    learning_progress?: XOR<Learning_progressesScalarRelationFilter, Learning_progressesWhereInput>
+    learningProgress?: XOR<LearningProgressesScalarRelationFilter, LearningProgressesWhereInput>
   }
 
-  export type Progress_notesOrderByWithRelationInput = {
+  export type ProgressNotesOrderByWithRelationInput = {
     id?: SortOrder
-    note_date?: SortOrder
-    note_observation?: SortOrder
+    noteDate?: SortOrder
+    noteObservation?: SortOrder
     Strengths?: SortOrder
-    areas_for_improvement?: SortOrder
+    areasForImprovement?: SortOrder
     teacherId?: SortOrder
     learningProgressId?: SortOrder
     teacher?: TeacherOrderByWithRelationInput
-    learning_progress?: Learning_progressesOrderByWithRelationInput
+    learningProgress?: LearningProgressesOrderByWithRelationInput
   }
 
-  export type Progress_notesWhereUniqueInput = Prisma.AtLeast<{
+  export type ProgressNotesWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: Progress_notesWhereInput | Progress_notesWhereInput[]
-    OR?: Progress_notesWhereInput[]
-    NOT?: Progress_notesWhereInput | Progress_notesWhereInput[]
-    note_date?: DateTimeFilter<"Progress_notes"> | Date | string
-    note_observation?: StringFilter<"Progress_notes"> | string
-    Strengths?: StringFilter<"Progress_notes"> | string
-    areas_for_improvement?: StringFilter<"Progress_notes"> | string
-    teacherId?: StringFilter<"Progress_notes"> | string
-    learningProgressId?: StringFilter<"Progress_notes"> | string
+    AND?: ProgressNotesWhereInput | ProgressNotesWhereInput[]
+    OR?: ProgressNotesWhereInput[]
+    NOT?: ProgressNotesWhereInput | ProgressNotesWhereInput[]
+    noteDate?: DateTimeFilter<"ProgressNotes"> | Date | string
+    noteObservation?: StringFilter<"ProgressNotes"> | string
+    Strengths?: StringFilter<"ProgressNotes"> | string
+    areasForImprovement?: StringFilter<"ProgressNotes"> | string
+    teacherId?: StringFilter<"ProgressNotes"> | string
+    learningProgressId?: StringFilter<"ProgressNotes"> | string
     teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
-    learning_progress?: XOR<Learning_progressesScalarRelationFilter, Learning_progressesWhereInput>
+    learningProgress?: XOR<LearningProgressesScalarRelationFilter, LearningProgressesWhereInput>
   }, "id">
 
-  export type Progress_notesOrderByWithAggregationInput = {
+  export type ProgressNotesOrderByWithAggregationInput = {
     id?: SortOrder
-    note_date?: SortOrder
-    note_observation?: SortOrder
+    noteDate?: SortOrder
+    noteObservation?: SortOrder
     Strengths?: SortOrder
-    areas_for_improvement?: SortOrder
+    areasForImprovement?: SortOrder
     teacherId?: SortOrder
     learningProgressId?: SortOrder
-    _count?: Progress_notesCountOrderByAggregateInput
-    _max?: Progress_notesMaxOrderByAggregateInput
-    _min?: Progress_notesMinOrderByAggregateInput
+    _count?: ProgressNotesCountOrderByAggregateInput
+    _max?: ProgressNotesMaxOrderByAggregateInput
+    _min?: ProgressNotesMinOrderByAggregateInput
   }
 
-  export type Progress_notesScalarWhereWithAggregatesInput = {
-    AND?: Progress_notesScalarWhereWithAggregatesInput | Progress_notesScalarWhereWithAggregatesInput[]
-    OR?: Progress_notesScalarWhereWithAggregatesInput[]
-    NOT?: Progress_notesScalarWhereWithAggregatesInput | Progress_notesScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Progress_notes"> | string
-    note_date?: DateTimeWithAggregatesFilter<"Progress_notes"> | Date | string
-    note_observation?: StringWithAggregatesFilter<"Progress_notes"> | string
-    Strengths?: StringWithAggregatesFilter<"Progress_notes"> | string
-    areas_for_improvement?: StringWithAggregatesFilter<"Progress_notes"> | string
-    teacherId?: StringWithAggregatesFilter<"Progress_notes"> | string
-    learningProgressId?: StringWithAggregatesFilter<"Progress_notes"> | string
+  export type ProgressNotesScalarWhereWithAggregatesInput = {
+    AND?: ProgressNotesScalarWhereWithAggregatesInput | ProgressNotesScalarWhereWithAggregatesInput[]
+    OR?: ProgressNotesScalarWhereWithAggregatesInput[]
+    NOT?: ProgressNotesScalarWhereWithAggregatesInput | ProgressNotesScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ProgressNotes"> | string
+    noteDate?: DateTimeWithAggregatesFilter<"ProgressNotes"> | Date | string
+    noteObservation?: StringWithAggregatesFilter<"ProgressNotes"> | string
+    Strengths?: StringWithAggregatesFilter<"ProgressNotes"> | string
+    areasForImprovement?: StringWithAggregatesFilter<"ProgressNotes"> | string
+    teacherId?: StringWithAggregatesFilter<"ProgressNotes"> | string
+    learningProgressId?: StringWithAggregatesFilter<"ProgressNotes"> | string
   }
 
-  export type Classes_performenceWhereInput = {
-    AND?: Classes_performenceWhereInput | Classes_performenceWhereInput[]
-    OR?: Classes_performenceWhereInput[]
-    NOT?: Classes_performenceWhereInput | Classes_performenceWhereInput[]
-    id?: StringFilter<"Classes_performence"> | string
-    class_avg?: IntFilter<"Classes_performence"> | number
-    highest_grade?: IntFilter<"Classes_performence"> | number
-    lowest_grade?: IntFilter<"Classes_performence"> | number
-    assignments_compleation_rate?: IntFilter<"Classes_performence"> | number
-    attendence_rate?: IntFilter<"Classes_performence"> | number
-    student_requiring_support?: IntFilter<"Classes_performence"> | number
-    class_status?: EnumStatusFilter<"Classes_performence"> | $Enums.Status
-    classId?: StringFilter<"Classes_performence"> | string
+  export type ClassesPerformenceWhereInput = {
+    AND?: ClassesPerformenceWhereInput | ClassesPerformenceWhereInput[]
+    OR?: ClassesPerformenceWhereInput[]
+    NOT?: ClassesPerformenceWhereInput | ClassesPerformenceWhereInput[]
+    id?: StringFilter<"ClassesPerformence"> | string
+    classAvg?: IntFilter<"ClassesPerformence"> | number
+    highestGrade?: IntFilter<"ClassesPerformence"> | number
+    lowestGrade?: IntFilter<"ClassesPerformence"> | number
+    assignmentsCompleationRate?: IntFilter<"ClassesPerformence"> | number
+    attendenceRate?: IntFilter<"ClassesPerformence"> | number
+    studentRequiringSupport?: IntFilter<"ClassesPerformence"> | number
+    classStatus?: EnumStatusFilter<"ClassesPerformence"> | $Enums.Status
+    classId?: StringFilter<"ClassesPerformence"> | string
     class?: XOR<ClassesScalarRelationFilter, ClassesWhereInput>
   }
 
-  export type Classes_performenceOrderByWithRelationInput = {
+  export type ClassesPerformenceOrderByWithRelationInput = {
     id?: SortOrder
-    class_avg?: SortOrder
-    highest_grade?: SortOrder
-    lowest_grade?: SortOrder
-    assignments_compleation_rate?: SortOrder
-    attendence_rate?: SortOrder
-    student_requiring_support?: SortOrder
-    class_status?: SortOrder
+    classAvg?: SortOrder
+    highestGrade?: SortOrder
+    lowestGrade?: SortOrder
+    assignmentsCompleationRate?: SortOrder
+    attendenceRate?: SortOrder
+    studentRequiringSupport?: SortOrder
+    classStatus?: SortOrder
     classId?: SortOrder
     class?: ClassesOrderByWithRelationInput
   }
 
-  export type Classes_performenceWhereUniqueInput = Prisma.AtLeast<{
+  export type ClassesPerformenceWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     classId?: string
-    AND?: Classes_performenceWhereInput | Classes_performenceWhereInput[]
-    OR?: Classes_performenceWhereInput[]
-    NOT?: Classes_performenceWhereInput | Classes_performenceWhereInput[]
-    class_avg?: IntFilter<"Classes_performence"> | number
-    highest_grade?: IntFilter<"Classes_performence"> | number
-    lowest_grade?: IntFilter<"Classes_performence"> | number
-    assignments_compleation_rate?: IntFilter<"Classes_performence"> | number
-    attendence_rate?: IntFilter<"Classes_performence"> | number
-    student_requiring_support?: IntFilter<"Classes_performence"> | number
-    class_status?: EnumStatusFilter<"Classes_performence"> | $Enums.Status
+    AND?: ClassesPerformenceWhereInput | ClassesPerformenceWhereInput[]
+    OR?: ClassesPerformenceWhereInput[]
+    NOT?: ClassesPerformenceWhereInput | ClassesPerformenceWhereInput[]
+    classAvg?: IntFilter<"ClassesPerformence"> | number
+    highestGrade?: IntFilter<"ClassesPerformence"> | number
+    lowestGrade?: IntFilter<"ClassesPerformence"> | number
+    assignmentsCompleationRate?: IntFilter<"ClassesPerformence"> | number
+    attendenceRate?: IntFilter<"ClassesPerformence"> | number
+    studentRequiringSupport?: IntFilter<"ClassesPerformence"> | number
+    classStatus?: EnumStatusFilter<"ClassesPerformence"> | $Enums.Status
     class?: XOR<ClassesScalarRelationFilter, ClassesWhereInput>
   }, "id" | "classId">
 
-  export type Classes_performenceOrderByWithAggregationInput = {
+  export type ClassesPerformenceOrderByWithAggregationInput = {
     id?: SortOrder
-    class_avg?: SortOrder
-    highest_grade?: SortOrder
-    lowest_grade?: SortOrder
-    assignments_compleation_rate?: SortOrder
-    attendence_rate?: SortOrder
-    student_requiring_support?: SortOrder
-    class_status?: SortOrder
+    classAvg?: SortOrder
+    highestGrade?: SortOrder
+    lowestGrade?: SortOrder
+    assignmentsCompleationRate?: SortOrder
+    attendenceRate?: SortOrder
+    studentRequiringSupport?: SortOrder
+    classStatus?: SortOrder
     classId?: SortOrder
-    _count?: Classes_performenceCountOrderByAggregateInput
-    _avg?: Classes_performenceAvgOrderByAggregateInput
-    _max?: Classes_performenceMaxOrderByAggregateInput
-    _min?: Classes_performenceMinOrderByAggregateInput
-    _sum?: Classes_performenceSumOrderByAggregateInput
+    _count?: ClassesPerformenceCountOrderByAggregateInput
+    _avg?: ClassesPerformenceAvgOrderByAggregateInput
+    _max?: ClassesPerformenceMaxOrderByAggregateInput
+    _min?: ClassesPerformenceMinOrderByAggregateInput
+    _sum?: ClassesPerformenceSumOrderByAggregateInput
   }
 
-  export type Classes_performenceScalarWhereWithAggregatesInput = {
-    AND?: Classes_performenceScalarWhereWithAggregatesInput | Classes_performenceScalarWhereWithAggregatesInput[]
-    OR?: Classes_performenceScalarWhereWithAggregatesInput[]
-    NOT?: Classes_performenceScalarWhereWithAggregatesInput | Classes_performenceScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Classes_performence"> | string
-    class_avg?: IntWithAggregatesFilter<"Classes_performence"> | number
-    highest_grade?: IntWithAggregatesFilter<"Classes_performence"> | number
-    lowest_grade?: IntWithAggregatesFilter<"Classes_performence"> | number
-    assignments_compleation_rate?: IntWithAggregatesFilter<"Classes_performence"> | number
-    attendence_rate?: IntWithAggregatesFilter<"Classes_performence"> | number
-    student_requiring_support?: IntWithAggregatesFilter<"Classes_performence"> | number
-    class_status?: EnumStatusWithAggregatesFilter<"Classes_performence"> | $Enums.Status
-    classId?: StringWithAggregatesFilter<"Classes_performence"> | string
+  export type ClassesPerformenceScalarWhereWithAggregatesInput = {
+    AND?: ClassesPerformenceScalarWhereWithAggregatesInput | ClassesPerformenceScalarWhereWithAggregatesInput[]
+    OR?: ClassesPerformenceScalarWhereWithAggregatesInput[]
+    NOT?: ClassesPerformenceScalarWhereWithAggregatesInput | ClassesPerformenceScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ClassesPerformence"> | string
+    classAvg?: IntWithAggregatesFilter<"ClassesPerformence"> | number
+    highestGrade?: IntWithAggregatesFilter<"ClassesPerformence"> | number
+    lowestGrade?: IntWithAggregatesFilter<"ClassesPerformence"> | number
+    assignmentsCompleationRate?: IntWithAggregatesFilter<"ClassesPerformence"> | number
+    attendenceRate?: IntWithAggregatesFilter<"ClassesPerformence"> | number
+    studentRequiringSupport?: IntWithAggregatesFilter<"ClassesPerformence"> | number
+    classStatus?: EnumStatusWithAggregatesFilter<"ClassesPerformence"> | $Enums.Status
+    classId?: StringWithAggregatesFilter<"ClassesPerformence"> | string
   }
 
   export type AttendencesWhereInput = {
@@ -23286,9 +23286,9 @@ export namespace Prisma {
     OR?: AttendencesWhereInput[]
     NOT?: AttendencesWhereInput | AttendencesWhereInput[]
     id?: StringFilter<"Attendences"> | string
-    attendance_date?: DateTimeFilter<"Attendences"> | Date | string
-    attendance_status?: StringFilter<"Attendences"> | string
-    attendance_percentage?: IntFilter<"Attendences"> | number
+    attendanceDate?: DateTimeFilter<"Attendences"> | Date | string
+    attendanceStatus?: StringFilter<"Attendences"> | string
+    attendancePercentage?: IntFilter<"Attendences"> | number
     studentId?: StringFilter<"Attendences"> | string
     subjectId?: StringFilter<"Attendences"> | string
     student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
@@ -23297,9 +23297,9 @@ export namespace Prisma {
 
   export type AttendencesOrderByWithRelationInput = {
     id?: SortOrder
-    attendance_date?: SortOrder
-    attendance_status?: SortOrder
-    attendance_percentage?: SortOrder
+    attendanceDate?: SortOrder
+    attendanceStatus?: SortOrder
+    attendancePercentage?: SortOrder
     studentId?: SortOrder
     subjectId?: SortOrder
     student?: StudentOrderByWithRelationInput
@@ -23311,9 +23311,9 @@ export namespace Prisma {
     AND?: AttendencesWhereInput | AttendencesWhereInput[]
     OR?: AttendencesWhereInput[]
     NOT?: AttendencesWhereInput | AttendencesWhereInput[]
-    attendance_date?: DateTimeFilter<"Attendences"> | Date | string
-    attendance_status?: StringFilter<"Attendences"> | string
-    attendance_percentage?: IntFilter<"Attendences"> | number
+    attendanceDate?: DateTimeFilter<"Attendences"> | Date | string
+    attendanceStatus?: StringFilter<"Attendences"> | string
+    attendancePercentage?: IntFilter<"Attendences"> | number
     studentId?: StringFilter<"Attendences"> | string
     subjectId?: StringFilter<"Attendences"> | string
     student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
@@ -23322,9 +23322,9 @@ export namespace Prisma {
 
   export type AttendencesOrderByWithAggregationInput = {
     id?: SortOrder
-    attendance_date?: SortOrder
-    attendance_status?: SortOrder
-    attendance_percentage?: SortOrder
+    attendanceDate?: SortOrder
+    attendanceStatus?: SortOrder
+    attendancePercentage?: SortOrder
     studentId?: SortOrder
     subjectId?: SortOrder
     _count?: AttendencesCountOrderByAggregateInput
@@ -23339,27 +23339,27 @@ export namespace Prisma {
     OR?: AttendencesScalarWhereWithAggregatesInput[]
     NOT?: AttendencesScalarWhereWithAggregatesInput | AttendencesScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Attendences"> | string
-    attendance_date?: DateTimeWithAggregatesFilter<"Attendences"> | Date | string
-    attendance_status?: StringWithAggregatesFilter<"Attendences"> | string
-    attendance_percentage?: IntWithAggregatesFilter<"Attendences"> | number
+    attendanceDate?: DateTimeWithAggregatesFilter<"Attendences"> | Date | string
+    attendanceStatus?: StringWithAggregatesFilter<"Attendences"> | string
+    attendancePercentage?: IntWithAggregatesFilter<"Attendences"> | number
     studentId?: StringWithAggregatesFilter<"Attendences"> | string
     subjectId?: StringWithAggregatesFilter<"Attendences"> | string
   }
 
-  export type Exam_submissionsWhereInput = {
-    AND?: Exam_submissionsWhereInput | Exam_submissionsWhereInput[]
-    OR?: Exam_submissionsWhereInput[]
-    NOT?: Exam_submissionsWhereInput | Exam_submissionsWhereInput[]
-    id?: StringFilter<"Exam_submissions"> | string
-    examId?: StringFilter<"Exam_submissions"> | string
-    studentId?: StringFilter<"Exam_submissions"> | string
-    score?: IntNullableFilter<"Exam_submissions"> | number | null
-    takenAt?: DateTimeFilter<"Exam_submissions"> | Date | string
+  export type ExamSubmissionsWhereInput = {
+    AND?: ExamSubmissionsWhereInput | ExamSubmissionsWhereInput[]
+    OR?: ExamSubmissionsWhereInput[]
+    NOT?: ExamSubmissionsWhereInput | ExamSubmissionsWhereInput[]
+    id?: StringFilter<"ExamSubmissions"> | string
+    examId?: StringFilter<"ExamSubmissions"> | string
+    studentId?: StringFilter<"ExamSubmissions"> | string
+    score?: IntNullableFilter<"ExamSubmissions"> | number | null
+    takenAt?: DateTimeFilter<"ExamSubmissions"> | Date | string
     exam?: XOR<ExamsScalarRelationFilter, ExamsWhereInput>
     student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
   }
 
-  export type Exam_submissionsOrderByWithRelationInput = {
+  export type ExamSubmissionsOrderByWithRelationInput = {
     id?: SortOrder
     examId?: SortOrder
     studentId?: SortOrder
@@ -23369,42 +23369,42 @@ export namespace Prisma {
     student?: StudentOrderByWithRelationInput
   }
 
-  export type Exam_submissionsWhereUniqueInput = Prisma.AtLeast<{
+  export type ExamSubmissionsWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    examId_studentId?: Exam_submissionsExamIdStudentIdCompoundUniqueInput
-    AND?: Exam_submissionsWhereInput | Exam_submissionsWhereInput[]
-    OR?: Exam_submissionsWhereInput[]
-    NOT?: Exam_submissionsWhereInput | Exam_submissionsWhereInput[]
-    examId?: StringFilter<"Exam_submissions"> | string
-    studentId?: StringFilter<"Exam_submissions"> | string
-    score?: IntNullableFilter<"Exam_submissions"> | number | null
-    takenAt?: DateTimeFilter<"Exam_submissions"> | Date | string
+    examId_studentId?: ExamSubmissionsExamIdStudentIdCompoundUniqueInput
+    AND?: ExamSubmissionsWhereInput | ExamSubmissionsWhereInput[]
+    OR?: ExamSubmissionsWhereInput[]
+    NOT?: ExamSubmissionsWhereInput | ExamSubmissionsWhereInput[]
+    examId?: StringFilter<"ExamSubmissions"> | string
+    studentId?: StringFilter<"ExamSubmissions"> | string
+    score?: IntNullableFilter<"ExamSubmissions"> | number | null
+    takenAt?: DateTimeFilter<"ExamSubmissions"> | Date | string
     exam?: XOR<ExamsScalarRelationFilter, ExamsWhereInput>
     student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
   }, "id" | "examId_studentId">
 
-  export type Exam_submissionsOrderByWithAggregationInput = {
+  export type ExamSubmissionsOrderByWithAggregationInput = {
     id?: SortOrder
     examId?: SortOrder
     studentId?: SortOrder
     score?: SortOrderInput | SortOrder
     takenAt?: SortOrder
-    _count?: Exam_submissionsCountOrderByAggregateInput
-    _avg?: Exam_submissionsAvgOrderByAggregateInput
-    _max?: Exam_submissionsMaxOrderByAggregateInput
-    _min?: Exam_submissionsMinOrderByAggregateInput
-    _sum?: Exam_submissionsSumOrderByAggregateInput
+    _count?: ExamSubmissionsCountOrderByAggregateInput
+    _avg?: ExamSubmissionsAvgOrderByAggregateInput
+    _max?: ExamSubmissionsMaxOrderByAggregateInput
+    _min?: ExamSubmissionsMinOrderByAggregateInput
+    _sum?: ExamSubmissionsSumOrderByAggregateInput
   }
 
-  export type Exam_submissionsScalarWhereWithAggregatesInput = {
-    AND?: Exam_submissionsScalarWhereWithAggregatesInput | Exam_submissionsScalarWhereWithAggregatesInput[]
-    OR?: Exam_submissionsScalarWhereWithAggregatesInput[]
-    NOT?: Exam_submissionsScalarWhereWithAggregatesInput | Exam_submissionsScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Exam_submissions"> | string
-    examId?: StringWithAggregatesFilter<"Exam_submissions"> | string
-    studentId?: StringWithAggregatesFilter<"Exam_submissions"> | string
-    score?: IntNullableWithAggregatesFilter<"Exam_submissions"> | number | null
-    takenAt?: DateTimeWithAggregatesFilter<"Exam_submissions"> | Date | string
+  export type ExamSubmissionsScalarWhereWithAggregatesInput = {
+    AND?: ExamSubmissionsScalarWhereWithAggregatesInput | ExamSubmissionsScalarWhereWithAggregatesInput[]
+    OR?: ExamSubmissionsScalarWhereWithAggregatesInput[]
+    NOT?: ExamSubmissionsScalarWhereWithAggregatesInput | ExamSubmissionsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ExamSubmissions"> | string
+    examId?: StringWithAggregatesFilter<"ExamSubmissions"> | string
+    studentId?: StringWithAggregatesFilter<"ExamSubmissions"> | string
+    score?: IntNullableWithAggregatesFilter<"ExamSubmissions"> | number | null
+    takenAt?: DateTimeWithAggregatesFilter<"ExamSubmissions"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -23413,7 +23413,7 @@ export namespace Prisma {
     username: string
     password: string
     role: $Enums.Role
-    account_status?: boolean
+    accountStatus?: boolean
     createdAt?: Date | string
     teacher?: TeacherCreateNestedOneWithoutUserInput
     student?: StudentCreateNestedOneWithoutUserInput
@@ -23426,7 +23426,7 @@ export namespace Prisma {
     username: string
     password: string
     role: $Enums.Role
-    account_status?: boolean
+    accountStatus?: boolean
     createdAt?: Date | string
     teacher?: TeacherUncheckedCreateNestedOneWithoutUserInput
     student?: StudentUncheckedCreateNestedOneWithoutUserInput
@@ -23439,7 +23439,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    account_status?: BoolFieldUpdateOperationsInput | boolean
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teacher?: TeacherUpdateOneWithoutUserNestedInput
     student?: StudentUpdateOneWithoutUserNestedInput
@@ -23452,7 +23452,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    account_status?: BoolFieldUpdateOperationsInput | boolean
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teacher?: TeacherUncheckedUpdateOneWithoutUserNestedInput
     student?: StudentUncheckedUpdateOneWithoutUserNestedInput
@@ -23465,7 +23465,7 @@ export namespace Prisma {
     username: string
     password: string
     role: $Enums.Role
-    account_status?: boolean
+    accountStatus?: boolean
     createdAt?: Date | string
   }
 
@@ -23475,7 +23475,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    account_status?: BoolFieldUpdateOperationsInput | boolean
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -23485,7 +23485,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    account_status?: BoolFieldUpdateOperationsInput | boolean
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -23553,246 +23553,246 @@ export namespace Prisma {
 
   export type TeacherCreateInput = {
     name: string
-    employ_id: number
+    employId: number
     email: string
-    phonenumber: string
+    phoneNumber: string
     specilization: string
-    account_status?: boolean
+    accountStatus?: boolean
     user: UserCreateNestedOneWithoutTeacherInput
     subjects?: SubjectsCreateNestedManyWithoutTeacherInput
-    progressNotes?: Progress_notesCreateNestedManyWithoutTeacherInput
+    progressNotes?: ProgressNotesCreateNestedManyWithoutTeacherInput
   }
 
   export type TeacherUncheckedCreateInput = {
     id: string
     name: string
-    employ_id: number
+    employId: number
     email: string
-    phonenumber: string
+    phoneNumber: string
     specilization: string
-    account_status?: boolean
+    accountStatus?: boolean
     subjects?: SubjectsUncheckedCreateNestedManyWithoutTeacherInput
-    progressNotes?: Progress_notesUncheckedCreateNestedManyWithoutTeacherInput
+    progressNotes?: ProgressNotesUncheckedCreateNestedManyWithoutTeacherInput
   }
 
   export type TeacherUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    employ_id?: IntFieldUpdateOperationsInput | number
+    employId?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     specilization?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
     user?: UserUpdateOneRequiredWithoutTeacherNestedInput
     subjects?: SubjectsUpdateManyWithoutTeacherNestedInput
-    progressNotes?: Progress_notesUpdateManyWithoutTeacherNestedInput
+    progressNotes?: ProgressNotesUpdateManyWithoutTeacherNestedInput
   }
 
   export type TeacherUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    employ_id?: IntFieldUpdateOperationsInput | number
+    employId?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     specilization?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
     subjects?: SubjectsUncheckedUpdateManyWithoutTeacherNestedInput
-    progressNotes?: Progress_notesUncheckedUpdateManyWithoutTeacherNestedInput
+    progressNotes?: ProgressNotesUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
   export type TeacherCreateManyInput = {
     id: string
     name: string
-    employ_id: number
+    employId: number
     email: string
-    phonenumber: string
+    phoneNumber: string
     specilization: string
-    account_status?: boolean
+    accountStatus?: boolean
   }
 
   export type TeacherUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
-    employ_id?: IntFieldUpdateOperationsInput | number
+    employId?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     specilization?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TeacherUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    employ_id?: IntFieldUpdateOperationsInput | number
+    employId?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     specilization?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type StudentCreateInput = {
-    student_id: number
-    first_name: string
-    last_name: string
+    studentId: number
+    firstName: string
+    lastName: string
     email: string
-    account_status?: boolean
-    date_of_birth: Date | string
-    phonenumber?: string | null
-    enrollment_date: Date | string
+    accountStatus?: boolean
+    dateOfBirth: Date | string
+    phoneNumber?: string | null
+    enrollmentDate: Date | string
     gender: $Enums.Gender
     user: UserCreateNestedOneWithoutStudentInput
     class?: ClassesCreateNestedOneWithoutStudentsInput
-    learning_progress: Learning_progressesCreateNestedOneWithoutStudentInput
+    learningProgress: LearningProgressesCreateNestedOneWithoutStudentInput
     attendances?: AttendencesCreateNestedManyWithoutStudentInput
-    examSubmissions?: Exam_submissionsCreateNestedManyWithoutStudentInput
+    examSubmissions?: ExamSubmissionsCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateInput = {
     id: string
-    student_id: number
-    first_name: string
-    last_name: string
+    studentId: number
+    firstName: string
+    lastName: string
     email: string
-    account_status?: boolean
-    date_of_birth: Date | string
-    phonenumber?: string | null
-    enrollment_date: Date | string
-    learning_progress_id: string
+    accountStatus?: boolean
+    dateOfBirth: Date | string
+    phoneNumber?: string | null
+    enrollmentDate: Date | string
+    learningProgressId: string
     classId?: string | null
     gender: $Enums.Gender
     attendances?: AttendencesUncheckedCreateNestedManyWithoutStudentInput
-    examSubmissions?: Exam_submissionsUncheckedCreateNestedManyWithoutStudentInput
+    examSubmissions?: ExamSubmissionsUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUpdateInput = {
-    student_id?: IntFieldUpdateOperationsInput | number
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    studentId?: IntFieldUpdateOperationsInput | number
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
-    date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
-    enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
+    dateOfBirth?: DateTimeFieldUpdateOperationsInput | Date | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    enrollmentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     user?: UserUpdateOneRequiredWithoutStudentNestedInput
     class?: ClassesUpdateOneWithoutStudentsNestedInput
-    learning_progress?: Learning_progressesUpdateOneRequiredWithoutStudentNestedInput
+    learningProgress?: LearningProgressesUpdateOneRequiredWithoutStudentNestedInput
     attendances?: AttendencesUpdateManyWithoutStudentNestedInput
-    examSubmissions?: Exam_submissionsUpdateManyWithoutStudentNestedInput
+    examSubmissions?: ExamSubmissionsUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    student_id?: IntFieldUpdateOperationsInput | number
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    studentId?: IntFieldUpdateOperationsInput | number
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
-    date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
-    enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    learning_progress_id?: StringFieldUpdateOperationsInput | string
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
+    dateOfBirth?: DateTimeFieldUpdateOperationsInput | Date | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    enrollmentDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    learningProgressId?: StringFieldUpdateOperationsInput | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     attendances?: AttendencesUncheckedUpdateManyWithoutStudentNestedInput
-    examSubmissions?: Exam_submissionsUncheckedUpdateManyWithoutStudentNestedInput
+    examSubmissions?: ExamSubmissionsUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentCreateManyInput = {
     id: string
-    student_id: number
-    first_name: string
-    last_name: string
+    studentId: number
+    firstName: string
+    lastName: string
     email: string
-    account_status?: boolean
-    date_of_birth: Date | string
-    phonenumber?: string | null
-    enrollment_date: Date | string
-    learning_progress_id: string
+    accountStatus?: boolean
+    dateOfBirth: Date | string
+    phoneNumber?: string | null
+    enrollmentDate: Date | string
+    learningProgressId: string
     classId?: string | null
     gender: $Enums.Gender
   }
 
   export type StudentUpdateManyMutationInput = {
-    student_id?: IntFieldUpdateOperationsInput | number
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    studentId?: IntFieldUpdateOperationsInput | number
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
-    date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
-    enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
+    dateOfBirth?: DateTimeFieldUpdateOperationsInput | Date | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    enrollmentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   }
 
   export type StudentUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    student_id?: IntFieldUpdateOperationsInput | number
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    studentId?: IntFieldUpdateOperationsInput | number
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
-    date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
-    enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    learning_progress_id?: StringFieldUpdateOperationsInput | string
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
+    dateOfBirth?: DateTimeFieldUpdateOperationsInput | Date | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    enrollmentDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    learningProgressId?: StringFieldUpdateOperationsInput | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   }
 
   export type ClassesCreateInput = {
     id: string
-    class_name: string
-    academicYears?: Class_Academic_yearCreateNestedManyWithoutClassInput
+    className: string
+    academicYears?: ClassAcademicYearCreateNestedManyWithoutClassInput
     students?: StudentCreateNestedManyWithoutClassInput
     subjects?: SubjectsCreateNestedManyWithoutClassInput
-    performance?: Classes_performenceCreateNestedOneWithoutClassInput
+    performance?: ClassesPerformenceCreateNestedOneWithoutClassInput
   }
 
   export type ClassesUncheckedCreateInput = {
     id: string
-    class_name: string
-    academicYears?: Class_Academic_yearUncheckedCreateNestedManyWithoutClassInput
+    className: string
+    academicYears?: ClassAcademicYearUncheckedCreateNestedManyWithoutClassInput
     students?: StudentUncheckedCreateNestedManyWithoutClassInput
     subjects?: SubjectsUncheckedCreateNestedManyWithoutClassInput
-    performance?: Classes_performenceUncheckedCreateNestedOneWithoutClassInput
+    performance?: ClassesPerformenceUncheckedCreateNestedOneWithoutClassInput
   }
 
   export type ClassesUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_name?: StringFieldUpdateOperationsInput | string
-    academicYears?: Class_Academic_yearUpdateManyWithoutClassNestedInput
+    className?: StringFieldUpdateOperationsInput | string
+    academicYears?: ClassAcademicYearUpdateManyWithoutClassNestedInput
     students?: StudentUpdateManyWithoutClassNestedInput
     subjects?: SubjectsUpdateManyWithoutClassNestedInput
-    performance?: Classes_performenceUpdateOneWithoutClassNestedInput
+    performance?: ClassesPerformenceUpdateOneWithoutClassNestedInput
   }
 
   export type ClassesUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_name?: StringFieldUpdateOperationsInput | string
-    academicYears?: Class_Academic_yearUncheckedUpdateManyWithoutClassNestedInput
+    className?: StringFieldUpdateOperationsInput | string
+    academicYears?: ClassAcademicYearUncheckedUpdateManyWithoutClassNestedInput
     students?: StudentUncheckedUpdateManyWithoutClassNestedInput
     subjects?: SubjectsUncheckedUpdateManyWithoutClassNestedInput
-    performance?: Classes_performenceUncheckedUpdateOneWithoutClassNestedInput
+    performance?: ClassesPerformenceUncheckedUpdateOneWithoutClassNestedInput
   }
 
   export type ClassesCreateManyInput = {
     id: string
-    class_name: string
+    className: string
   }
 
   export type ClassesUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_name?: StringFieldUpdateOperationsInput | string
+    className?: StringFieldUpdateOperationsInput | string
   }
 
   export type ClassesUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_name?: StringFieldUpdateOperationsInput | string
+    className?: StringFieldUpdateOperationsInput | string
   }
 
   export type SubjectsCreateInput = {
     id: string
-    subject_name: string
-    subject_code: string
+    subjectName: string
+    subjectCode: string
     Description: string
     class: ClassesCreateNestedOneWithoutSubjectsInput
     teacher: TeacherCreateNestedOneWithoutSubjectsInput
@@ -23804,8 +23804,8 @@ export namespace Prisma {
 
   export type SubjectsUncheckedCreateInput = {
     id: string
-    subject_name: string
-    subject_code: string
+    subjectName: string
+    subjectCode: string
     Description: string
     classId: string
     teacherId: string
@@ -23817,8 +23817,8 @@ export namespace Prisma {
 
   export type SubjectsUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subject_name?: StringFieldUpdateOperationsInput | string
-    subject_code?: StringFieldUpdateOperationsInput | string
+    subjectName?: StringFieldUpdateOperationsInput | string
+    subjectCode?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     class?: ClassesUpdateOneRequiredWithoutSubjectsNestedInput
     teacher?: TeacherUpdateOneRequiredWithoutSubjectsNestedInput
@@ -23830,8 +23830,8 @@ export namespace Prisma {
 
   export type SubjectsUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subject_name?: StringFieldUpdateOperationsInput | string
-    subject_code?: StringFieldUpdateOperationsInput | string
+    subjectName?: StringFieldUpdateOperationsInput | string
+    subjectCode?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     classId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
@@ -23843,8 +23843,8 @@ export namespace Prisma {
 
   export type SubjectsCreateManyInput = {
     id: string
-    subject_name: string
-    subject_code: string
+    subjectName: string
+    subjectCode: string
     Description: string
     classId: string
     teacherId: string
@@ -23852,661 +23852,661 @@ export namespace Prisma {
 
   export type SubjectsUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subject_name?: StringFieldUpdateOperationsInput | string
-    subject_code?: StringFieldUpdateOperationsInput | string
+    subjectName?: StringFieldUpdateOperationsInput | string
+    subjectCode?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
   }
 
   export type SubjectsUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subject_name?: StringFieldUpdateOperationsInput | string
-    subject_code?: StringFieldUpdateOperationsInput | string
+    subjectName?: StringFieldUpdateOperationsInput | string
+    subjectCode?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     classId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type Academic_YearsCreateInput = {
+  export type AcademicYearsCreateInput = {
     id: string
-    year_name: string
-    Start_date: Date | string
-    end_date: Date | string
+    yearName: string
+    StartDate: Date | string
+    endDate: Date | string
     status: $Enums.Status
-    classes?: Class_Academic_yearCreateNestedManyWithoutYearInput
+    classes?: ClassAcademicYearCreateNestedManyWithoutYearInput
     terms?: TermsCreateNestedManyWithoutYearInput
   }
 
-  export type Academic_YearsUncheckedCreateInput = {
+  export type AcademicYearsUncheckedCreateInput = {
     id: string
-    year_name: string
-    Start_date: Date | string
-    end_date: Date | string
+    yearName: string
+    StartDate: Date | string
+    endDate: Date | string
     status: $Enums.Status
-    classes?: Class_Academic_yearUncheckedCreateNestedManyWithoutYearInput
+    classes?: ClassAcademicYearUncheckedCreateNestedManyWithoutYearInput
     terms?: TermsUncheckedCreateNestedManyWithoutYearInput
   }
 
-  export type Academic_YearsUpdateInput = {
+  export type AcademicYearsUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    year_name?: StringFieldUpdateOperationsInput | string
-    Start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    yearName?: StringFieldUpdateOperationsInput | string
+    StartDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    classes?: Class_Academic_yearUpdateManyWithoutYearNestedInput
+    classes?: ClassAcademicYearUpdateManyWithoutYearNestedInput
     terms?: TermsUpdateManyWithoutYearNestedInput
   }
 
-  export type Academic_YearsUncheckedUpdateInput = {
+  export type AcademicYearsUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    year_name?: StringFieldUpdateOperationsInput | string
-    Start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    yearName?: StringFieldUpdateOperationsInput | string
+    StartDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    classes?: Class_Academic_yearUncheckedUpdateManyWithoutYearNestedInput
+    classes?: ClassAcademicYearUncheckedUpdateManyWithoutYearNestedInput
     terms?: TermsUncheckedUpdateManyWithoutYearNestedInput
   }
 
-  export type Academic_YearsCreateManyInput = {
+  export type AcademicYearsCreateManyInput = {
     id: string
-    year_name: string
-    Start_date: Date | string
-    end_date: Date | string
+    yearName: string
+    StartDate: Date | string
+    endDate: Date | string
     status: $Enums.Status
   }
 
-  export type Academic_YearsUpdateManyMutationInput = {
+  export type AcademicYearsUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    year_name?: StringFieldUpdateOperationsInput | string
-    Start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    yearName?: StringFieldUpdateOperationsInput | string
+    StartDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
-  export type Academic_YearsUncheckedUpdateManyInput = {
+  export type AcademicYearsUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    year_name?: StringFieldUpdateOperationsInput | string
-    Start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    yearName?: StringFieldUpdateOperationsInput | string
+    StartDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type TermsCreateInput = {
     id: string
-    term_name: string
-    Start_date: Date | string
-    end_date: Date | string
-    year: Academic_YearsCreateNestedOneWithoutTermsInput
+    termName: string
+    StartDate: Date | string
+    endDate: Date | string
+    year: AcademicYearsCreateNestedOneWithoutTermsInput
   }
 
   export type TermsUncheckedCreateInput = {
     id: string
-    term_name: string
-    Start_date: Date | string
-    end_date: Date | string
+    termName: string
+    StartDate: Date | string
+    endDate: Date | string
     yearId: string
   }
 
   export type TermsUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    term_name?: StringFieldUpdateOperationsInput | string
-    Start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    year?: Academic_YearsUpdateOneRequiredWithoutTermsNestedInput
+    termName?: StringFieldUpdateOperationsInput | string
+    StartDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    year?: AcademicYearsUpdateOneRequiredWithoutTermsNestedInput
   }
 
   export type TermsUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    term_name?: StringFieldUpdateOperationsInput | string
-    Start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    termName?: StringFieldUpdateOperationsInput | string
+    StartDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     yearId?: StringFieldUpdateOperationsInput | string
   }
 
   export type TermsCreateManyInput = {
     id: string
-    term_name: string
-    Start_date: Date | string
-    end_date: Date | string
+    termName: string
+    StartDate: Date | string
+    endDate: Date | string
     yearId: string
   }
 
   export type TermsUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    term_name?: StringFieldUpdateOperationsInput | string
-    Start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    termName?: StringFieldUpdateOperationsInput | string
+    StartDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TermsUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    term_name?: StringFieldUpdateOperationsInput | string
-    Start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    termName?: StringFieldUpdateOperationsInput | string
+    StartDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     yearId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type Class_Academic_yearCreateInput = {
+  export type ClassAcademicYearCreateInput = {
     class: ClassesCreateNestedOneWithoutAcademicYearsInput
-    year: Academic_YearsCreateNestedOneWithoutClassesInput
+    year: AcademicYearsCreateNestedOneWithoutClassesInput
   }
 
-  export type Class_Academic_yearUncheckedCreateInput = {
+  export type ClassAcademicYearUncheckedCreateInput = {
     classId: string
     yearId: string
   }
 
-  export type Class_Academic_yearUpdateInput = {
+  export type ClassAcademicYearUpdateInput = {
     class?: ClassesUpdateOneRequiredWithoutAcademicYearsNestedInput
-    year?: Academic_YearsUpdateOneRequiredWithoutClassesNestedInput
+    year?: AcademicYearsUpdateOneRequiredWithoutClassesNestedInput
   }
 
-  export type Class_Academic_yearUncheckedUpdateInput = {
+  export type ClassAcademicYearUncheckedUpdateInput = {
     classId?: StringFieldUpdateOperationsInput | string
     yearId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type Class_Academic_yearCreateManyInput = {
+  export type ClassAcademicYearCreateManyInput = {
     classId: string
     yearId: string
   }
 
-  export type Class_Academic_yearUpdateManyMutationInput = {
+  export type ClassAcademicYearUpdateManyMutationInput = {
 
   }
 
-  export type Class_Academic_yearUncheckedUpdateManyInput = {
+  export type ClassAcademicYearUncheckedUpdateManyInput = {
     classId?: StringFieldUpdateOperationsInput | string
     yearId?: StringFieldUpdateOperationsInput | string
   }
 
   export type AssignmentsCreateInput = {
     id: string
-    assignment_title: string
-    assignment_description: string
-    due_date: Date | string
-    maximum_grade: number
+    assignmentTitle: string
+    assignmentDescription: string
+    dueDate: Date | string
+    maximumGrade: number
     attachment: string
-    Submission_instructions: string
+    SubmissionInstructions: string
     subject: SubjectsCreateNestedOneWithoutAssignmentsInput
   }
 
   export type AssignmentsUncheckedCreateInput = {
     id: string
-    assignment_title: string
-    assignment_description: string
-    due_date: Date | string
-    maximum_grade: number
+    assignmentTitle: string
+    assignmentDescription: string
+    dueDate: Date | string
+    maximumGrade: number
     attachment: string
-    Submission_instructions: string
+    SubmissionInstructions: string
     subjectId: string
   }
 
   export type AssignmentsUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    assignment_title?: StringFieldUpdateOperationsInput | string
-    assignment_description?: StringFieldUpdateOperationsInput | string
-    due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    maximum_grade?: IntFieldUpdateOperationsInput | number
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    assignmentDescription?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    maximumGrade?: IntFieldUpdateOperationsInput | number
     attachment?: StringFieldUpdateOperationsInput | string
-    Submission_instructions?: StringFieldUpdateOperationsInput | string
+    SubmissionInstructions?: StringFieldUpdateOperationsInput | string
     subject?: SubjectsUpdateOneRequiredWithoutAssignmentsNestedInput
   }
 
   export type AssignmentsUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    assignment_title?: StringFieldUpdateOperationsInput | string
-    assignment_description?: StringFieldUpdateOperationsInput | string
-    due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    maximum_grade?: IntFieldUpdateOperationsInput | number
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    assignmentDescription?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    maximumGrade?: IntFieldUpdateOperationsInput | number
     attachment?: StringFieldUpdateOperationsInput | string
-    Submission_instructions?: StringFieldUpdateOperationsInput | string
+    SubmissionInstructions?: StringFieldUpdateOperationsInput | string
     subjectId?: StringFieldUpdateOperationsInput | string
   }
 
   export type AssignmentsCreateManyInput = {
     id: string
-    assignment_title: string
-    assignment_description: string
-    due_date: Date | string
-    maximum_grade: number
+    assignmentTitle: string
+    assignmentDescription: string
+    dueDate: Date | string
+    maximumGrade: number
     attachment: string
-    Submission_instructions: string
+    SubmissionInstructions: string
     subjectId: string
   }
 
   export type AssignmentsUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    assignment_title?: StringFieldUpdateOperationsInput | string
-    assignment_description?: StringFieldUpdateOperationsInput | string
-    due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    maximum_grade?: IntFieldUpdateOperationsInput | number
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    assignmentDescription?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    maximumGrade?: IntFieldUpdateOperationsInput | number
     attachment?: StringFieldUpdateOperationsInput | string
-    Submission_instructions?: StringFieldUpdateOperationsInput | string
+    SubmissionInstructions?: StringFieldUpdateOperationsInput | string
   }
 
   export type AssignmentsUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    assignment_title?: StringFieldUpdateOperationsInput | string
-    assignment_description?: StringFieldUpdateOperationsInput | string
-    due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    maximum_grade?: IntFieldUpdateOperationsInput | number
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    assignmentDescription?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    maximumGrade?: IntFieldUpdateOperationsInput | number
     attachment?: StringFieldUpdateOperationsInput | string
-    Submission_instructions?: StringFieldUpdateOperationsInput | string
+    SubmissionInstructions?: StringFieldUpdateOperationsInput | string
     subjectId?: StringFieldUpdateOperationsInput | string
   }
 
   export type LessonsCreateInput = {
     id: string
-    lesson_title: string
-    lesson_description: string
-    lesson_date: Date | string
-    learning_objectinve: string
-    learning_material: string
-    Completion_status: $Enums.iscompleate
+    lessonTitle: string
+    lessonDescription: string
+    lessonDate: Date | string
+    learningObjectinve: string
+    learningMaterial: string
+    CompletionStatus: $Enums.iscompleate
     subject: SubjectsCreateNestedOneWithoutLessonsInput
   }
 
   export type LessonsUncheckedCreateInput = {
     id: string
-    lesson_title: string
-    lesson_description: string
-    lesson_date: Date | string
-    learning_objectinve: string
-    learning_material: string
-    Completion_status: $Enums.iscompleate
+    lessonTitle: string
+    lessonDescription: string
+    lessonDate: Date | string
+    learningObjectinve: string
+    learningMaterial: string
+    CompletionStatus: $Enums.iscompleate
     subjectId: string
   }
 
   export type LessonsUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    lesson_title?: StringFieldUpdateOperationsInput | string
-    lesson_description?: StringFieldUpdateOperationsInput | string
-    lesson_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    learning_objectinve?: StringFieldUpdateOperationsInput | string
-    learning_material?: StringFieldUpdateOperationsInput | string
-    Completion_status?: EnumiscompleateFieldUpdateOperationsInput | $Enums.iscompleate
+    lessonTitle?: StringFieldUpdateOperationsInput | string
+    lessonDescription?: StringFieldUpdateOperationsInput | string
+    lessonDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    learningObjectinve?: StringFieldUpdateOperationsInput | string
+    learningMaterial?: StringFieldUpdateOperationsInput | string
+    CompletionStatus?: EnumiscompleateFieldUpdateOperationsInput | $Enums.iscompleate
     subject?: SubjectsUpdateOneRequiredWithoutLessonsNestedInput
   }
 
   export type LessonsUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    lesson_title?: StringFieldUpdateOperationsInput | string
-    lesson_description?: StringFieldUpdateOperationsInput | string
-    lesson_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    learning_objectinve?: StringFieldUpdateOperationsInput | string
-    learning_material?: StringFieldUpdateOperationsInput | string
-    Completion_status?: EnumiscompleateFieldUpdateOperationsInput | $Enums.iscompleate
+    lessonTitle?: StringFieldUpdateOperationsInput | string
+    lessonDescription?: StringFieldUpdateOperationsInput | string
+    lessonDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    learningObjectinve?: StringFieldUpdateOperationsInput | string
+    learningMaterial?: StringFieldUpdateOperationsInput | string
+    CompletionStatus?: EnumiscompleateFieldUpdateOperationsInput | $Enums.iscompleate
     subjectId?: StringFieldUpdateOperationsInput | string
   }
 
   export type LessonsCreateManyInput = {
     id: string
-    lesson_title: string
-    lesson_description: string
-    lesson_date: Date | string
-    learning_objectinve: string
-    learning_material: string
-    Completion_status: $Enums.iscompleate
+    lessonTitle: string
+    lessonDescription: string
+    lessonDate: Date | string
+    learningObjectinve: string
+    learningMaterial: string
+    CompletionStatus: $Enums.iscompleate
     subjectId: string
   }
 
   export type LessonsUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    lesson_title?: StringFieldUpdateOperationsInput | string
-    lesson_description?: StringFieldUpdateOperationsInput | string
-    lesson_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    learning_objectinve?: StringFieldUpdateOperationsInput | string
-    learning_material?: StringFieldUpdateOperationsInput | string
-    Completion_status?: EnumiscompleateFieldUpdateOperationsInput | $Enums.iscompleate
+    lessonTitle?: StringFieldUpdateOperationsInput | string
+    lessonDescription?: StringFieldUpdateOperationsInput | string
+    lessonDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    learningObjectinve?: StringFieldUpdateOperationsInput | string
+    learningMaterial?: StringFieldUpdateOperationsInput | string
+    CompletionStatus?: EnumiscompleateFieldUpdateOperationsInput | $Enums.iscompleate
   }
 
   export type LessonsUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    lesson_title?: StringFieldUpdateOperationsInput | string
-    lesson_description?: StringFieldUpdateOperationsInput | string
-    lesson_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    learning_objectinve?: StringFieldUpdateOperationsInput | string
-    learning_material?: StringFieldUpdateOperationsInput | string
-    Completion_status?: EnumiscompleateFieldUpdateOperationsInput | $Enums.iscompleate
+    lessonTitle?: StringFieldUpdateOperationsInput | string
+    lessonDescription?: StringFieldUpdateOperationsInput | string
+    lessonDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    learningObjectinve?: StringFieldUpdateOperationsInput | string
+    learningMaterial?: StringFieldUpdateOperationsInput | string
+    CompletionStatus?: EnumiscompleateFieldUpdateOperationsInput | $Enums.iscompleate
     subjectId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ExamsCreateInput = {
     id: string
-    exam_name: string
-    exam_date: Date | string
-    Maximum_grade: number
+    examName: string
+    examDate: Date | string
+    MaximumGrade: number
     subject: SubjectsCreateNestedOneWithoutExamsInput
-    submissions?: Exam_submissionsCreateNestedManyWithoutExamInput
+    submissions?: ExamSubmissionsCreateNestedManyWithoutExamInput
   }
 
   export type ExamsUncheckedCreateInput = {
     id: string
-    exam_name: string
-    exam_date: Date | string
-    Maximum_grade: number
+    examName: string
+    examDate: Date | string
+    MaximumGrade: number
     subjectId: string
-    submissions?: Exam_submissionsUncheckedCreateNestedManyWithoutExamInput
+    submissions?: ExamSubmissionsUncheckedCreateNestedManyWithoutExamInput
   }
 
   export type ExamsUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    exam_name?: StringFieldUpdateOperationsInput | string
-    exam_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    Maximum_grade?: IntFieldUpdateOperationsInput | number
+    examName?: StringFieldUpdateOperationsInput | string
+    examDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    MaximumGrade?: IntFieldUpdateOperationsInput | number
     subject?: SubjectsUpdateOneRequiredWithoutExamsNestedInput
-    submissions?: Exam_submissionsUpdateManyWithoutExamNestedInput
+    submissions?: ExamSubmissionsUpdateManyWithoutExamNestedInput
   }
 
   export type ExamsUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    exam_name?: StringFieldUpdateOperationsInput | string
-    exam_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    Maximum_grade?: IntFieldUpdateOperationsInput | number
+    examName?: StringFieldUpdateOperationsInput | string
+    examDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    MaximumGrade?: IntFieldUpdateOperationsInput | number
     subjectId?: StringFieldUpdateOperationsInput | string
-    submissions?: Exam_submissionsUncheckedUpdateManyWithoutExamNestedInput
+    submissions?: ExamSubmissionsUncheckedUpdateManyWithoutExamNestedInput
   }
 
   export type ExamsCreateManyInput = {
     id: string
-    exam_name: string
-    exam_date: Date | string
-    Maximum_grade: number
+    examName: string
+    examDate: Date | string
+    MaximumGrade: number
     subjectId: string
   }
 
   export type ExamsUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    exam_name?: StringFieldUpdateOperationsInput | string
-    exam_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    Maximum_grade?: IntFieldUpdateOperationsInput | number
+    examName?: StringFieldUpdateOperationsInput | string
+    examDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    MaximumGrade?: IntFieldUpdateOperationsInput | number
   }
 
   export type ExamsUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    exam_name?: StringFieldUpdateOperationsInput | string
-    exam_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    Maximum_grade?: IntFieldUpdateOperationsInput | number
+    examName?: StringFieldUpdateOperationsInput | string
+    examDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    MaximumGrade?: IntFieldUpdateOperationsInput | number
     subjectId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type Learning_progressesCreateInput = {
+  export type LearningProgressesCreateInput = {
     id: string
-    subjects_averages: number
-    overall_avreages: number
-    attendence_percentage: number
-    learning_status: $Enums.Status
-    student?: StudentCreateNestedOneWithoutLearning_progressInput
-    progressNotes?: Progress_notesCreateNestedManyWithoutLearning_progressInput
+    subjectsAverages: number
+    overallAvreages: number
+    attendencePercentage: number
+    learningStatus: $Enums.Status
+    student?: StudentCreateNestedOneWithoutLearningProgressInput
+    progressNotes?: ProgressNotesCreateNestedManyWithoutLearningProgressInput
   }
 
-  export type Learning_progressesUncheckedCreateInput = {
+  export type LearningProgressesUncheckedCreateInput = {
     id: string
-    subjects_averages: number
-    overall_avreages: number
-    attendence_percentage: number
-    learning_status: $Enums.Status
-    student?: StudentUncheckedCreateNestedOneWithoutLearning_progressInput
-    progressNotes?: Progress_notesUncheckedCreateNestedManyWithoutLearning_progressInput
+    subjectsAverages: number
+    overallAvreages: number
+    attendencePercentage: number
+    learningStatus: $Enums.Status
+    student?: StudentUncheckedCreateNestedOneWithoutLearningProgressInput
+    progressNotes?: ProgressNotesUncheckedCreateNestedManyWithoutLearningProgressInput
   }
 
-  export type Learning_progressesUpdateInput = {
+  export type LearningProgressesUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subjects_averages?: IntFieldUpdateOperationsInput | number
-    overall_avreages?: IntFieldUpdateOperationsInput | number
-    attendence_percentage?: IntFieldUpdateOperationsInput | number
-    learning_status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    student?: StudentUpdateOneWithoutLearning_progressNestedInput
-    progressNotes?: Progress_notesUpdateManyWithoutLearning_progressNestedInput
+    subjectsAverages?: IntFieldUpdateOperationsInput | number
+    overallAvreages?: IntFieldUpdateOperationsInput | number
+    attendencePercentage?: IntFieldUpdateOperationsInput | number
+    learningStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    student?: StudentUpdateOneWithoutLearningProgressNestedInput
+    progressNotes?: ProgressNotesUpdateManyWithoutLearningProgressNestedInput
   }
 
-  export type Learning_progressesUncheckedUpdateInput = {
+  export type LearningProgressesUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subjects_averages?: IntFieldUpdateOperationsInput | number
-    overall_avreages?: IntFieldUpdateOperationsInput | number
-    attendence_percentage?: IntFieldUpdateOperationsInput | number
-    learning_status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    student?: StudentUncheckedUpdateOneWithoutLearning_progressNestedInput
-    progressNotes?: Progress_notesUncheckedUpdateManyWithoutLearning_progressNestedInput
+    subjectsAverages?: IntFieldUpdateOperationsInput | number
+    overallAvreages?: IntFieldUpdateOperationsInput | number
+    attendencePercentage?: IntFieldUpdateOperationsInput | number
+    learningStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    student?: StudentUncheckedUpdateOneWithoutLearningProgressNestedInput
+    progressNotes?: ProgressNotesUncheckedUpdateManyWithoutLearningProgressNestedInput
   }
 
-  export type Learning_progressesCreateManyInput = {
+  export type LearningProgressesCreateManyInput = {
     id: string
-    subjects_averages: number
-    overall_avreages: number
-    attendence_percentage: number
-    learning_status: $Enums.Status
+    subjectsAverages: number
+    overallAvreages: number
+    attendencePercentage: number
+    learningStatus: $Enums.Status
   }
 
-  export type Learning_progressesUpdateManyMutationInput = {
+  export type LearningProgressesUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subjects_averages?: IntFieldUpdateOperationsInput | number
-    overall_avreages?: IntFieldUpdateOperationsInput | number
-    attendence_percentage?: IntFieldUpdateOperationsInput | number
-    learning_status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    subjectsAverages?: IntFieldUpdateOperationsInput | number
+    overallAvreages?: IntFieldUpdateOperationsInput | number
+    attendencePercentage?: IntFieldUpdateOperationsInput | number
+    learningStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
-  export type Learning_progressesUncheckedUpdateManyInput = {
+  export type LearningProgressesUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subjects_averages?: IntFieldUpdateOperationsInput | number
-    overall_avreages?: IntFieldUpdateOperationsInput | number
-    attendence_percentage?: IntFieldUpdateOperationsInput | number
-    learning_status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    subjectsAverages?: IntFieldUpdateOperationsInput | number
+    overallAvreages?: IntFieldUpdateOperationsInput | number
+    attendencePercentage?: IntFieldUpdateOperationsInput | number
+    learningStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
-  export type Progress_notesCreateInput = {
+  export type ProgressNotesCreateInput = {
     id: string
-    note_date: Date | string
-    note_observation: string
+    noteDate: Date | string
+    noteObservation: string
     Strengths: string
-    areas_for_improvement: string
+    areasForImprovement: string
     teacher: TeacherCreateNestedOneWithoutProgressNotesInput
-    learning_progress: Learning_progressesCreateNestedOneWithoutProgressNotesInput
+    learningProgress: LearningProgressesCreateNestedOneWithoutProgressNotesInput
   }
 
-  export type Progress_notesUncheckedCreateInput = {
+  export type ProgressNotesUncheckedCreateInput = {
     id: string
-    note_date: Date | string
-    note_observation: string
+    noteDate: Date | string
+    noteObservation: string
     Strengths: string
-    areas_for_improvement: string
+    areasForImprovement: string
     teacherId: string
     learningProgressId: string
   }
 
-  export type Progress_notesUpdateInput = {
+  export type ProgressNotesUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    note_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    note_observation?: StringFieldUpdateOperationsInput | string
+    noteDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    noteObservation?: StringFieldUpdateOperationsInput | string
     Strengths?: StringFieldUpdateOperationsInput | string
-    areas_for_improvement?: StringFieldUpdateOperationsInput | string
+    areasForImprovement?: StringFieldUpdateOperationsInput | string
     teacher?: TeacherUpdateOneRequiredWithoutProgressNotesNestedInput
-    learning_progress?: Learning_progressesUpdateOneRequiredWithoutProgressNotesNestedInput
+    learningProgress?: LearningProgressesUpdateOneRequiredWithoutProgressNotesNestedInput
   }
 
-  export type Progress_notesUncheckedUpdateInput = {
+  export type ProgressNotesUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    note_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    note_observation?: StringFieldUpdateOperationsInput | string
+    noteDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    noteObservation?: StringFieldUpdateOperationsInput | string
     Strengths?: StringFieldUpdateOperationsInput | string
-    areas_for_improvement?: StringFieldUpdateOperationsInput | string
+    areasForImprovement?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
     learningProgressId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type Progress_notesCreateManyInput = {
+  export type ProgressNotesCreateManyInput = {
     id: string
-    note_date: Date | string
-    note_observation: string
+    noteDate: Date | string
+    noteObservation: string
     Strengths: string
-    areas_for_improvement: string
+    areasForImprovement: string
     teacherId: string
     learningProgressId: string
   }
 
-  export type Progress_notesUpdateManyMutationInput = {
+  export type ProgressNotesUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    note_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    note_observation?: StringFieldUpdateOperationsInput | string
+    noteDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    noteObservation?: StringFieldUpdateOperationsInput | string
     Strengths?: StringFieldUpdateOperationsInput | string
-    areas_for_improvement?: StringFieldUpdateOperationsInput | string
+    areasForImprovement?: StringFieldUpdateOperationsInput | string
   }
 
-  export type Progress_notesUncheckedUpdateManyInput = {
+  export type ProgressNotesUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    note_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    note_observation?: StringFieldUpdateOperationsInput | string
+    noteDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    noteObservation?: StringFieldUpdateOperationsInput | string
     Strengths?: StringFieldUpdateOperationsInput | string
-    areas_for_improvement?: StringFieldUpdateOperationsInput | string
+    areasForImprovement?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
     learningProgressId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type Classes_performenceCreateInput = {
+  export type ClassesPerformenceCreateInput = {
     id: string
-    class_avg: number
-    highest_grade: number
-    lowest_grade: number
-    assignments_compleation_rate: number
-    attendence_rate: number
-    student_requiring_support: number
-    class_status: $Enums.Status
+    classAvg: number
+    highestGrade: number
+    lowestGrade: number
+    assignmentsCompleationRate: number
+    attendenceRate: number
+    studentRequiringSupport: number
+    classStatus: $Enums.Status
     class: ClassesCreateNestedOneWithoutPerformanceInput
   }
 
-  export type Classes_performenceUncheckedCreateInput = {
+  export type ClassesPerformenceUncheckedCreateInput = {
     id: string
-    class_avg: number
-    highest_grade: number
-    lowest_grade: number
-    assignments_compleation_rate: number
-    attendence_rate: number
-    student_requiring_support: number
-    class_status: $Enums.Status
+    classAvg: number
+    highestGrade: number
+    lowestGrade: number
+    assignmentsCompleationRate: number
+    attendenceRate: number
+    studentRequiringSupport: number
+    classStatus: $Enums.Status
     classId: string
   }
 
-  export type Classes_performenceUpdateInput = {
+  export type ClassesPerformenceUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_avg?: IntFieldUpdateOperationsInput | number
-    highest_grade?: IntFieldUpdateOperationsInput | number
-    lowest_grade?: IntFieldUpdateOperationsInput | number
-    assignments_compleation_rate?: IntFieldUpdateOperationsInput | number
-    attendence_rate?: IntFieldUpdateOperationsInput | number
-    student_requiring_support?: IntFieldUpdateOperationsInput | number
-    class_status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    classAvg?: IntFieldUpdateOperationsInput | number
+    highestGrade?: IntFieldUpdateOperationsInput | number
+    lowestGrade?: IntFieldUpdateOperationsInput | number
+    assignmentsCompleationRate?: IntFieldUpdateOperationsInput | number
+    attendenceRate?: IntFieldUpdateOperationsInput | number
+    studentRequiringSupport?: IntFieldUpdateOperationsInput | number
+    classStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     class?: ClassesUpdateOneRequiredWithoutPerformanceNestedInput
   }
 
-  export type Classes_performenceUncheckedUpdateInput = {
+  export type ClassesPerformenceUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_avg?: IntFieldUpdateOperationsInput | number
-    highest_grade?: IntFieldUpdateOperationsInput | number
-    lowest_grade?: IntFieldUpdateOperationsInput | number
-    assignments_compleation_rate?: IntFieldUpdateOperationsInput | number
-    attendence_rate?: IntFieldUpdateOperationsInput | number
-    student_requiring_support?: IntFieldUpdateOperationsInput | number
-    class_status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    classAvg?: IntFieldUpdateOperationsInput | number
+    highestGrade?: IntFieldUpdateOperationsInput | number
+    lowestGrade?: IntFieldUpdateOperationsInput | number
+    assignmentsCompleationRate?: IntFieldUpdateOperationsInput | number
+    attendenceRate?: IntFieldUpdateOperationsInput | number
+    studentRequiringSupport?: IntFieldUpdateOperationsInput | number
+    classStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     classId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type Classes_performenceCreateManyInput = {
+  export type ClassesPerformenceCreateManyInput = {
     id: string
-    class_avg: number
-    highest_grade: number
-    lowest_grade: number
-    assignments_compleation_rate: number
-    attendence_rate: number
-    student_requiring_support: number
-    class_status: $Enums.Status
+    classAvg: number
+    highestGrade: number
+    lowestGrade: number
+    assignmentsCompleationRate: number
+    attendenceRate: number
+    studentRequiringSupport: number
+    classStatus: $Enums.Status
     classId: string
   }
 
-  export type Classes_performenceUpdateManyMutationInput = {
+  export type ClassesPerformenceUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_avg?: IntFieldUpdateOperationsInput | number
-    highest_grade?: IntFieldUpdateOperationsInput | number
-    lowest_grade?: IntFieldUpdateOperationsInput | number
-    assignments_compleation_rate?: IntFieldUpdateOperationsInput | number
-    attendence_rate?: IntFieldUpdateOperationsInput | number
-    student_requiring_support?: IntFieldUpdateOperationsInput | number
-    class_status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    classAvg?: IntFieldUpdateOperationsInput | number
+    highestGrade?: IntFieldUpdateOperationsInput | number
+    lowestGrade?: IntFieldUpdateOperationsInput | number
+    assignmentsCompleationRate?: IntFieldUpdateOperationsInput | number
+    attendenceRate?: IntFieldUpdateOperationsInput | number
+    studentRequiringSupport?: IntFieldUpdateOperationsInput | number
+    classStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
-  export type Classes_performenceUncheckedUpdateManyInput = {
+  export type ClassesPerformenceUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_avg?: IntFieldUpdateOperationsInput | number
-    highest_grade?: IntFieldUpdateOperationsInput | number
-    lowest_grade?: IntFieldUpdateOperationsInput | number
-    assignments_compleation_rate?: IntFieldUpdateOperationsInput | number
-    attendence_rate?: IntFieldUpdateOperationsInput | number
-    student_requiring_support?: IntFieldUpdateOperationsInput | number
-    class_status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    classAvg?: IntFieldUpdateOperationsInput | number
+    highestGrade?: IntFieldUpdateOperationsInput | number
+    lowestGrade?: IntFieldUpdateOperationsInput | number
+    assignmentsCompleationRate?: IntFieldUpdateOperationsInput | number
+    attendenceRate?: IntFieldUpdateOperationsInput | number
+    studentRequiringSupport?: IntFieldUpdateOperationsInput | number
+    classStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     classId?: StringFieldUpdateOperationsInput | string
   }
 
   export type AttendencesCreateInput = {
     id: string
-    attendance_date: Date | string
-    attendance_status: string
-    attendance_percentage: number
+    attendanceDate: Date | string
+    attendanceStatus: string
+    attendancePercentage: number
     student: StudentCreateNestedOneWithoutAttendancesInput
     subject: SubjectsCreateNestedOneWithoutAttendancesInput
   }
 
   export type AttendencesUncheckedCreateInput = {
     id: string
-    attendance_date: Date | string
-    attendance_status: string
-    attendance_percentage: number
+    attendanceDate: Date | string
+    attendanceStatus: string
+    attendancePercentage: number
     studentId: string
     subjectId: string
   }
 
   export type AttendencesUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    attendance_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    attendance_status?: StringFieldUpdateOperationsInput | string
-    attendance_percentage?: IntFieldUpdateOperationsInput | number
+    attendanceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceStatus?: StringFieldUpdateOperationsInput | string
+    attendancePercentage?: IntFieldUpdateOperationsInput | number
     student?: StudentUpdateOneRequiredWithoutAttendancesNestedInput
     subject?: SubjectsUpdateOneRequiredWithoutAttendancesNestedInput
   }
 
   export type AttendencesUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    attendance_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    attendance_status?: StringFieldUpdateOperationsInput | string
-    attendance_percentage?: IntFieldUpdateOperationsInput | number
+    attendanceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceStatus?: StringFieldUpdateOperationsInput | string
+    attendancePercentage?: IntFieldUpdateOperationsInput | number
     studentId?: StringFieldUpdateOperationsInput | string
     subjectId?: StringFieldUpdateOperationsInput | string
   }
 
   export type AttendencesCreateManyInput = {
     id: string
-    attendance_date: Date | string
-    attendance_status: string
-    attendance_percentage: number
+    attendanceDate: Date | string
+    attendanceStatus: string
+    attendancePercentage: number
     studentId: string
     subjectId: string
   }
 
   export type AttendencesUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    attendance_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    attendance_status?: StringFieldUpdateOperationsInput | string
-    attendance_percentage?: IntFieldUpdateOperationsInput | number
+    attendanceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceStatus?: StringFieldUpdateOperationsInput | string
+    attendancePercentage?: IntFieldUpdateOperationsInput | number
   }
 
   export type AttendencesUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    attendance_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    attendance_status?: StringFieldUpdateOperationsInput | string
-    attendance_percentage?: IntFieldUpdateOperationsInput | number
+    attendanceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceStatus?: StringFieldUpdateOperationsInput | string
+    attendancePercentage?: IntFieldUpdateOperationsInput | number
     studentId?: StringFieldUpdateOperationsInput | string
     subjectId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type Exam_submissionsCreateInput = {
+  export type ExamSubmissionsCreateInput = {
     id: string
     score?: number | null
     takenAt?: Date | string
@@ -24514,7 +24514,7 @@ export namespace Prisma {
     student: StudentCreateNestedOneWithoutExamSubmissionsInput
   }
 
-  export type Exam_submissionsUncheckedCreateInput = {
+  export type ExamSubmissionsUncheckedCreateInput = {
     id: string
     examId: string
     studentId: string
@@ -24522,7 +24522,7 @@ export namespace Prisma {
     takenAt?: Date | string
   }
 
-  export type Exam_submissionsUpdateInput = {
+  export type ExamSubmissionsUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     score?: NullableIntFieldUpdateOperationsInput | number | null
     takenAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24530,7 +24530,7 @@ export namespace Prisma {
     student?: StudentUpdateOneRequiredWithoutExamSubmissionsNestedInput
   }
 
-  export type Exam_submissionsUncheckedUpdateInput = {
+  export type ExamSubmissionsUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     examId?: StringFieldUpdateOperationsInput | string
     studentId?: StringFieldUpdateOperationsInput | string
@@ -24538,7 +24538,7 @@ export namespace Prisma {
     takenAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type Exam_submissionsCreateManyInput = {
+  export type ExamSubmissionsCreateManyInput = {
     id: string
     examId: string
     studentId: string
@@ -24546,13 +24546,13 @@ export namespace Prisma {
     takenAt?: Date | string
   }
 
-  export type Exam_submissionsUpdateManyMutationInput = {
+  export type ExamSubmissionsUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     score?: NullableIntFieldUpdateOperationsInput | number | null
     takenAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type Exam_submissionsUncheckedUpdateManyInput = {
+  export type ExamSubmissionsUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     examId?: StringFieldUpdateOperationsInput | string
     studentId?: StringFieldUpdateOperationsInput | string
@@ -24624,7 +24624,7 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     role?: SortOrder
-    account_status?: SortOrder
+    accountStatus?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -24634,7 +24634,7 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     role?: SortOrder
-    account_status?: SortOrder
+    accountStatus?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -24644,7 +24644,7 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     role?: SortOrder
-    account_status?: SortOrder
+    accountStatus?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -24777,56 +24777,56 @@ export namespace Prisma {
     none?: SubjectsWhereInput
   }
 
-  export type Progress_notesListRelationFilter = {
-    every?: Progress_notesWhereInput
-    some?: Progress_notesWhereInput
-    none?: Progress_notesWhereInput
+  export type ProgressNotesListRelationFilter = {
+    every?: ProgressNotesWhereInput
+    some?: ProgressNotesWhereInput
+    none?: ProgressNotesWhereInput
   }
 
   export type SubjectsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type Progress_notesOrderByRelationAggregateInput = {
+  export type ProgressNotesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type TeacherCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    employ_id?: SortOrder
+    employId?: SortOrder
     email?: SortOrder
-    phonenumber?: SortOrder
+    phoneNumber?: SortOrder
     specilization?: SortOrder
-    account_status?: SortOrder
+    accountStatus?: SortOrder
   }
 
   export type TeacherAvgOrderByAggregateInput = {
-    employ_id?: SortOrder
+    employId?: SortOrder
   }
 
   export type TeacherMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    employ_id?: SortOrder
+    employId?: SortOrder
     email?: SortOrder
-    phonenumber?: SortOrder
+    phoneNumber?: SortOrder
     specilization?: SortOrder
-    account_status?: SortOrder
+    accountStatus?: SortOrder
   }
 
   export type TeacherMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    employ_id?: SortOrder
+    employId?: SortOrder
     email?: SortOrder
-    phonenumber?: SortOrder
+    phoneNumber?: SortOrder
     specilization?: SortOrder
-    account_status?: SortOrder
+    accountStatus?: SortOrder
   }
 
   export type TeacherSumOrderByAggregateInput = {
-    employ_id?: SortOrder
+    employId?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -24872,9 +24872,9 @@ export namespace Prisma {
     isNot?: ClassesWhereInput | null
   }
 
-  export type Learning_progressesScalarRelationFilter = {
-    is?: Learning_progressesWhereInput
-    isNot?: Learning_progressesWhereInput
+  export type LearningProgressesScalarRelationFilter = {
+    is?: LearningProgressesWhereInput
+    isNot?: LearningProgressesWhereInput
   }
 
   export type AttendencesListRelationFilter = {
@@ -24883,71 +24883,71 @@ export namespace Prisma {
     none?: AttendencesWhereInput
   }
 
-  export type Exam_submissionsListRelationFilter = {
-    every?: Exam_submissionsWhereInput
-    some?: Exam_submissionsWhereInput
-    none?: Exam_submissionsWhereInput
+  export type ExamSubmissionsListRelationFilter = {
+    every?: ExamSubmissionsWhereInput
+    some?: ExamSubmissionsWhereInput
+    none?: ExamSubmissionsWhereInput
   }
 
   export type AttendencesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type Exam_submissionsOrderByRelationAggregateInput = {
+  export type ExamSubmissionsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type StudentCountOrderByAggregateInput = {
     id?: SortOrder
-    student_id?: SortOrder
-    first_name?: SortOrder
-    last_name?: SortOrder
+    studentId?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
     email?: SortOrder
-    account_status?: SortOrder
-    date_of_birth?: SortOrder
-    phonenumber?: SortOrder
-    enrollment_date?: SortOrder
-    learning_progress_id?: SortOrder
+    accountStatus?: SortOrder
+    dateOfBirth?: SortOrder
+    phoneNumber?: SortOrder
+    enrollmentDate?: SortOrder
+    learningProgressId?: SortOrder
     classId?: SortOrder
     gender?: SortOrder
   }
 
   export type StudentAvgOrderByAggregateInput = {
-    student_id?: SortOrder
+    studentId?: SortOrder
   }
 
   export type StudentMaxOrderByAggregateInput = {
     id?: SortOrder
-    student_id?: SortOrder
-    first_name?: SortOrder
-    last_name?: SortOrder
+    studentId?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
     email?: SortOrder
-    account_status?: SortOrder
-    date_of_birth?: SortOrder
-    phonenumber?: SortOrder
-    enrollment_date?: SortOrder
-    learning_progress_id?: SortOrder
+    accountStatus?: SortOrder
+    dateOfBirth?: SortOrder
+    phoneNumber?: SortOrder
+    enrollmentDate?: SortOrder
+    learningProgressId?: SortOrder
     classId?: SortOrder
     gender?: SortOrder
   }
 
   export type StudentMinOrderByAggregateInput = {
     id?: SortOrder
-    student_id?: SortOrder
-    first_name?: SortOrder
-    last_name?: SortOrder
+    studentId?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
     email?: SortOrder
-    account_status?: SortOrder
-    date_of_birth?: SortOrder
-    phonenumber?: SortOrder
-    enrollment_date?: SortOrder
-    learning_progress_id?: SortOrder
+    accountStatus?: SortOrder
+    dateOfBirth?: SortOrder
+    phoneNumber?: SortOrder
+    enrollmentDate?: SortOrder
+    learningProgressId?: SortOrder
     classId?: SortOrder
     gender?: SortOrder
   }
 
   export type StudentSumOrderByAggregateInput = {
-    student_id?: SortOrder
+    studentId?: SortOrder
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -24978,10 +24978,10 @@ export namespace Prisma {
     _max?: NestedEnumGenderFilter<$PrismaModel>
   }
 
-  export type Class_Academic_yearListRelationFilter = {
-    every?: Class_Academic_yearWhereInput
-    some?: Class_Academic_yearWhereInput
-    none?: Class_Academic_yearWhereInput
+  export type ClassAcademicYearListRelationFilter = {
+    every?: ClassAcademicYearWhereInput
+    some?: ClassAcademicYearWhereInput
+    none?: ClassAcademicYearWhereInput
   }
 
   export type StudentListRelationFilter = {
@@ -24990,12 +24990,12 @@ export namespace Prisma {
     none?: StudentWhereInput
   }
 
-  export type Classes_performenceNullableScalarRelationFilter = {
-    is?: Classes_performenceWhereInput | null
-    isNot?: Classes_performenceWhereInput | null
+  export type ClassesPerformenceNullableScalarRelationFilter = {
+    is?: ClassesPerformenceWhereInput | null
+    isNot?: ClassesPerformenceWhereInput | null
   }
 
-  export type Class_Academic_yearOrderByRelationAggregateInput = {
+  export type ClassAcademicYearOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -25005,17 +25005,17 @@ export namespace Prisma {
 
   export type ClassesCountOrderByAggregateInput = {
     id?: SortOrder
-    class_name?: SortOrder
+    className?: SortOrder
   }
 
   export type ClassesMaxOrderByAggregateInput = {
     id?: SortOrder
-    class_name?: SortOrder
+    className?: SortOrder
   }
 
   export type ClassesMinOrderByAggregateInput = {
     id?: SortOrder
-    class_name?: SortOrder
+    className?: SortOrder
   }
 
   export type ClassesScalarRelationFilter = {
@@ -25060,8 +25060,8 @@ export namespace Prisma {
 
   export type SubjectsCountOrderByAggregateInput = {
     id?: SortOrder
-    subject_name?: SortOrder
-    subject_code?: SortOrder
+    subjectName?: SortOrder
+    subjectCode?: SortOrder
     Description?: SortOrder
     classId?: SortOrder
     teacherId?: SortOrder
@@ -25069,8 +25069,8 @@ export namespace Prisma {
 
   export type SubjectsMaxOrderByAggregateInput = {
     id?: SortOrder
-    subject_name?: SortOrder
-    subject_code?: SortOrder
+    subjectName?: SortOrder
+    subjectCode?: SortOrder
     Description?: SortOrder
     classId?: SortOrder
     teacherId?: SortOrder
@@ -25078,8 +25078,8 @@ export namespace Prisma {
 
   export type SubjectsMinOrderByAggregateInput = {
     id?: SortOrder
-    subject_name?: SortOrder
-    subject_code?: SortOrder
+    subjectName?: SortOrder
+    subjectCode?: SortOrder
     Description?: SortOrder
     classId?: SortOrder
     teacherId?: SortOrder
@@ -25102,27 +25102,27 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type Academic_YearsCountOrderByAggregateInput = {
+  export type AcademicYearsCountOrderByAggregateInput = {
     id?: SortOrder
-    year_name?: SortOrder
-    Start_date?: SortOrder
-    end_date?: SortOrder
+    yearName?: SortOrder
+    StartDate?: SortOrder
+    endDate?: SortOrder
     status?: SortOrder
   }
 
-  export type Academic_YearsMaxOrderByAggregateInput = {
+  export type AcademicYearsMaxOrderByAggregateInput = {
     id?: SortOrder
-    year_name?: SortOrder
-    Start_date?: SortOrder
-    end_date?: SortOrder
+    yearName?: SortOrder
+    StartDate?: SortOrder
+    endDate?: SortOrder
     status?: SortOrder
   }
 
-  export type Academic_YearsMinOrderByAggregateInput = {
+  export type AcademicYearsMinOrderByAggregateInput = {
     id?: SortOrder
-    year_name?: SortOrder
-    Start_date?: SortOrder
-    end_date?: SortOrder
+    yearName?: SortOrder
+    StartDate?: SortOrder
+    endDate?: SortOrder
     status?: SortOrder
   }
 
@@ -25136,51 +25136,51 @@ export namespace Prisma {
     _max?: NestedEnumStatusFilter<$PrismaModel>
   }
 
-  export type Academic_YearsScalarRelationFilter = {
-    is?: Academic_YearsWhereInput
-    isNot?: Academic_YearsWhereInput
+  export type AcademicYearsScalarRelationFilter = {
+    is?: AcademicYearsWhereInput
+    isNot?: AcademicYearsWhereInput
   }
 
   export type TermsCountOrderByAggregateInput = {
     id?: SortOrder
-    term_name?: SortOrder
-    Start_date?: SortOrder
-    end_date?: SortOrder
+    termName?: SortOrder
+    StartDate?: SortOrder
+    endDate?: SortOrder
     yearId?: SortOrder
   }
 
   export type TermsMaxOrderByAggregateInput = {
     id?: SortOrder
-    term_name?: SortOrder
-    Start_date?: SortOrder
-    end_date?: SortOrder
+    termName?: SortOrder
+    StartDate?: SortOrder
+    endDate?: SortOrder
     yearId?: SortOrder
   }
 
   export type TermsMinOrderByAggregateInput = {
     id?: SortOrder
-    term_name?: SortOrder
-    Start_date?: SortOrder
-    end_date?: SortOrder
+    termName?: SortOrder
+    StartDate?: SortOrder
+    endDate?: SortOrder
     yearId?: SortOrder
   }
 
-  export type Class_Academic_yearClassIdYearIdCompoundUniqueInput = {
+  export type ClassAcademicYearClassIdYearIdCompoundUniqueInput = {
     classId: string
     yearId: string
   }
 
-  export type Class_Academic_yearCountOrderByAggregateInput = {
+  export type ClassAcademicYearCountOrderByAggregateInput = {
     classId?: SortOrder
     yearId?: SortOrder
   }
 
-  export type Class_Academic_yearMaxOrderByAggregateInput = {
+  export type ClassAcademicYearMaxOrderByAggregateInput = {
     classId?: SortOrder
     yearId?: SortOrder
   }
 
-  export type Class_Academic_yearMinOrderByAggregateInput = {
+  export type ClassAcademicYearMinOrderByAggregateInput = {
     classId?: SortOrder
     yearId?: SortOrder
   }
@@ -25192,43 +25192,43 @@ export namespace Prisma {
 
   export type AssignmentsCountOrderByAggregateInput = {
     id?: SortOrder
-    assignment_title?: SortOrder
-    assignment_description?: SortOrder
-    due_date?: SortOrder
-    maximum_grade?: SortOrder
+    assignmentTitle?: SortOrder
+    assignmentDescription?: SortOrder
+    dueDate?: SortOrder
+    maximumGrade?: SortOrder
     attachment?: SortOrder
-    Submission_instructions?: SortOrder
+    SubmissionInstructions?: SortOrder
     subjectId?: SortOrder
   }
 
   export type AssignmentsAvgOrderByAggregateInput = {
-    maximum_grade?: SortOrder
+    maximumGrade?: SortOrder
   }
 
   export type AssignmentsMaxOrderByAggregateInput = {
     id?: SortOrder
-    assignment_title?: SortOrder
-    assignment_description?: SortOrder
-    due_date?: SortOrder
-    maximum_grade?: SortOrder
+    assignmentTitle?: SortOrder
+    assignmentDescription?: SortOrder
+    dueDate?: SortOrder
+    maximumGrade?: SortOrder
     attachment?: SortOrder
-    Submission_instructions?: SortOrder
+    SubmissionInstructions?: SortOrder
     subjectId?: SortOrder
   }
 
   export type AssignmentsMinOrderByAggregateInput = {
     id?: SortOrder
-    assignment_title?: SortOrder
-    assignment_description?: SortOrder
-    due_date?: SortOrder
-    maximum_grade?: SortOrder
+    assignmentTitle?: SortOrder
+    assignmentDescription?: SortOrder
+    dueDate?: SortOrder
+    maximumGrade?: SortOrder
     attachment?: SortOrder
-    Submission_instructions?: SortOrder
+    SubmissionInstructions?: SortOrder
     subjectId?: SortOrder
   }
 
   export type AssignmentsSumOrderByAggregateInput = {
-    maximum_grade?: SortOrder
+    maximumGrade?: SortOrder
   }
 
   export type EnumiscompleateFilter<$PrismaModel = never> = {
@@ -25240,34 +25240,34 @@ export namespace Prisma {
 
   export type LessonsCountOrderByAggregateInput = {
     id?: SortOrder
-    lesson_title?: SortOrder
-    lesson_description?: SortOrder
-    lesson_date?: SortOrder
-    learning_objectinve?: SortOrder
-    learning_material?: SortOrder
-    Completion_status?: SortOrder
+    lessonTitle?: SortOrder
+    lessonDescription?: SortOrder
+    lessonDate?: SortOrder
+    learningObjectinve?: SortOrder
+    learningMaterial?: SortOrder
+    CompletionStatus?: SortOrder
     subjectId?: SortOrder
   }
 
   export type LessonsMaxOrderByAggregateInput = {
     id?: SortOrder
-    lesson_title?: SortOrder
-    lesson_description?: SortOrder
-    lesson_date?: SortOrder
-    learning_objectinve?: SortOrder
-    learning_material?: SortOrder
-    Completion_status?: SortOrder
+    lessonTitle?: SortOrder
+    lessonDescription?: SortOrder
+    lessonDate?: SortOrder
+    learningObjectinve?: SortOrder
+    learningMaterial?: SortOrder
+    CompletionStatus?: SortOrder
     subjectId?: SortOrder
   }
 
   export type LessonsMinOrderByAggregateInput = {
     id?: SortOrder
-    lesson_title?: SortOrder
-    lesson_description?: SortOrder
-    lesson_date?: SortOrder
-    learning_objectinve?: SortOrder
-    learning_material?: SortOrder
-    Completion_status?: SortOrder
+    lessonTitle?: SortOrder
+    lessonDescription?: SortOrder
+    lessonDate?: SortOrder
+    learningObjectinve?: SortOrder
+    learningMaterial?: SortOrder
+    CompletionStatus?: SortOrder
     subjectId?: SortOrder
   }
 
@@ -25283,154 +25283,154 @@ export namespace Prisma {
 
   export type ExamsCountOrderByAggregateInput = {
     id?: SortOrder
-    exam_name?: SortOrder
-    exam_date?: SortOrder
-    Maximum_grade?: SortOrder
+    examName?: SortOrder
+    examDate?: SortOrder
+    MaximumGrade?: SortOrder
     subjectId?: SortOrder
   }
 
   export type ExamsAvgOrderByAggregateInput = {
-    Maximum_grade?: SortOrder
+    MaximumGrade?: SortOrder
   }
 
   export type ExamsMaxOrderByAggregateInput = {
     id?: SortOrder
-    exam_name?: SortOrder
-    exam_date?: SortOrder
-    Maximum_grade?: SortOrder
+    examName?: SortOrder
+    examDate?: SortOrder
+    MaximumGrade?: SortOrder
     subjectId?: SortOrder
   }
 
   export type ExamsMinOrderByAggregateInput = {
     id?: SortOrder
-    exam_name?: SortOrder
-    exam_date?: SortOrder
-    Maximum_grade?: SortOrder
+    examName?: SortOrder
+    examDate?: SortOrder
+    MaximumGrade?: SortOrder
     subjectId?: SortOrder
   }
 
   export type ExamsSumOrderByAggregateInput = {
-    Maximum_grade?: SortOrder
+    MaximumGrade?: SortOrder
   }
 
-  export type Learning_progressesCountOrderByAggregateInput = {
+  export type LearningProgressesCountOrderByAggregateInput = {
     id?: SortOrder
-    subjects_averages?: SortOrder
-    overall_avreages?: SortOrder
-    attendence_percentage?: SortOrder
-    learning_status?: SortOrder
+    subjectsAverages?: SortOrder
+    overallAvreages?: SortOrder
+    attendencePercentage?: SortOrder
+    learningStatus?: SortOrder
   }
 
-  export type Learning_progressesAvgOrderByAggregateInput = {
-    subjects_averages?: SortOrder
-    overall_avreages?: SortOrder
-    attendence_percentage?: SortOrder
+  export type LearningProgressesAvgOrderByAggregateInput = {
+    subjectsAverages?: SortOrder
+    overallAvreages?: SortOrder
+    attendencePercentage?: SortOrder
   }
 
-  export type Learning_progressesMaxOrderByAggregateInput = {
+  export type LearningProgressesMaxOrderByAggregateInput = {
     id?: SortOrder
-    subjects_averages?: SortOrder
-    overall_avreages?: SortOrder
-    attendence_percentage?: SortOrder
-    learning_status?: SortOrder
+    subjectsAverages?: SortOrder
+    overallAvreages?: SortOrder
+    attendencePercentage?: SortOrder
+    learningStatus?: SortOrder
   }
 
-  export type Learning_progressesMinOrderByAggregateInput = {
+  export type LearningProgressesMinOrderByAggregateInput = {
     id?: SortOrder
-    subjects_averages?: SortOrder
-    overall_avreages?: SortOrder
-    attendence_percentage?: SortOrder
-    learning_status?: SortOrder
+    subjectsAverages?: SortOrder
+    overallAvreages?: SortOrder
+    attendencePercentage?: SortOrder
+    learningStatus?: SortOrder
   }
 
-  export type Learning_progressesSumOrderByAggregateInput = {
-    subjects_averages?: SortOrder
-    overall_avreages?: SortOrder
-    attendence_percentage?: SortOrder
+  export type LearningProgressesSumOrderByAggregateInput = {
+    subjectsAverages?: SortOrder
+    overallAvreages?: SortOrder
+    attendencePercentage?: SortOrder
   }
 
-  export type Progress_notesCountOrderByAggregateInput = {
+  export type ProgressNotesCountOrderByAggregateInput = {
     id?: SortOrder
-    note_date?: SortOrder
-    note_observation?: SortOrder
+    noteDate?: SortOrder
+    noteObservation?: SortOrder
     Strengths?: SortOrder
-    areas_for_improvement?: SortOrder
+    areasForImprovement?: SortOrder
     teacherId?: SortOrder
     learningProgressId?: SortOrder
   }
 
-  export type Progress_notesMaxOrderByAggregateInput = {
+  export type ProgressNotesMaxOrderByAggregateInput = {
     id?: SortOrder
-    note_date?: SortOrder
-    note_observation?: SortOrder
+    noteDate?: SortOrder
+    noteObservation?: SortOrder
     Strengths?: SortOrder
-    areas_for_improvement?: SortOrder
+    areasForImprovement?: SortOrder
     teacherId?: SortOrder
     learningProgressId?: SortOrder
   }
 
-  export type Progress_notesMinOrderByAggregateInput = {
+  export type ProgressNotesMinOrderByAggregateInput = {
     id?: SortOrder
-    note_date?: SortOrder
-    note_observation?: SortOrder
+    noteDate?: SortOrder
+    noteObservation?: SortOrder
     Strengths?: SortOrder
-    areas_for_improvement?: SortOrder
+    areasForImprovement?: SortOrder
     teacherId?: SortOrder
     learningProgressId?: SortOrder
   }
 
-  export type Classes_performenceCountOrderByAggregateInput = {
+  export type ClassesPerformenceCountOrderByAggregateInput = {
     id?: SortOrder
-    class_avg?: SortOrder
-    highest_grade?: SortOrder
-    lowest_grade?: SortOrder
-    assignments_compleation_rate?: SortOrder
-    attendence_rate?: SortOrder
-    student_requiring_support?: SortOrder
-    class_status?: SortOrder
+    classAvg?: SortOrder
+    highestGrade?: SortOrder
+    lowestGrade?: SortOrder
+    assignmentsCompleationRate?: SortOrder
+    attendenceRate?: SortOrder
+    studentRequiringSupport?: SortOrder
+    classStatus?: SortOrder
     classId?: SortOrder
   }
 
-  export type Classes_performenceAvgOrderByAggregateInput = {
-    class_avg?: SortOrder
-    highest_grade?: SortOrder
-    lowest_grade?: SortOrder
-    assignments_compleation_rate?: SortOrder
-    attendence_rate?: SortOrder
-    student_requiring_support?: SortOrder
+  export type ClassesPerformenceAvgOrderByAggregateInput = {
+    classAvg?: SortOrder
+    highestGrade?: SortOrder
+    lowestGrade?: SortOrder
+    assignmentsCompleationRate?: SortOrder
+    attendenceRate?: SortOrder
+    studentRequiringSupport?: SortOrder
   }
 
-  export type Classes_performenceMaxOrderByAggregateInput = {
+  export type ClassesPerformenceMaxOrderByAggregateInput = {
     id?: SortOrder
-    class_avg?: SortOrder
-    highest_grade?: SortOrder
-    lowest_grade?: SortOrder
-    assignments_compleation_rate?: SortOrder
-    attendence_rate?: SortOrder
-    student_requiring_support?: SortOrder
-    class_status?: SortOrder
+    classAvg?: SortOrder
+    highestGrade?: SortOrder
+    lowestGrade?: SortOrder
+    assignmentsCompleationRate?: SortOrder
+    attendenceRate?: SortOrder
+    studentRequiringSupport?: SortOrder
+    classStatus?: SortOrder
     classId?: SortOrder
   }
 
-  export type Classes_performenceMinOrderByAggregateInput = {
+  export type ClassesPerformenceMinOrderByAggregateInput = {
     id?: SortOrder
-    class_avg?: SortOrder
-    highest_grade?: SortOrder
-    lowest_grade?: SortOrder
-    assignments_compleation_rate?: SortOrder
-    attendence_rate?: SortOrder
-    student_requiring_support?: SortOrder
-    class_status?: SortOrder
+    classAvg?: SortOrder
+    highestGrade?: SortOrder
+    lowestGrade?: SortOrder
+    assignmentsCompleationRate?: SortOrder
+    attendenceRate?: SortOrder
+    studentRequiringSupport?: SortOrder
+    classStatus?: SortOrder
     classId?: SortOrder
   }
 
-  export type Classes_performenceSumOrderByAggregateInput = {
-    class_avg?: SortOrder
-    highest_grade?: SortOrder
-    lowest_grade?: SortOrder
-    assignments_compleation_rate?: SortOrder
-    attendence_rate?: SortOrder
-    student_requiring_support?: SortOrder
+  export type ClassesPerformenceSumOrderByAggregateInput = {
+    classAvg?: SortOrder
+    highestGrade?: SortOrder
+    lowestGrade?: SortOrder
+    assignmentsCompleationRate?: SortOrder
+    attendenceRate?: SortOrder
+    studentRequiringSupport?: SortOrder
   }
 
   export type StudentScalarRelationFilter = {
@@ -25440,37 +25440,37 @@ export namespace Prisma {
 
   export type AttendencesCountOrderByAggregateInput = {
     id?: SortOrder
-    attendance_date?: SortOrder
-    attendance_status?: SortOrder
-    attendance_percentage?: SortOrder
+    attendanceDate?: SortOrder
+    attendanceStatus?: SortOrder
+    attendancePercentage?: SortOrder
     studentId?: SortOrder
     subjectId?: SortOrder
   }
 
   export type AttendencesAvgOrderByAggregateInput = {
-    attendance_percentage?: SortOrder
+    attendancePercentage?: SortOrder
   }
 
   export type AttendencesMaxOrderByAggregateInput = {
     id?: SortOrder
-    attendance_date?: SortOrder
-    attendance_status?: SortOrder
-    attendance_percentage?: SortOrder
+    attendanceDate?: SortOrder
+    attendanceStatus?: SortOrder
+    attendancePercentage?: SortOrder
     studentId?: SortOrder
     subjectId?: SortOrder
   }
 
   export type AttendencesMinOrderByAggregateInput = {
     id?: SortOrder
-    attendance_date?: SortOrder
-    attendance_status?: SortOrder
-    attendance_percentage?: SortOrder
+    attendanceDate?: SortOrder
+    attendanceStatus?: SortOrder
+    attendancePercentage?: SortOrder
     studentId?: SortOrder
     subjectId?: SortOrder
   }
 
   export type AttendencesSumOrderByAggregateInput = {
-    attendance_percentage?: SortOrder
+    attendancePercentage?: SortOrder
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -25489,12 +25489,12 @@ export namespace Prisma {
     isNot?: ExamsWhereInput
   }
 
-  export type Exam_submissionsExamIdStudentIdCompoundUniqueInput = {
+  export type ExamSubmissionsExamIdStudentIdCompoundUniqueInput = {
     examId: string
     studentId: string
   }
 
-  export type Exam_submissionsCountOrderByAggregateInput = {
+  export type ExamSubmissionsCountOrderByAggregateInput = {
     id?: SortOrder
     examId?: SortOrder
     studentId?: SortOrder
@@ -25502,11 +25502,11 @@ export namespace Prisma {
     takenAt?: SortOrder
   }
 
-  export type Exam_submissionsAvgOrderByAggregateInput = {
+  export type ExamSubmissionsAvgOrderByAggregateInput = {
     score?: SortOrder
   }
 
-  export type Exam_submissionsMaxOrderByAggregateInput = {
+  export type ExamSubmissionsMaxOrderByAggregateInput = {
     id?: SortOrder
     examId?: SortOrder
     studentId?: SortOrder
@@ -25514,7 +25514,7 @@ export namespace Prisma {
     takenAt?: SortOrder
   }
 
-  export type Exam_submissionsMinOrderByAggregateInput = {
+  export type ExamSubmissionsMinOrderByAggregateInput = {
     id?: SortOrder
     examId?: SortOrder
     studentId?: SortOrder
@@ -25522,7 +25522,7 @@ export namespace Prisma {
     takenAt?: SortOrder
   }
 
-  export type Exam_submissionsSumOrderByAggregateInput = {
+  export type ExamSubmissionsSumOrderByAggregateInput = {
     score?: SortOrder
   }
 
@@ -25695,11 +25695,11 @@ export namespace Prisma {
     connect?: SubjectsWhereUniqueInput | SubjectsWhereUniqueInput[]
   }
 
-  export type Progress_notesCreateNestedManyWithoutTeacherInput = {
-    create?: XOR<Progress_notesCreateWithoutTeacherInput, Progress_notesUncheckedCreateWithoutTeacherInput> | Progress_notesCreateWithoutTeacherInput[] | Progress_notesUncheckedCreateWithoutTeacherInput[]
-    connectOrCreate?: Progress_notesCreateOrConnectWithoutTeacherInput | Progress_notesCreateOrConnectWithoutTeacherInput[]
-    createMany?: Progress_notesCreateManyTeacherInputEnvelope
-    connect?: Progress_notesWhereUniqueInput | Progress_notesWhereUniqueInput[]
+  export type ProgressNotesCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<ProgressNotesCreateWithoutTeacherInput, ProgressNotesUncheckedCreateWithoutTeacherInput> | ProgressNotesCreateWithoutTeacherInput[] | ProgressNotesUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: ProgressNotesCreateOrConnectWithoutTeacherInput | ProgressNotesCreateOrConnectWithoutTeacherInput[]
+    createMany?: ProgressNotesCreateManyTeacherInputEnvelope
+    connect?: ProgressNotesWhereUniqueInput | ProgressNotesWhereUniqueInput[]
   }
 
   export type SubjectsUncheckedCreateNestedManyWithoutTeacherInput = {
@@ -25709,11 +25709,11 @@ export namespace Prisma {
     connect?: SubjectsWhereUniqueInput | SubjectsWhereUniqueInput[]
   }
 
-  export type Progress_notesUncheckedCreateNestedManyWithoutTeacherInput = {
-    create?: XOR<Progress_notesCreateWithoutTeacherInput, Progress_notesUncheckedCreateWithoutTeacherInput> | Progress_notesCreateWithoutTeacherInput[] | Progress_notesUncheckedCreateWithoutTeacherInput[]
-    connectOrCreate?: Progress_notesCreateOrConnectWithoutTeacherInput | Progress_notesCreateOrConnectWithoutTeacherInput[]
-    createMany?: Progress_notesCreateManyTeacherInputEnvelope
-    connect?: Progress_notesWhereUniqueInput | Progress_notesWhereUniqueInput[]
+  export type ProgressNotesUncheckedCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<ProgressNotesCreateWithoutTeacherInput, ProgressNotesUncheckedCreateWithoutTeacherInput> | ProgressNotesCreateWithoutTeacherInput[] | ProgressNotesUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: ProgressNotesCreateOrConnectWithoutTeacherInput | ProgressNotesCreateOrConnectWithoutTeacherInput[]
+    createMany?: ProgressNotesCreateManyTeacherInputEnvelope
+    connect?: ProgressNotesWhereUniqueInput | ProgressNotesWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -25746,18 +25746,18 @@ export namespace Prisma {
     deleteMany?: SubjectsScalarWhereInput | SubjectsScalarWhereInput[]
   }
 
-  export type Progress_notesUpdateManyWithoutTeacherNestedInput = {
-    create?: XOR<Progress_notesCreateWithoutTeacherInput, Progress_notesUncheckedCreateWithoutTeacherInput> | Progress_notesCreateWithoutTeacherInput[] | Progress_notesUncheckedCreateWithoutTeacherInput[]
-    connectOrCreate?: Progress_notesCreateOrConnectWithoutTeacherInput | Progress_notesCreateOrConnectWithoutTeacherInput[]
-    upsert?: Progress_notesUpsertWithWhereUniqueWithoutTeacherInput | Progress_notesUpsertWithWhereUniqueWithoutTeacherInput[]
-    createMany?: Progress_notesCreateManyTeacherInputEnvelope
-    set?: Progress_notesWhereUniqueInput | Progress_notesWhereUniqueInput[]
-    disconnect?: Progress_notesWhereUniqueInput | Progress_notesWhereUniqueInput[]
-    delete?: Progress_notesWhereUniqueInput | Progress_notesWhereUniqueInput[]
-    connect?: Progress_notesWhereUniqueInput | Progress_notesWhereUniqueInput[]
-    update?: Progress_notesUpdateWithWhereUniqueWithoutTeacherInput | Progress_notesUpdateWithWhereUniqueWithoutTeacherInput[]
-    updateMany?: Progress_notesUpdateManyWithWhereWithoutTeacherInput | Progress_notesUpdateManyWithWhereWithoutTeacherInput[]
-    deleteMany?: Progress_notesScalarWhereInput | Progress_notesScalarWhereInput[]
+  export type ProgressNotesUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<ProgressNotesCreateWithoutTeacherInput, ProgressNotesUncheckedCreateWithoutTeacherInput> | ProgressNotesCreateWithoutTeacherInput[] | ProgressNotesUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: ProgressNotesCreateOrConnectWithoutTeacherInput | ProgressNotesCreateOrConnectWithoutTeacherInput[]
+    upsert?: ProgressNotesUpsertWithWhereUniqueWithoutTeacherInput | ProgressNotesUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: ProgressNotesCreateManyTeacherInputEnvelope
+    set?: ProgressNotesWhereUniqueInput | ProgressNotesWhereUniqueInput[]
+    disconnect?: ProgressNotesWhereUniqueInput | ProgressNotesWhereUniqueInput[]
+    delete?: ProgressNotesWhereUniqueInput | ProgressNotesWhereUniqueInput[]
+    connect?: ProgressNotesWhereUniqueInput | ProgressNotesWhereUniqueInput[]
+    update?: ProgressNotesUpdateWithWhereUniqueWithoutTeacherInput | ProgressNotesUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: ProgressNotesUpdateManyWithWhereWithoutTeacherInput | ProgressNotesUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: ProgressNotesScalarWhereInput | ProgressNotesScalarWhereInput[]
   }
 
   export type SubjectsUncheckedUpdateManyWithoutTeacherNestedInput = {
@@ -25774,18 +25774,18 @@ export namespace Prisma {
     deleteMany?: SubjectsScalarWhereInput | SubjectsScalarWhereInput[]
   }
 
-  export type Progress_notesUncheckedUpdateManyWithoutTeacherNestedInput = {
-    create?: XOR<Progress_notesCreateWithoutTeacherInput, Progress_notesUncheckedCreateWithoutTeacherInput> | Progress_notesCreateWithoutTeacherInput[] | Progress_notesUncheckedCreateWithoutTeacherInput[]
-    connectOrCreate?: Progress_notesCreateOrConnectWithoutTeacherInput | Progress_notesCreateOrConnectWithoutTeacherInput[]
-    upsert?: Progress_notesUpsertWithWhereUniqueWithoutTeacherInput | Progress_notesUpsertWithWhereUniqueWithoutTeacherInput[]
-    createMany?: Progress_notesCreateManyTeacherInputEnvelope
-    set?: Progress_notesWhereUniqueInput | Progress_notesWhereUniqueInput[]
-    disconnect?: Progress_notesWhereUniqueInput | Progress_notesWhereUniqueInput[]
-    delete?: Progress_notesWhereUniqueInput | Progress_notesWhereUniqueInput[]
-    connect?: Progress_notesWhereUniqueInput | Progress_notesWhereUniqueInput[]
-    update?: Progress_notesUpdateWithWhereUniqueWithoutTeacherInput | Progress_notesUpdateWithWhereUniqueWithoutTeacherInput[]
-    updateMany?: Progress_notesUpdateManyWithWhereWithoutTeacherInput | Progress_notesUpdateManyWithWhereWithoutTeacherInput[]
-    deleteMany?: Progress_notesScalarWhereInput | Progress_notesScalarWhereInput[]
+  export type ProgressNotesUncheckedUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<ProgressNotesCreateWithoutTeacherInput, ProgressNotesUncheckedCreateWithoutTeacherInput> | ProgressNotesCreateWithoutTeacherInput[] | ProgressNotesUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: ProgressNotesCreateOrConnectWithoutTeacherInput | ProgressNotesCreateOrConnectWithoutTeacherInput[]
+    upsert?: ProgressNotesUpsertWithWhereUniqueWithoutTeacherInput | ProgressNotesUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: ProgressNotesCreateManyTeacherInputEnvelope
+    set?: ProgressNotesWhereUniqueInput | ProgressNotesWhereUniqueInput[]
+    disconnect?: ProgressNotesWhereUniqueInput | ProgressNotesWhereUniqueInput[]
+    delete?: ProgressNotesWhereUniqueInput | ProgressNotesWhereUniqueInput[]
+    connect?: ProgressNotesWhereUniqueInput | ProgressNotesWhereUniqueInput[]
+    update?: ProgressNotesUpdateWithWhereUniqueWithoutTeacherInput | ProgressNotesUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: ProgressNotesUpdateManyWithWhereWithoutTeacherInput | ProgressNotesUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: ProgressNotesScalarWhereInput | ProgressNotesScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutStudentInput = {
@@ -25800,10 +25800,10 @@ export namespace Prisma {
     connect?: ClassesWhereUniqueInput
   }
 
-  export type Learning_progressesCreateNestedOneWithoutStudentInput = {
-    create?: XOR<Learning_progressesCreateWithoutStudentInput, Learning_progressesUncheckedCreateWithoutStudentInput>
-    connectOrCreate?: Learning_progressesCreateOrConnectWithoutStudentInput
-    connect?: Learning_progressesWhereUniqueInput
+  export type LearningProgressesCreateNestedOneWithoutStudentInput = {
+    create?: XOR<LearningProgressesCreateWithoutStudentInput, LearningProgressesUncheckedCreateWithoutStudentInput>
+    connectOrCreate?: LearningProgressesCreateOrConnectWithoutStudentInput
+    connect?: LearningProgressesWhereUniqueInput
   }
 
   export type AttendencesCreateNestedManyWithoutStudentInput = {
@@ -25813,11 +25813,11 @@ export namespace Prisma {
     connect?: AttendencesWhereUniqueInput | AttendencesWhereUniqueInput[]
   }
 
-  export type Exam_submissionsCreateNestedManyWithoutStudentInput = {
-    create?: XOR<Exam_submissionsCreateWithoutStudentInput, Exam_submissionsUncheckedCreateWithoutStudentInput> | Exam_submissionsCreateWithoutStudentInput[] | Exam_submissionsUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: Exam_submissionsCreateOrConnectWithoutStudentInput | Exam_submissionsCreateOrConnectWithoutStudentInput[]
-    createMany?: Exam_submissionsCreateManyStudentInputEnvelope
-    connect?: Exam_submissionsWhereUniqueInput | Exam_submissionsWhereUniqueInput[]
+  export type ExamSubmissionsCreateNestedManyWithoutStudentInput = {
+    create?: XOR<ExamSubmissionsCreateWithoutStudentInput, ExamSubmissionsUncheckedCreateWithoutStudentInput> | ExamSubmissionsCreateWithoutStudentInput[] | ExamSubmissionsUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ExamSubmissionsCreateOrConnectWithoutStudentInput | ExamSubmissionsCreateOrConnectWithoutStudentInput[]
+    createMany?: ExamSubmissionsCreateManyStudentInputEnvelope
+    connect?: ExamSubmissionsWhereUniqueInput | ExamSubmissionsWhereUniqueInput[]
   }
 
   export type AttendencesUncheckedCreateNestedManyWithoutStudentInput = {
@@ -25827,11 +25827,11 @@ export namespace Prisma {
     connect?: AttendencesWhereUniqueInput | AttendencesWhereUniqueInput[]
   }
 
-  export type Exam_submissionsUncheckedCreateNestedManyWithoutStudentInput = {
-    create?: XOR<Exam_submissionsCreateWithoutStudentInput, Exam_submissionsUncheckedCreateWithoutStudentInput> | Exam_submissionsCreateWithoutStudentInput[] | Exam_submissionsUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: Exam_submissionsCreateOrConnectWithoutStudentInput | Exam_submissionsCreateOrConnectWithoutStudentInput[]
-    createMany?: Exam_submissionsCreateManyStudentInputEnvelope
-    connect?: Exam_submissionsWhereUniqueInput | Exam_submissionsWhereUniqueInput[]
+  export type ExamSubmissionsUncheckedCreateNestedManyWithoutStudentInput = {
+    create?: XOR<ExamSubmissionsCreateWithoutStudentInput, ExamSubmissionsUncheckedCreateWithoutStudentInput> | ExamSubmissionsCreateWithoutStudentInput[] | ExamSubmissionsUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ExamSubmissionsCreateOrConnectWithoutStudentInput | ExamSubmissionsCreateOrConnectWithoutStudentInput[]
+    createMany?: ExamSubmissionsCreateManyStudentInputEnvelope
+    connect?: ExamSubmissionsWhereUniqueInput | ExamSubmissionsWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -25860,12 +25860,12 @@ export namespace Prisma {
     update?: XOR<XOR<ClassesUpdateToOneWithWhereWithoutStudentsInput, ClassesUpdateWithoutStudentsInput>, ClassesUncheckedUpdateWithoutStudentsInput>
   }
 
-  export type Learning_progressesUpdateOneRequiredWithoutStudentNestedInput = {
-    create?: XOR<Learning_progressesCreateWithoutStudentInput, Learning_progressesUncheckedCreateWithoutStudentInput>
-    connectOrCreate?: Learning_progressesCreateOrConnectWithoutStudentInput
-    upsert?: Learning_progressesUpsertWithoutStudentInput
-    connect?: Learning_progressesWhereUniqueInput
-    update?: XOR<XOR<Learning_progressesUpdateToOneWithWhereWithoutStudentInput, Learning_progressesUpdateWithoutStudentInput>, Learning_progressesUncheckedUpdateWithoutStudentInput>
+  export type LearningProgressesUpdateOneRequiredWithoutStudentNestedInput = {
+    create?: XOR<LearningProgressesCreateWithoutStudentInput, LearningProgressesUncheckedCreateWithoutStudentInput>
+    connectOrCreate?: LearningProgressesCreateOrConnectWithoutStudentInput
+    upsert?: LearningProgressesUpsertWithoutStudentInput
+    connect?: LearningProgressesWhereUniqueInput
+    update?: XOR<XOR<LearningProgressesUpdateToOneWithWhereWithoutStudentInput, LearningProgressesUpdateWithoutStudentInput>, LearningProgressesUncheckedUpdateWithoutStudentInput>
   }
 
   export type AttendencesUpdateManyWithoutStudentNestedInput = {
@@ -25882,18 +25882,18 @@ export namespace Prisma {
     deleteMany?: AttendencesScalarWhereInput | AttendencesScalarWhereInput[]
   }
 
-  export type Exam_submissionsUpdateManyWithoutStudentNestedInput = {
-    create?: XOR<Exam_submissionsCreateWithoutStudentInput, Exam_submissionsUncheckedCreateWithoutStudentInput> | Exam_submissionsCreateWithoutStudentInput[] | Exam_submissionsUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: Exam_submissionsCreateOrConnectWithoutStudentInput | Exam_submissionsCreateOrConnectWithoutStudentInput[]
-    upsert?: Exam_submissionsUpsertWithWhereUniqueWithoutStudentInput | Exam_submissionsUpsertWithWhereUniqueWithoutStudentInput[]
-    createMany?: Exam_submissionsCreateManyStudentInputEnvelope
-    set?: Exam_submissionsWhereUniqueInput | Exam_submissionsWhereUniqueInput[]
-    disconnect?: Exam_submissionsWhereUniqueInput | Exam_submissionsWhereUniqueInput[]
-    delete?: Exam_submissionsWhereUniqueInput | Exam_submissionsWhereUniqueInput[]
-    connect?: Exam_submissionsWhereUniqueInput | Exam_submissionsWhereUniqueInput[]
-    update?: Exam_submissionsUpdateWithWhereUniqueWithoutStudentInput | Exam_submissionsUpdateWithWhereUniqueWithoutStudentInput[]
-    updateMany?: Exam_submissionsUpdateManyWithWhereWithoutStudentInput | Exam_submissionsUpdateManyWithWhereWithoutStudentInput[]
-    deleteMany?: Exam_submissionsScalarWhereInput | Exam_submissionsScalarWhereInput[]
+  export type ExamSubmissionsUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<ExamSubmissionsCreateWithoutStudentInput, ExamSubmissionsUncheckedCreateWithoutStudentInput> | ExamSubmissionsCreateWithoutStudentInput[] | ExamSubmissionsUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ExamSubmissionsCreateOrConnectWithoutStudentInput | ExamSubmissionsCreateOrConnectWithoutStudentInput[]
+    upsert?: ExamSubmissionsUpsertWithWhereUniqueWithoutStudentInput | ExamSubmissionsUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: ExamSubmissionsCreateManyStudentInputEnvelope
+    set?: ExamSubmissionsWhereUniqueInput | ExamSubmissionsWhereUniqueInput[]
+    disconnect?: ExamSubmissionsWhereUniqueInput | ExamSubmissionsWhereUniqueInput[]
+    delete?: ExamSubmissionsWhereUniqueInput | ExamSubmissionsWhereUniqueInput[]
+    connect?: ExamSubmissionsWhereUniqueInput | ExamSubmissionsWhereUniqueInput[]
+    update?: ExamSubmissionsUpdateWithWhereUniqueWithoutStudentInput | ExamSubmissionsUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: ExamSubmissionsUpdateManyWithWhereWithoutStudentInput | ExamSubmissionsUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: ExamSubmissionsScalarWhereInput | ExamSubmissionsScalarWhereInput[]
   }
 
   export type AttendencesUncheckedUpdateManyWithoutStudentNestedInput = {
@@ -25910,25 +25910,25 @@ export namespace Prisma {
     deleteMany?: AttendencesScalarWhereInput | AttendencesScalarWhereInput[]
   }
 
-  export type Exam_submissionsUncheckedUpdateManyWithoutStudentNestedInput = {
-    create?: XOR<Exam_submissionsCreateWithoutStudentInput, Exam_submissionsUncheckedCreateWithoutStudentInput> | Exam_submissionsCreateWithoutStudentInput[] | Exam_submissionsUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: Exam_submissionsCreateOrConnectWithoutStudentInput | Exam_submissionsCreateOrConnectWithoutStudentInput[]
-    upsert?: Exam_submissionsUpsertWithWhereUniqueWithoutStudentInput | Exam_submissionsUpsertWithWhereUniqueWithoutStudentInput[]
-    createMany?: Exam_submissionsCreateManyStudentInputEnvelope
-    set?: Exam_submissionsWhereUniqueInput | Exam_submissionsWhereUniqueInput[]
-    disconnect?: Exam_submissionsWhereUniqueInput | Exam_submissionsWhereUniqueInput[]
-    delete?: Exam_submissionsWhereUniqueInput | Exam_submissionsWhereUniqueInput[]
-    connect?: Exam_submissionsWhereUniqueInput | Exam_submissionsWhereUniqueInput[]
-    update?: Exam_submissionsUpdateWithWhereUniqueWithoutStudentInput | Exam_submissionsUpdateWithWhereUniqueWithoutStudentInput[]
-    updateMany?: Exam_submissionsUpdateManyWithWhereWithoutStudentInput | Exam_submissionsUpdateManyWithWhereWithoutStudentInput[]
-    deleteMany?: Exam_submissionsScalarWhereInput | Exam_submissionsScalarWhereInput[]
+  export type ExamSubmissionsUncheckedUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<ExamSubmissionsCreateWithoutStudentInput, ExamSubmissionsUncheckedCreateWithoutStudentInput> | ExamSubmissionsCreateWithoutStudentInput[] | ExamSubmissionsUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ExamSubmissionsCreateOrConnectWithoutStudentInput | ExamSubmissionsCreateOrConnectWithoutStudentInput[]
+    upsert?: ExamSubmissionsUpsertWithWhereUniqueWithoutStudentInput | ExamSubmissionsUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: ExamSubmissionsCreateManyStudentInputEnvelope
+    set?: ExamSubmissionsWhereUniqueInput | ExamSubmissionsWhereUniqueInput[]
+    disconnect?: ExamSubmissionsWhereUniqueInput | ExamSubmissionsWhereUniqueInput[]
+    delete?: ExamSubmissionsWhereUniqueInput | ExamSubmissionsWhereUniqueInput[]
+    connect?: ExamSubmissionsWhereUniqueInput | ExamSubmissionsWhereUniqueInput[]
+    update?: ExamSubmissionsUpdateWithWhereUniqueWithoutStudentInput | ExamSubmissionsUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: ExamSubmissionsUpdateManyWithWhereWithoutStudentInput | ExamSubmissionsUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: ExamSubmissionsScalarWhereInput | ExamSubmissionsScalarWhereInput[]
   }
 
-  export type Class_Academic_yearCreateNestedManyWithoutClassInput = {
-    create?: XOR<Class_Academic_yearCreateWithoutClassInput, Class_Academic_yearUncheckedCreateWithoutClassInput> | Class_Academic_yearCreateWithoutClassInput[] | Class_Academic_yearUncheckedCreateWithoutClassInput[]
-    connectOrCreate?: Class_Academic_yearCreateOrConnectWithoutClassInput | Class_Academic_yearCreateOrConnectWithoutClassInput[]
-    createMany?: Class_Academic_yearCreateManyClassInputEnvelope
-    connect?: Class_Academic_yearWhereUniqueInput | Class_Academic_yearWhereUniqueInput[]
+  export type ClassAcademicYearCreateNestedManyWithoutClassInput = {
+    create?: XOR<ClassAcademicYearCreateWithoutClassInput, ClassAcademicYearUncheckedCreateWithoutClassInput> | ClassAcademicYearCreateWithoutClassInput[] | ClassAcademicYearUncheckedCreateWithoutClassInput[]
+    connectOrCreate?: ClassAcademicYearCreateOrConnectWithoutClassInput | ClassAcademicYearCreateOrConnectWithoutClassInput[]
+    createMany?: ClassAcademicYearCreateManyClassInputEnvelope
+    connect?: ClassAcademicYearWhereUniqueInput | ClassAcademicYearWhereUniqueInput[]
   }
 
   export type StudentCreateNestedManyWithoutClassInput = {
@@ -25945,17 +25945,17 @@ export namespace Prisma {
     connect?: SubjectsWhereUniqueInput | SubjectsWhereUniqueInput[]
   }
 
-  export type Classes_performenceCreateNestedOneWithoutClassInput = {
-    create?: XOR<Classes_performenceCreateWithoutClassInput, Classes_performenceUncheckedCreateWithoutClassInput>
-    connectOrCreate?: Classes_performenceCreateOrConnectWithoutClassInput
-    connect?: Classes_performenceWhereUniqueInput
+  export type ClassesPerformenceCreateNestedOneWithoutClassInput = {
+    create?: XOR<ClassesPerformenceCreateWithoutClassInput, ClassesPerformenceUncheckedCreateWithoutClassInput>
+    connectOrCreate?: ClassesPerformenceCreateOrConnectWithoutClassInput
+    connect?: ClassesPerformenceWhereUniqueInput
   }
 
-  export type Class_Academic_yearUncheckedCreateNestedManyWithoutClassInput = {
-    create?: XOR<Class_Academic_yearCreateWithoutClassInput, Class_Academic_yearUncheckedCreateWithoutClassInput> | Class_Academic_yearCreateWithoutClassInput[] | Class_Academic_yearUncheckedCreateWithoutClassInput[]
-    connectOrCreate?: Class_Academic_yearCreateOrConnectWithoutClassInput | Class_Academic_yearCreateOrConnectWithoutClassInput[]
-    createMany?: Class_Academic_yearCreateManyClassInputEnvelope
-    connect?: Class_Academic_yearWhereUniqueInput | Class_Academic_yearWhereUniqueInput[]
+  export type ClassAcademicYearUncheckedCreateNestedManyWithoutClassInput = {
+    create?: XOR<ClassAcademicYearCreateWithoutClassInput, ClassAcademicYearUncheckedCreateWithoutClassInput> | ClassAcademicYearCreateWithoutClassInput[] | ClassAcademicYearUncheckedCreateWithoutClassInput[]
+    connectOrCreate?: ClassAcademicYearCreateOrConnectWithoutClassInput | ClassAcademicYearCreateOrConnectWithoutClassInput[]
+    createMany?: ClassAcademicYearCreateManyClassInputEnvelope
+    connect?: ClassAcademicYearWhereUniqueInput | ClassAcademicYearWhereUniqueInput[]
   }
 
   export type StudentUncheckedCreateNestedManyWithoutClassInput = {
@@ -25972,24 +25972,24 @@ export namespace Prisma {
     connect?: SubjectsWhereUniqueInput | SubjectsWhereUniqueInput[]
   }
 
-  export type Classes_performenceUncheckedCreateNestedOneWithoutClassInput = {
-    create?: XOR<Classes_performenceCreateWithoutClassInput, Classes_performenceUncheckedCreateWithoutClassInput>
-    connectOrCreate?: Classes_performenceCreateOrConnectWithoutClassInput
-    connect?: Classes_performenceWhereUniqueInput
+  export type ClassesPerformenceUncheckedCreateNestedOneWithoutClassInput = {
+    create?: XOR<ClassesPerformenceCreateWithoutClassInput, ClassesPerformenceUncheckedCreateWithoutClassInput>
+    connectOrCreate?: ClassesPerformenceCreateOrConnectWithoutClassInput
+    connect?: ClassesPerformenceWhereUniqueInput
   }
 
-  export type Class_Academic_yearUpdateManyWithoutClassNestedInput = {
-    create?: XOR<Class_Academic_yearCreateWithoutClassInput, Class_Academic_yearUncheckedCreateWithoutClassInput> | Class_Academic_yearCreateWithoutClassInput[] | Class_Academic_yearUncheckedCreateWithoutClassInput[]
-    connectOrCreate?: Class_Academic_yearCreateOrConnectWithoutClassInput | Class_Academic_yearCreateOrConnectWithoutClassInput[]
-    upsert?: Class_Academic_yearUpsertWithWhereUniqueWithoutClassInput | Class_Academic_yearUpsertWithWhereUniqueWithoutClassInput[]
-    createMany?: Class_Academic_yearCreateManyClassInputEnvelope
-    set?: Class_Academic_yearWhereUniqueInput | Class_Academic_yearWhereUniqueInput[]
-    disconnect?: Class_Academic_yearWhereUniqueInput | Class_Academic_yearWhereUniqueInput[]
-    delete?: Class_Academic_yearWhereUniqueInput | Class_Academic_yearWhereUniqueInput[]
-    connect?: Class_Academic_yearWhereUniqueInput | Class_Academic_yearWhereUniqueInput[]
-    update?: Class_Academic_yearUpdateWithWhereUniqueWithoutClassInput | Class_Academic_yearUpdateWithWhereUniqueWithoutClassInput[]
-    updateMany?: Class_Academic_yearUpdateManyWithWhereWithoutClassInput | Class_Academic_yearUpdateManyWithWhereWithoutClassInput[]
-    deleteMany?: Class_Academic_yearScalarWhereInput | Class_Academic_yearScalarWhereInput[]
+  export type ClassAcademicYearUpdateManyWithoutClassNestedInput = {
+    create?: XOR<ClassAcademicYearCreateWithoutClassInput, ClassAcademicYearUncheckedCreateWithoutClassInput> | ClassAcademicYearCreateWithoutClassInput[] | ClassAcademicYearUncheckedCreateWithoutClassInput[]
+    connectOrCreate?: ClassAcademicYearCreateOrConnectWithoutClassInput | ClassAcademicYearCreateOrConnectWithoutClassInput[]
+    upsert?: ClassAcademicYearUpsertWithWhereUniqueWithoutClassInput | ClassAcademicYearUpsertWithWhereUniqueWithoutClassInput[]
+    createMany?: ClassAcademicYearCreateManyClassInputEnvelope
+    set?: ClassAcademicYearWhereUniqueInput | ClassAcademicYearWhereUniqueInput[]
+    disconnect?: ClassAcademicYearWhereUniqueInput | ClassAcademicYearWhereUniqueInput[]
+    delete?: ClassAcademicYearWhereUniqueInput | ClassAcademicYearWhereUniqueInput[]
+    connect?: ClassAcademicYearWhereUniqueInput | ClassAcademicYearWhereUniqueInput[]
+    update?: ClassAcademicYearUpdateWithWhereUniqueWithoutClassInput | ClassAcademicYearUpdateWithWhereUniqueWithoutClassInput[]
+    updateMany?: ClassAcademicYearUpdateManyWithWhereWithoutClassInput | ClassAcademicYearUpdateManyWithWhereWithoutClassInput[]
+    deleteMany?: ClassAcademicYearScalarWhereInput | ClassAcademicYearScalarWhereInput[]
   }
 
   export type StudentUpdateManyWithoutClassNestedInput = {
@@ -26020,28 +26020,28 @@ export namespace Prisma {
     deleteMany?: SubjectsScalarWhereInput | SubjectsScalarWhereInput[]
   }
 
-  export type Classes_performenceUpdateOneWithoutClassNestedInput = {
-    create?: XOR<Classes_performenceCreateWithoutClassInput, Classes_performenceUncheckedCreateWithoutClassInput>
-    connectOrCreate?: Classes_performenceCreateOrConnectWithoutClassInput
-    upsert?: Classes_performenceUpsertWithoutClassInput
-    disconnect?: Classes_performenceWhereInput | boolean
-    delete?: Classes_performenceWhereInput | boolean
-    connect?: Classes_performenceWhereUniqueInput
-    update?: XOR<XOR<Classes_performenceUpdateToOneWithWhereWithoutClassInput, Classes_performenceUpdateWithoutClassInput>, Classes_performenceUncheckedUpdateWithoutClassInput>
+  export type ClassesPerformenceUpdateOneWithoutClassNestedInput = {
+    create?: XOR<ClassesPerformenceCreateWithoutClassInput, ClassesPerformenceUncheckedCreateWithoutClassInput>
+    connectOrCreate?: ClassesPerformenceCreateOrConnectWithoutClassInput
+    upsert?: ClassesPerformenceUpsertWithoutClassInput
+    disconnect?: ClassesPerformenceWhereInput | boolean
+    delete?: ClassesPerformenceWhereInput | boolean
+    connect?: ClassesPerformenceWhereUniqueInput
+    update?: XOR<XOR<ClassesPerformenceUpdateToOneWithWhereWithoutClassInput, ClassesPerformenceUpdateWithoutClassInput>, ClassesPerformenceUncheckedUpdateWithoutClassInput>
   }
 
-  export type Class_Academic_yearUncheckedUpdateManyWithoutClassNestedInput = {
-    create?: XOR<Class_Academic_yearCreateWithoutClassInput, Class_Academic_yearUncheckedCreateWithoutClassInput> | Class_Academic_yearCreateWithoutClassInput[] | Class_Academic_yearUncheckedCreateWithoutClassInput[]
-    connectOrCreate?: Class_Academic_yearCreateOrConnectWithoutClassInput | Class_Academic_yearCreateOrConnectWithoutClassInput[]
-    upsert?: Class_Academic_yearUpsertWithWhereUniqueWithoutClassInput | Class_Academic_yearUpsertWithWhereUniqueWithoutClassInput[]
-    createMany?: Class_Academic_yearCreateManyClassInputEnvelope
-    set?: Class_Academic_yearWhereUniqueInput | Class_Academic_yearWhereUniqueInput[]
-    disconnect?: Class_Academic_yearWhereUniqueInput | Class_Academic_yearWhereUniqueInput[]
-    delete?: Class_Academic_yearWhereUniqueInput | Class_Academic_yearWhereUniqueInput[]
-    connect?: Class_Academic_yearWhereUniqueInput | Class_Academic_yearWhereUniqueInput[]
-    update?: Class_Academic_yearUpdateWithWhereUniqueWithoutClassInput | Class_Academic_yearUpdateWithWhereUniqueWithoutClassInput[]
-    updateMany?: Class_Academic_yearUpdateManyWithWhereWithoutClassInput | Class_Academic_yearUpdateManyWithWhereWithoutClassInput[]
-    deleteMany?: Class_Academic_yearScalarWhereInput | Class_Academic_yearScalarWhereInput[]
+  export type ClassAcademicYearUncheckedUpdateManyWithoutClassNestedInput = {
+    create?: XOR<ClassAcademicYearCreateWithoutClassInput, ClassAcademicYearUncheckedCreateWithoutClassInput> | ClassAcademicYearCreateWithoutClassInput[] | ClassAcademicYearUncheckedCreateWithoutClassInput[]
+    connectOrCreate?: ClassAcademicYearCreateOrConnectWithoutClassInput | ClassAcademicYearCreateOrConnectWithoutClassInput[]
+    upsert?: ClassAcademicYearUpsertWithWhereUniqueWithoutClassInput | ClassAcademicYearUpsertWithWhereUniqueWithoutClassInput[]
+    createMany?: ClassAcademicYearCreateManyClassInputEnvelope
+    set?: ClassAcademicYearWhereUniqueInput | ClassAcademicYearWhereUniqueInput[]
+    disconnect?: ClassAcademicYearWhereUniqueInput | ClassAcademicYearWhereUniqueInput[]
+    delete?: ClassAcademicYearWhereUniqueInput | ClassAcademicYearWhereUniqueInput[]
+    connect?: ClassAcademicYearWhereUniqueInput | ClassAcademicYearWhereUniqueInput[]
+    update?: ClassAcademicYearUpdateWithWhereUniqueWithoutClassInput | ClassAcademicYearUpdateWithWhereUniqueWithoutClassInput[]
+    updateMany?: ClassAcademicYearUpdateManyWithWhereWithoutClassInput | ClassAcademicYearUpdateManyWithWhereWithoutClassInput[]
+    deleteMany?: ClassAcademicYearScalarWhereInput | ClassAcademicYearScalarWhereInput[]
   }
 
   export type StudentUncheckedUpdateManyWithoutClassNestedInput = {
@@ -26072,14 +26072,14 @@ export namespace Prisma {
     deleteMany?: SubjectsScalarWhereInput | SubjectsScalarWhereInput[]
   }
 
-  export type Classes_performenceUncheckedUpdateOneWithoutClassNestedInput = {
-    create?: XOR<Classes_performenceCreateWithoutClassInput, Classes_performenceUncheckedCreateWithoutClassInput>
-    connectOrCreate?: Classes_performenceCreateOrConnectWithoutClassInput
-    upsert?: Classes_performenceUpsertWithoutClassInput
-    disconnect?: Classes_performenceWhereInput | boolean
-    delete?: Classes_performenceWhereInput | boolean
-    connect?: Classes_performenceWhereUniqueInput
-    update?: XOR<XOR<Classes_performenceUpdateToOneWithWhereWithoutClassInput, Classes_performenceUpdateWithoutClassInput>, Classes_performenceUncheckedUpdateWithoutClassInput>
+  export type ClassesPerformenceUncheckedUpdateOneWithoutClassNestedInput = {
+    create?: XOR<ClassesPerformenceCreateWithoutClassInput, ClassesPerformenceUncheckedCreateWithoutClassInput>
+    connectOrCreate?: ClassesPerformenceCreateOrConnectWithoutClassInput
+    upsert?: ClassesPerformenceUpsertWithoutClassInput
+    disconnect?: ClassesPerformenceWhereInput | boolean
+    delete?: ClassesPerformenceWhereInput | boolean
+    connect?: ClassesPerformenceWhereUniqueInput
+    update?: XOR<XOR<ClassesPerformenceUpdateToOneWithWhereWithoutClassInput, ClassesPerformenceUpdateWithoutClassInput>, ClassesPerformenceUncheckedUpdateWithoutClassInput>
   }
 
   export type ClassesCreateNestedOneWithoutSubjectsInput = {
@@ -26278,11 +26278,11 @@ export namespace Prisma {
     deleteMany?: AttendencesScalarWhereInput | AttendencesScalarWhereInput[]
   }
 
-  export type Class_Academic_yearCreateNestedManyWithoutYearInput = {
-    create?: XOR<Class_Academic_yearCreateWithoutYearInput, Class_Academic_yearUncheckedCreateWithoutYearInput> | Class_Academic_yearCreateWithoutYearInput[] | Class_Academic_yearUncheckedCreateWithoutYearInput[]
-    connectOrCreate?: Class_Academic_yearCreateOrConnectWithoutYearInput | Class_Academic_yearCreateOrConnectWithoutYearInput[]
-    createMany?: Class_Academic_yearCreateManyYearInputEnvelope
-    connect?: Class_Academic_yearWhereUniqueInput | Class_Academic_yearWhereUniqueInput[]
+  export type ClassAcademicYearCreateNestedManyWithoutYearInput = {
+    create?: XOR<ClassAcademicYearCreateWithoutYearInput, ClassAcademicYearUncheckedCreateWithoutYearInput> | ClassAcademicYearCreateWithoutYearInput[] | ClassAcademicYearUncheckedCreateWithoutYearInput[]
+    connectOrCreate?: ClassAcademicYearCreateOrConnectWithoutYearInput | ClassAcademicYearCreateOrConnectWithoutYearInput[]
+    createMany?: ClassAcademicYearCreateManyYearInputEnvelope
+    connect?: ClassAcademicYearWhereUniqueInput | ClassAcademicYearWhereUniqueInput[]
   }
 
   export type TermsCreateNestedManyWithoutYearInput = {
@@ -26292,11 +26292,11 @@ export namespace Prisma {
     connect?: TermsWhereUniqueInput | TermsWhereUniqueInput[]
   }
 
-  export type Class_Academic_yearUncheckedCreateNestedManyWithoutYearInput = {
-    create?: XOR<Class_Academic_yearCreateWithoutYearInput, Class_Academic_yearUncheckedCreateWithoutYearInput> | Class_Academic_yearCreateWithoutYearInput[] | Class_Academic_yearUncheckedCreateWithoutYearInput[]
-    connectOrCreate?: Class_Academic_yearCreateOrConnectWithoutYearInput | Class_Academic_yearCreateOrConnectWithoutYearInput[]
-    createMany?: Class_Academic_yearCreateManyYearInputEnvelope
-    connect?: Class_Academic_yearWhereUniqueInput | Class_Academic_yearWhereUniqueInput[]
+  export type ClassAcademicYearUncheckedCreateNestedManyWithoutYearInput = {
+    create?: XOR<ClassAcademicYearCreateWithoutYearInput, ClassAcademicYearUncheckedCreateWithoutYearInput> | ClassAcademicYearCreateWithoutYearInput[] | ClassAcademicYearUncheckedCreateWithoutYearInput[]
+    connectOrCreate?: ClassAcademicYearCreateOrConnectWithoutYearInput | ClassAcademicYearCreateOrConnectWithoutYearInput[]
+    createMany?: ClassAcademicYearCreateManyYearInputEnvelope
+    connect?: ClassAcademicYearWhereUniqueInput | ClassAcademicYearWhereUniqueInput[]
   }
 
   export type TermsUncheckedCreateNestedManyWithoutYearInput = {
@@ -26310,18 +26310,18 @@ export namespace Prisma {
     set?: $Enums.Status
   }
 
-  export type Class_Academic_yearUpdateManyWithoutYearNestedInput = {
-    create?: XOR<Class_Academic_yearCreateWithoutYearInput, Class_Academic_yearUncheckedCreateWithoutYearInput> | Class_Academic_yearCreateWithoutYearInput[] | Class_Academic_yearUncheckedCreateWithoutYearInput[]
-    connectOrCreate?: Class_Academic_yearCreateOrConnectWithoutYearInput | Class_Academic_yearCreateOrConnectWithoutYearInput[]
-    upsert?: Class_Academic_yearUpsertWithWhereUniqueWithoutYearInput | Class_Academic_yearUpsertWithWhereUniqueWithoutYearInput[]
-    createMany?: Class_Academic_yearCreateManyYearInputEnvelope
-    set?: Class_Academic_yearWhereUniqueInput | Class_Academic_yearWhereUniqueInput[]
-    disconnect?: Class_Academic_yearWhereUniqueInput | Class_Academic_yearWhereUniqueInput[]
-    delete?: Class_Academic_yearWhereUniqueInput | Class_Academic_yearWhereUniqueInput[]
-    connect?: Class_Academic_yearWhereUniqueInput | Class_Academic_yearWhereUniqueInput[]
-    update?: Class_Academic_yearUpdateWithWhereUniqueWithoutYearInput | Class_Academic_yearUpdateWithWhereUniqueWithoutYearInput[]
-    updateMany?: Class_Academic_yearUpdateManyWithWhereWithoutYearInput | Class_Academic_yearUpdateManyWithWhereWithoutYearInput[]
-    deleteMany?: Class_Academic_yearScalarWhereInput | Class_Academic_yearScalarWhereInput[]
+  export type ClassAcademicYearUpdateManyWithoutYearNestedInput = {
+    create?: XOR<ClassAcademicYearCreateWithoutYearInput, ClassAcademicYearUncheckedCreateWithoutYearInput> | ClassAcademicYearCreateWithoutYearInput[] | ClassAcademicYearUncheckedCreateWithoutYearInput[]
+    connectOrCreate?: ClassAcademicYearCreateOrConnectWithoutYearInput | ClassAcademicYearCreateOrConnectWithoutYearInput[]
+    upsert?: ClassAcademicYearUpsertWithWhereUniqueWithoutYearInput | ClassAcademicYearUpsertWithWhereUniqueWithoutYearInput[]
+    createMany?: ClassAcademicYearCreateManyYearInputEnvelope
+    set?: ClassAcademicYearWhereUniqueInput | ClassAcademicYearWhereUniqueInput[]
+    disconnect?: ClassAcademicYearWhereUniqueInput | ClassAcademicYearWhereUniqueInput[]
+    delete?: ClassAcademicYearWhereUniqueInput | ClassAcademicYearWhereUniqueInput[]
+    connect?: ClassAcademicYearWhereUniqueInput | ClassAcademicYearWhereUniqueInput[]
+    update?: ClassAcademicYearUpdateWithWhereUniqueWithoutYearInput | ClassAcademicYearUpdateWithWhereUniqueWithoutYearInput[]
+    updateMany?: ClassAcademicYearUpdateManyWithWhereWithoutYearInput | ClassAcademicYearUpdateManyWithWhereWithoutYearInput[]
+    deleteMany?: ClassAcademicYearScalarWhereInput | ClassAcademicYearScalarWhereInput[]
   }
 
   export type TermsUpdateManyWithoutYearNestedInput = {
@@ -26338,18 +26338,18 @@ export namespace Prisma {
     deleteMany?: TermsScalarWhereInput | TermsScalarWhereInput[]
   }
 
-  export type Class_Academic_yearUncheckedUpdateManyWithoutYearNestedInput = {
-    create?: XOR<Class_Academic_yearCreateWithoutYearInput, Class_Academic_yearUncheckedCreateWithoutYearInput> | Class_Academic_yearCreateWithoutYearInput[] | Class_Academic_yearUncheckedCreateWithoutYearInput[]
-    connectOrCreate?: Class_Academic_yearCreateOrConnectWithoutYearInput | Class_Academic_yearCreateOrConnectWithoutYearInput[]
-    upsert?: Class_Academic_yearUpsertWithWhereUniqueWithoutYearInput | Class_Academic_yearUpsertWithWhereUniqueWithoutYearInput[]
-    createMany?: Class_Academic_yearCreateManyYearInputEnvelope
-    set?: Class_Academic_yearWhereUniqueInput | Class_Academic_yearWhereUniqueInput[]
-    disconnect?: Class_Academic_yearWhereUniqueInput | Class_Academic_yearWhereUniqueInput[]
-    delete?: Class_Academic_yearWhereUniqueInput | Class_Academic_yearWhereUniqueInput[]
-    connect?: Class_Academic_yearWhereUniqueInput | Class_Academic_yearWhereUniqueInput[]
-    update?: Class_Academic_yearUpdateWithWhereUniqueWithoutYearInput | Class_Academic_yearUpdateWithWhereUniqueWithoutYearInput[]
-    updateMany?: Class_Academic_yearUpdateManyWithWhereWithoutYearInput | Class_Academic_yearUpdateManyWithWhereWithoutYearInput[]
-    deleteMany?: Class_Academic_yearScalarWhereInput | Class_Academic_yearScalarWhereInput[]
+  export type ClassAcademicYearUncheckedUpdateManyWithoutYearNestedInput = {
+    create?: XOR<ClassAcademicYearCreateWithoutYearInput, ClassAcademicYearUncheckedCreateWithoutYearInput> | ClassAcademicYearCreateWithoutYearInput[] | ClassAcademicYearUncheckedCreateWithoutYearInput[]
+    connectOrCreate?: ClassAcademicYearCreateOrConnectWithoutYearInput | ClassAcademicYearCreateOrConnectWithoutYearInput[]
+    upsert?: ClassAcademicYearUpsertWithWhereUniqueWithoutYearInput | ClassAcademicYearUpsertWithWhereUniqueWithoutYearInput[]
+    createMany?: ClassAcademicYearCreateManyYearInputEnvelope
+    set?: ClassAcademicYearWhereUniqueInput | ClassAcademicYearWhereUniqueInput[]
+    disconnect?: ClassAcademicYearWhereUniqueInput | ClassAcademicYearWhereUniqueInput[]
+    delete?: ClassAcademicYearWhereUniqueInput | ClassAcademicYearWhereUniqueInput[]
+    connect?: ClassAcademicYearWhereUniqueInput | ClassAcademicYearWhereUniqueInput[]
+    update?: ClassAcademicYearUpdateWithWhereUniqueWithoutYearInput | ClassAcademicYearUpdateWithWhereUniqueWithoutYearInput[]
+    updateMany?: ClassAcademicYearUpdateManyWithWhereWithoutYearInput | ClassAcademicYearUpdateManyWithWhereWithoutYearInput[]
+    deleteMany?: ClassAcademicYearScalarWhereInput | ClassAcademicYearScalarWhereInput[]
   }
 
   export type TermsUncheckedUpdateManyWithoutYearNestedInput = {
@@ -26366,18 +26366,18 @@ export namespace Prisma {
     deleteMany?: TermsScalarWhereInput | TermsScalarWhereInput[]
   }
 
-  export type Academic_YearsCreateNestedOneWithoutTermsInput = {
-    create?: XOR<Academic_YearsCreateWithoutTermsInput, Academic_YearsUncheckedCreateWithoutTermsInput>
-    connectOrCreate?: Academic_YearsCreateOrConnectWithoutTermsInput
-    connect?: Academic_YearsWhereUniqueInput
+  export type AcademicYearsCreateNestedOneWithoutTermsInput = {
+    create?: XOR<AcademicYearsCreateWithoutTermsInput, AcademicYearsUncheckedCreateWithoutTermsInput>
+    connectOrCreate?: AcademicYearsCreateOrConnectWithoutTermsInput
+    connect?: AcademicYearsWhereUniqueInput
   }
 
-  export type Academic_YearsUpdateOneRequiredWithoutTermsNestedInput = {
-    create?: XOR<Academic_YearsCreateWithoutTermsInput, Academic_YearsUncheckedCreateWithoutTermsInput>
-    connectOrCreate?: Academic_YearsCreateOrConnectWithoutTermsInput
-    upsert?: Academic_YearsUpsertWithoutTermsInput
-    connect?: Academic_YearsWhereUniqueInput
-    update?: XOR<XOR<Academic_YearsUpdateToOneWithWhereWithoutTermsInput, Academic_YearsUpdateWithoutTermsInput>, Academic_YearsUncheckedUpdateWithoutTermsInput>
+  export type AcademicYearsUpdateOneRequiredWithoutTermsNestedInput = {
+    create?: XOR<AcademicYearsCreateWithoutTermsInput, AcademicYearsUncheckedCreateWithoutTermsInput>
+    connectOrCreate?: AcademicYearsCreateOrConnectWithoutTermsInput
+    upsert?: AcademicYearsUpsertWithoutTermsInput
+    connect?: AcademicYearsWhereUniqueInput
+    update?: XOR<XOR<AcademicYearsUpdateToOneWithWhereWithoutTermsInput, AcademicYearsUpdateWithoutTermsInput>, AcademicYearsUncheckedUpdateWithoutTermsInput>
   }
 
   export type ClassesCreateNestedOneWithoutAcademicYearsInput = {
@@ -26386,10 +26386,10 @@ export namespace Prisma {
     connect?: ClassesWhereUniqueInput
   }
 
-  export type Academic_YearsCreateNestedOneWithoutClassesInput = {
-    create?: XOR<Academic_YearsCreateWithoutClassesInput, Academic_YearsUncheckedCreateWithoutClassesInput>
-    connectOrCreate?: Academic_YearsCreateOrConnectWithoutClassesInput
-    connect?: Academic_YearsWhereUniqueInput
+  export type AcademicYearsCreateNestedOneWithoutClassesInput = {
+    create?: XOR<AcademicYearsCreateWithoutClassesInput, AcademicYearsUncheckedCreateWithoutClassesInput>
+    connectOrCreate?: AcademicYearsCreateOrConnectWithoutClassesInput
+    connect?: AcademicYearsWhereUniqueInput
   }
 
   export type ClassesUpdateOneRequiredWithoutAcademicYearsNestedInput = {
@@ -26400,12 +26400,12 @@ export namespace Prisma {
     update?: XOR<XOR<ClassesUpdateToOneWithWhereWithoutAcademicYearsInput, ClassesUpdateWithoutAcademicYearsInput>, ClassesUncheckedUpdateWithoutAcademicYearsInput>
   }
 
-  export type Academic_YearsUpdateOneRequiredWithoutClassesNestedInput = {
-    create?: XOR<Academic_YearsCreateWithoutClassesInput, Academic_YearsUncheckedCreateWithoutClassesInput>
-    connectOrCreate?: Academic_YearsCreateOrConnectWithoutClassesInput
-    upsert?: Academic_YearsUpsertWithoutClassesInput
-    connect?: Academic_YearsWhereUniqueInput
-    update?: XOR<XOR<Academic_YearsUpdateToOneWithWhereWithoutClassesInput, Academic_YearsUpdateWithoutClassesInput>, Academic_YearsUncheckedUpdateWithoutClassesInput>
+  export type AcademicYearsUpdateOneRequiredWithoutClassesNestedInput = {
+    create?: XOR<AcademicYearsCreateWithoutClassesInput, AcademicYearsUncheckedCreateWithoutClassesInput>
+    connectOrCreate?: AcademicYearsCreateOrConnectWithoutClassesInput
+    upsert?: AcademicYearsUpsertWithoutClassesInput
+    connect?: AcademicYearsWhereUniqueInput
+    update?: XOR<XOR<AcademicYearsUpdateToOneWithWhereWithoutClassesInput, AcademicYearsUpdateWithoutClassesInput>, AcademicYearsUncheckedUpdateWithoutClassesInput>
   }
 
   export type SubjectsCreateNestedOneWithoutAssignmentsInput = {
@@ -26446,18 +26446,18 @@ export namespace Prisma {
     connect?: SubjectsWhereUniqueInput
   }
 
-  export type Exam_submissionsCreateNestedManyWithoutExamInput = {
-    create?: XOR<Exam_submissionsCreateWithoutExamInput, Exam_submissionsUncheckedCreateWithoutExamInput> | Exam_submissionsCreateWithoutExamInput[] | Exam_submissionsUncheckedCreateWithoutExamInput[]
-    connectOrCreate?: Exam_submissionsCreateOrConnectWithoutExamInput | Exam_submissionsCreateOrConnectWithoutExamInput[]
-    createMany?: Exam_submissionsCreateManyExamInputEnvelope
-    connect?: Exam_submissionsWhereUniqueInput | Exam_submissionsWhereUniqueInput[]
+  export type ExamSubmissionsCreateNestedManyWithoutExamInput = {
+    create?: XOR<ExamSubmissionsCreateWithoutExamInput, ExamSubmissionsUncheckedCreateWithoutExamInput> | ExamSubmissionsCreateWithoutExamInput[] | ExamSubmissionsUncheckedCreateWithoutExamInput[]
+    connectOrCreate?: ExamSubmissionsCreateOrConnectWithoutExamInput | ExamSubmissionsCreateOrConnectWithoutExamInput[]
+    createMany?: ExamSubmissionsCreateManyExamInputEnvelope
+    connect?: ExamSubmissionsWhereUniqueInput | ExamSubmissionsWhereUniqueInput[]
   }
 
-  export type Exam_submissionsUncheckedCreateNestedManyWithoutExamInput = {
-    create?: XOR<Exam_submissionsCreateWithoutExamInput, Exam_submissionsUncheckedCreateWithoutExamInput> | Exam_submissionsCreateWithoutExamInput[] | Exam_submissionsUncheckedCreateWithoutExamInput[]
-    connectOrCreate?: Exam_submissionsCreateOrConnectWithoutExamInput | Exam_submissionsCreateOrConnectWithoutExamInput[]
-    createMany?: Exam_submissionsCreateManyExamInputEnvelope
-    connect?: Exam_submissionsWhereUniqueInput | Exam_submissionsWhereUniqueInput[]
+  export type ExamSubmissionsUncheckedCreateNestedManyWithoutExamInput = {
+    create?: XOR<ExamSubmissionsCreateWithoutExamInput, ExamSubmissionsUncheckedCreateWithoutExamInput> | ExamSubmissionsCreateWithoutExamInput[] | ExamSubmissionsUncheckedCreateWithoutExamInput[]
+    connectOrCreate?: ExamSubmissionsCreateOrConnectWithoutExamInput | ExamSubmissionsCreateOrConnectWithoutExamInput[]
+    createMany?: ExamSubmissionsCreateManyExamInputEnvelope
+    connect?: ExamSubmissionsWhereUniqueInput | ExamSubmissionsWhereUniqueInput[]
   }
 
   export type SubjectsUpdateOneRequiredWithoutExamsNestedInput = {
@@ -26468,106 +26468,106 @@ export namespace Prisma {
     update?: XOR<XOR<SubjectsUpdateToOneWithWhereWithoutExamsInput, SubjectsUpdateWithoutExamsInput>, SubjectsUncheckedUpdateWithoutExamsInput>
   }
 
-  export type Exam_submissionsUpdateManyWithoutExamNestedInput = {
-    create?: XOR<Exam_submissionsCreateWithoutExamInput, Exam_submissionsUncheckedCreateWithoutExamInput> | Exam_submissionsCreateWithoutExamInput[] | Exam_submissionsUncheckedCreateWithoutExamInput[]
-    connectOrCreate?: Exam_submissionsCreateOrConnectWithoutExamInput | Exam_submissionsCreateOrConnectWithoutExamInput[]
-    upsert?: Exam_submissionsUpsertWithWhereUniqueWithoutExamInput | Exam_submissionsUpsertWithWhereUniqueWithoutExamInput[]
-    createMany?: Exam_submissionsCreateManyExamInputEnvelope
-    set?: Exam_submissionsWhereUniqueInput | Exam_submissionsWhereUniqueInput[]
-    disconnect?: Exam_submissionsWhereUniqueInput | Exam_submissionsWhereUniqueInput[]
-    delete?: Exam_submissionsWhereUniqueInput | Exam_submissionsWhereUniqueInput[]
-    connect?: Exam_submissionsWhereUniqueInput | Exam_submissionsWhereUniqueInput[]
-    update?: Exam_submissionsUpdateWithWhereUniqueWithoutExamInput | Exam_submissionsUpdateWithWhereUniqueWithoutExamInput[]
-    updateMany?: Exam_submissionsUpdateManyWithWhereWithoutExamInput | Exam_submissionsUpdateManyWithWhereWithoutExamInput[]
-    deleteMany?: Exam_submissionsScalarWhereInput | Exam_submissionsScalarWhereInput[]
+  export type ExamSubmissionsUpdateManyWithoutExamNestedInput = {
+    create?: XOR<ExamSubmissionsCreateWithoutExamInput, ExamSubmissionsUncheckedCreateWithoutExamInput> | ExamSubmissionsCreateWithoutExamInput[] | ExamSubmissionsUncheckedCreateWithoutExamInput[]
+    connectOrCreate?: ExamSubmissionsCreateOrConnectWithoutExamInput | ExamSubmissionsCreateOrConnectWithoutExamInput[]
+    upsert?: ExamSubmissionsUpsertWithWhereUniqueWithoutExamInput | ExamSubmissionsUpsertWithWhereUniqueWithoutExamInput[]
+    createMany?: ExamSubmissionsCreateManyExamInputEnvelope
+    set?: ExamSubmissionsWhereUniqueInput | ExamSubmissionsWhereUniqueInput[]
+    disconnect?: ExamSubmissionsWhereUniqueInput | ExamSubmissionsWhereUniqueInput[]
+    delete?: ExamSubmissionsWhereUniqueInput | ExamSubmissionsWhereUniqueInput[]
+    connect?: ExamSubmissionsWhereUniqueInput | ExamSubmissionsWhereUniqueInput[]
+    update?: ExamSubmissionsUpdateWithWhereUniqueWithoutExamInput | ExamSubmissionsUpdateWithWhereUniqueWithoutExamInput[]
+    updateMany?: ExamSubmissionsUpdateManyWithWhereWithoutExamInput | ExamSubmissionsUpdateManyWithWhereWithoutExamInput[]
+    deleteMany?: ExamSubmissionsScalarWhereInput | ExamSubmissionsScalarWhereInput[]
   }
 
-  export type Exam_submissionsUncheckedUpdateManyWithoutExamNestedInput = {
-    create?: XOR<Exam_submissionsCreateWithoutExamInput, Exam_submissionsUncheckedCreateWithoutExamInput> | Exam_submissionsCreateWithoutExamInput[] | Exam_submissionsUncheckedCreateWithoutExamInput[]
-    connectOrCreate?: Exam_submissionsCreateOrConnectWithoutExamInput | Exam_submissionsCreateOrConnectWithoutExamInput[]
-    upsert?: Exam_submissionsUpsertWithWhereUniqueWithoutExamInput | Exam_submissionsUpsertWithWhereUniqueWithoutExamInput[]
-    createMany?: Exam_submissionsCreateManyExamInputEnvelope
-    set?: Exam_submissionsWhereUniqueInput | Exam_submissionsWhereUniqueInput[]
-    disconnect?: Exam_submissionsWhereUniqueInput | Exam_submissionsWhereUniqueInput[]
-    delete?: Exam_submissionsWhereUniqueInput | Exam_submissionsWhereUniqueInput[]
-    connect?: Exam_submissionsWhereUniqueInput | Exam_submissionsWhereUniqueInput[]
-    update?: Exam_submissionsUpdateWithWhereUniqueWithoutExamInput | Exam_submissionsUpdateWithWhereUniqueWithoutExamInput[]
-    updateMany?: Exam_submissionsUpdateManyWithWhereWithoutExamInput | Exam_submissionsUpdateManyWithWhereWithoutExamInput[]
-    deleteMany?: Exam_submissionsScalarWhereInput | Exam_submissionsScalarWhereInput[]
+  export type ExamSubmissionsUncheckedUpdateManyWithoutExamNestedInput = {
+    create?: XOR<ExamSubmissionsCreateWithoutExamInput, ExamSubmissionsUncheckedCreateWithoutExamInput> | ExamSubmissionsCreateWithoutExamInput[] | ExamSubmissionsUncheckedCreateWithoutExamInput[]
+    connectOrCreate?: ExamSubmissionsCreateOrConnectWithoutExamInput | ExamSubmissionsCreateOrConnectWithoutExamInput[]
+    upsert?: ExamSubmissionsUpsertWithWhereUniqueWithoutExamInput | ExamSubmissionsUpsertWithWhereUniqueWithoutExamInput[]
+    createMany?: ExamSubmissionsCreateManyExamInputEnvelope
+    set?: ExamSubmissionsWhereUniqueInput | ExamSubmissionsWhereUniqueInput[]
+    disconnect?: ExamSubmissionsWhereUniqueInput | ExamSubmissionsWhereUniqueInput[]
+    delete?: ExamSubmissionsWhereUniqueInput | ExamSubmissionsWhereUniqueInput[]
+    connect?: ExamSubmissionsWhereUniqueInput | ExamSubmissionsWhereUniqueInput[]
+    update?: ExamSubmissionsUpdateWithWhereUniqueWithoutExamInput | ExamSubmissionsUpdateWithWhereUniqueWithoutExamInput[]
+    updateMany?: ExamSubmissionsUpdateManyWithWhereWithoutExamInput | ExamSubmissionsUpdateManyWithWhereWithoutExamInput[]
+    deleteMany?: ExamSubmissionsScalarWhereInput | ExamSubmissionsScalarWhereInput[]
   }
 
-  export type StudentCreateNestedOneWithoutLearning_progressInput = {
-    create?: XOR<StudentCreateWithoutLearning_progressInput, StudentUncheckedCreateWithoutLearning_progressInput>
-    connectOrCreate?: StudentCreateOrConnectWithoutLearning_progressInput
+  export type StudentCreateNestedOneWithoutLearningProgressInput = {
+    create?: XOR<StudentCreateWithoutLearningProgressInput, StudentUncheckedCreateWithoutLearningProgressInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutLearningProgressInput
     connect?: StudentWhereUniqueInput
   }
 
-  export type Progress_notesCreateNestedManyWithoutLearning_progressInput = {
-    create?: XOR<Progress_notesCreateWithoutLearning_progressInput, Progress_notesUncheckedCreateWithoutLearning_progressInput> | Progress_notesCreateWithoutLearning_progressInput[] | Progress_notesUncheckedCreateWithoutLearning_progressInput[]
-    connectOrCreate?: Progress_notesCreateOrConnectWithoutLearning_progressInput | Progress_notesCreateOrConnectWithoutLearning_progressInput[]
-    createMany?: Progress_notesCreateManyLearning_progressInputEnvelope
-    connect?: Progress_notesWhereUniqueInput | Progress_notesWhereUniqueInput[]
+  export type ProgressNotesCreateNestedManyWithoutLearningProgressInput = {
+    create?: XOR<ProgressNotesCreateWithoutLearningProgressInput, ProgressNotesUncheckedCreateWithoutLearningProgressInput> | ProgressNotesCreateWithoutLearningProgressInput[] | ProgressNotesUncheckedCreateWithoutLearningProgressInput[]
+    connectOrCreate?: ProgressNotesCreateOrConnectWithoutLearningProgressInput | ProgressNotesCreateOrConnectWithoutLearningProgressInput[]
+    createMany?: ProgressNotesCreateManyLearningProgressInputEnvelope
+    connect?: ProgressNotesWhereUniqueInput | ProgressNotesWhereUniqueInput[]
   }
 
-  export type StudentUncheckedCreateNestedOneWithoutLearning_progressInput = {
-    create?: XOR<StudentCreateWithoutLearning_progressInput, StudentUncheckedCreateWithoutLearning_progressInput>
-    connectOrCreate?: StudentCreateOrConnectWithoutLearning_progressInput
+  export type StudentUncheckedCreateNestedOneWithoutLearningProgressInput = {
+    create?: XOR<StudentCreateWithoutLearningProgressInput, StudentUncheckedCreateWithoutLearningProgressInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutLearningProgressInput
     connect?: StudentWhereUniqueInput
   }
 
-  export type Progress_notesUncheckedCreateNestedManyWithoutLearning_progressInput = {
-    create?: XOR<Progress_notesCreateWithoutLearning_progressInput, Progress_notesUncheckedCreateWithoutLearning_progressInput> | Progress_notesCreateWithoutLearning_progressInput[] | Progress_notesUncheckedCreateWithoutLearning_progressInput[]
-    connectOrCreate?: Progress_notesCreateOrConnectWithoutLearning_progressInput | Progress_notesCreateOrConnectWithoutLearning_progressInput[]
-    createMany?: Progress_notesCreateManyLearning_progressInputEnvelope
-    connect?: Progress_notesWhereUniqueInput | Progress_notesWhereUniqueInput[]
+  export type ProgressNotesUncheckedCreateNestedManyWithoutLearningProgressInput = {
+    create?: XOR<ProgressNotesCreateWithoutLearningProgressInput, ProgressNotesUncheckedCreateWithoutLearningProgressInput> | ProgressNotesCreateWithoutLearningProgressInput[] | ProgressNotesUncheckedCreateWithoutLearningProgressInput[]
+    connectOrCreate?: ProgressNotesCreateOrConnectWithoutLearningProgressInput | ProgressNotesCreateOrConnectWithoutLearningProgressInput[]
+    createMany?: ProgressNotesCreateManyLearningProgressInputEnvelope
+    connect?: ProgressNotesWhereUniqueInput | ProgressNotesWhereUniqueInput[]
   }
 
-  export type StudentUpdateOneWithoutLearning_progressNestedInput = {
-    create?: XOR<StudentCreateWithoutLearning_progressInput, StudentUncheckedCreateWithoutLearning_progressInput>
-    connectOrCreate?: StudentCreateOrConnectWithoutLearning_progressInput
-    upsert?: StudentUpsertWithoutLearning_progressInput
+  export type StudentUpdateOneWithoutLearningProgressNestedInput = {
+    create?: XOR<StudentCreateWithoutLearningProgressInput, StudentUncheckedCreateWithoutLearningProgressInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutLearningProgressInput
+    upsert?: StudentUpsertWithoutLearningProgressInput
     disconnect?: StudentWhereInput | boolean
     delete?: StudentWhereInput | boolean
     connect?: StudentWhereUniqueInput
-    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutLearning_progressInput, StudentUpdateWithoutLearning_progressInput>, StudentUncheckedUpdateWithoutLearning_progressInput>
+    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutLearningProgressInput, StudentUpdateWithoutLearningProgressInput>, StudentUncheckedUpdateWithoutLearningProgressInput>
   }
 
-  export type Progress_notesUpdateManyWithoutLearning_progressNestedInput = {
-    create?: XOR<Progress_notesCreateWithoutLearning_progressInput, Progress_notesUncheckedCreateWithoutLearning_progressInput> | Progress_notesCreateWithoutLearning_progressInput[] | Progress_notesUncheckedCreateWithoutLearning_progressInput[]
-    connectOrCreate?: Progress_notesCreateOrConnectWithoutLearning_progressInput | Progress_notesCreateOrConnectWithoutLearning_progressInput[]
-    upsert?: Progress_notesUpsertWithWhereUniqueWithoutLearning_progressInput | Progress_notesUpsertWithWhereUniqueWithoutLearning_progressInput[]
-    createMany?: Progress_notesCreateManyLearning_progressInputEnvelope
-    set?: Progress_notesWhereUniqueInput | Progress_notesWhereUniqueInput[]
-    disconnect?: Progress_notesWhereUniqueInput | Progress_notesWhereUniqueInput[]
-    delete?: Progress_notesWhereUniqueInput | Progress_notesWhereUniqueInput[]
-    connect?: Progress_notesWhereUniqueInput | Progress_notesWhereUniqueInput[]
-    update?: Progress_notesUpdateWithWhereUniqueWithoutLearning_progressInput | Progress_notesUpdateWithWhereUniqueWithoutLearning_progressInput[]
-    updateMany?: Progress_notesUpdateManyWithWhereWithoutLearning_progressInput | Progress_notesUpdateManyWithWhereWithoutLearning_progressInput[]
-    deleteMany?: Progress_notesScalarWhereInput | Progress_notesScalarWhereInput[]
+  export type ProgressNotesUpdateManyWithoutLearningProgressNestedInput = {
+    create?: XOR<ProgressNotesCreateWithoutLearningProgressInput, ProgressNotesUncheckedCreateWithoutLearningProgressInput> | ProgressNotesCreateWithoutLearningProgressInput[] | ProgressNotesUncheckedCreateWithoutLearningProgressInput[]
+    connectOrCreate?: ProgressNotesCreateOrConnectWithoutLearningProgressInput | ProgressNotesCreateOrConnectWithoutLearningProgressInput[]
+    upsert?: ProgressNotesUpsertWithWhereUniqueWithoutLearningProgressInput | ProgressNotesUpsertWithWhereUniqueWithoutLearningProgressInput[]
+    createMany?: ProgressNotesCreateManyLearningProgressInputEnvelope
+    set?: ProgressNotesWhereUniqueInput | ProgressNotesWhereUniqueInput[]
+    disconnect?: ProgressNotesWhereUniqueInput | ProgressNotesWhereUniqueInput[]
+    delete?: ProgressNotesWhereUniqueInput | ProgressNotesWhereUniqueInput[]
+    connect?: ProgressNotesWhereUniqueInput | ProgressNotesWhereUniqueInput[]
+    update?: ProgressNotesUpdateWithWhereUniqueWithoutLearningProgressInput | ProgressNotesUpdateWithWhereUniqueWithoutLearningProgressInput[]
+    updateMany?: ProgressNotesUpdateManyWithWhereWithoutLearningProgressInput | ProgressNotesUpdateManyWithWhereWithoutLearningProgressInput[]
+    deleteMany?: ProgressNotesScalarWhereInput | ProgressNotesScalarWhereInput[]
   }
 
-  export type StudentUncheckedUpdateOneWithoutLearning_progressNestedInput = {
-    create?: XOR<StudentCreateWithoutLearning_progressInput, StudentUncheckedCreateWithoutLearning_progressInput>
-    connectOrCreate?: StudentCreateOrConnectWithoutLearning_progressInput
-    upsert?: StudentUpsertWithoutLearning_progressInput
+  export type StudentUncheckedUpdateOneWithoutLearningProgressNestedInput = {
+    create?: XOR<StudentCreateWithoutLearningProgressInput, StudentUncheckedCreateWithoutLearningProgressInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutLearningProgressInput
+    upsert?: StudentUpsertWithoutLearningProgressInput
     disconnect?: StudentWhereInput | boolean
     delete?: StudentWhereInput | boolean
     connect?: StudentWhereUniqueInput
-    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutLearning_progressInput, StudentUpdateWithoutLearning_progressInput>, StudentUncheckedUpdateWithoutLearning_progressInput>
+    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutLearningProgressInput, StudentUpdateWithoutLearningProgressInput>, StudentUncheckedUpdateWithoutLearningProgressInput>
   }
 
-  export type Progress_notesUncheckedUpdateManyWithoutLearning_progressNestedInput = {
-    create?: XOR<Progress_notesCreateWithoutLearning_progressInput, Progress_notesUncheckedCreateWithoutLearning_progressInput> | Progress_notesCreateWithoutLearning_progressInput[] | Progress_notesUncheckedCreateWithoutLearning_progressInput[]
-    connectOrCreate?: Progress_notesCreateOrConnectWithoutLearning_progressInput | Progress_notesCreateOrConnectWithoutLearning_progressInput[]
-    upsert?: Progress_notesUpsertWithWhereUniqueWithoutLearning_progressInput | Progress_notesUpsertWithWhereUniqueWithoutLearning_progressInput[]
-    createMany?: Progress_notesCreateManyLearning_progressInputEnvelope
-    set?: Progress_notesWhereUniqueInput | Progress_notesWhereUniqueInput[]
-    disconnect?: Progress_notesWhereUniqueInput | Progress_notesWhereUniqueInput[]
-    delete?: Progress_notesWhereUniqueInput | Progress_notesWhereUniqueInput[]
-    connect?: Progress_notesWhereUniqueInput | Progress_notesWhereUniqueInput[]
-    update?: Progress_notesUpdateWithWhereUniqueWithoutLearning_progressInput | Progress_notesUpdateWithWhereUniqueWithoutLearning_progressInput[]
-    updateMany?: Progress_notesUpdateManyWithWhereWithoutLearning_progressInput | Progress_notesUpdateManyWithWhereWithoutLearning_progressInput[]
-    deleteMany?: Progress_notesScalarWhereInput | Progress_notesScalarWhereInput[]
+  export type ProgressNotesUncheckedUpdateManyWithoutLearningProgressNestedInput = {
+    create?: XOR<ProgressNotesCreateWithoutLearningProgressInput, ProgressNotesUncheckedCreateWithoutLearningProgressInput> | ProgressNotesCreateWithoutLearningProgressInput[] | ProgressNotesUncheckedCreateWithoutLearningProgressInput[]
+    connectOrCreate?: ProgressNotesCreateOrConnectWithoutLearningProgressInput | ProgressNotesCreateOrConnectWithoutLearningProgressInput[]
+    upsert?: ProgressNotesUpsertWithWhereUniqueWithoutLearningProgressInput | ProgressNotesUpsertWithWhereUniqueWithoutLearningProgressInput[]
+    createMany?: ProgressNotesCreateManyLearningProgressInputEnvelope
+    set?: ProgressNotesWhereUniqueInput | ProgressNotesWhereUniqueInput[]
+    disconnect?: ProgressNotesWhereUniqueInput | ProgressNotesWhereUniqueInput[]
+    delete?: ProgressNotesWhereUniqueInput | ProgressNotesWhereUniqueInput[]
+    connect?: ProgressNotesWhereUniqueInput | ProgressNotesWhereUniqueInput[]
+    update?: ProgressNotesUpdateWithWhereUniqueWithoutLearningProgressInput | ProgressNotesUpdateWithWhereUniqueWithoutLearningProgressInput[]
+    updateMany?: ProgressNotesUpdateManyWithWhereWithoutLearningProgressInput | ProgressNotesUpdateManyWithWhereWithoutLearningProgressInput[]
+    deleteMany?: ProgressNotesScalarWhereInput | ProgressNotesScalarWhereInput[]
   }
 
   export type TeacherCreateNestedOneWithoutProgressNotesInput = {
@@ -26576,10 +26576,10 @@ export namespace Prisma {
     connect?: TeacherWhereUniqueInput
   }
 
-  export type Learning_progressesCreateNestedOneWithoutProgressNotesInput = {
-    create?: XOR<Learning_progressesCreateWithoutProgressNotesInput, Learning_progressesUncheckedCreateWithoutProgressNotesInput>
-    connectOrCreate?: Learning_progressesCreateOrConnectWithoutProgressNotesInput
-    connect?: Learning_progressesWhereUniqueInput
+  export type LearningProgressesCreateNestedOneWithoutProgressNotesInput = {
+    create?: XOR<LearningProgressesCreateWithoutProgressNotesInput, LearningProgressesUncheckedCreateWithoutProgressNotesInput>
+    connectOrCreate?: LearningProgressesCreateOrConnectWithoutProgressNotesInput
+    connect?: LearningProgressesWhereUniqueInput
   }
 
   export type TeacherUpdateOneRequiredWithoutProgressNotesNestedInput = {
@@ -26590,12 +26590,12 @@ export namespace Prisma {
     update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutProgressNotesInput, TeacherUpdateWithoutProgressNotesInput>, TeacherUncheckedUpdateWithoutProgressNotesInput>
   }
 
-  export type Learning_progressesUpdateOneRequiredWithoutProgressNotesNestedInput = {
-    create?: XOR<Learning_progressesCreateWithoutProgressNotesInput, Learning_progressesUncheckedCreateWithoutProgressNotesInput>
-    connectOrCreate?: Learning_progressesCreateOrConnectWithoutProgressNotesInput
-    upsert?: Learning_progressesUpsertWithoutProgressNotesInput
-    connect?: Learning_progressesWhereUniqueInput
-    update?: XOR<XOR<Learning_progressesUpdateToOneWithWhereWithoutProgressNotesInput, Learning_progressesUpdateWithoutProgressNotesInput>, Learning_progressesUncheckedUpdateWithoutProgressNotesInput>
+  export type LearningProgressesUpdateOneRequiredWithoutProgressNotesNestedInput = {
+    create?: XOR<LearningProgressesCreateWithoutProgressNotesInput, LearningProgressesUncheckedCreateWithoutProgressNotesInput>
+    connectOrCreate?: LearningProgressesCreateOrConnectWithoutProgressNotesInput
+    upsert?: LearningProgressesUpsertWithoutProgressNotesInput
+    connect?: LearningProgressesWhereUniqueInput
+    update?: XOR<XOR<LearningProgressesUpdateToOneWithWhereWithoutProgressNotesInput, LearningProgressesUpdateWithoutProgressNotesInput>, LearningProgressesUncheckedUpdateWithoutProgressNotesInput>
   }
 
   export type ClassesCreateNestedOneWithoutPerformanceInput = {
@@ -26947,24 +26947,24 @@ export namespace Prisma {
 
   export type TeacherCreateWithoutUserInput = {
     name: string
-    employ_id: number
+    employId: number
     email: string
-    phonenumber: string
+    phoneNumber: string
     specilization: string
-    account_status?: boolean
+    accountStatus?: boolean
     subjects?: SubjectsCreateNestedManyWithoutTeacherInput
-    progressNotes?: Progress_notesCreateNestedManyWithoutTeacherInput
+    progressNotes?: ProgressNotesCreateNestedManyWithoutTeacherInput
   }
 
   export type TeacherUncheckedCreateWithoutUserInput = {
     name: string
-    employ_id: number
+    employId: number
     email: string
-    phonenumber: string
+    phoneNumber: string
     specilization: string
-    account_status?: boolean
+    accountStatus?: boolean
     subjects?: SubjectsUncheckedCreateNestedManyWithoutTeacherInput
-    progressNotes?: Progress_notesUncheckedCreateNestedManyWithoutTeacherInput
+    progressNotes?: ProgressNotesUncheckedCreateNestedManyWithoutTeacherInput
   }
 
   export type TeacherCreateOrConnectWithoutUserInput = {
@@ -26973,35 +26973,35 @@ export namespace Prisma {
   }
 
   export type StudentCreateWithoutUserInput = {
-    student_id: number
-    first_name: string
-    last_name: string
+    studentId: number
+    firstName: string
+    lastName: string
     email: string
-    account_status?: boolean
-    date_of_birth: Date | string
-    phonenumber?: string | null
-    enrollment_date: Date | string
+    accountStatus?: boolean
+    dateOfBirth: Date | string
+    phoneNumber?: string | null
+    enrollmentDate: Date | string
     gender: $Enums.Gender
     class?: ClassesCreateNestedOneWithoutStudentsInput
-    learning_progress: Learning_progressesCreateNestedOneWithoutStudentInput
+    learningProgress: LearningProgressesCreateNestedOneWithoutStudentInput
     attendances?: AttendencesCreateNestedManyWithoutStudentInput
-    examSubmissions?: Exam_submissionsCreateNestedManyWithoutStudentInput
+    examSubmissions?: ExamSubmissionsCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutUserInput = {
-    student_id: number
-    first_name: string
-    last_name: string
+    studentId: number
+    firstName: string
+    lastName: string
     email: string
-    account_status?: boolean
-    date_of_birth: Date | string
-    phonenumber?: string | null
-    enrollment_date: Date | string
-    learning_progress_id: string
+    accountStatus?: boolean
+    dateOfBirth: Date | string
+    phoneNumber?: string | null
+    enrollmentDate: Date | string
+    learningProgressId: string
     classId?: string | null
     gender: $Enums.Gender
     attendances?: AttendencesUncheckedCreateNestedManyWithoutStudentInput
-    examSubmissions?: Exam_submissionsUncheckedCreateNestedManyWithoutStudentInput
+    examSubmissions?: ExamSubmissionsUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutUserInput = {
@@ -27048,24 +27048,24 @@ export namespace Prisma {
 
   export type TeacherUpdateWithoutUserInput = {
     name?: StringFieldUpdateOperationsInput | string
-    employ_id?: IntFieldUpdateOperationsInput | number
+    employId?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     specilization?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
     subjects?: SubjectsUpdateManyWithoutTeacherNestedInput
-    progressNotes?: Progress_notesUpdateManyWithoutTeacherNestedInput
+    progressNotes?: ProgressNotesUpdateManyWithoutTeacherNestedInput
   }
 
   export type TeacherUncheckedUpdateWithoutUserInput = {
     name?: StringFieldUpdateOperationsInput | string
-    employ_id?: IntFieldUpdateOperationsInput | number
+    employId?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     specilization?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
     subjects?: SubjectsUncheckedUpdateManyWithoutTeacherNestedInput
-    progressNotes?: Progress_notesUncheckedUpdateManyWithoutTeacherNestedInput
+    progressNotes?: ProgressNotesUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
   export type StudentUpsertWithoutUserInput = {
@@ -27080,35 +27080,35 @@ export namespace Prisma {
   }
 
   export type StudentUpdateWithoutUserInput = {
-    student_id?: IntFieldUpdateOperationsInput | number
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    studentId?: IntFieldUpdateOperationsInput | number
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
-    date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
-    enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
+    dateOfBirth?: DateTimeFieldUpdateOperationsInput | Date | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    enrollmentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     class?: ClassesUpdateOneWithoutStudentsNestedInput
-    learning_progress?: Learning_progressesUpdateOneRequiredWithoutStudentNestedInput
+    learningProgress?: LearningProgressesUpdateOneRequiredWithoutStudentNestedInput
     attendances?: AttendencesUpdateManyWithoutStudentNestedInput
-    examSubmissions?: Exam_submissionsUpdateManyWithoutStudentNestedInput
+    examSubmissions?: ExamSubmissionsUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutUserInput = {
-    student_id?: IntFieldUpdateOperationsInput | number
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    studentId?: IntFieldUpdateOperationsInput | number
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
-    date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
-    enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    learning_progress_id?: StringFieldUpdateOperationsInput | string
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
+    dateOfBirth?: DateTimeFieldUpdateOperationsInput | Date | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    enrollmentDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    learningProgressId?: StringFieldUpdateOperationsInput | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     attendances?: AttendencesUncheckedUpdateManyWithoutStudentNestedInput
-    examSubmissions?: Exam_submissionsUncheckedUpdateManyWithoutStudentNestedInput
+    examSubmissions?: ExamSubmissionsUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type RefreshTokenUpsertWithWhereUniqueWithoutUserInput = {
@@ -27145,7 +27145,7 @@ export namespace Prisma {
     username: string
     password: string
     role: $Enums.Role
-    account_status?: boolean
+    accountStatus?: boolean
     createdAt?: Date | string
     teacher?: TeacherCreateNestedOneWithoutUserInput
     student?: StudentCreateNestedOneWithoutUserInput
@@ -27157,7 +27157,7 @@ export namespace Prisma {
     username: string
     password: string
     role: $Enums.Role
-    account_status?: boolean
+    accountStatus?: boolean
     createdAt?: Date | string
     teacher?: TeacherUncheckedCreateNestedOneWithoutUserInput
     student?: StudentUncheckedCreateNestedOneWithoutUserInput
@@ -27185,7 +27185,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    account_status?: BoolFieldUpdateOperationsInput | boolean
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teacher?: TeacherUpdateOneWithoutUserNestedInput
     student?: StudentUpdateOneWithoutUserNestedInput
@@ -27197,7 +27197,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    account_status?: BoolFieldUpdateOperationsInput | boolean
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teacher?: TeacherUncheckedUpdateOneWithoutUserNestedInput
     student?: StudentUncheckedUpdateOneWithoutUserNestedInput
@@ -27209,7 +27209,7 @@ export namespace Prisma {
     username: string
     password: string
     role: $Enums.Role
-    account_status?: boolean
+    accountStatus?: boolean
     createdAt?: Date | string
     student?: StudentCreateNestedOneWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
@@ -27221,7 +27221,7 @@ export namespace Prisma {
     username: string
     password: string
     role: $Enums.Role
-    account_status?: boolean
+    accountStatus?: boolean
     createdAt?: Date | string
     student?: StudentUncheckedCreateNestedOneWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -27234,8 +27234,8 @@ export namespace Prisma {
 
   export type SubjectsCreateWithoutTeacherInput = {
     id: string
-    subject_name: string
-    subject_code: string
+    subjectName: string
+    subjectCode: string
     Description: string
     class: ClassesCreateNestedOneWithoutSubjectsInput
     assignments?: AssignmentsCreateNestedManyWithoutSubjectInput
@@ -27246,8 +27246,8 @@ export namespace Prisma {
 
   export type SubjectsUncheckedCreateWithoutTeacherInput = {
     id: string
-    subject_name: string
-    subject_code: string
+    subjectName: string
+    subjectCode: string
     Description: string
     classId: string
     assignments?: AssignmentsUncheckedCreateNestedManyWithoutSubjectInput
@@ -27266,31 +27266,31 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type Progress_notesCreateWithoutTeacherInput = {
+  export type ProgressNotesCreateWithoutTeacherInput = {
     id: string
-    note_date: Date | string
-    note_observation: string
+    noteDate: Date | string
+    noteObservation: string
     Strengths: string
-    areas_for_improvement: string
-    learning_progress: Learning_progressesCreateNestedOneWithoutProgressNotesInput
+    areasForImprovement: string
+    learningProgress: LearningProgressesCreateNestedOneWithoutProgressNotesInput
   }
 
-  export type Progress_notesUncheckedCreateWithoutTeacherInput = {
+  export type ProgressNotesUncheckedCreateWithoutTeacherInput = {
     id: string
-    note_date: Date | string
-    note_observation: string
+    noteDate: Date | string
+    noteObservation: string
     Strengths: string
-    areas_for_improvement: string
+    areasForImprovement: string
     learningProgressId: string
   }
 
-  export type Progress_notesCreateOrConnectWithoutTeacherInput = {
-    where: Progress_notesWhereUniqueInput
-    create: XOR<Progress_notesCreateWithoutTeacherInput, Progress_notesUncheckedCreateWithoutTeacherInput>
+  export type ProgressNotesCreateOrConnectWithoutTeacherInput = {
+    where: ProgressNotesWhereUniqueInput
+    create: XOR<ProgressNotesCreateWithoutTeacherInput, ProgressNotesUncheckedCreateWithoutTeacherInput>
   }
 
-  export type Progress_notesCreateManyTeacherInputEnvelope = {
-    data: Progress_notesCreateManyTeacherInput | Progress_notesCreateManyTeacherInput[]
+  export type ProgressNotesCreateManyTeacherInputEnvelope = {
+    data: ProgressNotesCreateManyTeacherInput | ProgressNotesCreateManyTeacherInput[]
     skipDuplicates?: boolean
   }
 
@@ -27311,7 +27311,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    account_status?: BoolFieldUpdateOperationsInput | boolean
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     student?: StudentUpdateOneWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
@@ -27323,7 +27323,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    account_status?: BoolFieldUpdateOperationsInput | boolean
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     student?: StudentUncheckedUpdateOneWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -27350,40 +27350,40 @@ export namespace Prisma {
     OR?: SubjectsScalarWhereInput[]
     NOT?: SubjectsScalarWhereInput | SubjectsScalarWhereInput[]
     id?: StringFilter<"Subjects"> | string
-    subject_name?: StringFilter<"Subjects"> | string
-    subject_code?: StringFilter<"Subjects"> | string
+    subjectName?: StringFilter<"Subjects"> | string
+    subjectCode?: StringFilter<"Subjects"> | string
     Description?: StringFilter<"Subjects"> | string
     classId?: StringFilter<"Subjects"> | string
     teacherId?: StringFilter<"Subjects"> | string
   }
 
-  export type Progress_notesUpsertWithWhereUniqueWithoutTeacherInput = {
-    where: Progress_notesWhereUniqueInput
-    update: XOR<Progress_notesUpdateWithoutTeacherInput, Progress_notesUncheckedUpdateWithoutTeacherInput>
-    create: XOR<Progress_notesCreateWithoutTeacherInput, Progress_notesUncheckedCreateWithoutTeacherInput>
+  export type ProgressNotesUpsertWithWhereUniqueWithoutTeacherInput = {
+    where: ProgressNotesWhereUniqueInput
+    update: XOR<ProgressNotesUpdateWithoutTeacherInput, ProgressNotesUncheckedUpdateWithoutTeacherInput>
+    create: XOR<ProgressNotesCreateWithoutTeacherInput, ProgressNotesUncheckedCreateWithoutTeacherInput>
   }
 
-  export type Progress_notesUpdateWithWhereUniqueWithoutTeacherInput = {
-    where: Progress_notesWhereUniqueInput
-    data: XOR<Progress_notesUpdateWithoutTeacherInput, Progress_notesUncheckedUpdateWithoutTeacherInput>
+  export type ProgressNotesUpdateWithWhereUniqueWithoutTeacherInput = {
+    where: ProgressNotesWhereUniqueInput
+    data: XOR<ProgressNotesUpdateWithoutTeacherInput, ProgressNotesUncheckedUpdateWithoutTeacherInput>
   }
 
-  export type Progress_notesUpdateManyWithWhereWithoutTeacherInput = {
-    where: Progress_notesScalarWhereInput
-    data: XOR<Progress_notesUpdateManyMutationInput, Progress_notesUncheckedUpdateManyWithoutTeacherInput>
+  export type ProgressNotesUpdateManyWithWhereWithoutTeacherInput = {
+    where: ProgressNotesScalarWhereInput
+    data: XOR<ProgressNotesUpdateManyMutationInput, ProgressNotesUncheckedUpdateManyWithoutTeacherInput>
   }
 
-  export type Progress_notesScalarWhereInput = {
-    AND?: Progress_notesScalarWhereInput | Progress_notesScalarWhereInput[]
-    OR?: Progress_notesScalarWhereInput[]
-    NOT?: Progress_notesScalarWhereInput | Progress_notesScalarWhereInput[]
-    id?: StringFilter<"Progress_notes"> | string
-    note_date?: DateTimeFilter<"Progress_notes"> | Date | string
-    note_observation?: StringFilter<"Progress_notes"> | string
-    Strengths?: StringFilter<"Progress_notes"> | string
-    areas_for_improvement?: StringFilter<"Progress_notes"> | string
-    teacherId?: StringFilter<"Progress_notes"> | string
-    learningProgressId?: StringFilter<"Progress_notes"> | string
+  export type ProgressNotesScalarWhereInput = {
+    AND?: ProgressNotesScalarWhereInput | ProgressNotesScalarWhereInput[]
+    OR?: ProgressNotesScalarWhereInput[]
+    NOT?: ProgressNotesScalarWhereInput | ProgressNotesScalarWhereInput[]
+    id?: StringFilter<"ProgressNotes"> | string
+    noteDate?: DateTimeFilter<"ProgressNotes"> | Date | string
+    noteObservation?: StringFilter<"ProgressNotes"> | string
+    Strengths?: StringFilter<"ProgressNotes"> | string
+    areasForImprovement?: StringFilter<"ProgressNotes"> | string
+    teacherId?: StringFilter<"ProgressNotes"> | string
+    learningProgressId?: StringFilter<"ProgressNotes"> | string
   }
 
   export type UserCreateWithoutStudentInput = {
@@ -27392,7 +27392,7 @@ export namespace Prisma {
     username: string
     password: string
     role: $Enums.Role
-    account_status?: boolean
+    accountStatus?: boolean
     createdAt?: Date | string
     teacher?: TeacherCreateNestedOneWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
@@ -27404,7 +27404,7 @@ export namespace Prisma {
     username: string
     password: string
     role: $Enums.Role
-    account_status?: boolean
+    accountStatus?: boolean
     createdAt?: Date | string
     teacher?: TeacherUncheckedCreateNestedOneWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -27417,18 +27417,18 @@ export namespace Prisma {
 
   export type ClassesCreateWithoutStudentsInput = {
     id: string
-    class_name: string
-    academicYears?: Class_Academic_yearCreateNestedManyWithoutClassInput
+    className: string
+    academicYears?: ClassAcademicYearCreateNestedManyWithoutClassInput
     subjects?: SubjectsCreateNestedManyWithoutClassInput
-    performance?: Classes_performenceCreateNestedOneWithoutClassInput
+    performance?: ClassesPerformenceCreateNestedOneWithoutClassInput
   }
 
   export type ClassesUncheckedCreateWithoutStudentsInput = {
     id: string
-    class_name: string
-    academicYears?: Class_Academic_yearUncheckedCreateNestedManyWithoutClassInput
+    className: string
+    academicYears?: ClassAcademicYearUncheckedCreateNestedManyWithoutClassInput
     subjects?: SubjectsUncheckedCreateNestedManyWithoutClassInput
-    performance?: Classes_performenceUncheckedCreateNestedOneWithoutClassInput
+    performance?: ClassesPerformenceUncheckedCreateNestedOneWithoutClassInput
   }
 
   export type ClassesCreateOrConnectWithoutStudentsInput = {
@@ -27436,42 +27436,42 @@ export namespace Prisma {
     create: XOR<ClassesCreateWithoutStudentsInput, ClassesUncheckedCreateWithoutStudentsInput>
   }
 
-  export type Learning_progressesCreateWithoutStudentInput = {
+  export type LearningProgressesCreateWithoutStudentInput = {
     id: string
-    subjects_averages: number
-    overall_avreages: number
-    attendence_percentage: number
-    learning_status: $Enums.Status
-    progressNotes?: Progress_notesCreateNestedManyWithoutLearning_progressInput
+    subjectsAverages: number
+    overallAvreages: number
+    attendencePercentage: number
+    learningStatus: $Enums.Status
+    progressNotes?: ProgressNotesCreateNestedManyWithoutLearningProgressInput
   }
 
-  export type Learning_progressesUncheckedCreateWithoutStudentInput = {
+  export type LearningProgressesUncheckedCreateWithoutStudentInput = {
     id: string
-    subjects_averages: number
-    overall_avreages: number
-    attendence_percentage: number
-    learning_status: $Enums.Status
-    progressNotes?: Progress_notesUncheckedCreateNestedManyWithoutLearning_progressInput
+    subjectsAverages: number
+    overallAvreages: number
+    attendencePercentage: number
+    learningStatus: $Enums.Status
+    progressNotes?: ProgressNotesUncheckedCreateNestedManyWithoutLearningProgressInput
   }
 
-  export type Learning_progressesCreateOrConnectWithoutStudentInput = {
-    where: Learning_progressesWhereUniqueInput
-    create: XOR<Learning_progressesCreateWithoutStudentInput, Learning_progressesUncheckedCreateWithoutStudentInput>
+  export type LearningProgressesCreateOrConnectWithoutStudentInput = {
+    where: LearningProgressesWhereUniqueInput
+    create: XOR<LearningProgressesCreateWithoutStudentInput, LearningProgressesUncheckedCreateWithoutStudentInput>
   }
 
   export type AttendencesCreateWithoutStudentInput = {
     id: string
-    attendance_date: Date | string
-    attendance_status: string
-    attendance_percentage: number
+    attendanceDate: Date | string
+    attendanceStatus: string
+    attendancePercentage: number
     subject: SubjectsCreateNestedOneWithoutAttendancesInput
   }
 
   export type AttendencesUncheckedCreateWithoutStudentInput = {
     id: string
-    attendance_date: Date | string
-    attendance_status: string
-    attendance_percentage: number
+    attendanceDate: Date | string
+    attendanceStatus: string
+    attendancePercentage: number
     subjectId: string
   }
 
@@ -27485,27 +27485,27 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type Exam_submissionsCreateWithoutStudentInput = {
+  export type ExamSubmissionsCreateWithoutStudentInput = {
     id: string
     score?: number | null
     takenAt?: Date | string
     exam: ExamsCreateNestedOneWithoutSubmissionsInput
   }
 
-  export type Exam_submissionsUncheckedCreateWithoutStudentInput = {
+  export type ExamSubmissionsUncheckedCreateWithoutStudentInput = {
     id: string
     examId: string
     score?: number | null
     takenAt?: Date | string
   }
 
-  export type Exam_submissionsCreateOrConnectWithoutStudentInput = {
-    where: Exam_submissionsWhereUniqueInput
-    create: XOR<Exam_submissionsCreateWithoutStudentInput, Exam_submissionsUncheckedCreateWithoutStudentInput>
+  export type ExamSubmissionsCreateOrConnectWithoutStudentInput = {
+    where: ExamSubmissionsWhereUniqueInput
+    create: XOR<ExamSubmissionsCreateWithoutStudentInput, ExamSubmissionsUncheckedCreateWithoutStudentInput>
   }
 
-  export type Exam_submissionsCreateManyStudentInputEnvelope = {
-    data: Exam_submissionsCreateManyStudentInput | Exam_submissionsCreateManyStudentInput[]
+  export type ExamSubmissionsCreateManyStudentInputEnvelope = {
+    data: ExamSubmissionsCreateManyStudentInput | ExamSubmissionsCreateManyStudentInput[]
     skipDuplicates?: boolean
   }
 
@@ -27526,7 +27526,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    account_status?: BoolFieldUpdateOperationsInput | boolean
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teacher?: TeacherUpdateOneWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
@@ -27538,7 +27538,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    account_status?: BoolFieldUpdateOperationsInput | boolean
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teacher?: TeacherUncheckedUpdateOneWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -27557,47 +27557,47 @@ export namespace Prisma {
 
   export type ClassesUpdateWithoutStudentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_name?: StringFieldUpdateOperationsInput | string
-    academicYears?: Class_Academic_yearUpdateManyWithoutClassNestedInput
+    className?: StringFieldUpdateOperationsInput | string
+    academicYears?: ClassAcademicYearUpdateManyWithoutClassNestedInput
     subjects?: SubjectsUpdateManyWithoutClassNestedInput
-    performance?: Classes_performenceUpdateOneWithoutClassNestedInput
+    performance?: ClassesPerformenceUpdateOneWithoutClassNestedInput
   }
 
   export type ClassesUncheckedUpdateWithoutStudentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_name?: StringFieldUpdateOperationsInput | string
-    academicYears?: Class_Academic_yearUncheckedUpdateManyWithoutClassNestedInput
+    className?: StringFieldUpdateOperationsInput | string
+    academicYears?: ClassAcademicYearUncheckedUpdateManyWithoutClassNestedInput
     subjects?: SubjectsUncheckedUpdateManyWithoutClassNestedInput
-    performance?: Classes_performenceUncheckedUpdateOneWithoutClassNestedInput
+    performance?: ClassesPerformenceUncheckedUpdateOneWithoutClassNestedInput
   }
 
-  export type Learning_progressesUpsertWithoutStudentInput = {
-    update: XOR<Learning_progressesUpdateWithoutStudentInput, Learning_progressesUncheckedUpdateWithoutStudentInput>
-    create: XOR<Learning_progressesCreateWithoutStudentInput, Learning_progressesUncheckedCreateWithoutStudentInput>
-    where?: Learning_progressesWhereInput
+  export type LearningProgressesUpsertWithoutStudentInput = {
+    update: XOR<LearningProgressesUpdateWithoutStudentInput, LearningProgressesUncheckedUpdateWithoutStudentInput>
+    create: XOR<LearningProgressesCreateWithoutStudentInput, LearningProgressesUncheckedCreateWithoutStudentInput>
+    where?: LearningProgressesWhereInput
   }
 
-  export type Learning_progressesUpdateToOneWithWhereWithoutStudentInput = {
-    where?: Learning_progressesWhereInput
-    data: XOR<Learning_progressesUpdateWithoutStudentInput, Learning_progressesUncheckedUpdateWithoutStudentInput>
+  export type LearningProgressesUpdateToOneWithWhereWithoutStudentInput = {
+    where?: LearningProgressesWhereInput
+    data: XOR<LearningProgressesUpdateWithoutStudentInput, LearningProgressesUncheckedUpdateWithoutStudentInput>
   }
 
-  export type Learning_progressesUpdateWithoutStudentInput = {
+  export type LearningProgressesUpdateWithoutStudentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subjects_averages?: IntFieldUpdateOperationsInput | number
-    overall_avreages?: IntFieldUpdateOperationsInput | number
-    attendence_percentage?: IntFieldUpdateOperationsInput | number
-    learning_status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    progressNotes?: Progress_notesUpdateManyWithoutLearning_progressNestedInput
+    subjectsAverages?: IntFieldUpdateOperationsInput | number
+    overallAvreages?: IntFieldUpdateOperationsInput | number
+    attendencePercentage?: IntFieldUpdateOperationsInput | number
+    learningStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    progressNotes?: ProgressNotesUpdateManyWithoutLearningProgressNestedInput
   }
 
-  export type Learning_progressesUncheckedUpdateWithoutStudentInput = {
+  export type LearningProgressesUncheckedUpdateWithoutStudentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subjects_averages?: IntFieldUpdateOperationsInput | number
-    overall_avreages?: IntFieldUpdateOperationsInput | number
-    attendence_percentage?: IntFieldUpdateOperationsInput | number
-    learning_status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    progressNotes?: Progress_notesUncheckedUpdateManyWithoutLearning_progressNestedInput
+    subjectsAverages?: IntFieldUpdateOperationsInput | number
+    overallAvreages?: IntFieldUpdateOperationsInput | number
+    attendencePercentage?: IntFieldUpdateOperationsInput | number
+    learningStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    progressNotes?: ProgressNotesUncheckedUpdateManyWithoutLearningProgressNestedInput
   }
 
   export type AttendencesUpsertWithWhereUniqueWithoutStudentInput = {
@@ -27621,88 +27621,88 @@ export namespace Prisma {
     OR?: AttendencesScalarWhereInput[]
     NOT?: AttendencesScalarWhereInput | AttendencesScalarWhereInput[]
     id?: StringFilter<"Attendences"> | string
-    attendance_date?: DateTimeFilter<"Attendences"> | Date | string
-    attendance_status?: StringFilter<"Attendences"> | string
-    attendance_percentage?: IntFilter<"Attendences"> | number
+    attendanceDate?: DateTimeFilter<"Attendences"> | Date | string
+    attendanceStatus?: StringFilter<"Attendences"> | string
+    attendancePercentage?: IntFilter<"Attendences"> | number
     studentId?: StringFilter<"Attendences"> | string
     subjectId?: StringFilter<"Attendences"> | string
   }
 
-  export type Exam_submissionsUpsertWithWhereUniqueWithoutStudentInput = {
-    where: Exam_submissionsWhereUniqueInput
-    update: XOR<Exam_submissionsUpdateWithoutStudentInput, Exam_submissionsUncheckedUpdateWithoutStudentInput>
-    create: XOR<Exam_submissionsCreateWithoutStudentInput, Exam_submissionsUncheckedCreateWithoutStudentInput>
+  export type ExamSubmissionsUpsertWithWhereUniqueWithoutStudentInput = {
+    where: ExamSubmissionsWhereUniqueInput
+    update: XOR<ExamSubmissionsUpdateWithoutStudentInput, ExamSubmissionsUncheckedUpdateWithoutStudentInput>
+    create: XOR<ExamSubmissionsCreateWithoutStudentInput, ExamSubmissionsUncheckedCreateWithoutStudentInput>
   }
 
-  export type Exam_submissionsUpdateWithWhereUniqueWithoutStudentInput = {
-    where: Exam_submissionsWhereUniqueInput
-    data: XOR<Exam_submissionsUpdateWithoutStudentInput, Exam_submissionsUncheckedUpdateWithoutStudentInput>
+  export type ExamSubmissionsUpdateWithWhereUniqueWithoutStudentInput = {
+    where: ExamSubmissionsWhereUniqueInput
+    data: XOR<ExamSubmissionsUpdateWithoutStudentInput, ExamSubmissionsUncheckedUpdateWithoutStudentInput>
   }
 
-  export type Exam_submissionsUpdateManyWithWhereWithoutStudentInput = {
-    where: Exam_submissionsScalarWhereInput
-    data: XOR<Exam_submissionsUpdateManyMutationInput, Exam_submissionsUncheckedUpdateManyWithoutStudentInput>
+  export type ExamSubmissionsUpdateManyWithWhereWithoutStudentInput = {
+    where: ExamSubmissionsScalarWhereInput
+    data: XOR<ExamSubmissionsUpdateManyMutationInput, ExamSubmissionsUncheckedUpdateManyWithoutStudentInput>
   }
 
-  export type Exam_submissionsScalarWhereInput = {
-    AND?: Exam_submissionsScalarWhereInput | Exam_submissionsScalarWhereInput[]
-    OR?: Exam_submissionsScalarWhereInput[]
-    NOT?: Exam_submissionsScalarWhereInput | Exam_submissionsScalarWhereInput[]
-    id?: StringFilter<"Exam_submissions"> | string
-    examId?: StringFilter<"Exam_submissions"> | string
-    studentId?: StringFilter<"Exam_submissions"> | string
-    score?: IntNullableFilter<"Exam_submissions"> | number | null
-    takenAt?: DateTimeFilter<"Exam_submissions"> | Date | string
+  export type ExamSubmissionsScalarWhereInput = {
+    AND?: ExamSubmissionsScalarWhereInput | ExamSubmissionsScalarWhereInput[]
+    OR?: ExamSubmissionsScalarWhereInput[]
+    NOT?: ExamSubmissionsScalarWhereInput | ExamSubmissionsScalarWhereInput[]
+    id?: StringFilter<"ExamSubmissions"> | string
+    examId?: StringFilter<"ExamSubmissions"> | string
+    studentId?: StringFilter<"ExamSubmissions"> | string
+    score?: IntNullableFilter<"ExamSubmissions"> | number | null
+    takenAt?: DateTimeFilter<"ExamSubmissions"> | Date | string
   }
 
-  export type Class_Academic_yearCreateWithoutClassInput = {
-    year: Academic_YearsCreateNestedOneWithoutClassesInput
+  export type ClassAcademicYearCreateWithoutClassInput = {
+    year: AcademicYearsCreateNestedOneWithoutClassesInput
   }
 
-  export type Class_Academic_yearUncheckedCreateWithoutClassInput = {
+  export type ClassAcademicYearUncheckedCreateWithoutClassInput = {
     yearId: string
   }
 
-  export type Class_Academic_yearCreateOrConnectWithoutClassInput = {
-    where: Class_Academic_yearWhereUniqueInput
-    create: XOR<Class_Academic_yearCreateWithoutClassInput, Class_Academic_yearUncheckedCreateWithoutClassInput>
+  export type ClassAcademicYearCreateOrConnectWithoutClassInput = {
+    where: ClassAcademicYearWhereUniqueInput
+    create: XOR<ClassAcademicYearCreateWithoutClassInput, ClassAcademicYearUncheckedCreateWithoutClassInput>
   }
 
-  export type Class_Academic_yearCreateManyClassInputEnvelope = {
-    data: Class_Academic_yearCreateManyClassInput | Class_Academic_yearCreateManyClassInput[]
+  export type ClassAcademicYearCreateManyClassInputEnvelope = {
+    data: ClassAcademicYearCreateManyClassInput | ClassAcademicYearCreateManyClassInput[]
     skipDuplicates?: boolean
   }
 
   export type StudentCreateWithoutClassInput = {
-    student_id: number
-    first_name: string
-    last_name: string
+    studentId: number
+    firstName: string
+    lastName: string
     email: string
-    account_status?: boolean
-    date_of_birth: Date | string
-    phonenumber?: string | null
-    enrollment_date: Date | string
+    accountStatus?: boolean
+    dateOfBirth: Date | string
+    phoneNumber?: string | null
+    enrollmentDate: Date | string
     gender: $Enums.Gender
     user: UserCreateNestedOneWithoutStudentInput
-    learning_progress: Learning_progressesCreateNestedOneWithoutStudentInput
+    learningProgress: LearningProgressesCreateNestedOneWithoutStudentInput
     attendances?: AttendencesCreateNestedManyWithoutStudentInput
-    examSubmissions?: Exam_submissionsCreateNestedManyWithoutStudentInput
+    examSubmissions?: ExamSubmissionsCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutClassInput = {
     id: string
-    student_id: number
-    first_name: string
-    last_name: string
+    studentId: number
+    firstName: string
+    lastName: string
     email: string
-    account_status?: boolean
-    date_of_birth: Date | string
-    phonenumber?: string | null
-    enrollment_date: Date | string
-    learning_progress_id: string
+    accountStatus?: boolean
+    dateOfBirth: Date | string
+    phoneNumber?: string | null
+    enrollmentDate: Date | string
+    learningProgressId: string
     gender: $Enums.Gender
     attendances?: AttendencesUncheckedCreateNestedManyWithoutStudentInput
-    examSubmissions?: Exam_submissionsUncheckedCreateNestedManyWithoutStudentInput
+    examSubmissions?: ExamSubmissionsUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutClassInput = {
@@ -27717,8 +27717,8 @@ export namespace Prisma {
 
   export type SubjectsCreateWithoutClassInput = {
     id: string
-    subject_name: string
-    subject_code: string
+    subjectName: string
+    subjectCode: string
     Description: string
     teacher: TeacherCreateNestedOneWithoutSubjectsInput
     assignments?: AssignmentsCreateNestedManyWithoutSubjectInput
@@ -27729,8 +27729,8 @@ export namespace Prisma {
 
   export type SubjectsUncheckedCreateWithoutClassInput = {
     id: string
-    subject_name: string
-    subject_code: string
+    subjectName: string
+    subjectCode: string
     Description: string
     teacherId: string
     assignments?: AssignmentsUncheckedCreateNestedManyWithoutSubjectInput
@@ -27749,55 +27749,55 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type Classes_performenceCreateWithoutClassInput = {
+  export type ClassesPerformenceCreateWithoutClassInput = {
     id: string
-    class_avg: number
-    highest_grade: number
-    lowest_grade: number
-    assignments_compleation_rate: number
-    attendence_rate: number
-    student_requiring_support: number
-    class_status: $Enums.Status
+    classAvg: number
+    highestGrade: number
+    lowestGrade: number
+    assignmentsCompleationRate: number
+    attendenceRate: number
+    studentRequiringSupport: number
+    classStatus: $Enums.Status
   }
 
-  export type Classes_performenceUncheckedCreateWithoutClassInput = {
+  export type ClassesPerformenceUncheckedCreateWithoutClassInput = {
     id: string
-    class_avg: number
-    highest_grade: number
-    lowest_grade: number
-    assignments_compleation_rate: number
-    attendence_rate: number
-    student_requiring_support: number
-    class_status: $Enums.Status
+    classAvg: number
+    highestGrade: number
+    lowestGrade: number
+    assignmentsCompleationRate: number
+    attendenceRate: number
+    studentRequiringSupport: number
+    classStatus: $Enums.Status
   }
 
-  export type Classes_performenceCreateOrConnectWithoutClassInput = {
-    where: Classes_performenceWhereUniqueInput
-    create: XOR<Classes_performenceCreateWithoutClassInput, Classes_performenceUncheckedCreateWithoutClassInput>
+  export type ClassesPerformenceCreateOrConnectWithoutClassInput = {
+    where: ClassesPerformenceWhereUniqueInput
+    create: XOR<ClassesPerformenceCreateWithoutClassInput, ClassesPerformenceUncheckedCreateWithoutClassInput>
   }
 
-  export type Class_Academic_yearUpsertWithWhereUniqueWithoutClassInput = {
-    where: Class_Academic_yearWhereUniqueInput
-    update: XOR<Class_Academic_yearUpdateWithoutClassInput, Class_Academic_yearUncheckedUpdateWithoutClassInput>
-    create: XOR<Class_Academic_yearCreateWithoutClassInput, Class_Academic_yearUncheckedCreateWithoutClassInput>
+  export type ClassAcademicYearUpsertWithWhereUniqueWithoutClassInput = {
+    where: ClassAcademicYearWhereUniqueInput
+    update: XOR<ClassAcademicYearUpdateWithoutClassInput, ClassAcademicYearUncheckedUpdateWithoutClassInput>
+    create: XOR<ClassAcademicYearCreateWithoutClassInput, ClassAcademicYearUncheckedCreateWithoutClassInput>
   }
 
-  export type Class_Academic_yearUpdateWithWhereUniqueWithoutClassInput = {
-    where: Class_Academic_yearWhereUniqueInput
-    data: XOR<Class_Academic_yearUpdateWithoutClassInput, Class_Academic_yearUncheckedUpdateWithoutClassInput>
+  export type ClassAcademicYearUpdateWithWhereUniqueWithoutClassInput = {
+    where: ClassAcademicYearWhereUniqueInput
+    data: XOR<ClassAcademicYearUpdateWithoutClassInput, ClassAcademicYearUncheckedUpdateWithoutClassInput>
   }
 
-  export type Class_Academic_yearUpdateManyWithWhereWithoutClassInput = {
-    where: Class_Academic_yearScalarWhereInput
-    data: XOR<Class_Academic_yearUpdateManyMutationInput, Class_Academic_yearUncheckedUpdateManyWithoutClassInput>
+  export type ClassAcademicYearUpdateManyWithWhereWithoutClassInput = {
+    where: ClassAcademicYearScalarWhereInput
+    data: XOR<ClassAcademicYearUpdateManyMutationInput, ClassAcademicYearUncheckedUpdateManyWithoutClassInput>
   }
 
-  export type Class_Academic_yearScalarWhereInput = {
-    AND?: Class_Academic_yearScalarWhereInput | Class_Academic_yearScalarWhereInput[]
-    OR?: Class_Academic_yearScalarWhereInput[]
-    NOT?: Class_Academic_yearScalarWhereInput | Class_Academic_yearScalarWhereInput[]
-    classId?: StringFilter<"Class_Academic_year"> | string
-    yearId?: StringFilter<"Class_Academic_year"> | string
+  export type ClassAcademicYearScalarWhereInput = {
+    AND?: ClassAcademicYearScalarWhereInput | ClassAcademicYearScalarWhereInput[]
+    OR?: ClassAcademicYearScalarWhereInput[]
+    NOT?: ClassAcademicYearScalarWhereInput | ClassAcademicYearScalarWhereInput[]
+    classId?: StringFilter<"ClassAcademicYear"> | string
+    yearId?: StringFilter<"ClassAcademicYear"> | string
   }
 
   export type StudentUpsertWithWhereUniqueWithoutClassInput = {
@@ -27821,15 +27821,15 @@ export namespace Prisma {
     OR?: StudentScalarWhereInput[]
     NOT?: StudentScalarWhereInput | StudentScalarWhereInput[]
     id?: StringFilter<"Student"> | string
-    student_id?: IntFilter<"Student"> | number
-    first_name?: StringFilter<"Student"> | string
-    last_name?: StringFilter<"Student"> | string
+    studentId?: IntFilter<"Student"> | number
+    firstName?: StringFilter<"Student"> | string
+    lastName?: StringFilter<"Student"> | string
     email?: StringFilter<"Student"> | string
-    account_status?: BoolFilter<"Student"> | boolean
-    date_of_birth?: DateTimeFilter<"Student"> | Date | string
-    phonenumber?: StringNullableFilter<"Student"> | string | null
-    enrollment_date?: DateTimeFilter<"Student"> | Date | string
-    learning_progress_id?: StringFilter<"Student"> | string
+    accountStatus?: BoolFilter<"Student"> | boolean
+    dateOfBirth?: DateTimeFilter<"Student"> | Date | string
+    phoneNumber?: StringNullableFilter<"Student"> | string | null
+    enrollmentDate?: DateTimeFilter<"Student"> | Date | string
+    learningProgressId?: StringFilter<"Student"> | string
     classId?: StringNullableFilter<"Student"> | string | null
     gender?: EnumGenderFilter<"Student"> | $Enums.Gender
   }
@@ -27850,53 +27850,53 @@ export namespace Prisma {
     data: XOR<SubjectsUpdateManyMutationInput, SubjectsUncheckedUpdateManyWithoutClassInput>
   }
 
-  export type Classes_performenceUpsertWithoutClassInput = {
-    update: XOR<Classes_performenceUpdateWithoutClassInput, Classes_performenceUncheckedUpdateWithoutClassInput>
-    create: XOR<Classes_performenceCreateWithoutClassInput, Classes_performenceUncheckedCreateWithoutClassInput>
-    where?: Classes_performenceWhereInput
+  export type ClassesPerformenceUpsertWithoutClassInput = {
+    update: XOR<ClassesPerformenceUpdateWithoutClassInput, ClassesPerformenceUncheckedUpdateWithoutClassInput>
+    create: XOR<ClassesPerformenceCreateWithoutClassInput, ClassesPerformenceUncheckedCreateWithoutClassInput>
+    where?: ClassesPerformenceWhereInput
   }
 
-  export type Classes_performenceUpdateToOneWithWhereWithoutClassInput = {
-    where?: Classes_performenceWhereInput
-    data: XOR<Classes_performenceUpdateWithoutClassInput, Classes_performenceUncheckedUpdateWithoutClassInput>
+  export type ClassesPerformenceUpdateToOneWithWhereWithoutClassInput = {
+    where?: ClassesPerformenceWhereInput
+    data: XOR<ClassesPerformenceUpdateWithoutClassInput, ClassesPerformenceUncheckedUpdateWithoutClassInput>
   }
 
-  export type Classes_performenceUpdateWithoutClassInput = {
+  export type ClassesPerformenceUpdateWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_avg?: IntFieldUpdateOperationsInput | number
-    highest_grade?: IntFieldUpdateOperationsInput | number
-    lowest_grade?: IntFieldUpdateOperationsInput | number
-    assignments_compleation_rate?: IntFieldUpdateOperationsInput | number
-    attendence_rate?: IntFieldUpdateOperationsInput | number
-    student_requiring_support?: IntFieldUpdateOperationsInput | number
-    class_status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    classAvg?: IntFieldUpdateOperationsInput | number
+    highestGrade?: IntFieldUpdateOperationsInput | number
+    lowestGrade?: IntFieldUpdateOperationsInput | number
+    assignmentsCompleationRate?: IntFieldUpdateOperationsInput | number
+    attendenceRate?: IntFieldUpdateOperationsInput | number
+    studentRequiringSupport?: IntFieldUpdateOperationsInput | number
+    classStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
-  export type Classes_performenceUncheckedUpdateWithoutClassInput = {
+  export type ClassesPerformenceUncheckedUpdateWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_avg?: IntFieldUpdateOperationsInput | number
-    highest_grade?: IntFieldUpdateOperationsInput | number
-    lowest_grade?: IntFieldUpdateOperationsInput | number
-    assignments_compleation_rate?: IntFieldUpdateOperationsInput | number
-    attendence_rate?: IntFieldUpdateOperationsInput | number
-    student_requiring_support?: IntFieldUpdateOperationsInput | number
-    class_status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    classAvg?: IntFieldUpdateOperationsInput | number
+    highestGrade?: IntFieldUpdateOperationsInput | number
+    lowestGrade?: IntFieldUpdateOperationsInput | number
+    assignmentsCompleationRate?: IntFieldUpdateOperationsInput | number
+    attendenceRate?: IntFieldUpdateOperationsInput | number
+    studentRequiringSupport?: IntFieldUpdateOperationsInput | number
+    classStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type ClassesCreateWithoutSubjectsInput = {
     id: string
-    class_name: string
-    academicYears?: Class_Academic_yearCreateNestedManyWithoutClassInput
+    className: string
+    academicYears?: ClassAcademicYearCreateNestedManyWithoutClassInput
     students?: StudentCreateNestedManyWithoutClassInput
-    performance?: Classes_performenceCreateNestedOneWithoutClassInput
+    performance?: ClassesPerformenceCreateNestedOneWithoutClassInput
   }
 
   export type ClassesUncheckedCreateWithoutSubjectsInput = {
     id: string
-    class_name: string
-    academicYears?: Class_Academic_yearUncheckedCreateNestedManyWithoutClassInput
+    className: string
+    academicYears?: ClassAcademicYearUncheckedCreateNestedManyWithoutClassInput
     students?: StudentUncheckedCreateNestedManyWithoutClassInput
-    performance?: Classes_performenceUncheckedCreateNestedOneWithoutClassInput
+    performance?: ClassesPerformenceUncheckedCreateNestedOneWithoutClassInput
   }
 
   export type ClassesCreateOrConnectWithoutSubjectsInput = {
@@ -27906,24 +27906,24 @@ export namespace Prisma {
 
   export type TeacherCreateWithoutSubjectsInput = {
     name: string
-    employ_id: number
+    employId: number
     email: string
-    phonenumber: string
+    phoneNumber: string
     specilization: string
-    account_status?: boolean
+    accountStatus?: boolean
     user: UserCreateNestedOneWithoutTeacherInput
-    progressNotes?: Progress_notesCreateNestedManyWithoutTeacherInput
+    progressNotes?: ProgressNotesCreateNestedManyWithoutTeacherInput
   }
 
   export type TeacherUncheckedCreateWithoutSubjectsInput = {
     id: string
     name: string
-    employ_id: number
+    employId: number
     email: string
-    phonenumber: string
+    phoneNumber: string
     specilization: string
-    account_status?: boolean
-    progressNotes?: Progress_notesUncheckedCreateNestedManyWithoutTeacherInput
+    accountStatus?: boolean
+    progressNotes?: ProgressNotesUncheckedCreateNestedManyWithoutTeacherInput
   }
 
   export type TeacherCreateOrConnectWithoutSubjectsInput = {
@@ -27933,22 +27933,22 @@ export namespace Prisma {
 
   export type AssignmentsCreateWithoutSubjectInput = {
     id: string
-    assignment_title: string
-    assignment_description: string
-    due_date: Date | string
-    maximum_grade: number
+    assignmentTitle: string
+    assignmentDescription: string
+    dueDate: Date | string
+    maximumGrade: number
     attachment: string
-    Submission_instructions: string
+    SubmissionInstructions: string
   }
 
   export type AssignmentsUncheckedCreateWithoutSubjectInput = {
     id: string
-    assignment_title: string
-    assignment_description: string
-    due_date: Date | string
-    maximum_grade: number
+    assignmentTitle: string
+    assignmentDescription: string
+    dueDate: Date | string
+    maximumGrade: number
     attachment: string
-    Submission_instructions: string
+    SubmissionInstructions: string
   }
 
   export type AssignmentsCreateOrConnectWithoutSubjectInput = {
@@ -27963,22 +27963,22 @@ export namespace Prisma {
 
   export type LessonsCreateWithoutSubjectInput = {
     id: string
-    lesson_title: string
-    lesson_description: string
-    lesson_date: Date | string
-    learning_objectinve: string
-    learning_material: string
-    Completion_status: $Enums.iscompleate
+    lessonTitle: string
+    lessonDescription: string
+    lessonDate: Date | string
+    learningObjectinve: string
+    learningMaterial: string
+    CompletionStatus: $Enums.iscompleate
   }
 
   export type LessonsUncheckedCreateWithoutSubjectInput = {
     id: string
-    lesson_title: string
-    lesson_description: string
-    lesson_date: Date | string
-    learning_objectinve: string
-    learning_material: string
-    Completion_status: $Enums.iscompleate
+    lessonTitle: string
+    lessonDescription: string
+    lessonDate: Date | string
+    learningObjectinve: string
+    learningMaterial: string
+    CompletionStatus: $Enums.iscompleate
   }
 
   export type LessonsCreateOrConnectWithoutSubjectInput = {
@@ -27993,18 +27993,18 @@ export namespace Prisma {
 
   export type ExamsCreateWithoutSubjectInput = {
     id: string
-    exam_name: string
-    exam_date: Date | string
-    Maximum_grade: number
-    submissions?: Exam_submissionsCreateNestedManyWithoutExamInput
+    examName: string
+    examDate: Date | string
+    MaximumGrade: number
+    submissions?: ExamSubmissionsCreateNestedManyWithoutExamInput
   }
 
   export type ExamsUncheckedCreateWithoutSubjectInput = {
     id: string
-    exam_name: string
-    exam_date: Date | string
-    Maximum_grade: number
-    submissions?: Exam_submissionsUncheckedCreateNestedManyWithoutExamInput
+    examName: string
+    examDate: Date | string
+    MaximumGrade: number
+    submissions?: ExamSubmissionsUncheckedCreateNestedManyWithoutExamInput
   }
 
   export type ExamsCreateOrConnectWithoutSubjectInput = {
@@ -28019,17 +28019,17 @@ export namespace Prisma {
 
   export type AttendencesCreateWithoutSubjectInput = {
     id: string
-    attendance_date: Date | string
-    attendance_status: string
-    attendance_percentage: number
+    attendanceDate: Date | string
+    attendanceStatus: string
+    attendancePercentage: number
     student: StudentCreateNestedOneWithoutAttendancesInput
   }
 
   export type AttendencesUncheckedCreateWithoutSubjectInput = {
     id: string
-    attendance_date: Date | string
-    attendance_status: string
-    attendance_percentage: number
+    attendanceDate: Date | string
+    attendanceStatus: string
+    attendancePercentage: number
     studentId: string
   }
 
@@ -28056,18 +28056,18 @@ export namespace Prisma {
 
   export type ClassesUpdateWithoutSubjectsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_name?: StringFieldUpdateOperationsInput | string
-    academicYears?: Class_Academic_yearUpdateManyWithoutClassNestedInput
+    className?: StringFieldUpdateOperationsInput | string
+    academicYears?: ClassAcademicYearUpdateManyWithoutClassNestedInput
     students?: StudentUpdateManyWithoutClassNestedInput
-    performance?: Classes_performenceUpdateOneWithoutClassNestedInput
+    performance?: ClassesPerformenceUpdateOneWithoutClassNestedInput
   }
 
   export type ClassesUncheckedUpdateWithoutSubjectsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_name?: StringFieldUpdateOperationsInput | string
-    academicYears?: Class_Academic_yearUncheckedUpdateManyWithoutClassNestedInput
+    className?: StringFieldUpdateOperationsInput | string
+    academicYears?: ClassAcademicYearUncheckedUpdateManyWithoutClassNestedInput
     students?: StudentUncheckedUpdateManyWithoutClassNestedInput
-    performance?: Classes_performenceUncheckedUpdateOneWithoutClassNestedInput
+    performance?: ClassesPerformenceUncheckedUpdateOneWithoutClassNestedInput
   }
 
   export type TeacherUpsertWithoutSubjectsInput = {
@@ -28083,24 +28083,24 @@ export namespace Prisma {
 
   export type TeacherUpdateWithoutSubjectsInput = {
     name?: StringFieldUpdateOperationsInput | string
-    employ_id?: IntFieldUpdateOperationsInput | number
+    employId?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     specilization?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
     user?: UserUpdateOneRequiredWithoutTeacherNestedInput
-    progressNotes?: Progress_notesUpdateManyWithoutTeacherNestedInput
+    progressNotes?: ProgressNotesUpdateManyWithoutTeacherNestedInput
   }
 
   export type TeacherUncheckedUpdateWithoutSubjectsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    employ_id?: IntFieldUpdateOperationsInput | number
+    employId?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     specilization?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
-    progressNotes?: Progress_notesUncheckedUpdateManyWithoutTeacherNestedInput
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
+    progressNotes?: ProgressNotesUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
   export type AssignmentsUpsertWithWhereUniqueWithoutSubjectInput = {
@@ -28124,12 +28124,12 @@ export namespace Prisma {
     OR?: AssignmentsScalarWhereInput[]
     NOT?: AssignmentsScalarWhereInput | AssignmentsScalarWhereInput[]
     id?: StringFilter<"Assignments"> | string
-    assignment_title?: StringFilter<"Assignments"> | string
-    assignment_description?: StringFilter<"Assignments"> | string
-    due_date?: DateTimeFilter<"Assignments"> | Date | string
-    maximum_grade?: IntFilter<"Assignments"> | number
+    assignmentTitle?: StringFilter<"Assignments"> | string
+    assignmentDescription?: StringFilter<"Assignments"> | string
+    dueDate?: DateTimeFilter<"Assignments"> | Date | string
+    maximumGrade?: IntFilter<"Assignments"> | number
     attachment?: StringFilter<"Assignments"> | string
-    Submission_instructions?: StringFilter<"Assignments"> | string
+    SubmissionInstructions?: StringFilter<"Assignments"> | string
     subjectId?: StringFilter<"Assignments"> | string
   }
 
@@ -28154,12 +28154,12 @@ export namespace Prisma {
     OR?: LessonsScalarWhereInput[]
     NOT?: LessonsScalarWhereInput | LessonsScalarWhereInput[]
     id?: StringFilter<"Lessons"> | string
-    lesson_title?: StringFilter<"Lessons"> | string
-    lesson_description?: StringFilter<"Lessons"> | string
-    lesson_date?: DateTimeFilter<"Lessons"> | Date | string
-    learning_objectinve?: StringFilter<"Lessons"> | string
-    learning_material?: StringFilter<"Lessons"> | string
-    Completion_status?: EnumiscompleateFilter<"Lessons"> | $Enums.iscompleate
+    lessonTitle?: StringFilter<"Lessons"> | string
+    lessonDescription?: StringFilter<"Lessons"> | string
+    lessonDate?: DateTimeFilter<"Lessons"> | Date | string
+    learningObjectinve?: StringFilter<"Lessons"> | string
+    learningMaterial?: StringFilter<"Lessons"> | string
+    CompletionStatus?: EnumiscompleateFilter<"Lessons"> | $Enums.iscompleate
     subjectId?: StringFilter<"Lessons"> | string
   }
 
@@ -28184,9 +28184,9 @@ export namespace Prisma {
     OR?: ExamsScalarWhereInput[]
     NOT?: ExamsScalarWhereInput | ExamsScalarWhereInput[]
     id?: StringFilter<"Exams"> | string
-    exam_name?: StringFilter<"Exams"> | string
-    exam_date?: DateTimeFilter<"Exams"> | Date | string
-    Maximum_grade?: IntFilter<"Exams"> | number
+    examName?: StringFilter<"Exams"> | string
+    examDate?: DateTimeFilter<"Exams"> | Date | string
+    MaximumGrade?: IntFilter<"Exams"> | number
     subjectId?: StringFilter<"Exams"> | string
   }
 
@@ -28206,36 +28206,36 @@ export namespace Prisma {
     data: XOR<AttendencesUpdateManyMutationInput, AttendencesUncheckedUpdateManyWithoutSubjectInput>
   }
 
-  export type Class_Academic_yearCreateWithoutYearInput = {
+  export type ClassAcademicYearCreateWithoutYearInput = {
     class: ClassesCreateNestedOneWithoutAcademicYearsInput
   }
 
-  export type Class_Academic_yearUncheckedCreateWithoutYearInput = {
+  export type ClassAcademicYearUncheckedCreateWithoutYearInput = {
     classId: string
   }
 
-  export type Class_Academic_yearCreateOrConnectWithoutYearInput = {
-    where: Class_Academic_yearWhereUniqueInput
-    create: XOR<Class_Academic_yearCreateWithoutYearInput, Class_Academic_yearUncheckedCreateWithoutYearInput>
+  export type ClassAcademicYearCreateOrConnectWithoutYearInput = {
+    where: ClassAcademicYearWhereUniqueInput
+    create: XOR<ClassAcademicYearCreateWithoutYearInput, ClassAcademicYearUncheckedCreateWithoutYearInput>
   }
 
-  export type Class_Academic_yearCreateManyYearInputEnvelope = {
-    data: Class_Academic_yearCreateManyYearInput | Class_Academic_yearCreateManyYearInput[]
+  export type ClassAcademicYearCreateManyYearInputEnvelope = {
+    data: ClassAcademicYearCreateManyYearInput | ClassAcademicYearCreateManyYearInput[]
     skipDuplicates?: boolean
   }
 
   export type TermsCreateWithoutYearInput = {
     id: string
-    term_name: string
-    Start_date: Date | string
-    end_date: Date | string
+    termName: string
+    StartDate: Date | string
+    endDate: Date | string
   }
 
   export type TermsUncheckedCreateWithoutYearInput = {
     id: string
-    term_name: string
-    Start_date: Date | string
-    end_date: Date | string
+    termName: string
+    StartDate: Date | string
+    endDate: Date | string
   }
 
   export type TermsCreateOrConnectWithoutYearInput = {
@@ -28248,20 +28248,20 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type Class_Academic_yearUpsertWithWhereUniqueWithoutYearInput = {
-    where: Class_Academic_yearWhereUniqueInput
-    update: XOR<Class_Academic_yearUpdateWithoutYearInput, Class_Academic_yearUncheckedUpdateWithoutYearInput>
-    create: XOR<Class_Academic_yearCreateWithoutYearInput, Class_Academic_yearUncheckedCreateWithoutYearInput>
+  export type ClassAcademicYearUpsertWithWhereUniqueWithoutYearInput = {
+    where: ClassAcademicYearWhereUniqueInput
+    update: XOR<ClassAcademicYearUpdateWithoutYearInput, ClassAcademicYearUncheckedUpdateWithoutYearInput>
+    create: XOR<ClassAcademicYearCreateWithoutYearInput, ClassAcademicYearUncheckedCreateWithoutYearInput>
   }
 
-  export type Class_Academic_yearUpdateWithWhereUniqueWithoutYearInput = {
-    where: Class_Academic_yearWhereUniqueInput
-    data: XOR<Class_Academic_yearUpdateWithoutYearInput, Class_Academic_yearUncheckedUpdateWithoutYearInput>
+  export type ClassAcademicYearUpdateWithWhereUniqueWithoutYearInput = {
+    where: ClassAcademicYearWhereUniqueInput
+    data: XOR<ClassAcademicYearUpdateWithoutYearInput, ClassAcademicYearUncheckedUpdateWithoutYearInput>
   }
 
-  export type Class_Academic_yearUpdateManyWithWhereWithoutYearInput = {
-    where: Class_Academic_yearScalarWhereInput
-    data: XOR<Class_Academic_yearUpdateManyMutationInput, Class_Academic_yearUncheckedUpdateManyWithoutYearInput>
+  export type ClassAcademicYearUpdateManyWithWhereWithoutYearInput = {
+    where: ClassAcademicYearScalarWhereInput
+    data: XOR<ClassAcademicYearUpdateManyMutationInput, ClassAcademicYearUncheckedUpdateManyWithoutYearInput>
   }
 
   export type TermsUpsertWithWhereUniqueWithoutYearInput = {
@@ -28285,78 +28285,78 @@ export namespace Prisma {
     OR?: TermsScalarWhereInput[]
     NOT?: TermsScalarWhereInput | TermsScalarWhereInput[]
     id?: StringFilter<"Terms"> | string
-    term_name?: StringFilter<"Terms"> | string
-    Start_date?: DateTimeFilter<"Terms"> | Date | string
-    end_date?: DateTimeFilter<"Terms"> | Date | string
+    termName?: StringFilter<"Terms"> | string
+    StartDate?: DateTimeFilter<"Terms"> | Date | string
+    endDate?: DateTimeFilter<"Terms"> | Date | string
     yearId?: StringFilter<"Terms"> | string
   }
 
-  export type Academic_YearsCreateWithoutTermsInput = {
+  export type AcademicYearsCreateWithoutTermsInput = {
     id: string
-    year_name: string
-    Start_date: Date | string
-    end_date: Date | string
+    yearName: string
+    StartDate: Date | string
+    endDate: Date | string
     status: $Enums.Status
-    classes?: Class_Academic_yearCreateNestedManyWithoutYearInput
+    classes?: ClassAcademicYearCreateNestedManyWithoutYearInput
   }
 
-  export type Academic_YearsUncheckedCreateWithoutTermsInput = {
+  export type AcademicYearsUncheckedCreateWithoutTermsInput = {
     id: string
-    year_name: string
-    Start_date: Date | string
-    end_date: Date | string
+    yearName: string
+    StartDate: Date | string
+    endDate: Date | string
     status: $Enums.Status
-    classes?: Class_Academic_yearUncheckedCreateNestedManyWithoutYearInput
+    classes?: ClassAcademicYearUncheckedCreateNestedManyWithoutYearInput
   }
 
-  export type Academic_YearsCreateOrConnectWithoutTermsInput = {
-    where: Academic_YearsWhereUniqueInput
-    create: XOR<Academic_YearsCreateWithoutTermsInput, Academic_YearsUncheckedCreateWithoutTermsInput>
+  export type AcademicYearsCreateOrConnectWithoutTermsInput = {
+    where: AcademicYearsWhereUniqueInput
+    create: XOR<AcademicYearsCreateWithoutTermsInput, AcademicYearsUncheckedCreateWithoutTermsInput>
   }
 
-  export type Academic_YearsUpsertWithoutTermsInput = {
-    update: XOR<Academic_YearsUpdateWithoutTermsInput, Academic_YearsUncheckedUpdateWithoutTermsInput>
-    create: XOR<Academic_YearsCreateWithoutTermsInput, Academic_YearsUncheckedCreateWithoutTermsInput>
-    where?: Academic_YearsWhereInput
+  export type AcademicYearsUpsertWithoutTermsInput = {
+    update: XOR<AcademicYearsUpdateWithoutTermsInput, AcademicYearsUncheckedUpdateWithoutTermsInput>
+    create: XOR<AcademicYearsCreateWithoutTermsInput, AcademicYearsUncheckedCreateWithoutTermsInput>
+    where?: AcademicYearsWhereInput
   }
 
-  export type Academic_YearsUpdateToOneWithWhereWithoutTermsInput = {
-    where?: Academic_YearsWhereInput
-    data: XOR<Academic_YearsUpdateWithoutTermsInput, Academic_YearsUncheckedUpdateWithoutTermsInput>
+  export type AcademicYearsUpdateToOneWithWhereWithoutTermsInput = {
+    where?: AcademicYearsWhereInput
+    data: XOR<AcademicYearsUpdateWithoutTermsInput, AcademicYearsUncheckedUpdateWithoutTermsInput>
   }
 
-  export type Academic_YearsUpdateWithoutTermsInput = {
+  export type AcademicYearsUpdateWithoutTermsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    year_name?: StringFieldUpdateOperationsInput | string
-    Start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    yearName?: StringFieldUpdateOperationsInput | string
+    StartDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    classes?: Class_Academic_yearUpdateManyWithoutYearNestedInput
+    classes?: ClassAcademicYearUpdateManyWithoutYearNestedInput
   }
 
-  export type Academic_YearsUncheckedUpdateWithoutTermsInput = {
+  export type AcademicYearsUncheckedUpdateWithoutTermsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    year_name?: StringFieldUpdateOperationsInput | string
-    Start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    yearName?: StringFieldUpdateOperationsInput | string
+    StartDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    classes?: Class_Academic_yearUncheckedUpdateManyWithoutYearNestedInput
+    classes?: ClassAcademicYearUncheckedUpdateManyWithoutYearNestedInput
   }
 
   export type ClassesCreateWithoutAcademicYearsInput = {
     id: string
-    class_name: string
+    className: string
     students?: StudentCreateNestedManyWithoutClassInput
     subjects?: SubjectsCreateNestedManyWithoutClassInput
-    performance?: Classes_performenceCreateNestedOneWithoutClassInput
+    performance?: ClassesPerformenceCreateNestedOneWithoutClassInput
   }
 
   export type ClassesUncheckedCreateWithoutAcademicYearsInput = {
     id: string
-    class_name: string
+    className: string
     students?: StudentUncheckedCreateNestedManyWithoutClassInput
     subjects?: SubjectsUncheckedCreateNestedManyWithoutClassInput
-    performance?: Classes_performenceUncheckedCreateNestedOneWithoutClassInput
+    performance?: ClassesPerformenceUncheckedCreateNestedOneWithoutClassInput
   }
 
   export type ClassesCreateOrConnectWithoutAcademicYearsInput = {
@@ -28364,27 +28364,27 @@ export namespace Prisma {
     create: XOR<ClassesCreateWithoutAcademicYearsInput, ClassesUncheckedCreateWithoutAcademicYearsInput>
   }
 
-  export type Academic_YearsCreateWithoutClassesInput = {
+  export type AcademicYearsCreateWithoutClassesInput = {
     id: string
-    year_name: string
-    Start_date: Date | string
-    end_date: Date | string
+    yearName: string
+    StartDate: Date | string
+    endDate: Date | string
     status: $Enums.Status
     terms?: TermsCreateNestedManyWithoutYearInput
   }
 
-  export type Academic_YearsUncheckedCreateWithoutClassesInput = {
+  export type AcademicYearsUncheckedCreateWithoutClassesInput = {
     id: string
-    year_name: string
-    Start_date: Date | string
-    end_date: Date | string
+    yearName: string
+    StartDate: Date | string
+    endDate: Date | string
     status: $Enums.Status
     terms?: TermsUncheckedCreateNestedManyWithoutYearInput
   }
 
-  export type Academic_YearsCreateOrConnectWithoutClassesInput = {
-    where: Academic_YearsWhereUniqueInput
-    create: XOR<Academic_YearsCreateWithoutClassesInput, Academic_YearsUncheckedCreateWithoutClassesInput>
+  export type AcademicYearsCreateOrConnectWithoutClassesInput = {
+    where: AcademicYearsWhereUniqueInput
+    create: XOR<AcademicYearsCreateWithoutClassesInput, AcademicYearsUncheckedCreateWithoutClassesInput>
   }
 
   export type ClassesUpsertWithoutAcademicYearsInput = {
@@ -28400,53 +28400,53 @@ export namespace Prisma {
 
   export type ClassesUpdateWithoutAcademicYearsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_name?: StringFieldUpdateOperationsInput | string
+    className?: StringFieldUpdateOperationsInput | string
     students?: StudentUpdateManyWithoutClassNestedInput
     subjects?: SubjectsUpdateManyWithoutClassNestedInput
-    performance?: Classes_performenceUpdateOneWithoutClassNestedInput
+    performance?: ClassesPerformenceUpdateOneWithoutClassNestedInput
   }
 
   export type ClassesUncheckedUpdateWithoutAcademicYearsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_name?: StringFieldUpdateOperationsInput | string
+    className?: StringFieldUpdateOperationsInput | string
     students?: StudentUncheckedUpdateManyWithoutClassNestedInput
     subjects?: SubjectsUncheckedUpdateManyWithoutClassNestedInput
-    performance?: Classes_performenceUncheckedUpdateOneWithoutClassNestedInput
+    performance?: ClassesPerformenceUncheckedUpdateOneWithoutClassNestedInput
   }
 
-  export type Academic_YearsUpsertWithoutClassesInput = {
-    update: XOR<Academic_YearsUpdateWithoutClassesInput, Academic_YearsUncheckedUpdateWithoutClassesInput>
-    create: XOR<Academic_YearsCreateWithoutClassesInput, Academic_YearsUncheckedCreateWithoutClassesInput>
-    where?: Academic_YearsWhereInput
+  export type AcademicYearsUpsertWithoutClassesInput = {
+    update: XOR<AcademicYearsUpdateWithoutClassesInput, AcademicYearsUncheckedUpdateWithoutClassesInput>
+    create: XOR<AcademicYearsCreateWithoutClassesInput, AcademicYearsUncheckedCreateWithoutClassesInput>
+    where?: AcademicYearsWhereInput
   }
 
-  export type Academic_YearsUpdateToOneWithWhereWithoutClassesInput = {
-    where?: Academic_YearsWhereInput
-    data: XOR<Academic_YearsUpdateWithoutClassesInput, Academic_YearsUncheckedUpdateWithoutClassesInput>
+  export type AcademicYearsUpdateToOneWithWhereWithoutClassesInput = {
+    where?: AcademicYearsWhereInput
+    data: XOR<AcademicYearsUpdateWithoutClassesInput, AcademicYearsUncheckedUpdateWithoutClassesInput>
   }
 
-  export type Academic_YearsUpdateWithoutClassesInput = {
+  export type AcademicYearsUpdateWithoutClassesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    year_name?: StringFieldUpdateOperationsInput | string
-    Start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    yearName?: StringFieldUpdateOperationsInput | string
+    StartDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     terms?: TermsUpdateManyWithoutYearNestedInput
   }
 
-  export type Academic_YearsUncheckedUpdateWithoutClassesInput = {
+  export type AcademicYearsUncheckedUpdateWithoutClassesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    year_name?: StringFieldUpdateOperationsInput | string
-    Start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    yearName?: StringFieldUpdateOperationsInput | string
+    StartDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     terms?: TermsUncheckedUpdateManyWithoutYearNestedInput
   }
 
   export type SubjectsCreateWithoutAssignmentsInput = {
     id: string
-    subject_name: string
-    subject_code: string
+    subjectName: string
+    subjectCode: string
     Description: string
     class: ClassesCreateNestedOneWithoutSubjectsInput
     teacher: TeacherCreateNestedOneWithoutSubjectsInput
@@ -28457,8 +28457,8 @@ export namespace Prisma {
 
   export type SubjectsUncheckedCreateWithoutAssignmentsInput = {
     id: string
-    subject_name: string
-    subject_code: string
+    subjectName: string
+    subjectCode: string
     Description: string
     classId: string
     teacherId: string
@@ -28485,8 +28485,8 @@ export namespace Prisma {
 
   export type SubjectsUpdateWithoutAssignmentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subject_name?: StringFieldUpdateOperationsInput | string
-    subject_code?: StringFieldUpdateOperationsInput | string
+    subjectName?: StringFieldUpdateOperationsInput | string
+    subjectCode?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     class?: ClassesUpdateOneRequiredWithoutSubjectsNestedInput
     teacher?: TeacherUpdateOneRequiredWithoutSubjectsNestedInput
@@ -28497,8 +28497,8 @@ export namespace Prisma {
 
   export type SubjectsUncheckedUpdateWithoutAssignmentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subject_name?: StringFieldUpdateOperationsInput | string
-    subject_code?: StringFieldUpdateOperationsInput | string
+    subjectName?: StringFieldUpdateOperationsInput | string
+    subjectCode?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     classId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
@@ -28509,8 +28509,8 @@ export namespace Prisma {
 
   export type SubjectsCreateWithoutLessonsInput = {
     id: string
-    subject_name: string
-    subject_code: string
+    subjectName: string
+    subjectCode: string
     Description: string
     class: ClassesCreateNestedOneWithoutSubjectsInput
     teacher: TeacherCreateNestedOneWithoutSubjectsInput
@@ -28521,8 +28521,8 @@ export namespace Prisma {
 
   export type SubjectsUncheckedCreateWithoutLessonsInput = {
     id: string
-    subject_name: string
-    subject_code: string
+    subjectName: string
+    subjectCode: string
     Description: string
     classId: string
     teacherId: string
@@ -28549,8 +28549,8 @@ export namespace Prisma {
 
   export type SubjectsUpdateWithoutLessonsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subject_name?: StringFieldUpdateOperationsInput | string
-    subject_code?: StringFieldUpdateOperationsInput | string
+    subjectName?: StringFieldUpdateOperationsInput | string
+    subjectCode?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     class?: ClassesUpdateOneRequiredWithoutSubjectsNestedInput
     teacher?: TeacherUpdateOneRequiredWithoutSubjectsNestedInput
@@ -28561,8 +28561,8 @@ export namespace Prisma {
 
   export type SubjectsUncheckedUpdateWithoutLessonsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subject_name?: StringFieldUpdateOperationsInput | string
-    subject_code?: StringFieldUpdateOperationsInput | string
+    subjectName?: StringFieldUpdateOperationsInput | string
+    subjectCode?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     classId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
@@ -28573,8 +28573,8 @@ export namespace Prisma {
 
   export type SubjectsCreateWithoutExamsInput = {
     id: string
-    subject_name: string
-    subject_code: string
+    subjectName: string
+    subjectCode: string
     Description: string
     class: ClassesCreateNestedOneWithoutSubjectsInput
     teacher: TeacherCreateNestedOneWithoutSubjectsInput
@@ -28585,8 +28585,8 @@ export namespace Prisma {
 
   export type SubjectsUncheckedCreateWithoutExamsInput = {
     id: string
-    subject_name: string
-    subject_code: string
+    subjectName: string
+    subjectCode: string
     Description: string
     classId: string
     teacherId: string
@@ -28600,27 +28600,27 @@ export namespace Prisma {
     create: XOR<SubjectsCreateWithoutExamsInput, SubjectsUncheckedCreateWithoutExamsInput>
   }
 
-  export type Exam_submissionsCreateWithoutExamInput = {
+  export type ExamSubmissionsCreateWithoutExamInput = {
     id: string
     score?: number | null
     takenAt?: Date | string
     student: StudentCreateNestedOneWithoutExamSubmissionsInput
   }
 
-  export type Exam_submissionsUncheckedCreateWithoutExamInput = {
+  export type ExamSubmissionsUncheckedCreateWithoutExamInput = {
     id: string
     studentId: string
     score?: number | null
     takenAt?: Date | string
   }
 
-  export type Exam_submissionsCreateOrConnectWithoutExamInput = {
-    where: Exam_submissionsWhereUniqueInput
-    create: XOR<Exam_submissionsCreateWithoutExamInput, Exam_submissionsUncheckedCreateWithoutExamInput>
+  export type ExamSubmissionsCreateOrConnectWithoutExamInput = {
+    where: ExamSubmissionsWhereUniqueInput
+    create: XOR<ExamSubmissionsCreateWithoutExamInput, ExamSubmissionsUncheckedCreateWithoutExamInput>
   }
 
-  export type Exam_submissionsCreateManyExamInputEnvelope = {
-    data: Exam_submissionsCreateManyExamInput | Exam_submissionsCreateManyExamInput[]
+  export type ExamSubmissionsCreateManyExamInputEnvelope = {
+    data: ExamSubmissionsCreateManyExamInput | ExamSubmissionsCreateManyExamInput[]
     skipDuplicates?: boolean
   }
 
@@ -28637,8 +28637,8 @@ export namespace Prisma {
 
   export type SubjectsUpdateWithoutExamsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subject_name?: StringFieldUpdateOperationsInput | string
-    subject_code?: StringFieldUpdateOperationsInput | string
+    subjectName?: StringFieldUpdateOperationsInput | string
+    subjectCode?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     class?: ClassesUpdateOneRequiredWithoutSubjectsNestedInput
     teacher?: TeacherUpdateOneRequiredWithoutSubjectsNestedInput
@@ -28649,8 +28649,8 @@ export namespace Prisma {
 
   export type SubjectsUncheckedUpdateWithoutExamsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subject_name?: StringFieldUpdateOperationsInput | string
-    subject_code?: StringFieldUpdateOperationsInput | string
+    subjectName?: StringFieldUpdateOperationsInput | string
+    subjectCode?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     classId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
@@ -28659,153 +28659,153 @@ export namespace Prisma {
     attendances?: AttendencesUncheckedUpdateManyWithoutSubjectNestedInput
   }
 
-  export type Exam_submissionsUpsertWithWhereUniqueWithoutExamInput = {
-    where: Exam_submissionsWhereUniqueInput
-    update: XOR<Exam_submissionsUpdateWithoutExamInput, Exam_submissionsUncheckedUpdateWithoutExamInput>
-    create: XOR<Exam_submissionsCreateWithoutExamInput, Exam_submissionsUncheckedCreateWithoutExamInput>
+  export type ExamSubmissionsUpsertWithWhereUniqueWithoutExamInput = {
+    where: ExamSubmissionsWhereUniqueInput
+    update: XOR<ExamSubmissionsUpdateWithoutExamInput, ExamSubmissionsUncheckedUpdateWithoutExamInput>
+    create: XOR<ExamSubmissionsCreateWithoutExamInput, ExamSubmissionsUncheckedCreateWithoutExamInput>
   }
 
-  export type Exam_submissionsUpdateWithWhereUniqueWithoutExamInput = {
-    where: Exam_submissionsWhereUniqueInput
-    data: XOR<Exam_submissionsUpdateWithoutExamInput, Exam_submissionsUncheckedUpdateWithoutExamInput>
+  export type ExamSubmissionsUpdateWithWhereUniqueWithoutExamInput = {
+    where: ExamSubmissionsWhereUniqueInput
+    data: XOR<ExamSubmissionsUpdateWithoutExamInput, ExamSubmissionsUncheckedUpdateWithoutExamInput>
   }
 
-  export type Exam_submissionsUpdateManyWithWhereWithoutExamInput = {
-    where: Exam_submissionsScalarWhereInput
-    data: XOR<Exam_submissionsUpdateManyMutationInput, Exam_submissionsUncheckedUpdateManyWithoutExamInput>
+  export type ExamSubmissionsUpdateManyWithWhereWithoutExamInput = {
+    where: ExamSubmissionsScalarWhereInput
+    data: XOR<ExamSubmissionsUpdateManyMutationInput, ExamSubmissionsUncheckedUpdateManyWithoutExamInput>
   }
 
-  export type StudentCreateWithoutLearning_progressInput = {
-    student_id: number
-    first_name: string
-    last_name: string
+  export type StudentCreateWithoutLearningProgressInput = {
+    studentId: number
+    firstName: string
+    lastName: string
     email: string
-    account_status?: boolean
-    date_of_birth: Date | string
-    phonenumber?: string | null
-    enrollment_date: Date | string
+    accountStatus?: boolean
+    dateOfBirth: Date | string
+    phoneNumber?: string | null
+    enrollmentDate: Date | string
     gender: $Enums.Gender
     user: UserCreateNestedOneWithoutStudentInput
     class?: ClassesCreateNestedOneWithoutStudentsInput
     attendances?: AttendencesCreateNestedManyWithoutStudentInput
-    examSubmissions?: Exam_submissionsCreateNestedManyWithoutStudentInput
+    examSubmissions?: ExamSubmissionsCreateNestedManyWithoutStudentInput
   }
 
-  export type StudentUncheckedCreateWithoutLearning_progressInput = {
+  export type StudentUncheckedCreateWithoutLearningProgressInput = {
     id: string
-    student_id: number
-    first_name: string
-    last_name: string
+    studentId: number
+    firstName: string
+    lastName: string
     email: string
-    account_status?: boolean
-    date_of_birth: Date | string
-    phonenumber?: string | null
-    enrollment_date: Date | string
+    accountStatus?: boolean
+    dateOfBirth: Date | string
+    phoneNumber?: string | null
+    enrollmentDate: Date | string
     classId?: string | null
     gender: $Enums.Gender
     attendances?: AttendencesUncheckedCreateNestedManyWithoutStudentInput
-    examSubmissions?: Exam_submissionsUncheckedCreateNestedManyWithoutStudentInput
+    examSubmissions?: ExamSubmissionsUncheckedCreateNestedManyWithoutStudentInput
   }
 
-  export type StudentCreateOrConnectWithoutLearning_progressInput = {
+  export type StudentCreateOrConnectWithoutLearningProgressInput = {
     where: StudentWhereUniqueInput
-    create: XOR<StudentCreateWithoutLearning_progressInput, StudentUncheckedCreateWithoutLearning_progressInput>
+    create: XOR<StudentCreateWithoutLearningProgressInput, StudentUncheckedCreateWithoutLearningProgressInput>
   }
 
-  export type Progress_notesCreateWithoutLearning_progressInput = {
+  export type ProgressNotesCreateWithoutLearningProgressInput = {
     id: string
-    note_date: Date | string
-    note_observation: string
+    noteDate: Date | string
+    noteObservation: string
     Strengths: string
-    areas_for_improvement: string
+    areasForImprovement: string
     teacher: TeacherCreateNestedOneWithoutProgressNotesInput
   }
 
-  export type Progress_notesUncheckedCreateWithoutLearning_progressInput = {
+  export type ProgressNotesUncheckedCreateWithoutLearningProgressInput = {
     id: string
-    note_date: Date | string
-    note_observation: string
+    noteDate: Date | string
+    noteObservation: string
     Strengths: string
-    areas_for_improvement: string
+    areasForImprovement: string
     teacherId: string
   }
 
-  export type Progress_notesCreateOrConnectWithoutLearning_progressInput = {
-    where: Progress_notesWhereUniqueInput
-    create: XOR<Progress_notesCreateWithoutLearning_progressInput, Progress_notesUncheckedCreateWithoutLearning_progressInput>
+  export type ProgressNotesCreateOrConnectWithoutLearningProgressInput = {
+    where: ProgressNotesWhereUniqueInput
+    create: XOR<ProgressNotesCreateWithoutLearningProgressInput, ProgressNotesUncheckedCreateWithoutLearningProgressInput>
   }
 
-  export type Progress_notesCreateManyLearning_progressInputEnvelope = {
-    data: Progress_notesCreateManyLearning_progressInput | Progress_notesCreateManyLearning_progressInput[]
+  export type ProgressNotesCreateManyLearningProgressInputEnvelope = {
+    data: ProgressNotesCreateManyLearningProgressInput | ProgressNotesCreateManyLearningProgressInput[]
     skipDuplicates?: boolean
   }
 
-  export type StudentUpsertWithoutLearning_progressInput = {
-    update: XOR<StudentUpdateWithoutLearning_progressInput, StudentUncheckedUpdateWithoutLearning_progressInput>
-    create: XOR<StudentCreateWithoutLearning_progressInput, StudentUncheckedCreateWithoutLearning_progressInput>
+  export type StudentUpsertWithoutLearningProgressInput = {
+    update: XOR<StudentUpdateWithoutLearningProgressInput, StudentUncheckedUpdateWithoutLearningProgressInput>
+    create: XOR<StudentCreateWithoutLearningProgressInput, StudentUncheckedCreateWithoutLearningProgressInput>
     where?: StudentWhereInput
   }
 
-  export type StudentUpdateToOneWithWhereWithoutLearning_progressInput = {
+  export type StudentUpdateToOneWithWhereWithoutLearningProgressInput = {
     where?: StudentWhereInput
-    data: XOR<StudentUpdateWithoutLearning_progressInput, StudentUncheckedUpdateWithoutLearning_progressInput>
+    data: XOR<StudentUpdateWithoutLearningProgressInput, StudentUncheckedUpdateWithoutLearningProgressInput>
   }
 
-  export type StudentUpdateWithoutLearning_progressInput = {
-    student_id?: IntFieldUpdateOperationsInput | number
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+  export type StudentUpdateWithoutLearningProgressInput = {
+    studentId?: IntFieldUpdateOperationsInput | number
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
-    date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
-    enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
+    dateOfBirth?: DateTimeFieldUpdateOperationsInput | Date | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    enrollmentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     user?: UserUpdateOneRequiredWithoutStudentNestedInput
     class?: ClassesUpdateOneWithoutStudentsNestedInput
     attendances?: AttendencesUpdateManyWithoutStudentNestedInput
-    examSubmissions?: Exam_submissionsUpdateManyWithoutStudentNestedInput
+    examSubmissions?: ExamSubmissionsUpdateManyWithoutStudentNestedInput
   }
 
-  export type StudentUncheckedUpdateWithoutLearning_progressInput = {
+  export type StudentUncheckedUpdateWithoutLearningProgressInput = {
     id?: StringFieldUpdateOperationsInput | string
-    student_id?: IntFieldUpdateOperationsInput | number
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    studentId?: IntFieldUpdateOperationsInput | number
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
-    date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
-    enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
+    dateOfBirth?: DateTimeFieldUpdateOperationsInput | Date | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    enrollmentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     attendances?: AttendencesUncheckedUpdateManyWithoutStudentNestedInput
-    examSubmissions?: Exam_submissionsUncheckedUpdateManyWithoutStudentNestedInput
+    examSubmissions?: ExamSubmissionsUncheckedUpdateManyWithoutStudentNestedInput
   }
 
-  export type Progress_notesUpsertWithWhereUniqueWithoutLearning_progressInput = {
-    where: Progress_notesWhereUniqueInput
-    update: XOR<Progress_notesUpdateWithoutLearning_progressInput, Progress_notesUncheckedUpdateWithoutLearning_progressInput>
-    create: XOR<Progress_notesCreateWithoutLearning_progressInput, Progress_notesUncheckedCreateWithoutLearning_progressInput>
+  export type ProgressNotesUpsertWithWhereUniqueWithoutLearningProgressInput = {
+    where: ProgressNotesWhereUniqueInput
+    update: XOR<ProgressNotesUpdateWithoutLearningProgressInput, ProgressNotesUncheckedUpdateWithoutLearningProgressInput>
+    create: XOR<ProgressNotesCreateWithoutLearningProgressInput, ProgressNotesUncheckedCreateWithoutLearningProgressInput>
   }
 
-  export type Progress_notesUpdateWithWhereUniqueWithoutLearning_progressInput = {
-    where: Progress_notesWhereUniqueInput
-    data: XOR<Progress_notesUpdateWithoutLearning_progressInput, Progress_notesUncheckedUpdateWithoutLearning_progressInput>
+  export type ProgressNotesUpdateWithWhereUniqueWithoutLearningProgressInput = {
+    where: ProgressNotesWhereUniqueInput
+    data: XOR<ProgressNotesUpdateWithoutLearningProgressInput, ProgressNotesUncheckedUpdateWithoutLearningProgressInput>
   }
 
-  export type Progress_notesUpdateManyWithWhereWithoutLearning_progressInput = {
-    where: Progress_notesScalarWhereInput
-    data: XOR<Progress_notesUpdateManyMutationInput, Progress_notesUncheckedUpdateManyWithoutLearning_progressInput>
+  export type ProgressNotesUpdateManyWithWhereWithoutLearningProgressInput = {
+    where: ProgressNotesScalarWhereInput
+    data: XOR<ProgressNotesUpdateManyMutationInput, ProgressNotesUncheckedUpdateManyWithoutLearningProgressInput>
   }
 
   export type TeacherCreateWithoutProgressNotesInput = {
     name: string
-    employ_id: number
+    employId: number
     email: string
-    phonenumber: string
+    phoneNumber: string
     specilization: string
-    account_status?: boolean
+    accountStatus?: boolean
     user: UserCreateNestedOneWithoutTeacherInput
     subjects?: SubjectsCreateNestedManyWithoutTeacherInput
   }
@@ -28813,11 +28813,11 @@ export namespace Prisma {
   export type TeacherUncheckedCreateWithoutProgressNotesInput = {
     id: string
     name: string
-    employ_id: number
+    employId: number
     email: string
-    phonenumber: string
+    phoneNumber: string
     specilization: string
-    account_status?: boolean
+    accountStatus?: boolean
     subjects?: SubjectsUncheckedCreateNestedManyWithoutTeacherInput
   }
 
@@ -28826,27 +28826,27 @@ export namespace Prisma {
     create: XOR<TeacherCreateWithoutProgressNotesInput, TeacherUncheckedCreateWithoutProgressNotesInput>
   }
 
-  export type Learning_progressesCreateWithoutProgressNotesInput = {
+  export type LearningProgressesCreateWithoutProgressNotesInput = {
     id: string
-    subjects_averages: number
-    overall_avreages: number
-    attendence_percentage: number
-    learning_status: $Enums.Status
-    student?: StudentCreateNestedOneWithoutLearning_progressInput
+    subjectsAverages: number
+    overallAvreages: number
+    attendencePercentage: number
+    learningStatus: $Enums.Status
+    student?: StudentCreateNestedOneWithoutLearningProgressInput
   }
 
-  export type Learning_progressesUncheckedCreateWithoutProgressNotesInput = {
+  export type LearningProgressesUncheckedCreateWithoutProgressNotesInput = {
     id: string
-    subjects_averages: number
-    overall_avreages: number
-    attendence_percentage: number
-    learning_status: $Enums.Status
-    student?: StudentUncheckedCreateNestedOneWithoutLearning_progressInput
+    subjectsAverages: number
+    overallAvreages: number
+    attendencePercentage: number
+    learningStatus: $Enums.Status
+    student?: StudentUncheckedCreateNestedOneWithoutLearningProgressInput
   }
 
-  export type Learning_progressesCreateOrConnectWithoutProgressNotesInput = {
-    where: Learning_progressesWhereUniqueInput
-    create: XOR<Learning_progressesCreateWithoutProgressNotesInput, Learning_progressesUncheckedCreateWithoutProgressNotesInput>
+  export type LearningProgressesCreateOrConnectWithoutProgressNotesInput = {
+    where: LearningProgressesWhereUniqueInput
+    create: XOR<LearningProgressesCreateWithoutProgressNotesInput, LearningProgressesUncheckedCreateWithoutProgressNotesInput>
   }
 
   export type TeacherUpsertWithoutProgressNotesInput = {
@@ -28862,11 +28862,11 @@ export namespace Prisma {
 
   export type TeacherUpdateWithoutProgressNotesInput = {
     name?: StringFieldUpdateOperationsInput | string
-    employ_id?: IntFieldUpdateOperationsInput | number
+    employId?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     specilization?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
     user?: UserUpdateOneRequiredWithoutTeacherNestedInput
     subjects?: SubjectsUpdateManyWithoutTeacherNestedInput
   }
@@ -28874,55 +28874,55 @@ export namespace Prisma {
   export type TeacherUncheckedUpdateWithoutProgressNotesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    employ_id?: IntFieldUpdateOperationsInput | number
+    employId?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     specilization?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
     subjects?: SubjectsUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
-  export type Learning_progressesUpsertWithoutProgressNotesInput = {
-    update: XOR<Learning_progressesUpdateWithoutProgressNotesInput, Learning_progressesUncheckedUpdateWithoutProgressNotesInput>
-    create: XOR<Learning_progressesCreateWithoutProgressNotesInput, Learning_progressesUncheckedCreateWithoutProgressNotesInput>
-    where?: Learning_progressesWhereInput
+  export type LearningProgressesUpsertWithoutProgressNotesInput = {
+    update: XOR<LearningProgressesUpdateWithoutProgressNotesInput, LearningProgressesUncheckedUpdateWithoutProgressNotesInput>
+    create: XOR<LearningProgressesCreateWithoutProgressNotesInput, LearningProgressesUncheckedCreateWithoutProgressNotesInput>
+    where?: LearningProgressesWhereInput
   }
 
-  export type Learning_progressesUpdateToOneWithWhereWithoutProgressNotesInput = {
-    where?: Learning_progressesWhereInput
-    data: XOR<Learning_progressesUpdateWithoutProgressNotesInput, Learning_progressesUncheckedUpdateWithoutProgressNotesInput>
+  export type LearningProgressesUpdateToOneWithWhereWithoutProgressNotesInput = {
+    where?: LearningProgressesWhereInput
+    data: XOR<LearningProgressesUpdateWithoutProgressNotesInput, LearningProgressesUncheckedUpdateWithoutProgressNotesInput>
   }
 
-  export type Learning_progressesUpdateWithoutProgressNotesInput = {
+  export type LearningProgressesUpdateWithoutProgressNotesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subjects_averages?: IntFieldUpdateOperationsInput | number
-    overall_avreages?: IntFieldUpdateOperationsInput | number
-    attendence_percentage?: IntFieldUpdateOperationsInput | number
-    learning_status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    student?: StudentUpdateOneWithoutLearning_progressNestedInput
+    subjectsAverages?: IntFieldUpdateOperationsInput | number
+    overallAvreages?: IntFieldUpdateOperationsInput | number
+    attendencePercentage?: IntFieldUpdateOperationsInput | number
+    learningStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    student?: StudentUpdateOneWithoutLearningProgressNestedInput
   }
 
-  export type Learning_progressesUncheckedUpdateWithoutProgressNotesInput = {
+  export type LearningProgressesUncheckedUpdateWithoutProgressNotesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subjects_averages?: IntFieldUpdateOperationsInput | number
-    overall_avreages?: IntFieldUpdateOperationsInput | number
-    attendence_percentage?: IntFieldUpdateOperationsInput | number
-    learning_status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    student?: StudentUncheckedUpdateOneWithoutLearning_progressNestedInput
+    subjectsAverages?: IntFieldUpdateOperationsInput | number
+    overallAvreages?: IntFieldUpdateOperationsInput | number
+    attendencePercentage?: IntFieldUpdateOperationsInput | number
+    learningStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    student?: StudentUncheckedUpdateOneWithoutLearningProgressNestedInput
   }
 
   export type ClassesCreateWithoutPerformanceInput = {
     id: string
-    class_name: string
-    academicYears?: Class_Academic_yearCreateNestedManyWithoutClassInput
+    className: string
+    academicYears?: ClassAcademicYearCreateNestedManyWithoutClassInput
     students?: StudentCreateNestedManyWithoutClassInput
     subjects?: SubjectsCreateNestedManyWithoutClassInput
   }
 
   export type ClassesUncheckedCreateWithoutPerformanceInput = {
     id: string
-    class_name: string
-    academicYears?: Class_Academic_yearUncheckedCreateNestedManyWithoutClassInput
+    className: string
+    academicYears?: ClassAcademicYearUncheckedCreateNestedManyWithoutClassInput
     students?: StudentUncheckedCreateNestedManyWithoutClassInput
     subjects?: SubjectsUncheckedCreateNestedManyWithoutClassInput
   }
@@ -28945,50 +28945,50 @@ export namespace Prisma {
 
   export type ClassesUpdateWithoutPerformanceInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_name?: StringFieldUpdateOperationsInput | string
-    academicYears?: Class_Academic_yearUpdateManyWithoutClassNestedInput
+    className?: StringFieldUpdateOperationsInput | string
+    academicYears?: ClassAcademicYearUpdateManyWithoutClassNestedInput
     students?: StudentUpdateManyWithoutClassNestedInput
     subjects?: SubjectsUpdateManyWithoutClassNestedInput
   }
 
   export type ClassesUncheckedUpdateWithoutPerformanceInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_name?: StringFieldUpdateOperationsInput | string
-    academicYears?: Class_Academic_yearUncheckedUpdateManyWithoutClassNestedInput
+    className?: StringFieldUpdateOperationsInput | string
+    academicYears?: ClassAcademicYearUncheckedUpdateManyWithoutClassNestedInput
     students?: StudentUncheckedUpdateManyWithoutClassNestedInput
     subjects?: SubjectsUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type StudentCreateWithoutAttendancesInput = {
-    student_id: number
-    first_name: string
-    last_name: string
+    studentId: number
+    firstName: string
+    lastName: string
     email: string
-    account_status?: boolean
-    date_of_birth: Date | string
-    phonenumber?: string | null
-    enrollment_date: Date | string
+    accountStatus?: boolean
+    dateOfBirth: Date | string
+    phoneNumber?: string | null
+    enrollmentDate: Date | string
     gender: $Enums.Gender
     user: UserCreateNestedOneWithoutStudentInput
     class?: ClassesCreateNestedOneWithoutStudentsInput
-    learning_progress: Learning_progressesCreateNestedOneWithoutStudentInput
-    examSubmissions?: Exam_submissionsCreateNestedManyWithoutStudentInput
+    learningProgress: LearningProgressesCreateNestedOneWithoutStudentInput
+    examSubmissions?: ExamSubmissionsCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutAttendancesInput = {
     id: string
-    student_id: number
-    first_name: string
-    last_name: string
+    studentId: number
+    firstName: string
+    lastName: string
     email: string
-    account_status?: boolean
-    date_of_birth: Date | string
-    phonenumber?: string | null
-    enrollment_date: Date | string
-    learning_progress_id: string
+    accountStatus?: boolean
+    dateOfBirth: Date | string
+    phoneNumber?: string | null
+    enrollmentDate: Date | string
+    learningProgressId: string
     classId?: string | null
     gender: $Enums.Gender
-    examSubmissions?: Exam_submissionsUncheckedCreateNestedManyWithoutStudentInput
+    examSubmissions?: ExamSubmissionsUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutAttendancesInput = {
@@ -28998,8 +28998,8 @@ export namespace Prisma {
 
   export type SubjectsCreateWithoutAttendancesInput = {
     id: string
-    subject_name: string
-    subject_code: string
+    subjectName: string
+    subjectCode: string
     Description: string
     class: ClassesCreateNestedOneWithoutSubjectsInput
     teacher: TeacherCreateNestedOneWithoutSubjectsInput
@@ -29010,8 +29010,8 @@ export namespace Prisma {
 
   export type SubjectsUncheckedCreateWithoutAttendancesInput = {
     id: string
-    subject_name: string
-    subject_code: string
+    subjectName: string
+    subjectCode: string
     Description: string
     classId: string
     teacherId: string
@@ -29037,35 +29037,35 @@ export namespace Prisma {
   }
 
   export type StudentUpdateWithoutAttendancesInput = {
-    student_id?: IntFieldUpdateOperationsInput | number
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    studentId?: IntFieldUpdateOperationsInput | number
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
-    date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
-    enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
+    dateOfBirth?: DateTimeFieldUpdateOperationsInput | Date | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    enrollmentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     user?: UserUpdateOneRequiredWithoutStudentNestedInput
     class?: ClassesUpdateOneWithoutStudentsNestedInput
-    learning_progress?: Learning_progressesUpdateOneRequiredWithoutStudentNestedInput
-    examSubmissions?: Exam_submissionsUpdateManyWithoutStudentNestedInput
+    learningProgress?: LearningProgressesUpdateOneRequiredWithoutStudentNestedInput
+    examSubmissions?: ExamSubmissionsUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutAttendancesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    student_id?: IntFieldUpdateOperationsInput | number
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    studentId?: IntFieldUpdateOperationsInput | number
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
-    date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
-    enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    learning_progress_id?: StringFieldUpdateOperationsInput | string
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
+    dateOfBirth?: DateTimeFieldUpdateOperationsInput | Date | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    enrollmentDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    learningProgressId?: StringFieldUpdateOperationsInput | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-    examSubmissions?: Exam_submissionsUncheckedUpdateManyWithoutStudentNestedInput
+    examSubmissions?: ExamSubmissionsUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type SubjectsUpsertWithoutAttendancesInput = {
@@ -29081,8 +29081,8 @@ export namespace Prisma {
 
   export type SubjectsUpdateWithoutAttendancesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subject_name?: StringFieldUpdateOperationsInput | string
-    subject_code?: StringFieldUpdateOperationsInput | string
+    subjectName?: StringFieldUpdateOperationsInput | string
+    subjectCode?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     class?: ClassesUpdateOneRequiredWithoutSubjectsNestedInput
     teacher?: TeacherUpdateOneRequiredWithoutSubjectsNestedInput
@@ -29093,8 +29093,8 @@ export namespace Prisma {
 
   export type SubjectsUncheckedUpdateWithoutAttendancesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subject_name?: StringFieldUpdateOperationsInput | string
-    subject_code?: StringFieldUpdateOperationsInput | string
+    subjectName?: StringFieldUpdateOperationsInput | string
+    subjectCode?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     classId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
@@ -29105,17 +29105,17 @@ export namespace Prisma {
 
   export type ExamsCreateWithoutSubmissionsInput = {
     id: string
-    exam_name: string
-    exam_date: Date | string
-    Maximum_grade: number
+    examName: string
+    examDate: Date | string
+    MaximumGrade: number
     subject: SubjectsCreateNestedOneWithoutExamsInput
   }
 
   export type ExamsUncheckedCreateWithoutSubmissionsInput = {
     id: string
-    exam_name: string
-    exam_date: Date | string
-    Maximum_grade: number
+    examName: string
+    examDate: Date | string
+    MaximumGrade: number
     subjectId: string
   }
 
@@ -29125,32 +29125,32 @@ export namespace Prisma {
   }
 
   export type StudentCreateWithoutExamSubmissionsInput = {
-    student_id: number
-    first_name: string
-    last_name: string
+    studentId: number
+    firstName: string
+    lastName: string
     email: string
-    account_status?: boolean
-    date_of_birth: Date | string
-    phonenumber?: string | null
-    enrollment_date: Date | string
+    accountStatus?: boolean
+    dateOfBirth: Date | string
+    phoneNumber?: string | null
+    enrollmentDate: Date | string
     gender: $Enums.Gender
     user: UserCreateNestedOneWithoutStudentInput
     class?: ClassesCreateNestedOneWithoutStudentsInput
-    learning_progress: Learning_progressesCreateNestedOneWithoutStudentInput
+    learningProgress: LearningProgressesCreateNestedOneWithoutStudentInput
     attendances?: AttendencesCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutExamSubmissionsInput = {
     id: string
-    student_id: number
-    first_name: string
-    last_name: string
+    studentId: number
+    firstName: string
+    lastName: string
     email: string
-    account_status?: boolean
-    date_of_birth: Date | string
-    phonenumber?: string | null
-    enrollment_date: Date | string
-    learning_progress_id: string
+    accountStatus?: boolean
+    dateOfBirth: Date | string
+    phoneNumber?: string | null
+    enrollmentDate: Date | string
+    learningProgressId: string
     classId?: string | null
     gender: $Enums.Gender
     attendances?: AttendencesUncheckedCreateNestedManyWithoutStudentInput
@@ -29174,17 +29174,17 @@ export namespace Prisma {
 
   export type ExamsUpdateWithoutSubmissionsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    exam_name?: StringFieldUpdateOperationsInput | string
-    exam_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    Maximum_grade?: IntFieldUpdateOperationsInput | number
+    examName?: StringFieldUpdateOperationsInput | string
+    examDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    MaximumGrade?: IntFieldUpdateOperationsInput | number
     subject?: SubjectsUpdateOneRequiredWithoutExamsNestedInput
   }
 
   export type ExamsUncheckedUpdateWithoutSubmissionsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    exam_name?: StringFieldUpdateOperationsInput | string
-    exam_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    Maximum_grade?: IntFieldUpdateOperationsInput | number
+    examName?: StringFieldUpdateOperationsInput | string
+    examDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    MaximumGrade?: IntFieldUpdateOperationsInput | number
     subjectId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -29200,32 +29200,32 @@ export namespace Prisma {
   }
 
   export type StudentUpdateWithoutExamSubmissionsInput = {
-    student_id?: IntFieldUpdateOperationsInput | number
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    studentId?: IntFieldUpdateOperationsInput | number
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
-    date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
-    enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
+    dateOfBirth?: DateTimeFieldUpdateOperationsInput | Date | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    enrollmentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     user?: UserUpdateOneRequiredWithoutStudentNestedInput
     class?: ClassesUpdateOneWithoutStudentsNestedInput
-    learning_progress?: Learning_progressesUpdateOneRequiredWithoutStudentNestedInput
+    learningProgress?: LearningProgressesUpdateOneRequiredWithoutStudentNestedInput
     attendances?: AttendencesUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutExamSubmissionsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    student_id?: IntFieldUpdateOperationsInput | number
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    studentId?: IntFieldUpdateOperationsInput | number
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
-    date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
-    enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    learning_progress_id?: StringFieldUpdateOperationsInput | string
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
+    dateOfBirth?: DateTimeFieldUpdateOperationsInput | Date | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    enrollmentDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    learningProgressId?: StringFieldUpdateOperationsInput | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     attendances?: AttendencesUncheckedUpdateManyWithoutStudentNestedInput
@@ -29265,25 +29265,25 @@ export namespace Prisma {
 
   export type SubjectsCreateManyTeacherInput = {
     id: string
-    subject_name: string
-    subject_code: string
+    subjectName: string
+    subjectCode: string
     Description: string
     classId: string
   }
 
-  export type Progress_notesCreateManyTeacherInput = {
+  export type ProgressNotesCreateManyTeacherInput = {
     id: string
-    note_date: Date | string
-    note_observation: string
+    noteDate: Date | string
+    noteObservation: string
     Strengths: string
-    areas_for_improvement: string
+    areasForImprovement: string
     learningProgressId: string
   }
 
   export type SubjectsUpdateWithoutTeacherInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subject_name?: StringFieldUpdateOperationsInput | string
-    subject_code?: StringFieldUpdateOperationsInput | string
+    subjectName?: StringFieldUpdateOperationsInput | string
+    subjectCode?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     class?: ClassesUpdateOneRequiredWithoutSubjectsNestedInput
     assignments?: AssignmentsUpdateManyWithoutSubjectNestedInput
@@ -29294,8 +29294,8 @@ export namespace Prisma {
 
   export type SubjectsUncheckedUpdateWithoutTeacherInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subject_name?: StringFieldUpdateOperationsInput | string
-    subject_code?: StringFieldUpdateOperationsInput | string
+    subjectName?: StringFieldUpdateOperationsInput | string
+    subjectCode?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     classId?: StringFieldUpdateOperationsInput | string
     assignments?: AssignmentsUncheckedUpdateManyWithoutSubjectNestedInput
@@ -29306,48 +29306,48 @@ export namespace Prisma {
 
   export type SubjectsUncheckedUpdateManyWithoutTeacherInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subject_name?: StringFieldUpdateOperationsInput | string
-    subject_code?: StringFieldUpdateOperationsInput | string
+    subjectName?: StringFieldUpdateOperationsInput | string
+    subjectCode?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     classId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type Progress_notesUpdateWithoutTeacherInput = {
+  export type ProgressNotesUpdateWithoutTeacherInput = {
     id?: StringFieldUpdateOperationsInput | string
-    note_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    note_observation?: StringFieldUpdateOperationsInput | string
+    noteDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    noteObservation?: StringFieldUpdateOperationsInput | string
     Strengths?: StringFieldUpdateOperationsInput | string
-    areas_for_improvement?: StringFieldUpdateOperationsInput | string
-    learning_progress?: Learning_progressesUpdateOneRequiredWithoutProgressNotesNestedInput
+    areasForImprovement?: StringFieldUpdateOperationsInput | string
+    learningProgress?: LearningProgressesUpdateOneRequiredWithoutProgressNotesNestedInput
   }
 
-  export type Progress_notesUncheckedUpdateWithoutTeacherInput = {
+  export type ProgressNotesUncheckedUpdateWithoutTeacherInput = {
     id?: StringFieldUpdateOperationsInput | string
-    note_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    note_observation?: StringFieldUpdateOperationsInput | string
+    noteDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    noteObservation?: StringFieldUpdateOperationsInput | string
     Strengths?: StringFieldUpdateOperationsInput | string
-    areas_for_improvement?: StringFieldUpdateOperationsInput | string
+    areasForImprovement?: StringFieldUpdateOperationsInput | string
     learningProgressId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type Progress_notesUncheckedUpdateManyWithoutTeacherInput = {
+  export type ProgressNotesUncheckedUpdateManyWithoutTeacherInput = {
     id?: StringFieldUpdateOperationsInput | string
-    note_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    note_observation?: StringFieldUpdateOperationsInput | string
+    noteDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    noteObservation?: StringFieldUpdateOperationsInput | string
     Strengths?: StringFieldUpdateOperationsInput | string
-    areas_for_improvement?: StringFieldUpdateOperationsInput | string
+    areasForImprovement?: StringFieldUpdateOperationsInput | string
     learningProgressId?: StringFieldUpdateOperationsInput | string
   }
 
   export type AttendencesCreateManyStudentInput = {
     id: string
-    attendance_date: Date | string
-    attendance_status: string
-    attendance_percentage: number
+    attendanceDate: Date | string
+    attendanceStatus: string
+    attendancePercentage: number
     subjectId: string
   }
 
-  export type Exam_submissionsCreateManyStudentInput = {
+  export type ExamSubmissionsCreateManyStudentInput = {
     id: string
     examId: string
     score?: number | null
@@ -29356,137 +29356,137 @@ export namespace Prisma {
 
   export type AttendencesUpdateWithoutStudentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    attendance_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    attendance_status?: StringFieldUpdateOperationsInput | string
-    attendance_percentage?: IntFieldUpdateOperationsInput | number
+    attendanceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceStatus?: StringFieldUpdateOperationsInput | string
+    attendancePercentage?: IntFieldUpdateOperationsInput | number
     subject?: SubjectsUpdateOneRequiredWithoutAttendancesNestedInput
   }
 
   export type AttendencesUncheckedUpdateWithoutStudentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    attendance_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    attendance_status?: StringFieldUpdateOperationsInput | string
-    attendance_percentage?: IntFieldUpdateOperationsInput | number
+    attendanceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceStatus?: StringFieldUpdateOperationsInput | string
+    attendancePercentage?: IntFieldUpdateOperationsInput | number
     subjectId?: StringFieldUpdateOperationsInput | string
   }
 
   export type AttendencesUncheckedUpdateManyWithoutStudentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    attendance_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    attendance_status?: StringFieldUpdateOperationsInput | string
-    attendance_percentage?: IntFieldUpdateOperationsInput | number
+    attendanceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceStatus?: StringFieldUpdateOperationsInput | string
+    attendancePercentage?: IntFieldUpdateOperationsInput | number
     subjectId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type Exam_submissionsUpdateWithoutStudentInput = {
+  export type ExamSubmissionsUpdateWithoutStudentInput = {
     id?: StringFieldUpdateOperationsInput | string
     score?: NullableIntFieldUpdateOperationsInput | number | null
     takenAt?: DateTimeFieldUpdateOperationsInput | Date | string
     exam?: ExamsUpdateOneRequiredWithoutSubmissionsNestedInput
   }
 
-  export type Exam_submissionsUncheckedUpdateWithoutStudentInput = {
+  export type ExamSubmissionsUncheckedUpdateWithoutStudentInput = {
     id?: StringFieldUpdateOperationsInput | string
     examId?: StringFieldUpdateOperationsInput | string
     score?: NullableIntFieldUpdateOperationsInput | number | null
     takenAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type Exam_submissionsUncheckedUpdateManyWithoutStudentInput = {
+  export type ExamSubmissionsUncheckedUpdateManyWithoutStudentInput = {
     id?: StringFieldUpdateOperationsInput | string
     examId?: StringFieldUpdateOperationsInput | string
     score?: NullableIntFieldUpdateOperationsInput | number | null
     takenAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type Class_Academic_yearCreateManyClassInput = {
+  export type ClassAcademicYearCreateManyClassInput = {
     yearId: string
   }
 
   export type StudentCreateManyClassInput = {
     id: string
-    student_id: number
-    first_name: string
-    last_name: string
+    studentId: number
+    firstName: string
+    lastName: string
     email: string
-    account_status?: boolean
-    date_of_birth: Date | string
-    phonenumber?: string | null
-    enrollment_date: Date | string
-    learning_progress_id: string
+    accountStatus?: boolean
+    dateOfBirth: Date | string
+    phoneNumber?: string | null
+    enrollmentDate: Date | string
+    learningProgressId: string
     gender: $Enums.Gender
   }
 
   export type SubjectsCreateManyClassInput = {
     id: string
-    subject_name: string
-    subject_code: string
+    subjectName: string
+    subjectCode: string
     Description: string
     teacherId: string
   }
 
-  export type Class_Academic_yearUpdateWithoutClassInput = {
-    year?: Academic_YearsUpdateOneRequiredWithoutClassesNestedInput
+  export type ClassAcademicYearUpdateWithoutClassInput = {
+    year?: AcademicYearsUpdateOneRequiredWithoutClassesNestedInput
   }
 
-  export type Class_Academic_yearUncheckedUpdateWithoutClassInput = {
+  export type ClassAcademicYearUncheckedUpdateWithoutClassInput = {
     yearId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type Class_Academic_yearUncheckedUpdateManyWithoutClassInput = {
+  export type ClassAcademicYearUncheckedUpdateManyWithoutClassInput = {
     yearId?: StringFieldUpdateOperationsInput | string
   }
 
   export type StudentUpdateWithoutClassInput = {
-    student_id?: IntFieldUpdateOperationsInput | number
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    studentId?: IntFieldUpdateOperationsInput | number
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
-    date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
-    enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
+    dateOfBirth?: DateTimeFieldUpdateOperationsInput | Date | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    enrollmentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     user?: UserUpdateOneRequiredWithoutStudentNestedInput
-    learning_progress?: Learning_progressesUpdateOneRequiredWithoutStudentNestedInput
+    learningProgress?: LearningProgressesUpdateOneRequiredWithoutStudentNestedInput
     attendances?: AttendencesUpdateManyWithoutStudentNestedInput
-    examSubmissions?: Exam_submissionsUpdateManyWithoutStudentNestedInput
+    examSubmissions?: ExamSubmissionsUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    student_id?: IntFieldUpdateOperationsInput | number
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    studentId?: IntFieldUpdateOperationsInput | number
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
-    date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
-    enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    learning_progress_id?: StringFieldUpdateOperationsInput | string
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
+    dateOfBirth?: DateTimeFieldUpdateOperationsInput | Date | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    enrollmentDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    learningProgressId?: StringFieldUpdateOperationsInput | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     attendances?: AttendencesUncheckedUpdateManyWithoutStudentNestedInput
-    examSubmissions?: Exam_submissionsUncheckedUpdateManyWithoutStudentNestedInput
+    examSubmissions?: ExamSubmissionsUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateManyWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    student_id?: IntFieldUpdateOperationsInput | number
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    studentId?: IntFieldUpdateOperationsInput | number
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    account_status?: BoolFieldUpdateOperationsInput | boolean
-    date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
-    enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    learning_progress_id?: StringFieldUpdateOperationsInput | string
+    accountStatus?: BoolFieldUpdateOperationsInput | boolean
+    dateOfBirth?: DateTimeFieldUpdateOperationsInput | Date | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    enrollmentDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    learningProgressId?: StringFieldUpdateOperationsInput | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   }
 
   export type SubjectsUpdateWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subject_name?: StringFieldUpdateOperationsInput | string
-    subject_code?: StringFieldUpdateOperationsInput | string
+    subjectName?: StringFieldUpdateOperationsInput | string
+    subjectCode?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     teacher?: TeacherUpdateOneRequiredWithoutSubjectsNestedInput
     assignments?: AssignmentsUpdateManyWithoutSubjectNestedInput
@@ -29497,8 +29497,8 @@ export namespace Prisma {
 
   export type SubjectsUncheckedUpdateWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subject_name?: StringFieldUpdateOperationsInput | string
-    subject_code?: StringFieldUpdateOperationsInput | string
+    subjectName?: StringFieldUpdateOperationsInput | string
+    subjectCode?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
     assignments?: AssignmentsUncheckedUpdateManyWithoutSubjectNestedInput
@@ -29509,259 +29509,259 @@ export namespace Prisma {
 
   export type SubjectsUncheckedUpdateManyWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subject_name?: StringFieldUpdateOperationsInput | string
-    subject_code?: StringFieldUpdateOperationsInput | string
+    subjectName?: StringFieldUpdateOperationsInput | string
+    subjectCode?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
   }
 
   export type AssignmentsCreateManySubjectInput = {
     id: string
-    assignment_title: string
-    assignment_description: string
-    due_date: Date | string
-    maximum_grade: number
+    assignmentTitle: string
+    assignmentDescription: string
+    dueDate: Date | string
+    maximumGrade: number
     attachment: string
-    Submission_instructions: string
+    SubmissionInstructions: string
   }
 
   export type LessonsCreateManySubjectInput = {
     id: string
-    lesson_title: string
-    lesson_description: string
-    lesson_date: Date | string
-    learning_objectinve: string
-    learning_material: string
-    Completion_status: $Enums.iscompleate
+    lessonTitle: string
+    lessonDescription: string
+    lessonDate: Date | string
+    learningObjectinve: string
+    learningMaterial: string
+    CompletionStatus: $Enums.iscompleate
   }
 
   export type ExamsCreateManySubjectInput = {
     id: string
-    exam_name: string
-    exam_date: Date | string
-    Maximum_grade: number
+    examName: string
+    examDate: Date | string
+    MaximumGrade: number
   }
 
   export type AttendencesCreateManySubjectInput = {
     id: string
-    attendance_date: Date | string
-    attendance_status: string
-    attendance_percentage: number
+    attendanceDate: Date | string
+    attendanceStatus: string
+    attendancePercentage: number
     studentId: string
   }
 
   export type AssignmentsUpdateWithoutSubjectInput = {
     id?: StringFieldUpdateOperationsInput | string
-    assignment_title?: StringFieldUpdateOperationsInput | string
-    assignment_description?: StringFieldUpdateOperationsInput | string
-    due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    maximum_grade?: IntFieldUpdateOperationsInput | number
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    assignmentDescription?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    maximumGrade?: IntFieldUpdateOperationsInput | number
     attachment?: StringFieldUpdateOperationsInput | string
-    Submission_instructions?: StringFieldUpdateOperationsInput | string
+    SubmissionInstructions?: StringFieldUpdateOperationsInput | string
   }
 
   export type AssignmentsUncheckedUpdateWithoutSubjectInput = {
     id?: StringFieldUpdateOperationsInput | string
-    assignment_title?: StringFieldUpdateOperationsInput | string
-    assignment_description?: StringFieldUpdateOperationsInput | string
-    due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    maximum_grade?: IntFieldUpdateOperationsInput | number
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    assignmentDescription?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    maximumGrade?: IntFieldUpdateOperationsInput | number
     attachment?: StringFieldUpdateOperationsInput | string
-    Submission_instructions?: StringFieldUpdateOperationsInput | string
+    SubmissionInstructions?: StringFieldUpdateOperationsInput | string
   }
 
   export type AssignmentsUncheckedUpdateManyWithoutSubjectInput = {
     id?: StringFieldUpdateOperationsInput | string
-    assignment_title?: StringFieldUpdateOperationsInput | string
-    assignment_description?: StringFieldUpdateOperationsInput | string
-    due_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    maximum_grade?: IntFieldUpdateOperationsInput | number
+    assignmentTitle?: StringFieldUpdateOperationsInput | string
+    assignmentDescription?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    maximumGrade?: IntFieldUpdateOperationsInput | number
     attachment?: StringFieldUpdateOperationsInput | string
-    Submission_instructions?: StringFieldUpdateOperationsInput | string
+    SubmissionInstructions?: StringFieldUpdateOperationsInput | string
   }
 
   export type LessonsUpdateWithoutSubjectInput = {
     id?: StringFieldUpdateOperationsInput | string
-    lesson_title?: StringFieldUpdateOperationsInput | string
-    lesson_description?: StringFieldUpdateOperationsInput | string
-    lesson_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    learning_objectinve?: StringFieldUpdateOperationsInput | string
-    learning_material?: StringFieldUpdateOperationsInput | string
-    Completion_status?: EnumiscompleateFieldUpdateOperationsInput | $Enums.iscompleate
+    lessonTitle?: StringFieldUpdateOperationsInput | string
+    lessonDescription?: StringFieldUpdateOperationsInput | string
+    lessonDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    learningObjectinve?: StringFieldUpdateOperationsInput | string
+    learningMaterial?: StringFieldUpdateOperationsInput | string
+    CompletionStatus?: EnumiscompleateFieldUpdateOperationsInput | $Enums.iscompleate
   }
 
   export type LessonsUncheckedUpdateWithoutSubjectInput = {
     id?: StringFieldUpdateOperationsInput | string
-    lesson_title?: StringFieldUpdateOperationsInput | string
-    lesson_description?: StringFieldUpdateOperationsInput | string
-    lesson_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    learning_objectinve?: StringFieldUpdateOperationsInput | string
-    learning_material?: StringFieldUpdateOperationsInput | string
-    Completion_status?: EnumiscompleateFieldUpdateOperationsInput | $Enums.iscompleate
+    lessonTitle?: StringFieldUpdateOperationsInput | string
+    lessonDescription?: StringFieldUpdateOperationsInput | string
+    lessonDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    learningObjectinve?: StringFieldUpdateOperationsInput | string
+    learningMaterial?: StringFieldUpdateOperationsInput | string
+    CompletionStatus?: EnumiscompleateFieldUpdateOperationsInput | $Enums.iscompleate
   }
 
   export type LessonsUncheckedUpdateManyWithoutSubjectInput = {
     id?: StringFieldUpdateOperationsInput | string
-    lesson_title?: StringFieldUpdateOperationsInput | string
-    lesson_description?: StringFieldUpdateOperationsInput | string
-    lesson_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    learning_objectinve?: StringFieldUpdateOperationsInput | string
-    learning_material?: StringFieldUpdateOperationsInput | string
-    Completion_status?: EnumiscompleateFieldUpdateOperationsInput | $Enums.iscompleate
+    lessonTitle?: StringFieldUpdateOperationsInput | string
+    lessonDescription?: StringFieldUpdateOperationsInput | string
+    lessonDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    learningObjectinve?: StringFieldUpdateOperationsInput | string
+    learningMaterial?: StringFieldUpdateOperationsInput | string
+    CompletionStatus?: EnumiscompleateFieldUpdateOperationsInput | $Enums.iscompleate
   }
 
   export type ExamsUpdateWithoutSubjectInput = {
     id?: StringFieldUpdateOperationsInput | string
-    exam_name?: StringFieldUpdateOperationsInput | string
-    exam_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    Maximum_grade?: IntFieldUpdateOperationsInput | number
-    submissions?: Exam_submissionsUpdateManyWithoutExamNestedInput
+    examName?: StringFieldUpdateOperationsInput | string
+    examDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    MaximumGrade?: IntFieldUpdateOperationsInput | number
+    submissions?: ExamSubmissionsUpdateManyWithoutExamNestedInput
   }
 
   export type ExamsUncheckedUpdateWithoutSubjectInput = {
     id?: StringFieldUpdateOperationsInput | string
-    exam_name?: StringFieldUpdateOperationsInput | string
-    exam_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    Maximum_grade?: IntFieldUpdateOperationsInput | number
-    submissions?: Exam_submissionsUncheckedUpdateManyWithoutExamNestedInput
+    examName?: StringFieldUpdateOperationsInput | string
+    examDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    MaximumGrade?: IntFieldUpdateOperationsInput | number
+    submissions?: ExamSubmissionsUncheckedUpdateManyWithoutExamNestedInput
   }
 
   export type ExamsUncheckedUpdateManyWithoutSubjectInput = {
     id?: StringFieldUpdateOperationsInput | string
-    exam_name?: StringFieldUpdateOperationsInput | string
-    exam_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    Maximum_grade?: IntFieldUpdateOperationsInput | number
+    examName?: StringFieldUpdateOperationsInput | string
+    examDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    MaximumGrade?: IntFieldUpdateOperationsInput | number
   }
 
   export type AttendencesUpdateWithoutSubjectInput = {
     id?: StringFieldUpdateOperationsInput | string
-    attendance_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    attendance_status?: StringFieldUpdateOperationsInput | string
-    attendance_percentage?: IntFieldUpdateOperationsInput | number
+    attendanceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceStatus?: StringFieldUpdateOperationsInput | string
+    attendancePercentage?: IntFieldUpdateOperationsInput | number
     student?: StudentUpdateOneRequiredWithoutAttendancesNestedInput
   }
 
   export type AttendencesUncheckedUpdateWithoutSubjectInput = {
     id?: StringFieldUpdateOperationsInput | string
-    attendance_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    attendance_status?: StringFieldUpdateOperationsInput | string
-    attendance_percentage?: IntFieldUpdateOperationsInput | number
+    attendanceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceStatus?: StringFieldUpdateOperationsInput | string
+    attendancePercentage?: IntFieldUpdateOperationsInput | number
     studentId?: StringFieldUpdateOperationsInput | string
   }
 
   export type AttendencesUncheckedUpdateManyWithoutSubjectInput = {
     id?: StringFieldUpdateOperationsInput | string
-    attendance_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    attendance_status?: StringFieldUpdateOperationsInput | string
-    attendance_percentage?: IntFieldUpdateOperationsInput | number
+    attendanceDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceStatus?: StringFieldUpdateOperationsInput | string
+    attendancePercentage?: IntFieldUpdateOperationsInput | number
     studentId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type Class_Academic_yearCreateManyYearInput = {
+  export type ClassAcademicYearCreateManyYearInput = {
     classId: string
   }
 
   export type TermsCreateManyYearInput = {
     id: string
-    term_name: string
-    Start_date: Date | string
-    end_date: Date | string
+    termName: string
+    StartDate: Date | string
+    endDate: Date | string
   }
 
-  export type Class_Academic_yearUpdateWithoutYearInput = {
+  export type ClassAcademicYearUpdateWithoutYearInput = {
     class?: ClassesUpdateOneRequiredWithoutAcademicYearsNestedInput
   }
 
-  export type Class_Academic_yearUncheckedUpdateWithoutYearInput = {
+  export type ClassAcademicYearUncheckedUpdateWithoutYearInput = {
     classId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type Class_Academic_yearUncheckedUpdateManyWithoutYearInput = {
+  export type ClassAcademicYearUncheckedUpdateManyWithoutYearInput = {
     classId?: StringFieldUpdateOperationsInput | string
   }
 
   export type TermsUpdateWithoutYearInput = {
     id?: StringFieldUpdateOperationsInput | string
-    term_name?: StringFieldUpdateOperationsInput | string
-    Start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    termName?: StringFieldUpdateOperationsInput | string
+    StartDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TermsUncheckedUpdateWithoutYearInput = {
     id?: StringFieldUpdateOperationsInput | string
-    term_name?: StringFieldUpdateOperationsInput | string
-    Start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    termName?: StringFieldUpdateOperationsInput | string
+    StartDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TermsUncheckedUpdateManyWithoutYearInput = {
     id?: StringFieldUpdateOperationsInput | string
-    term_name?: StringFieldUpdateOperationsInput | string
-    Start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    termName?: StringFieldUpdateOperationsInput | string
+    StartDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type Exam_submissionsCreateManyExamInput = {
+  export type ExamSubmissionsCreateManyExamInput = {
     id: string
     studentId: string
     score?: number | null
     takenAt?: Date | string
   }
 
-  export type Exam_submissionsUpdateWithoutExamInput = {
+  export type ExamSubmissionsUpdateWithoutExamInput = {
     id?: StringFieldUpdateOperationsInput | string
     score?: NullableIntFieldUpdateOperationsInput | number | null
     takenAt?: DateTimeFieldUpdateOperationsInput | Date | string
     student?: StudentUpdateOneRequiredWithoutExamSubmissionsNestedInput
   }
 
-  export type Exam_submissionsUncheckedUpdateWithoutExamInput = {
+  export type ExamSubmissionsUncheckedUpdateWithoutExamInput = {
     id?: StringFieldUpdateOperationsInput | string
     studentId?: StringFieldUpdateOperationsInput | string
     score?: NullableIntFieldUpdateOperationsInput | number | null
     takenAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type Exam_submissionsUncheckedUpdateManyWithoutExamInput = {
+  export type ExamSubmissionsUncheckedUpdateManyWithoutExamInput = {
     id?: StringFieldUpdateOperationsInput | string
     studentId?: StringFieldUpdateOperationsInput | string
     score?: NullableIntFieldUpdateOperationsInput | number | null
     takenAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type Progress_notesCreateManyLearning_progressInput = {
+  export type ProgressNotesCreateManyLearningProgressInput = {
     id: string
-    note_date: Date | string
-    note_observation: string
+    noteDate: Date | string
+    noteObservation: string
     Strengths: string
-    areas_for_improvement: string
+    areasForImprovement: string
     teacherId: string
   }
 
-  export type Progress_notesUpdateWithoutLearning_progressInput = {
+  export type ProgressNotesUpdateWithoutLearningProgressInput = {
     id?: StringFieldUpdateOperationsInput | string
-    note_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    note_observation?: StringFieldUpdateOperationsInput | string
+    noteDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    noteObservation?: StringFieldUpdateOperationsInput | string
     Strengths?: StringFieldUpdateOperationsInput | string
-    areas_for_improvement?: StringFieldUpdateOperationsInput | string
+    areasForImprovement?: StringFieldUpdateOperationsInput | string
     teacher?: TeacherUpdateOneRequiredWithoutProgressNotesNestedInput
   }
 
-  export type Progress_notesUncheckedUpdateWithoutLearning_progressInput = {
+  export type ProgressNotesUncheckedUpdateWithoutLearningProgressInput = {
     id?: StringFieldUpdateOperationsInput | string
-    note_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    note_observation?: StringFieldUpdateOperationsInput | string
+    noteDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    noteObservation?: StringFieldUpdateOperationsInput | string
     Strengths?: StringFieldUpdateOperationsInput | string
-    areas_for_improvement?: StringFieldUpdateOperationsInput | string
+    areasForImprovement?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type Progress_notesUncheckedUpdateManyWithoutLearning_progressInput = {
+  export type ProgressNotesUncheckedUpdateManyWithoutLearningProgressInput = {
     id?: StringFieldUpdateOperationsInput | string
-    note_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    note_observation?: StringFieldUpdateOperationsInput | string
+    noteDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    noteObservation?: StringFieldUpdateOperationsInput | string
     Strengths?: StringFieldUpdateOperationsInput | string
-    areas_for_improvement?: StringFieldUpdateOperationsInput | string
+    areasForImprovement?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
   }
 

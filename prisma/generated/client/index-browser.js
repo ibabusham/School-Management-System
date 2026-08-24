@@ -126,7 +126,7 @@ exports.Prisma.UserScalarFieldEnum = {
   username: 'username',
   password: 'password',
   role: 'role',
-  account_status: 'account_status',
+  accountStatus: 'accountStatus',
   createdAt: 'createdAt'
 };
 
@@ -142,133 +142,133 @@ exports.Prisma.RefreshTokenScalarFieldEnum = {
 exports.Prisma.TeacherScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  employ_id: 'employ_id',
+  employId: 'employId',
   email: 'email',
-  phonenumber: 'phonenumber',
+  phoneNumber: 'phoneNumber',
   specilization: 'specilization',
-  account_status: 'account_status'
+  accountStatus: 'accountStatus'
 };
 
 exports.Prisma.StudentScalarFieldEnum = {
   id: 'id',
-  student_id: 'student_id',
-  first_name: 'first_name',
-  last_name: 'last_name',
+  studentId: 'studentId',
+  firstName: 'firstName',
+  lastName: 'lastName',
   email: 'email',
-  account_status: 'account_status',
-  date_of_birth: 'date_of_birth',
-  phonenumber: 'phonenumber',
-  enrollment_date: 'enrollment_date',
-  learning_progress_id: 'learning_progress_id',
+  accountStatus: 'accountStatus',
+  dateOfBirth: 'dateOfBirth',
+  phoneNumber: 'phoneNumber',
+  enrollmentDate: 'enrollmentDate',
+  learningProgressId: 'learningProgressId',
   classId: 'classId',
   gender: 'gender'
 };
 
 exports.Prisma.ClassesScalarFieldEnum = {
   id: 'id',
-  class_name: 'class_name'
+  className: 'className'
 };
 
 exports.Prisma.SubjectsScalarFieldEnum = {
   id: 'id',
-  subject_name: 'subject_name',
-  subject_code: 'subject_code',
+  subjectName: 'subjectName',
+  subjectCode: 'subjectCode',
   Description: 'Description',
   classId: 'classId',
   teacherId: 'teacherId'
 };
 
-exports.Prisma.Academic_YearsScalarFieldEnum = {
+exports.Prisma.AcademicYearsScalarFieldEnum = {
   id: 'id',
-  year_name: 'year_name',
-  Start_date: 'Start_date',
-  end_date: 'end_date',
+  yearName: 'yearName',
+  StartDate: 'StartDate',
+  endDate: 'endDate',
   status: 'status'
 };
 
 exports.Prisma.TermsScalarFieldEnum = {
   id: 'id',
-  term_name: 'term_name',
-  Start_date: 'Start_date',
-  end_date: 'end_date',
+  termName: 'termName',
+  StartDate: 'StartDate',
+  endDate: 'endDate',
   yearId: 'yearId'
 };
 
-exports.Prisma.Class_Academic_yearScalarFieldEnum = {
+exports.Prisma.ClassAcademicYearScalarFieldEnum = {
   classId: 'classId',
   yearId: 'yearId'
 };
 
 exports.Prisma.AssignmentsScalarFieldEnum = {
   id: 'id',
-  assignment_title: 'assignment_title',
-  assignment_description: 'assignment_description',
-  due_date: 'due_date',
-  maximum_grade: 'maximum_grade',
+  assignmentTitle: 'assignmentTitle',
+  assignmentDescription: 'assignmentDescription',
+  dueDate: 'dueDate',
+  maximumGrade: 'maximumGrade',
   attachment: 'attachment',
-  Submission_instructions: 'Submission_instructions',
+  SubmissionInstructions: 'SubmissionInstructions',
   subjectId: 'subjectId'
 };
 
 exports.Prisma.LessonsScalarFieldEnum = {
   id: 'id',
-  lesson_title: 'lesson_title',
-  lesson_description: 'lesson_description',
-  lesson_date: 'lesson_date',
-  learning_objectinve: 'learning_objectinve',
-  learning_material: 'learning_material',
-  Completion_status: 'Completion_status',
+  lessonTitle: 'lessonTitle',
+  lessonDescription: 'lessonDescription',
+  lessonDate: 'lessonDate',
+  learningObjectinve: 'learningObjectinve',
+  learningMaterial: 'learningMaterial',
+  CompletionStatus: 'CompletionStatus',
   subjectId: 'subjectId'
 };
 
 exports.Prisma.ExamsScalarFieldEnum = {
   id: 'id',
-  exam_name: 'exam_name',
-  exam_date: 'exam_date',
-  Maximum_grade: 'Maximum_grade',
+  examName: 'examName',
+  examDate: 'examDate',
+  MaximumGrade: 'MaximumGrade',
   subjectId: 'subjectId'
 };
 
-exports.Prisma.Learning_progressesScalarFieldEnum = {
+exports.Prisma.LearningProgressesScalarFieldEnum = {
   id: 'id',
-  subjects_averages: 'subjects_averages',
-  overall_avreages: 'overall_avreages',
-  attendence_percentage: 'attendence_percentage',
-  learning_status: 'learning_status'
+  subjectsAverages: 'subjectsAverages',
+  overallAvreages: 'overallAvreages',
+  attendencePercentage: 'attendencePercentage',
+  learningStatus: 'learningStatus'
 };
 
-exports.Prisma.Progress_notesScalarFieldEnum = {
+exports.Prisma.ProgressNotesScalarFieldEnum = {
   id: 'id',
-  note_date: 'note_date',
-  note_observation: 'note_observation',
+  noteDate: 'noteDate',
+  noteObservation: 'noteObservation',
   Strengths: 'Strengths',
-  areas_for_improvement: 'areas_for_improvement',
+  areasForImprovement: 'areasForImprovement',
   teacherId: 'teacherId',
   learningProgressId: 'learningProgressId'
 };
 
-exports.Prisma.Classes_performenceScalarFieldEnum = {
+exports.Prisma.ClassesPerformenceScalarFieldEnum = {
   id: 'id',
-  class_avg: 'class_avg',
-  highest_grade: 'highest_grade',
-  lowest_grade: 'lowest_grade',
-  assignments_compleation_rate: 'assignments_compleation_rate',
-  attendence_rate: 'attendence_rate',
-  student_requiring_support: 'student_requiring_support',
-  class_status: 'class_status',
+  classAvg: 'classAvg',
+  highestGrade: 'highestGrade',
+  lowestGrade: 'lowestGrade',
+  assignmentsCompleationRate: 'assignmentsCompleationRate',
+  attendenceRate: 'attendenceRate',
+  studentRequiringSupport: 'studentRequiringSupport',
+  classStatus: 'classStatus',
   classId: 'classId'
 };
 
 exports.Prisma.AttendencesScalarFieldEnum = {
   id: 'id',
-  attendance_date: 'attendance_date',
-  attendance_status: 'attendance_status',
-  attendance_percentage: 'attendance_percentage',
+  attendanceDate: 'attendanceDate',
+  attendanceStatus: 'attendanceStatus',
+  attendancePercentage: 'attendancePercentage',
   studentId: 'studentId',
   subjectId: 'subjectId'
 };
 
-exports.Prisma.Exam_submissionsScalarFieldEnum = {
+exports.Prisma.ExamSubmissionsScalarFieldEnum = {
   id: 'id',
   examId: 'examId',
   studentId: 'studentId',
@@ -318,17 +318,17 @@ exports.Prisma.ModelName = {
   Student: 'Student',
   Classes: 'Classes',
   Subjects: 'Subjects',
-  Academic_Years: 'Academic_Years',
+  AcademicYears: 'AcademicYears',
   Terms: 'Terms',
-  Class_Academic_year: 'Class_Academic_year',
+  ClassAcademicYear: 'ClassAcademicYear',
   Assignments: 'Assignments',
   Lessons: 'Lessons',
   Exams: 'Exams',
-  Learning_progresses: 'Learning_progresses',
-  Progress_notes: 'Progress_notes',
-  Classes_performence: 'Classes_performence',
+  LearningProgresses: 'LearningProgresses',
+  ProgressNotes: 'ProgressNotes',
+  ClassesPerformence: 'ClassesPerformence',
   Attendences: 'Attendences',
-  Exam_submissions: 'Exam_submissions'
+  ExamSubmissions: 'ExamSubmissions'
 };
 
 /**
