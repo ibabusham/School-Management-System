@@ -20,6 +20,7 @@ function toSafeStudent(student: Student) {
 // Creates a new student row in the Student table
 export async function createStudent(data: CreateStudentInput) {
   const hashedPassword = await hash(data.password, 10);
+  const existingUser = await prisma.user.findUnique({ where: { username: data.username } });
   const existing = await prisma.student.findUnique({
     where: {
       student_id: data.student_id,
@@ -28,6 +29,9 @@ export async function createStudent(data: CreateStudentInput) {
   if(existing) {
     throw new AppError("Student id already exists", 400);
   }
+
+ 
+if (existingUser) throw new AppError("Username already exists", 400);
 
   const student = await prisma.$transaction(async (tx) => {
     const user = await tx.user.create({

@@ -1,4 +1,4 @@
-import { createStudentSchema } from "@/app/api/students/schemas";
+import { createStudentSchema, studentListQuerySchema } from "@/app/api/students/schemas";
 import { createStudent, listStudents } from "@/app/api/students/services/student.service";
 import { NextResponse } from "next/server";
 import { handleError } from "@/app/utils/errors.utility";
@@ -38,18 +38,21 @@ import { createRouteHandler } from "@/app/utils/create-route-handles";
  *               $ref: '#/components/schemas/ErrorResponse'
  */
 export const GET = createRouteHandler(null, async (request) => {
-  try {
-    const queryParams = request.nextUrl.searchParams;
-    const result = await listStudents({
-      page: parseInt(queryParams.get("page") || "1"),
-      limit: parseInt(queryParams.get("limit") || "10"),
+  try { 
+     const queryParams = request.nextUrl.searchParams;
+     const parsed = studentListQuerySchema.safeParse({
+      page: queryParams.get("page") ?? undefined,
+      limit: queryParams.get("limit") ?? undefined,
     });
+    if (!parsed.success) {
+      return handleError(parsed.error);
+    }
+    const result = await listStudents(parsed.data);
     return NextResponse.json(result);
   } catch (error) {
     return handleError(error);
   }
-});
-
+  });
 /**
  * @swagger
  * /api/students:

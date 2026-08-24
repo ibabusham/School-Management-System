@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createTeacher, listTeachers } from "./services/teacher.service";
-import { createTeacherSchema } from "@/app/api/teachers/schemas";
+import { createTeacherSchema, teacherListQuerySchema } from "@/app/api/teachers/schemas";
 import { handleError } from "@/app/utils/errors.utility";
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 
@@ -40,15 +40,19 @@ import { createRouteHandler } from "@/app/utils/create-route-handles";
 export const GET = createRouteHandler(null, async (request) => {
   try {
     const queryParams = request.nextUrl.searchParams;
-    const result = await listTeachers({
-      page: parseInt(queryParams.get("page") || "1"),
-      limit: parseInt(queryParams.get("limit") || "10"),
+    const parsed = teacherListQuerySchema.safeParse({
+      page: queryParams.get("page") ?? undefined,
+      limit: queryParams.get("limit") ?? undefined,
     });
+    if (!parsed.success) {
+      return handleError(parsed.error);
+    }
+    const result = await listTeachers(parsed.data);
     return NextResponse.json(result);
   } catch (error) {
     return handleError(error);
   }
-});
+}); 
 
 /**
  * @swagger

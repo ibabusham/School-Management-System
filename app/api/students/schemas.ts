@@ -5,7 +5,7 @@ const genderSchema = z.enum(["MALE", "FEMALE"]);
 
 // Body required when creating a student
 export const createStudentSchema = z.object({
-  student_id: z.number().int().min(1, "Student id is required"),
+  student_id: z.number().int().min(1, "Student id is required").max(2147483647),
   username: z.string().trim().min(1, "Username is required"),
   first_name: z.string().trim().min(1, "First name is required"),
   last_name: z.string().trim().min(1, "Last name is required"),
@@ -20,7 +20,7 @@ export const createStudentSchema = z.object({
 
 // Body for updating a student — every field is optional (send only what changed)
 export const updateStudentSchema = z.object({
-  student_id: z.string().trim().min(1).optional(),
+  student_id: z.string().trim().min(1).max(2147483647).optional(),
   first_name: z.string().trim().min(1).optional(),
   last_name: z.string().trim().min(1).optional(),
   email: z.string().trim().email().optional(),

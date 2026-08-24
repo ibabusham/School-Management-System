@@ -15,6 +15,7 @@ function toSafeTeacher(teacher: Teacher) {
 
 export async function createTeacher(data: CreateTeacherInput) {
   const hashedPassword = await hash(data.password, 10);
+  const existingUser = await prisma.user.findUnique({ where: { username: data.username } });
 const existing = await prisma.teacher.findUnique({
   where: {
     employ_id: parseInt(data.employ_id),
@@ -23,6 +24,8 @@ const existing = await prisma.teacher.findUnique({
 if(existing) {
   throw new AppError("Teacher id already exists", 400);
 }
+
+if (existingUser) throw new AppError("Username already exists", 400);
   
   const teacher = await prisma.$transaction(async (tx) => {
     const user = await tx.user.create({

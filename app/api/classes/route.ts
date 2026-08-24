@@ -1,4 +1,4 @@
-import { createClassSchema } from "./schemas";
+import { getClassListQuerySchema, createClassSchema } from "./schemas";
 import { createClass, getClassList } from "./Services/classes.services";
 import { NextResponse } from "next/server";
 import { handleError } from "@/app/utils/errors.utility";
@@ -40,11 +40,15 @@ import { createRouteHandler } from "@/app/utils/create-route-handles";
 export const GET = createRouteHandler(null, async (request) => {
   try {
     const queryParams = request.nextUrl.searchParams;
-    const result = await getClassList({
-      page: parseInt(queryParams.get("page") || "1"),
-      limit: parseInt(queryParams.get("limit") || "10"),
+    const parsed = getClassListQuerySchema.safeParse({
+      page: queryParams.get("page") ?? undefined,
+      limit: queryParams.get("limit") ?? undefined,
     });
-    return NextResponse.json(result);
+  if (!parsed.success) {
+    return handleError(parsed.error);
+  }
+  const result = await getClassList(parsed.data);
+  return NextResponse.json(result);
   } catch (error) {
     return handleError(error);
   }
