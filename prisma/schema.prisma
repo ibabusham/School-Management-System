@@ -66,7 +66,7 @@ model Student {
   email                String
   account_status       Boolean  @default(true)
   date_of_birth        DateTime
-  phonenumber          String
+  phonenumber          String?
   enrollment_date      DateTime
   learning_progress_id String   @unique
   classId              String?
@@ -194,8 +194,6 @@ model Learning_progresses {
   id                     String @id
   subjects_averages      Int
   overall_avreages       Int
-  compleated_assignments String
-  missing_assignements   String
   attendence_percentage  Int
   learning_status        Status
 

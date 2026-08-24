@@ -5,17 +5,16 @@ const genderSchema = z.enum(["MALE", "FEMALE"]);
 
 // Body required when creating a student
 export const createStudentSchema = z.object({
+  student_id: z.number().int().min(1, "Student id is required"),
   username: z.string().trim().min(1, "Username is required"),
-  student_id: z.string().trim().min(1, "Student id is required"),
   first_name: z.string().trim().min(1, "First name is required"),
   last_name: z.string().trim().min(1, "Last name is required"),
   password: z.string().min(1, "Password is required"),
   email: z.string().trim().email("Valid email is required"),
-  phonenumber: z.string().trim().min(1, "Phone number is required"),
+  phonenumber: z.string().trim().min(1, "Phone number is required").optional(),
   // coerce.date() turns an ISO string like "2010-05-20" into a Date object
   date_of_birth: z.coerce.date({ error: "Valid date of birth is required" }),
   enrollment_date: z.coerce.date({ error: "Valid enrollment date is required" }),
-  learning_progress_id: z.string().trim().min(1, "Learning progress id is required"),
   gender: genderSchema,
 });
 

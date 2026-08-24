@@ -67,9 +67,10 @@ export const GET = createRouteHandler(null, async (request) => {
  *             $ref: '#/components/schemas/CreateClassRequest'
  *           example:
  *             class_name: "First Grade"
- *             name: "2025-2026"
- *             startDate: "2025-09-01"
- *             endDate: "2026-06-30"
+ *             academic_year_id: "123e4567-e89b-12d3-a456-426614174000"
+ *           
+ *            
+ *             
  *     responses:
  *       201:
  *         description: Class created

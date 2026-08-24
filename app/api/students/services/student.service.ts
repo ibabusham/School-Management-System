@@ -7,7 +7,9 @@ import type {
   UpdateStudentInput,
 } from "@/app/api/students/schemas";
 import type { Student } from "@/prisma/generated/client";
+import { Status } from "@/prisma/generated/client";
 import { AppError } from "@/app/utils/errors.utility";
+import { randomUUID } from "crypto";
 
 // Removes the password field so it is never sent back in API responses
 function toSafeStudent(student: Student) {
@@ -18,6 +20,14 @@ function toSafeStudent(student: Student) {
 // Creates a new student row in the Student table
 export async function createStudent(data: CreateStudentInput) {
   const hashedPassword = await hash(data.password, 10);
+  const existing = await prisma.student.findUnique({
+    where: {
+      student_id: data.student_id,
+    },
+  });
+  if(existing) {
+    throw new AppError("Student id already exists", 400);
+  }
 
   const student = await prisma.$transaction(async (tx) => {
     const user = await tx.user.create({
@@ -30,37 +40,44 @@ export async function createStudent(data: CreateStudentInput) {
       },
     });
 
+
+
     return tx.student.create({
       data: {
-        student_id: parseInt(data.student_id),
         first_name: data.first_name,
         last_name: data.last_name,
+        student_id: data.student_id,
         email: data.email,
-        phonenumber: data.phonenumber,
+        phonenumber: data.phonenumber ?? " ",
         date_of_birth: data.date_of_birth,
         enrollment_date: data.enrollment_date,
         gender: data.gender,
         account_status: true,
         user: {
-          connect: {
-            id: user.id,
-          },
+          connect: { id: user.id },
         },
         learning_progress: {
-          connect: {
-            id: data.learning_progress_id,
+          create: {
+            id: randomUUID(),
+            subjects_averages: 0,
+            overall_avreages: 0,
+            attendence_percentage: 0,
+            learning_status: Status.ACTIVE,
           },
         },
       },
       include: {
         user: {
-          select: { id: true, 
-           name: true,
-           username: true,
-           role: true,
-           account_status: true,     
-           createdAt: true },
+          select: {
+            id: true,
+            name: true,
+            username: true,
+            role: true,
+            account_status: true,
+            createdAt: true,
+          },
         },
+        learning_progress: true,
       },
     });
   });

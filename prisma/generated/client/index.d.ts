@@ -6342,7 +6342,7 @@ export namespace Prisma {
     email: string
     account_status: boolean
     date_of_birth: Date
-    phonenumber: string
+    phonenumber: string | null
     enrollment_date: Date
     learning_progress_id: string
     classId: string | null
@@ -6477,7 +6477,7 @@ export namespace Prisma {
       email: string
       account_status: boolean
       date_of_birth: Date
-      phonenumber: string
+      phonenumber: string | null
       enrollment_date: Date
       learning_progress_id: string
       classId: string | null
@@ -16312,8 +16312,6 @@ export namespace Prisma {
     id: string | null
     subjects_averages: number | null
     overall_avreages: number | null
-    compleated_assignments: string | null
-    missing_assignements: string | null
     attendence_percentage: number | null
     learning_status: $Enums.Status | null
   }
@@ -16322,8 +16320,6 @@ export namespace Prisma {
     id: string | null
     subjects_averages: number | null
     overall_avreages: number | null
-    compleated_assignments: string | null
-    missing_assignements: string | null
     attendence_percentage: number | null
     learning_status: $Enums.Status | null
   }
@@ -16332,8 +16328,6 @@ export namespace Prisma {
     id: number
     subjects_averages: number
     overall_avreages: number
-    compleated_assignments: number
-    missing_assignements: number
     attendence_percentage: number
     learning_status: number
     _all: number
@@ -16356,8 +16350,6 @@ export namespace Prisma {
     id?: true
     subjects_averages?: true
     overall_avreages?: true
-    compleated_assignments?: true
-    missing_assignements?: true
     attendence_percentage?: true
     learning_status?: true
   }
@@ -16366,8 +16358,6 @@ export namespace Prisma {
     id?: true
     subjects_averages?: true
     overall_avreages?: true
-    compleated_assignments?: true
-    missing_assignements?: true
     attendence_percentage?: true
     learning_status?: true
   }
@@ -16376,8 +16366,6 @@ export namespace Prisma {
     id?: true
     subjects_averages?: true
     overall_avreages?: true
-    compleated_assignments?: true
-    missing_assignements?: true
     attendence_percentage?: true
     learning_status?: true
     _all?: true
@@ -16473,8 +16461,6 @@ export namespace Prisma {
     id: string
     subjects_averages: number
     overall_avreages: number
-    compleated_assignments: string
-    missing_assignements: string
     attendence_percentage: number
     learning_status: $Enums.Status
     _count: Learning_progressesCountAggregateOutputType | null
@@ -16502,8 +16488,6 @@ export namespace Prisma {
     id?: boolean
     subjects_averages?: boolean
     overall_avreages?: boolean
-    compleated_assignments?: boolean
-    missing_assignements?: boolean
     attendence_percentage?: boolean
     learning_status?: boolean
     student?: boolean | Learning_progresses$studentArgs<ExtArgs>
@@ -16515,8 +16499,6 @@ export namespace Prisma {
     id?: boolean
     subjects_averages?: boolean
     overall_avreages?: boolean
-    compleated_assignments?: boolean
-    missing_assignements?: boolean
     attendence_percentage?: boolean
     learning_status?: boolean
   }, ExtArgs["result"]["learning_progresses"]>
@@ -16525,8 +16507,6 @@ export namespace Prisma {
     id?: boolean
     subjects_averages?: boolean
     overall_avreages?: boolean
-    compleated_assignments?: boolean
-    missing_assignements?: boolean
     attendence_percentage?: boolean
     learning_status?: boolean
   }, ExtArgs["result"]["learning_progresses"]>
@@ -16535,13 +16515,11 @@ export namespace Prisma {
     id?: boolean
     subjects_averages?: boolean
     overall_avreages?: boolean
-    compleated_assignments?: boolean
-    missing_assignements?: boolean
     attendence_percentage?: boolean
     learning_status?: boolean
   }
 
-  export type Learning_progressesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "subjects_averages" | "overall_avreages" | "compleated_assignments" | "missing_assignements" | "attendence_percentage" | "learning_status", ExtArgs["result"]["learning_progresses"]>
+  export type Learning_progressesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "subjects_averages" | "overall_avreages" | "attendence_percentage" | "learning_status", ExtArgs["result"]["learning_progresses"]>
   export type Learning_progressesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     student?: boolean | Learning_progresses$studentArgs<ExtArgs>
     progressNotes?: boolean | Learning_progresses$progressNotesArgs<ExtArgs>
@@ -16560,8 +16538,6 @@ export namespace Prisma {
       id: string
       subjects_averages: number
       overall_avreages: number
-      compleated_assignments: string
-      missing_assignements: string
       attendence_percentage: number
       learning_status: $Enums.Status
     }, ExtArgs["result"]["learning_progresses"]>
@@ -16992,8 +16968,6 @@ export namespace Prisma {
     readonly id: FieldRef<"Learning_progresses", 'String'>
     readonly subjects_averages: FieldRef<"Learning_progresses", 'Int'>
     readonly overall_avreages: FieldRef<"Learning_progresses", 'Int'>
-    readonly compleated_assignments: FieldRef<"Learning_progresses", 'String'>
-    readonly missing_assignements: FieldRef<"Learning_progresses", 'String'>
     readonly attendence_percentage: FieldRef<"Learning_progresses", 'Int'>
     readonly learning_status: FieldRef<"Learning_progresses", 'Status'>
   }
@@ -22102,8 +22076,6 @@ export namespace Prisma {
     id: 'id',
     subjects_averages: 'subjects_averages',
     overall_avreages: 'overall_avreages',
-    compleated_assignments: 'compleated_assignments',
-    missing_assignements: 'missing_assignements',
     attendence_percentage: 'attendence_percentage',
     learning_status: 'learning_status'
   };
@@ -22528,7 +22500,7 @@ export namespace Prisma {
     email?: StringFilter<"Student"> | string
     account_status?: BoolFilter<"Student"> | boolean
     date_of_birth?: DateTimeFilter<"Student"> | Date | string
-    phonenumber?: StringFilter<"Student"> | string
+    phonenumber?: StringNullableFilter<"Student"> | string | null
     enrollment_date?: DateTimeFilter<"Student"> | Date | string
     learning_progress_id?: StringFilter<"Student"> | string
     classId?: StringNullableFilter<"Student"> | string | null
@@ -22548,7 +22520,7 @@ export namespace Prisma {
     email?: SortOrder
     account_status?: SortOrder
     date_of_birth?: SortOrder
-    phonenumber?: SortOrder
+    phonenumber?: SortOrderInput | SortOrder
     enrollment_date?: SortOrder
     learning_progress_id?: SortOrder
     classId?: SortOrderInput | SortOrder
@@ -22572,7 +22544,7 @@ export namespace Prisma {
     email?: StringFilter<"Student"> | string
     account_status?: BoolFilter<"Student"> | boolean
     date_of_birth?: DateTimeFilter<"Student"> | Date | string
-    phonenumber?: StringFilter<"Student"> | string
+    phonenumber?: StringNullableFilter<"Student"> | string | null
     enrollment_date?: DateTimeFilter<"Student"> | Date | string
     classId?: StringNullableFilter<"Student"> | string | null
     gender?: EnumGenderFilter<"Student"> | $Enums.Gender
@@ -22591,7 +22563,7 @@ export namespace Prisma {
     email?: SortOrder
     account_status?: SortOrder
     date_of_birth?: SortOrder
-    phonenumber?: SortOrder
+    phonenumber?: SortOrderInput | SortOrder
     enrollment_date?: SortOrder
     learning_progress_id?: SortOrder
     classId?: SortOrderInput | SortOrder
@@ -22614,7 +22586,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"Student"> | string
     account_status?: BoolWithAggregatesFilter<"Student"> | boolean
     date_of_birth?: DateTimeWithAggregatesFilter<"Student"> | Date | string
-    phonenumber?: StringWithAggregatesFilter<"Student"> | string
+    phonenumber?: StringNullableWithAggregatesFilter<"Student"> | string | null
     enrollment_date?: DateTimeWithAggregatesFilter<"Student"> | Date | string
     learning_progress_id?: StringWithAggregatesFilter<"Student"> | string
     classId?: StringNullableWithAggregatesFilter<"Student"> | string | null
@@ -23111,8 +23083,6 @@ export namespace Prisma {
     id?: StringFilter<"Learning_progresses"> | string
     subjects_averages?: IntFilter<"Learning_progresses"> | number
     overall_avreages?: IntFilter<"Learning_progresses"> | number
-    compleated_assignments?: StringFilter<"Learning_progresses"> | string
-    missing_assignements?: StringFilter<"Learning_progresses"> | string
     attendence_percentage?: IntFilter<"Learning_progresses"> | number
     learning_status?: EnumStatusFilter<"Learning_progresses"> | $Enums.Status
     student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
@@ -23123,8 +23093,6 @@ export namespace Prisma {
     id?: SortOrder
     subjects_averages?: SortOrder
     overall_avreages?: SortOrder
-    compleated_assignments?: SortOrder
-    missing_assignements?: SortOrder
     attendence_percentage?: SortOrder
     learning_status?: SortOrder
     student?: StudentOrderByWithRelationInput
@@ -23138,8 +23106,6 @@ export namespace Prisma {
     NOT?: Learning_progressesWhereInput | Learning_progressesWhereInput[]
     subjects_averages?: IntFilter<"Learning_progresses"> | number
     overall_avreages?: IntFilter<"Learning_progresses"> | number
-    compleated_assignments?: StringFilter<"Learning_progresses"> | string
-    missing_assignements?: StringFilter<"Learning_progresses"> | string
     attendence_percentage?: IntFilter<"Learning_progresses"> | number
     learning_status?: EnumStatusFilter<"Learning_progresses"> | $Enums.Status
     student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
@@ -23150,8 +23116,6 @@ export namespace Prisma {
     id?: SortOrder
     subjects_averages?: SortOrder
     overall_avreages?: SortOrder
-    compleated_assignments?: SortOrder
-    missing_assignements?: SortOrder
     attendence_percentage?: SortOrder
     learning_status?: SortOrder
     _count?: Learning_progressesCountOrderByAggregateInput
@@ -23168,8 +23132,6 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Learning_progresses"> | string
     subjects_averages?: IntWithAggregatesFilter<"Learning_progresses"> | number
     overall_avreages?: IntWithAggregatesFilter<"Learning_progresses"> | number
-    compleated_assignments?: StringWithAggregatesFilter<"Learning_progresses"> | string
-    missing_assignements?: StringWithAggregatesFilter<"Learning_progresses"> | string
     attendence_percentage?: IntWithAggregatesFilter<"Learning_progresses"> | number
     learning_status?: EnumStatusWithAggregatesFilter<"Learning_progresses"> | $Enums.Status
   }
@@ -23673,7 +23635,7 @@ export namespace Prisma {
     email: string
     account_status?: boolean
     date_of_birth: Date | string
-    phonenumber: string
+    phonenumber?: string | null
     enrollment_date: Date | string
     gender: $Enums.Gender
     user: UserCreateNestedOneWithoutStudentInput
@@ -23691,7 +23653,7 @@ export namespace Prisma {
     email: string
     account_status?: boolean
     date_of_birth: Date | string
-    phonenumber: string
+    phonenumber?: string | null
     enrollment_date: Date | string
     learning_progress_id: string
     classId?: string | null
@@ -23707,7 +23669,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     account_status?: BoolFieldUpdateOperationsInput | boolean
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
     enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     user?: UserUpdateOneRequiredWithoutStudentNestedInput
@@ -23725,7 +23687,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     account_status?: BoolFieldUpdateOperationsInput | boolean
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
     enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
     learning_progress_id?: StringFieldUpdateOperationsInput | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -23742,7 +23704,7 @@ export namespace Prisma {
     email: string
     account_status?: boolean
     date_of_birth: Date | string
-    phonenumber: string
+    phonenumber?: string | null
     enrollment_date: Date | string
     learning_progress_id: string
     classId?: string | null
@@ -23756,7 +23718,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     account_status?: BoolFieldUpdateOperationsInput | boolean
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
     enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   }
@@ -23769,7 +23731,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     account_status?: BoolFieldUpdateOperationsInput | boolean
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
     enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
     learning_progress_id?: StringFieldUpdateOperationsInput | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24272,8 +24234,6 @@ export namespace Prisma {
     id: string
     subjects_averages: number
     overall_avreages: number
-    compleated_assignments: string
-    missing_assignements: string
     attendence_percentage: number
     learning_status: $Enums.Status
     student?: StudentCreateNestedOneWithoutLearning_progressInput
@@ -24284,8 +24244,6 @@ export namespace Prisma {
     id: string
     subjects_averages: number
     overall_avreages: number
-    compleated_assignments: string
-    missing_assignements: string
     attendence_percentage: number
     learning_status: $Enums.Status
     student?: StudentUncheckedCreateNestedOneWithoutLearning_progressInput
@@ -24296,8 +24254,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     subjects_averages?: IntFieldUpdateOperationsInput | number
     overall_avreages?: IntFieldUpdateOperationsInput | number
-    compleated_assignments?: StringFieldUpdateOperationsInput | string
-    missing_assignements?: StringFieldUpdateOperationsInput | string
     attendence_percentage?: IntFieldUpdateOperationsInput | number
     learning_status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     student?: StudentUpdateOneWithoutLearning_progressNestedInput
@@ -24308,8 +24264,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     subjects_averages?: IntFieldUpdateOperationsInput | number
     overall_avreages?: IntFieldUpdateOperationsInput | number
-    compleated_assignments?: StringFieldUpdateOperationsInput | string
-    missing_assignements?: StringFieldUpdateOperationsInput | string
     attendence_percentage?: IntFieldUpdateOperationsInput | number
     learning_status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     student?: StudentUncheckedUpdateOneWithoutLearning_progressNestedInput
@@ -24320,8 +24274,6 @@ export namespace Prisma {
     id: string
     subjects_averages: number
     overall_avreages: number
-    compleated_assignments: string
-    missing_assignements: string
     attendence_percentage: number
     learning_status: $Enums.Status
   }
@@ -24330,8 +24282,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     subjects_averages?: IntFieldUpdateOperationsInput | number
     overall_avreages?: IntFieldUpdateOperationsInput | number
-    compleated_assignments?: StringFieldUpdateOperationsInput | string
-    missing_assignements?: StringFieldUpdateOperationsInput | string
     attendence_percentage?: IntFieldUpdateOperationsInput | number
     learning_status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
@@ -24340,8 +24290,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     subjects_averages?: IntFieldUpdateOperationsInput | number
     overall_avreages?: IntFieldUpdateOperationsInput | number
-    compleated_assignments?: StringFieldUpdateOperationsInput | string
-    missing_assignements?: StringFieldUpdateOperationsInput | string
     attendence_percentage?: IntFieldUpdateOperationsInput | number
     learning_status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
@@ -25369,8 +25317,6 @@ export namespace Prisma {
     id?: SortOrder
     subjects_averages?: SortOrder
     overall_avreages?: SortOrder
-    compleated_assignments?: SortOrder
-    missing_assignements?: SortOrder
     attendence_percentage?: SortOrder
     learning_status?: SortOrder
   }
@@ -25385,8 +25331,6 @@ export namespace Prisma {
     id?: SortOrder
     subjects_averages?: SortOrder
     overall_avreages?: SortOrder
-    compleated_assignments?: SortOrder
-    missing_assignements?: SortOrder
     attendence_percentage?: SortOrder
     learning_status?: SortOrder
   }
@@ -25395,8 +25339,6 @@ export namespace Prisma {
     id?: SortOrder
     subjects_averages?: SortOrder
     overall_avreages?: SortOrder
-    compleated_assignments?: SortOrder
-    missing_assignements?: SortOrder
     attendence_percentage?: SortOrder
     learning_status?: SortOrder
   }
@@ -25892,6 +25834,10 @@ export namespace Prisma {
     connect?: Exam_submissionsWhereUniqueInput | Exam_submissionsWhereUniqueInput[]
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type EnumGenderFieldUpdateOperationsInput = {
     set?: $Enums.Gender
   }
@@ -25948,10 +25894,6 @@ export namespace Prisma {
     update?: Exam_submissionsUpdateWithWhereUniqueWithoutStudentInput | Exam_submissionsUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: Exam_submissionsUpdateManyWithWhereWithoutStudentInput | Exam_submissionsUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: Exam_submissionsScalarWhereInput | Exam_submissionsScalarWhereInput[]
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type AttendencesUncheckedUpdateManyWithoutStudentNestedInput = {
@@ -27037,7 +26979,7 @@ export namespace Prisma {
     email: string
     account_status?: boolean
     date_of_birth: Date | string
-    phonenumber: string
+    phonenumber?: string | null
     enrollment_date: Date | string
     gender: $Enums.Gender
     class?: ClassesCreateNestedOneWithoutStudentsInput
@@ -27053,7 +26995,7 @@ export namespace Prisma {
     email: string
     account_status?: boolean
     date_of_birth: Date | string
-    phonenumber: string
+    phonenumber?: string | null
     enrollment_date: Date | string
     learning_progress_id: string
     classId?: string | null
@@ -27144,7 +27086,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     account_status?: BoolFieldUpdateOperationsInput | boolean
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
     enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     class?: ClassesUpdateOneWithoutStudentsNestedInput
@@ -27160,7 +27102,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     account_status?: BoolFieldUpdateOperationsInput | boolean
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
     enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
     learning_progress_id?: StringFieldUpdateOperationsInput | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27498,8 +27440,6 @@ export namespace Prisma {
     id: string
     subjects_averages: number
     overall_avreages: number
-    compleated_assignments: string
-    missing_assignements: string
     attendence_percentage: number
     learning_status: $Enums.Status
     progressNotes?: Progress_notesCreateNestedManyWithoutLearning_progressInput
@@ -27509,8 +27449,6 @@ export namespace Prisma {
     id: string
     subjects_averages: number
     overall_avreages: number
-    compleated_assignments: string
-    missing_assignements: string
     attendence_percentage: number
     learning_status: $Enums.Status
     progressNotes?: Progress_notesUncheckedCreateNestedManyWithoutLearning_progressInput
@@ -27648,8 +27586,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     subjects_averages?: IntFieldUpdateOperationsInput | number
     overall_avreages?: IntFieldUpdateOperationsInput | number
-    compleated_assignments?: StringFieldUpdateOperationsInput | string
-    missing_assignements?: StringFieldUpdateOperationsInput | string
     attendence_percentage?: IntFieldUpdateOperationsInput | number
     learning_status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     progressNotes?: Progress_notesUpdateManyWithoutLearning_progressNestedInput
@@ -27659,8 +27595,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     subjects_averages?: IntFieldUpdateOperationsInput | number
     overall_avreages?: IntFieldUpdateOperationsInput | number
-    compleated_assignments?: StringFieldUpdateOperationsInput | string
-    missing_assignements?: StringFieldUpdateOperationsInput | string
     attendence_percentage?: IntFieldUpdateOperationsInput | number
     learning_status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     progressNotes?: Progress_notesUncheckedUpdateManyWithoutLearning_progressNestedInput
@@ -27746,7 +27680,7 @@ export namespace Prisma {
     email: string
     account_status?: boolean
     date_of_birth: Date | string
-    phonenumber: string
+    phonenumber?: string | null
     enrollment_date: Date | string
     gender: $Enums.Gender
     user: UserCreateNestedOneWithoutStudentInput
@@ -27763,7 +27697,7 @@ export namespace Prisma {
     email: string
     account_status?: boolean
     date_of_birth: Date | string
-    phonenumber: string
+    phonenumber?: string | null
     enrollment_date: Date | string
     learning_progress_id: string
     gender: $Enums.Gender
@@ -27893,7 +27827,7 @@ export namespace Prisma {
     email?: StringFilter<"Student"> | string
     account_status?: BoolFilter<"Student"> | boolean
     date_of_birth?: DateTimeFilter<"Student"> | Date | string
-    phonenumber?: StringFilter<"Student"> | string
+    phonenumber?: StringNullableFilter<"Student"> | string | null
     enrollment_date?: DateTimeFilter<"Student"> | Date | string
     learning_progress_id?: StringFilter<"Student"> | string
     classId?: StringNullableFilter<"Student"> | string | null
@@ -28748,7 +28682,7 @@ export namespace Prisma {
     email: string
     account_status?: boolean
     date_of_birth: Date | string
-    phonenumber: string
+    phonenumber?: string | null
     enrollment_date: Date | string
     gender: $Enums.Gender
     user: UserCreateNestedOneWithoutStudentInput
@@ -28765,7 +28699,7 @@ export namespace Prisma {
     email: string
     account_status?: boolean
     date_of_birth: Date | string
-    phonenumber: string
+    phonenumber?: string | null
     enrollment_date: Date | string
     classId?: string | null
     gender: $Enums.Gender
@@ -28824,7 +28758,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     account_status?: BoolFieldUpdateOperationsInput | boolean
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
     enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     user?: UserUpdateOneRequiredWithoutStudentNestedInput
@@ -28841,7 +28775,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     account_status?: BoolFieldUpdateOperationsInput | boolean
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
     enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
@@ -28896,8 +28830,6 @@ export namespace Prisma {
     id: string
     subjects_averages: number
     overall_avreages: number
-    compleated_assignments: string
-    missing_assignements: string
     attendence_percentage: number
     learning_status: $Enums.Status
     student?: StudentCreateNestedOneWithoutLearning_progressInput
@@ -28907,8 +28839,6 @@ export namespace Prisma {
     id: string
     subjects_averages: number
     overall_avreages: number
-    compleated_assignments: string
-    missing_assignements: string
     attendence_percentage: number
     learning_status: $Enums.Status
     student?: StudentUncheckedCreateNestedOneWithoutLearning_progressInput
@@ -28967,8 +28897,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     subjects_averages?: IntFieldUpdateOperationsInput | number
     overall_avreages?: IntFieldUpdateOperationsInput | number
-    compleated_assignments?: StringFieldUpdateOperationsInput | string
-    missing_assignements?: StringFieldUpdateOperationsInput | string
     attendence_percentage?: IntFieldUpdateOperationsInput | number
     learning_status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     student?: StudentUpdateOneWithoutLearning_progressNestedInput
@@ -28978,8 +28906,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     subjects_averages?: IntFieldUpdateOperationsInput | number
     overall_avreages?: IntFieldUpdateOperationsInput | number
-    compleated_assignments?: StringFieldUpdateOperationsInput | string
-    missing_assignements?: StringFieldUpdateOperationsInput | string
     attendence_percentage?: IntFieldUpdateOperationsInput | number
     learning_status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     student?: StudentUncheckedUpdateOneWithoutLearning_progressNestedInput
@@ -29040,7 +28966,7 @@ export namespace Prisma {
     email: string
     account_status?: boolean
     date_of_birth: Date | string
-    phonenumber: string
+    phonenumber?: string | null
     enrollment_date: Date | string
     gender: $Enums.Gender
     user: UserCreateNestedOneWithoutStudentInput
@@ -29057,7 +28983,7 @@ export namespace Prisma {
     email: string
     account_status?: boolean
     date_of_birth: Date | string
-    phonenumber: string
+    phonenumber?: string | null
     enrollment_date: Date | string
     learning_progress_id: string
     classId?: string | null
@@ -29117,7 +29043,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     account_status?: BoolFieldUpdateOperationsInput | boolean
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
     enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     user?: UserUpdateOneRequiredWithoutStudentNestedInput
@@ -29134,7 +29060,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     account_status?: BoolFieldUpdateOperationsInput | boolean
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
     enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
     learning_progress_id?: StringFieldUpdateOperationsInput | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29205,7 +29131,7 @@ export namespace Prisma {
     email: string
     account_status?: boolean
     date_of_birth: Date | string
-    phonenumber: string
+    phonenumber?: string | null
     enrollment_date: Date | string
     gender: $Enums.Gender
     user: UserCreateNestedOneWithoutStudentInput
@@ -29222,7 +29148,7 @@ export namespace Prisma {
     email: string
     account_status?: boolean
     date_of_birth: Date | string
-    phonenumber: string
+    phonenumber?: string | null
     enrollment_date: Date | string
     learning_progress_id: string
     classId?: string | null
@@ -29280,7 +29206,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     account_status?: BoolFieldUpdateOperationsInput | boolean
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
     enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     user?: UserUpdateOneRequiredWithoutStudentNestedInput
@@ -29297,7 +29223,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     account_status?: BoolFieldUpdateOperationsInput | boolean
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
     enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
     learning_progress_id?: StringFieldUpdateOperationsInput | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29485,7 +29411,7 @@ export namespace Prisma {
     email: string
     account_status?: boolean
     date_of_birth: Date | string
-    phonenumber: string
+    phonenumber?: string | null
     enrollment_date: Date | string
     learning_progress_id: string
     gender: $Enums.Gender
@@ -29518,7 +29444,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     account_status?: BoolFieldUpdateOperationsInput | boolean
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
     enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     user?: UserUpdateOneRequiredWithoutStudentNestedInput
@@ -29535,7 +29461,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     account_status?: BoolFieldUpdateOperationsInput | boolean
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
     enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
     learning_progress_id?: StringFieldUpdateOperationsInput | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
@@ -29551,7 +29477,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     account_status?: BoolFieldUpdateOperationsInput | boolean
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    phonenumber?: StringFieldUpdateOperationsInput | string
+    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
     enrollment_date?: DateTimeFieldUpdateOperationsInput | Date | string
     learning_progress_id?: StringFieldUpdateOperationsInput | string
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender

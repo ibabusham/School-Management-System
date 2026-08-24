@@ -233,8 +233,6 @@ exports.Prisma.Learning_progressesScalarFieldEnum = {
   id: 'id',
   subjects_averages: 'subjects_averages',
   overall_avreages: 'overall_avreages',
-  compleated_assignments: 'compleated_assignments',
-  missing_assignements: 'missing_assignements',
   attendence_percentage: 'attendence_percentage',
   learning_status: 'learning_status'
 };
