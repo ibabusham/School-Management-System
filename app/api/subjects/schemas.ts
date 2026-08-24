@@ -1,19 +1,19 @@
 import { z } from "zod";
 
 export const createSubjectSchema = z.object({
-  subject_name: z.string().trim().min(1, "Subject name is required"),
-  subject_code: z.string().trim().min(1, "Subject code is required"),
-  subject_description: z.string().trim().min(1, "Subject description is required"),
-  class_id: z.string().uuid("Class id must be a valid UUID"),
-  teacher_id: z.string().uuid("Teacher id must be a valid UUID"),
+  subjectName: z.string().trim().min(1, "Subject name is required"),
+  subjectCode: z.string().trim().min(1, "Subject code is required"),
+  description: z.string().trim().min(1, "Subject description is required"),
+  classId: z.string().uuid("Class id must be a valid UUID"),
+  teacherId: z.string().uuid("Teacher id must be a valid UUID"),
 });
 
 export const updateSubjectSchema = z.object({
-  subject_name: z.string().trim().min(1, "Subject name is required").optional(),
-  subject_code: z.string().trim().min(1, "Subject code is required").optional(),
-  subject_description: z.string().trim().min(1, "Subject description is required").optional(),
-  class_id: z.string().uuid("Class id must be a valid UUID").optional(),
-  teacher_id: z.string().uuid("Teacher id must be a valid UUID").optional(),
+  subjectName: z.string().trim().min(1, "Subject name is required").optional(),
+  subjectCode: z.string().trim().min(1, "Subject code is required").optional(),
+  description: z.string().trim().min(1, "Subject description is required").optional(),
+  classId: z.string().uuid("Class id must be a valid UUID").optional(),
+  teacherId: z.string().uuid("Teacher id must be a valid UUID").optional(),
 });
 
 export const subjectListQuerySchema = z.object({
@@ -23,11 +23,11 @@ export const subjectListQuerySchema = z.object({
 });
 
 export const assignSubjectToClassSchema = z.object({
-  class_id: z.string().uuid("Class id must be a valid UUID"),
+  classId: z.string().uuid("Class id must be a valid UUID"),
 });
 
 export const assignSubjectToTeacherSchema = z.object({
-  teacher_id: z.string().uuid("Teacher id must be a valid UUID"),
+  teacherId: z.string().uuid("Teacher id must be a valid UUID"),
 });
 
 export type CreateSubjectInput = z.infer<typeof createSubjectSchema>;

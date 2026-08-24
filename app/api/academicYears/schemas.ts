@@ -8,7 +8,7 @@ function validDate(message: string) {
 
 export const academicYearSchema = z.object({
   id: z.string().uuid(),
-  name: z.string().min(1, "Academic year name is required"),
+  yearName: z.string().min(1, "Academic year name is required"),
   startDate: validDate("Valid start date is required"),
   endDate: validDate("Valid end date is required"),
 });

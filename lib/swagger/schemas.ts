@@ -47,9 +47,9 @@ const academicYearStatusSchema = z.enum(["ACTIVE", "INACTIVE"]);
 
 export const academicYearSchema = z.object({
   id: z.string(),
-  year_name: z.string(),
-  Start_date: z.string().datetime().or(z.string()),
-  end_date: z.string().datetime().or(z.string()),
+  yearName: z.string(),
+  startDate: z.string().datetime().or(z.string()),
+  endDate: z.string().datetime().or(z.string()),
   status: academicYearStatusSchema,
 });
 
@@ -58,67 +58,66 @@ export const safeUserSchema = z.object({
   name: z.string(),
   username: z.string(),
   role: roleSchema,
-  account_status: z.boolean(),
+  accountStatus: z.boolean(),
   createdAt: z.string().datetime().or(z.string()),
 });
+
 export const classPerformanceSchema = z.object({
   id: z.string(),
-  class_avg: z.number().int(),
-  highest_grade: z.number().int(),
-  lowest_grade: z.number().int(),
-  assignments_compleation_rate: z.number().int(),
-  attendence_rate: z.number().int(),
-  student_requiring_support: z.number().int(),
-  class_status: z.enum(["ACTIVE", "INACTIVE"]),
+  classAvg: z.number().int(),
+  highestGrade: z.number().int(),
+  lowestGrade: z.number().int(),
+  assignmentsCompleationRate: z.number().int(),
+  attendenceRate: z.number().int(),
+  studentRequiringSupport: z.number().int(),
+  classStatus: z.enum(["ACTIVE", "INACTIVE"]),
   classId: z.string(),
 });
 
 export const teacherSchema = z.object({
   id: z.string(),
   name: z.string(),
-  employ_id: z.number().int(),
+  employId: z.number().int(),
   email: z.string().email(),
-  phonenumber: z.string(),
+  phoneNumber: z.string(),
   specilization: z.string(),
-  account_status: z.boolean(),
+  accountStatus: z.boolean(),
   user: safeUserSchema.optional(),
 });
 
 export const learningProgressSchema = z.object({
   id: z.string(),
-  subjects_averages: z.number().int(),
-  overall_avreages: z.number().int(),
-  attendence_percentage: z.number().int(),
-  learning_status: z.enum(["ACTIVE", "INACTIVE"]),
+  subjectsAverages: z.number().int(),
+  overallAvreages: z.number().int(),
+  attendencePercentage: z.number().int(),
+  learningStatus: z.enum(["ACTIVE", "INACTIVE"]),
 });
 
 export const studentSchema = z.object({
   id: z.string(),
-  student_id: z.number().int(),
-  first_name: z.string(),
-  last_name: z.string(),
+  studentId: z.number().int(),
+  firstName: z.string(),
+  lastName: z.string(),
   email: z.string().email(),
-  account_status: z.boolean(),
-  date_of_birth: z.string().datetime().or(z.string()),
-  phonenumber: z.string().optional().nullable(),
-  enrollment_date: z.string().datetime().or(z.string()),
-  learning_progress: learningProgressSchema.optional(),
+  accountStatus: z.boolean(),
+  dateOfBirth: z.string().datetime().or(z.string()),
+  phoneNumber: z.string().optional().nullable(),
+  enrollmentDate: z.string().datetime().or(z.string()),
+  learningProgress: learningProgressSchema.optional(),
   gender: genderSchema,
   user: safeUserSchema.optional(),
 });
 
-
-
 export const classSchema = z.object({
   id: z.string(),
-  class_name: z.string(),
+  className: z.string(),
 });
 
 export const subjectSchema = z.object({
   id: z.string(),
-  subject_name: z.string(),
-  subject_code: z.string(),
-  Description: z.string(),
+  subjectName: z.string(),
+  subjectCode: z.string(),
+  description: z.string(),
   classId: z.string(),
   teacherId: z.string(),
   class: classSchema.optional(),
@@ -127,18 +126,18 @@ export const subjectSchema = z.object({
 
 export const termSchema = z.object({
   id: z.string(),
-  term_name: z.string(),
-  Start_date: z.string().datetime().or(z.string()),
-  end_date: z.string().datetime().or(z.string()),
+  termName: z.string(),
+  startDate: z.string().datetime().or(z.string()),
+  endDate: z.string().datetime().or(z.string()),
   yearId: z.string(),
   year: academicYearSchema.optional(),
 });
 
 export const examSchema = z.object({
   id: z.string(),
-  exam_name: z.string(),
-  exam_date: z.string().datetime().or(z.string()),
-  Maximum_grade: z.number().int(),
+  examName: z.string(),
+  examDate: z.string().datetime().or(z.string()),
+  maximumGrade: z.number().int(),
   subjectId: z.string(),
   subject: subjectSchema.optional(),
 });

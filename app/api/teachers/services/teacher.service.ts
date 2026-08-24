@@ -9,24 +9,24 @@ import type { Teacher } from "@/prisma/generated/client";
 import { AppError } from "@/app/utils/errors.utility";
 
 function toSafeTeacher(teacher: Teacher) {
-  const {...safeTeacher } = teacher;
+  const { ...safeTeacher } = teacher;
   return safeTeacher;
 }
 
 export async function createTeacher(data: CreateTeacherInput) {
   const hashedPassword = await hash(data.password, 10);
   const existingUser = await prisma.user.findUnique({ where: { username: data.username } });
-const existing = await prisma.teacher.findUnique({
-  where: {
-    employ_id: parseInt(data.employ_id),
-  },
-});
-if(existing) {
-  throw new AppError("Teacher id already exists", 400);
-}
+  const existing = await prisma.teacher.findUnique({
+    where: {
+      employId: data.employId,
+    },
+  });
+  if (existing) {
+    throw new AppError("Teacher id already exists", 400);
+  }
 
-if (existingUser) throw new AppError("Username already exists", 400);
-  
+  if (existingUser) throw new AppError("Username already exists", 400);
+
   const teacher = await prisma.$transaction(async (tx) => {
     const user = await tx.user.create({
       data: {
@@ -34,17 +34,17 @@ if (existingUser) throw new AppError("Username already exists", 400);
         username: data.username,
         password: hashedPassword,
         role: "TEACHER",
-        account_status: true,
+        accountStatus: true,
       },
     });
     return tx.teacher.create({
       data: {
         email: data.email,
         name: data.name,
-        employ_id: parseInt(data.employ_id),
-        phonenumber: data.phonenumber ?? " ",
+        employId: data.employId,
+        phoneNumber: data.phoneNumber ?? " ",
         specilization: data.specilization,
-        account_status: true,
+        accountStatus: true,
         user: {
           connect: {
             id: user.id,
@@ -53,29 +53,29 @@ if (existingUser) throw new AppError("Username already exists", 400);
       },
       include: {
         user: {
-          select: { id: true,
-             name: true, 
-             username: true,
-              role: true,
-               account_status: true,
-               createdAt: true },
+          select: {
+            id: true,
+            name: true,
+            username: true,
+            role: true,
+            accountStatus: true,
+            createdAt: true,
+          },
         },
       },
     });
   });
 
-  return teacher; // no password on Teacher; user select omits password
+  return teacher;
 }
 
 export async function updateTeacher(teacherId: string, data: UpdateTeacherInput) {
   await findActiveTeacherById(teacherId);
 
-  const { name, ...profileData } = data;
-
   return prisma.$transaction(async (tx) => {
     return tx.teacher.update({
       where: { id: teacherId },
-      data: profileData, // only employ_id, email, phonenumber, specilization
+      data,
       include: {
         user: {
           select: {
@@ -83,7 +83,7 @@ export async function updateTeacher(teacherId: string, data: UpdateTeacherInput)
             name: true,
             username: true,
             role: true,
-            account_status: true,
+            accountStatus: true,
             createdAt: true,
           },
         },
@@ -91,7 +91,6 @@ export async function updateTeacher(teacherId: string, data: UpdateTeacherInput)
     });
   });
 }
-// Soft delete: mark the teacher inactive instead of removing the row
 
 export async function deleteTeacher(teacherId: string) {
   await findActiveTeacherById(teacherId);
@@ -109,38 +108,33 @@ export async function deleteTeacher(teacherId: string) {
     }
     await tx.user.update({
       where: { id: user.id },
-      data: { account_status: false },
+      data: { accountStatus: false },
     });
     return tx.teacher.update({
       where: { id: teacherId },
-      data: { account_status: false },
+      data: { accountStatus: false },
       include: {
         user: {
-          select: { id: true, name: true, username: true, role: true, account_status: true, createdAt: true },
+          select: {
+            id: true,
+            name: true,
+            username: true,
+            role: true,
+            accountStatus: true,
+            createdAt: true,
+          },
         },
       },
     });
-});
+  });
   return teacher;
 }
-// Returns a paginated list of active teachers only.
-// Example: page=2, limit=10 → skip the first 10 rows, then take the next 10.
+
 export async function listTeachers(query: TeacherListQuery) {
-  // page = which page the client asked for (1, 2, 3, ...)
-  // limit = how many teachers per page
   const { page, limit } = query;
-
-  // How many rows to skip before reading this page
-  // page 1 → skip 0, page 2 → skip 10 (if limit is 10), etc.
   const skip = (page - 1) * limit;
+  const where = { accountStatus: true };
 
-  // Soft-deleted teachers have account_status = false, so hide them from the list
-  const where = { account_status: true };
-
-  // Run both queries together for speed:
-  // 1) findMany → the teachers for this page
-  // 2) count   → total active teachers (needed to build pagination info)
-  // include.user.select = list shaping: attach safe User fields (no password)
   const [teachers, total] = await Promise.all([
     prisma.teacher.findMany({
       where,
@@ -154,7 +148,7 @@ export async function listTeachers(query: TeacherListQuery) {
             name: true,
             username: true,
             role: true,
-            account_status: true,
+            accountStatus: true,
             createdAt: true,
           },
         },
@@ -183,7 +177,7 @@ async function findActiveTeacherById(teacherId: string) {
   const teacher = await prisma.teacher.findFirst({
     where: {
       id: teacherId,
-      account_status: true,
+      accountStatus: true,
     },
   });
 

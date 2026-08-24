@@ -8,7 +8,7 @@ const termInclude = {
 } as const;
 
 async function findAcademicYearById(id: string) {
-  const academicYear = await prisma.academic_Years.findUnique({ where: { id } });
+  const academicYear = await prisma.academicYears.findUnique({ where: { id } });
 
   if (!academicYear) {
     throw new AppError("Academic year not found", 404);
@@ -31,12 +31,12 @@ async function findTermById(id: string) {
 }
 
 function mapUpdateData(data: UpdateTermInput) {
-  const { name, startDate, endDate, yearId } = data;
+  const { termName, startDate, endDate, yearId } = data;
 
   return {
-    ...(name !== undefined && { term_name: name }),
-    ...(startDate !== undefined && { Start_date: startDate }),
-    ...(endDate !== undefined && { end_date: endDate }),
+    ...(termName !== undefined && { termName }),
+    ...(startDate !== undefined && { startDate }),
+    ...(endDate !== undefined && { endDate }),
     ...(yearId !== undefined && { yearId }),
   };
 }
@@ -48,16 +48,16 @@ export async function createTerm(term: CreateTermInput) {
       yearId: term.yearId,
     },
   });
-  if(termsCount >= 2) {
+  if (termsCount >= 2) {
     throw new AppError("A maximum of 2 terms can be created for an academic year", 400);
   }
 
   return prisma.terms.create({
     data: {
       id: randomUUID(),
-      term_name: term.name,
-      Start_date: term.startDate,
-      end_date: term.endDate,
+      termName: term.termName,
+      startDate: term.startDate,
+      endDate: term.endDate,
       yearId: term.yearId,
     },
     include: termInclude,
@@ -95,7 +95,7 @@ export async function getTerms(query: TermListQuery) {
   const { page, limit, search } = query;
   const skip = (page - 1) * limit;
   const where = {
-    ...(search && { term_name: { contains: search, mode: "insensitive" as const } }),
+    ...(search && { termName: { contains: search, mode: "insensitive" as const } }),
   };
 
   const [terms, total] = await Promise.all([
@@ -104,7 +104,7 @@ export async function getTerms(query: TermListQuery) {
       skip,
       take: limit,
       include: termInclude,
-      orderBy: { Start_date: "desc" },
+      orderBy: { startDate: "desc" },
     }),
     prisma.terms.count({ where }),
   ]);

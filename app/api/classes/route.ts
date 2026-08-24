@@ -60,7 +60,7 @@ export const GET = createRouteHandler(null, async (request) => {
  *   post:
  *     tags: [Classes]
  *     summary: Create class
- *     description: Create a class and link it to an academic year. Either provide an existing academic_year_id, or provide name, startDate, and endDate to create a new academic year inline.
+ *     description: Create a class and link it to an academic year. Either provide an existing academicYearId, or provide yearName, startDate, and endDate to create a new academic year inline.
  *     security:
  *       - BearerAuth: []
  *     requestBody:
@@ -70,8 +70,8 @@ export const GET = createRouteHandler(null, async (request) => {
  *           schema:
  *             $ref: '#/components/schemas/CreateClassRequest'
  *           example:
- *             class_name: "First Grade"
- *             academic_year_id: "123e4567-e89b-12d3-a456-426614174000"
+ *             className: "First Grade"
+ *             academicYearId: "123e4567-e89b-12d3-a456-426614174000"
  *           
  *            
  *             

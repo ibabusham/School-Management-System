@@ -8,7 +8,7 @@ function validDate(message: string) {
 
 export const createTermSchema = z
   .object({
-    name: z.string().trim().min(1, "Name is required"),
+    termName: z.string().trim().min(1, "Name is required"),
     startDate: validDate("Valid start date is required"),
     endDate: validDate("Valid end date is required"),
     yearId: z.string().uuid("Academic year id must be a valid UUID"),
@@ -20,7 +20,7 @@ export const createTermSchema = z
 
 export const updateTermSchema = z
   .object({
-    name: z.string().trim().min(1, "Name is required").optional(),
+    termName: z.string().trim().min(1, "Name is required").optional(),
     startDate: validDate("Valid start date is required").optional(),
     endDate: validDate("Valid end date is required").optional(),
     yearId: z.string().uuid("Academic year id must be a valid UUID").optional(),

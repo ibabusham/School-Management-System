@@ -29,7 +29,7 @@ import { handleError } from "@/app/utils/errors.utility";
  *             $ref: '#/components/schemas/BulkMarkExamRequest'
  *           example:
  *             marks:
- *               - student_id: "00000000-0000-4000-8000-000000000002"
+ *               - studentId: "00000000-0000-4000-8000-000000000002"
  *                 score: 85
  *     responses:
  *       200:

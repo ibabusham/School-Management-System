@@ -67,7 +67,7 @@ export async function login(username: string, password: string) {
     throw new AppError("Invalid username or password", 401);
   }
 
-  if (!user.account_status) {
+  if (!user.accountStatus) {
     throw new AppError("User is not active", 401);
   }
 
@@ -91,7 +91,7 @@ export async function refresh(refreshToken: string) {
   const payload = await verifyTokenOrThrow(refreshToken, "REFRESH");
   const user = await findUserById(payload.sub);
 
-  if (!user.account_status) {
+  if (!user.accountStatus) {
     throw new AppError("User is not active", 401);
   }
 
@@ -115,7 +115,7 @@ export async function findUserByUsername(username: string) {
 
 export async function findUserByEmail(email: string) {
   const student = await prisma.student.findFirst({
-    where: { email, account_status: true },
+    where: { email, accountStatus: true },
     select: { id: true },
   });
 
@@ -124,7 +124,7 @@ export async function findUserByEmail(email: string) {
   }
 
   const teacher = await prisma.teacher.findFirst({
-    where: { email, account_status: true },
+    where: { email, accountStatus: true },
     select: { id: true },
   });
 

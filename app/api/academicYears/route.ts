@@ -88,7 +88,7 @@ export const GET = createRouteHandler(null, async (request) => {
  *           schema:
  *             $ref: '#/components/schemas/CreateAcademicYearRequest'
  *           example:
- *             name: "2025-2026"
+ *             yearName: "2025-2026"
  *             startDate: "2025-09-01"
  *             endDate: "2026-06-30"
  *     responses:

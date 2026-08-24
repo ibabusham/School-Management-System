@@ -15,7 +15,7 @@ import { handleError } from "@/app/utils/errors.utility";
  *       - BearerAuth: []
  *     parameters:
  *       - in: query
- *         name: subject_id
+ *         name: subjectId
  *         schema:
  *           type: string
  *           format: uuid
@@ -56,7 +56,7 @@ export const GET = createRouteHandler(null, async (request) => {
     const parsed = examListQuerySchema.safeParse({
       page: queryParams.get("page") ?? undefined,
       limit: queryParams.get("limit") ?? undefined,
-      subject_id: queryParams.get("subject_id") ?? undefined,
+      subjectId: queryParams.get("subjectId") ?? undefined,
     });
 
     if (!parsed.success) {
@@ -86,10 +86,10 @@ export const GET = createRouteHandler(null, async (request) => {
  *           schema:
  *             $ref: '#/components/schemas/CreateExamRequest'
  *           example:
- *             exam_name: "Midterm Mathematics"
- *             exam_date: "2025-11-15"
- *             subject_id: "00000000-0000-4000-8000-000000000001"
- *             maximum_grade: 100
+ *             examName: "Midterm Mathematics"
+ *             examDate: "2025-11-15"
+ *             subjectId: "00000000-0000-4000-8000-000000000001"
+ *             maximumGrade: 100
  *     responses:
  *       201:
  *         description: Exam created

@@ -8,29 +8,29 @@ function validDate(message: string) {
 
 export const createClassSchema = z
   .object({
-    class_name: z.string().trim().min(1, "Class name is required"),
-    academic_year_id: z.string().uuid("Academic year id must be a valid UUID").optional(),
-    name: z.string().trim().min(1, "Academic year name is required").optional(),
+    className: z.string().trim().min(1, "Class name is required"),
+    academicYearId: z.string().uuid("Academic year id must be a valid UUID").optional(),
+    yearName: z.string().trim().min(1, "Academic year name is required").optional(),
     startDate: validDate("Valid start date is required").optional(),
     endDate: validDate("Valid end date is required").optional(),
   })
   .refine(
     (data) =>
-      Boolean(data.academic_year_id) ||
-      Boolean(data.name && data.startDate && data.endDate),
+      Boolean(data.academicYearId) ||
+      Boolean(data.yearName && data.startDate && data.endDate),
     {
-      error: "Provide academic_year_id or name with startDate and endDate",
+      error: "Provide academicYearId or yearName with startDate and endDate",
     }
   )
   .refine(
     (data) => {
-      const hasId = Boolean(data.academic_year_id);
-      const hasInline = Boolean(data.name || data.startDate || data.endDate);
+      const hasId = Boolean(data.academicYearId);
+      const hasInline = Boolean(data.yearName || data.startDate || data.endDate);
       return !(hasId && hasInline);
     },
     {
       error:
-        "Use either academic_year_id or inline academic year fields (name, startDate, endDate), not both",
+        "Use either academicYearId or inline academic year fields (yearName, startDate, endDate), not both",
     }
   )
   .refine(
@@ -45,8 +45,8 @@ export const createClassSchema = z
   );
 
 export const updateClassSchema = z.object({
-  class_name: z.string().trim().min(1, "Class name is required").optional(),
-  academic_year_id: z.string().uuid("Academic year id must be a valid UUID").optional(),
+  className: z.string().trim().min(1, "Class name is required").optional(),
+  academicYearId: z.string().uuid("Academic year id must be a valid UUID").optional(),
 });
 
 export const getClassListQuerySchema = z.object({

@@ -85,7 +85,7 @@ export const GET = createRouteHandler(null, async (request) => {
  *           schema:
  *             $ref: '#/components/schemas/CreateTermRequest'
  *           example:
- *             name: "Fall Semester"
+ *             termName: "Fall Semester"
  *             startDate: "2025-09-01"
  *             endDate: "2025-12-15"
  *             yearId: "d898f209-7413-479d-84e4-724fd8f46b0a"

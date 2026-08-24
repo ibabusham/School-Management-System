@@ -26,7 +26,7 @@ const studentInclude = {
       name: true,
       username: true,
       role: true,
-      account_status: true,
+      accountStatus: true,
       createdAt: true,
     },
   },
@@ -59,26 +59,26 @@ async function findExamById(id: string) {
 }
 
 function mapUpdateData(data: UpdateExamInput) {
-  const { exam_name, exam_date, subject_id, maximum_grade } = data;
+  const { examName, examDate, subjectId, maximumGrade } = data;
 
   return {
-    ...(exam_name !== undefined && { exam_name }),
-    ...(exam_date !== undefined && { exam_date }),
-    ...(subject_id !== undefined && { subjectId: subject_id }),
-    ...(maximum_grade !== undefined && { Maximum_grade: maximum_grade }),
+    ...(examName !== undefined && { examName }),
+    ...(examDate !== undefined && { examDate }),
+    ...(subjectId !== undefined && { subjectId }),
+    ...(maximumGrade !== undefined && { maximumGrade }),
   };
 }
 
 export async function createExam(input: CreateExamInput) {
-  await findSubjectById(input.subject_id);
+  await findSubjectById(input.subjectId);
 
   return prisma.exams.create({
     data: {
       id: randomUUID(),
-      exam_name: input.exam_name,
-      exam_date: input.exam_date,
-      subjectId: input.subject_id,
-      Maximum_grade: input.maximum_grade,
+      examName: input.examName,
+      examDate: input.examDate,
+      subjectId: input.subjectId,
+      maximumGrade: input.maximumGrade,
     },
     include: examInclude,
   });
@@ -89,10 +89,10 @@ export async function getExam(id: string) {
 }
 
 export async function getExamList(query: ExamListQuery) {
-  const { page, limit, subject_id } = query;
+  const { page, limit, subjectId } = query;
   const skip = (page - 1) * limit;
   const where = {
-    ...(subject_id && { subjectId: subject_id }),
+    ...(subjectId && { subjectId }),
   };
 
   const [exams, total] = await Promise.all([
@@ -101,7 +101,7 @@ export async function getExamList(query: ExamListQuery) {
       skip,
       take: limit,
       include: examInclude,
-      orderBy: { exam_date: "desc" },
+      orderBy: { examDate: "desc" },
     }),
     prisma.exams.count({ where }),
   ]);
@@ -129,8 +129,8 @@ export async function deleteExam(id: string) {
 export async function updateExam(id: string, input: UpdateExamInput) {
   await findExamById(id);
 
-  if (input.subject_id) {
-    await findSubjectById(input.subject_id);
+  if (input.subjectId) {
+    await findSubjectById(input.subjectId);
   }
 
   return prisma.exams.update({
@@ -146,7 +146,7 @@ async function assertStudentEligibleForExam(examId: string, studentId: string) {
   const student = await prisma.student.findFirst({
     where: {
       id: studentId,
-      account_status: true,
+      accountStatus: true,
       classId: exam.subject.classId,
     },
   });
@@ -162,28 +162,28 @@ export async function markExam(examId: string, input: BulkMarkExamInput) {
   const exam = await findExamById(examId);
 
   for (const mark of input.marks) {
-    if (mark.score > exam.Maximum_grade) {
+    if (mark.score > exam.maximumGrade) {
       throw new AppError(
-        `Score for student ${mark.student_id} cannot exceed maximum grade of ${exam.Maximum_grade}`,
+        `Score for student ${mark.studentId} cannot exceed maximum grade of ${exam.maximumGrade}`,
         400
       );
     }
-    await assertStudentEligibleForExam(examId, mark.student_id);
+    await assertStudentEligibleForExam(examId, mark.studentId);
   }
 
   const submissions = await prisma.$transaction(
     input.marks.map((mark) =>
-      prisma.exam_submissions.upsert({
+      prisma.examSubmissions.upsert({
         where: {
           examId_studentId: {
             examId,
-            studentId: mark.student_id,
+            studentId: mark.studentId,
           },
         },
         create: {
           id: randomUUID(),
           examId,
-          studentId: mark.student_id,
+          studentId: mark.studentId,
           score: mark.score,
         },
         update: {
@@ -207,7 +207,7 @@ export async function getTakenSubmissions(examId: string, query: SubmissionListQ
   const where = { examId };
 
   const [submissions, total] = await Promise.all([
-    prisma.exam_submissions.findMany({
+    prisma.examSubmissions.findMany({
       where,
       skip,
       take: limit,
@@ -216,7 +216,7 @@ export async function getTakenSubmissions(examId: string, query: SubmissionListQ
       },
       orderBy: { takenAt: "desc" },
     }),
-    prisma.exam_submissions.count({ where }),
+    prisma.examSubmissions.count({ where }),
   ]);
 
   return {
@@ -239,7 +239,7 @@ export async function getMissingSubmissions(examId: string, query: SubmissionLis
 
   const where = {
     classId,
-    account_status: true,
+    accountStatus: true,
     examSubmissions: {
       none: { examId },
     },
@@ -251,7 +251,7 @@ export async function getMissingSubmissions(examId: string, query: SubmissionLis
       skip,
       take: limit,
       include: studentInclude,
-      orderBy: { last_name: "asc" },
+      orderBy: { lastName: "asc" },
     }),
     prisma.student.count({ where }),
   ]);

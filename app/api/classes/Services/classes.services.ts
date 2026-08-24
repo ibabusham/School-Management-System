@@ -22,7 +22,7 @@ async function findClassById(id: string) {
 }
 
 async function findAcademicYearById(id: string) {
-  const academicYear = await prisma.academic_Years.findUnique({
+  const academicYear = await prisma.academicYears.findUnique({
     where: { id },
   });
 
@@ -40,7 +40,7 @@ const studentInclude = {
       name: true,
       username: true,
       role: true,
-      account_status: true,
+      accountStatus: true,
       createdAt: true,
     },
   },
@@ -53,7 +53,7 @@ export async function assignStudentsToClass(classId: string, studentIds: string[
   const students = await prisma.student.findMany({
     where: {
       id: { in: uniqueStudentIds },
-      account_status: true,
+      accountStatus: true,
     },
   });
 
@@ -86,7 +86,7 @@ export async function unassignStudentFromClass(classId: string, studentId: strin
     where: {
       id: studentId,
       classId,
-      account_status: true,
+      accountStatus: true,
     },
   });
 
@@ -106,16 +106,16 @@ export async function unassignStudentFromClass(classId: string, studentId: strin
 export async function createClass(data: CreateClassInput) {
   let yearId: string;
 
-  if (data.academic_year_id) {
-    await findAcademicYearById(data.academic_year_id);
-    yearId = data.academic_year_id;
+  if (data.academicYearId) {
+    await findAcademicYearById(data.academicYearId);
+    yearId = data.academicYearId;
   } else {
-    const academicYear = await prisma.academic_Years.create({
+    const academicYear = await prisma.academicYears.create({
       data: {
         id: randomUUID(),
-        year_name: data.name!,
-        Start_date: data.startDate!,
-        end_date: data.endDate!,
+        yearName: data.yearName!,
+        startDate: data.startDate!,
+        endDate: data.endDate!,
         status: "ACTIVE",
       },
     });
@@ -125,7 +125,7 @@ export async function createClass(data: CreateClassInput) {
   return prisma.classes.create({
     data: {
       id: randomUUID(),
-      class_name: data.class_name,
+      className: data.className,
       academicYears: {
         create: {
           year: {
@@ -141,17 +141,17 @@ export async function createClass(data: CreateClassInput) {
 export async function updateClass(classId: string, data: UpdateClassInput) {
   await findClassById(classId);
 
-  if (data.academic_year_id) {
-    await findAcademicYearById(data.academic_year_id);
+  if (data.academicYearId) {
+    await findAcademicYearById(data.academicYearId);
   }
 
   return prisma.$transaction(async (tx) => {
-    if (data.academic_year_id) {
-      await tx.class_Academic_year.deleteMany({ where: { classId } });
-      await tx.class_Academic_year.create({
+    if (data.academicYearId) {
+      await tx.classAcademicYear.deleteMany({ where: { classId } });
+      await tx.classAcademicYear.create({
         data: {
           classId,
-          yearId: data.academic_year_id,
+          yearId: data.academicYearId,
         },
       });
     }
@@ -159,7 +159,7 @@ export async function updateClass(classId: string, data: UpdateClassInput) {
     return tx.classes.update({
       where: { id: classId },
       data: {
-        ...(data.class_name && { class_name: data.class_name }),
+        ...(data.className && { className: data.className }),
       },
       include: classInclude,
     });
@@ -196,7 +196,7 @@ export async function getClassList(data: GetClassListQueryInput) {
       skip,
       take: limit,
       include: classInclude,
-      orderBy: { class_name: "asc" },
+      orderBy: { className: "asc" },
     }),
     prisma.classes.count(),
   ]);
@@ -211,10 +211,11 @@ export async function getClassList(data: GetClassListQueryInput) {
     },
   };
 }
+
 export async function getClassPerformance(classId: string) {
   await findClassById(classId);
 
-  const performance = await prisma.classes_performence.findUnique({
+  const performance = await prisma.classesPerformence.findUnique({
     where: { classId },
   });
 

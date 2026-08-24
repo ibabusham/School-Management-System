@@ -85,11 +85,11 @@ export const GET = createRouteHandler(null, async (request) => {
  *           schema:
  *             $ref: '#/components/schemas/CreateSubjectRequest'
  *           example:
- *             subject_name: "Mathematics"
- *             subject_code: "MATH-101"
- *             subject_description: "Introductory mathematics"
- *             class_id: "00000000-0000-4000-8000-000000000001"
- *             teacher_id: "00000000-0000-4000-8000-000000000002"
+ *             subjectName: "Mathematics"
+ *             subjectCode: "MATH-101"
+ *             description: "Introductory mathematics"
+ *             classId: "00000000-0000-4000-8000-000000000001"
+ *             teacherId: "00000000-0000-4000-8000-000000000002"
  *     responses:
  *       201:
  *         description: Subject created
