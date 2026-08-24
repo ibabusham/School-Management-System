@@ -173,7 +173,7 @@ exports.Prisma.SubjectsScalarFieldEnum = {
   id: 'id',
   subjectName: 'subjectName',
   subjectCode: 'subjectCode',
-  Description: 'Description',
+  description: 'description',
   classId: 'classId',
   teacherId: 'teacherId'
 };
@@ -181,7 +181,7 @@ exports.Prisma.SubjectsScalarFieldEnum = {
 exports.Prisma.AcademicYearsScalarFieldEnum = {
   id: 'id',
   yearName: 'yearName',
-  StartDate: 'StartDate',
+  startDate: 'startDate',
   endDate: 'endDate',
   status: 'status'
 };
@@ -189,7 +189,7 @@ exports.Prisma.AcademicYearsScalarFieldEnum = {
 exports.Prisma.TermsScalarFieldEnum = {
   id: 'id',
   termName: 'termName',
-  StartDate: 'StartDate',
+  startDate: 'startDate',
   endDate: 'endDate',
   yearId: 'yearId'
 };
@@ -206,7 +206,7 @@ exports.Prisma.AssignmentsScalarFieldEnum = {
   dueDate: 'dueDate',
   maximumGrade: 'maximumGrade',
   attachment: 'attachment',
-  SubmissionInstructions: 'SubmissionInstructions',
+  submissionInstructions: 'submissionInstructions',
   subjectId: 'subjectId'
 };
 
@@ -217,7 +217,7 @@ exports.Prisma.LessonsScalarFieldEnum = {
   lessonDate: 'lessonDate',
   learningObjectinve: 'learningObjectinve',
   learningMaterial: 'learningMaterial',
-  CompletionStatus: 'CompletionStatus',
+  completionStatus: 'completionStatus',
   subjectId: 'subjectId'
 };
 
@@ -225,7 +225,7 @@ exports.Prisma.ExamsScalarFieldEnum = {
   id: 'id',
   examName: 'examName',
   examDate: 'examDate',
-  MaximumGrade: 'MaximumGrade',
+  maximumGrade: 'maximumGrade',
   subjectId: 'subjectId'
 };
 
@@ -241,7 +241,7 @@ exports.Prisma.ProgressNotesScalarFieldEnum = {
   id: 'id',
   noteDate: 'noteDate',
   noteObservation: 'noteObservation',
-  Strengths: 'Strengths',
+  strengths: 'strengths',
   areasForImprovement: 'areasForImprovement',
   teacherId: 'teacherId',
   learningProgressId: 'learningProgressId'

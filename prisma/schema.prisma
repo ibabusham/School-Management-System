@@ -99,7 +99,7 @@ model Subjects {
   id           String @id
   subjectName String
   subjectCode String
-  Description  String
+  description  String
   classId      String
   teacherId    String
 
@@ -120,7 +120,7 @@ enum Status {
 model AcademicYears {
   id         String   @id
   yearName  String
-  StartDate DateTime
+  startDate DateTime
   endDate   DateTime
   status     Status
 
@@ -131,7 +131,7 @@ model AcademicYears {
 model Terms {
   id         String   @id
   termName  String
-  StartDate DateTime
+  startDate DateTime
   endDate   DateTime
   yearId     String
 
@@ -155,7 +155,7 @@ model Assignments {
   dueDate                 DateTime
   maximumGrade            Int
   attachment               String
-  SubmissionInstructions  String
+  submissionInstructions  String
   subjectId                String
 
   subject Subjects @relation(fields: [subjectId], references: [id], onDelete: Cascade)
@@ -168,7 +168,7 @@ model Lessons {
   lessonDate         DateTime
   learningObjectinve String
   learningMaterial   String
-  CompletionStatus   iscompleate
+  completionStatus   iscompleate
   subjectId           String
 
   subject Subjects @relation(fields: [subjectId], references: [id], onDelete: Cascade)
@@ -183,7 +183,7 @@ model Exams {
   id            String   @id
   examName     String
   examDate     DateTime
-  MaximumGrade Int
+  maximumGrade Int
   subjectId     String
 
   subject Subjects @relation(fields: [subjectId], references: [id], onDelete: Cascade)
@@ -205,7 +205,7 @@ model ProgressNotes {
   id                    String   @id
   noteDate             DateTime
   noteObservation      String
-  Strengths             String
+  strengths             String
   areasForImprovement String
   teacherId             String
   learningProgressId    String
@@ -252,3 +252,4 @@ model ExamSubmissions {
 
   @@unique([examId, studentId])
 }
+
