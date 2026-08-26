@@ -3,6 +3,10 @@ import { NextResponse } from "next/server";
 import { deleteTerm, getTerm, updateTerm } from "../services/terms.services";
 import { handleError } from "@/app/utils/errors.utility";
 import { updateTermSchema } from "../schemas";
+import {
+  TERM_DELETED_MESSAGE,
+  TERM_UPDATED_MESSAGE,
+} from "@/app/api/shared/operation-messages";
 
 /**
  * @swagger
@@ -73,7 +77,7 @@ export const GET = createRouteHandler(null, async (_request, _body, context) => 
  *           schema:
  *             $ref: '#/components/schemas/UpdateTermRequest'
  *           example:
- *             name: "Spring Semester"
+ *             termName: "Spring Semester"
  *             startDate: "2026-01-10"
  *             endDate: "2026-05-30"
  *     responses:
@@ -82,7 +86,7 @@ export const GET = createRouteHandler(null, async (_request, _body, context) => 
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/TermResponse'
+ *               $ref: '#/components/schemas/UpdateTermResponse'
  *       400:
  *         description: Validation error
  *         content:
@@ -106,7 +110,10 @@ export const PATCH = createRouteHandler(updateTermSchema, async (_request, body,
   try {
     const { id } = await context.params;
     const term = await updateTerm(id, body);
-    return NextResponse.json({ term });
+    return NextResponse.json({
+      message: TERM_UPDATED_MESSAGE,
+      term,
+    });
   } catch (error) {
     return handleError(error);
   }
@@ -134,7 +141,7 @@ export const PATCH = createRouteHandler(updateTermSchema, async (_request, body,
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/TermResponse'
+ *               $ref: '#/components/schemas/DeleteTermResponse'
  *       401:
  *         description: Unauthorized
  *         content:
@@ -152,7 +159,10 @@ export const DELETE = createRouteHandler(null, async (_request, _body, context) 
   try {
     const { id } = await context.params;
     const term = await deleteTerm(id);
-    return NextResponse.json({ term });
+    return NextResponse.json({
+      message: TERM_DELETED_MESSAGE,
+      term,
+    });
   } catch (error) {
     return handleError(error);
   }

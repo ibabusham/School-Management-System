@@ -196,7 +196,7 @@ export async function markExam(examId: string, input: BulkMarkExamInput) {
     )
   );
 
-  return { submissions, markedCount: submissions.length };
+  return { submissions };
 }
 
 export async function getTakenSubmissions(examId: string, query: SubmissionListQuery) {

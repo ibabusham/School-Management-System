@@ -5,6 +5,7 @@ import {
   getAcademicYearSchema,
 } from "./schemas";
 import { createAcademicYear, findAcademicYear } from "./services/academicyear.services";
+import { ACADEMIC_YEAR_CREATED_MESSAGE } from "@/app/api/shared/operation-messages";
 import { handleError } from "@/app/utils/errors.utility";
 import { NextResponse } from "next/server";
 
@@ -97,7 +98,7 @@ export const GET = createRouteHandler(null, async (request) => {
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/AcademicYear'
+ *               $ref: '#/components/schemas/CreateAcademicYearResponse'
  *       400:
  *         description: Validation error or an active academic year already exists
  *         content:
@@ -116,7 +117,13 @@ export const POST = createRouteHandler(
   async (request, body: CreateAcademicYear) => {
     try {
       const academicYear = await createAcademicYear(body);
-      return NextResponse.json(academicYear, { status: 201 });
+      return NextResponse.json(
+        {
+          message: ACADEMIC_YEAR_CREATED_MESSAGE,
+          data: academicYear,
+        },
+        { status: 201 }
+      );
     } catch (error) {
       return handleError(error);
     }

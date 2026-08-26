@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { getMissingSubmissions } from "../../../services/exams.services";
 import { submissionListQuerySchema } from "../../../schemas";
 import { handleError } from "@/app/utils/errors.utility";
+import { toStudentSummary } from "@/app/api/students/responses";
 
 /**
  * @swagger
@@ -71,7 +72,10 @@ export const GET = createRouteHandler(null, async (request, _body, context) => {
     }
 
     const result = await getMissingSubmissions(id, parsed.data);
-    return NextResponse.json(result);
+    return NextResponse.json({
+      data: result.data.map(toStudentSummary),
+      pagination: result.pagination,
+    });
   } catch (error) {
     return handleError(error);
   }

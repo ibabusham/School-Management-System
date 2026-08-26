@@ -1,6 +1,11 @@
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 import { NextResponse } from "next/server";
 import { markExam } from "../../services/exams.services";
+import {
+  buildMarkPagination,
+  EXAM_MARKED_MESSAGE,
+  toMarkSubmissionSummary,
+} from "../../responses";
 import { bulkMarkExamSchema } from "../../schemas";
 import { handleError } from "@/app/utils/errors.utility";
 
@@ -63,7 +68,12 @@ export const POST = createRouteHandler(
     try {
       const { id } = await context.params;
       const result = await markExam(id, body);
-      return NextResponse.json(result);
+      const data = result.submissions.map(toMarkSubmissionSummary);
+      return NextResponse.json({
+        message: EXAM_MARKED_MESSAGE,
+        data,
+        pagination: buildMarkPagination(data.length),
+      });
     } catch (error) {
       return handleError(error);
     }

@@ -8,6 +8,10 @@ import {
   updateAcademicYear,
 } from "../services/academicyear.services";
 import { handleError } from "@/app/utils/errors.utility";
+import {
+  ACADEMIC_YEAR_DELETED_MESSAGE,
+  ACADEMIC_YEAR_UPDATED_MESSAGE,
+} from "@/app/api/shared/operation-messages";
 
 /**
  * @swagger
@@ -78,7 +82,7 @@ export const GET = createRouteHandler(null, async (_request, _body, context) => 
  *           schema:
  *             $ref: '#/components/schemas/UpdateAcademicYearRequest'
  *           example:
- *             name: "2025-2026 Updated"
+ *             yearName: "2025-2026 Updated"
  *             startDate: "2025-09-01"
  *             endDate: "2026-06-30"
  *     responses:
@@ -87,7 +91,7 @@ export const GET = createRouteHandler(null, async (_request, _body, context) => 
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/AcademicYearResponse'
+ *               $ref: '#/components/schemas/UpdateAcademicYearResponse'
  *       400:
  *         description: Validation error or another active academic year already exists
  *         content:
@@ -113,7 +117,10 @@ export const PATCH = createRouteHandler(
     try {
       const { id } = await context.params;
       const academicYear = await updateAcademicYear(id, body);
-      return NextResponse.json({ data: academicYear });
+      return NextResponse.json({
+        message: ACADEMIC_YEAR_UPDATED_MESSAGE,
+        data: academicYear,
+      });
     } catch (error) {
       return handleError(error);
     }
@@ -142,7 +149,7 @@ export const PATCH = createRouteHandler(
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/AcademicYearResponse'
+ *               $ref: '#/components/schemas/DeleteAcademicYearResponse'
  *       401:
  *         description: Unauthorized
  *         content:
@@ -160,7 +167,10 @@ export const DELETE = createRouteHandler(null, async (_request, _body, context) 
   try {
     const { id } = await context.params;
     const academicYear = await deleteAcademicYear(id);
-    return NextResponse.json({ data: academicYear });
+    return NextResponse.json({
+      message: ACADEMIC_YEAR_DELETED_MESSAGE,
+      data: academicYear,
+    });
   } catch (error) {
     return handleError(error);
   }

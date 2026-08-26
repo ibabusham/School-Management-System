@@ -1,5 +1,9 @@
 import { createStudentSchema, studentListQuerySchema } from "@/app/api/students/schemas";
 import { createStudent, listStudents } from "@/app/api/students/services/student.service";
+import {
+  ACCOUNT_CREATED_MESSAGE,
+  toStudentSummary,
+} from "@/app/api/students/responses";
 import { NextResponse } from "next/server";
 import { handleError } from "@/app/utils/errors.utility";
 import { createRouteHandler } from "@/app/utils/create-route-handles";
@@ -48,7 +52,10 @@ export const GET = createRouteHandler(null, async (request) => {
       return handleError(parsed.error);
     }
     const result = await listStudents(parsed.data);
-    return NextResponse.json(result);
+    return NextResponse.json({
+      data: result.data.map(toStudentSummary),
+      pagination: result.pagination,
+    });
   } catch (error) {
     return handleError(error);
   }
@@ -84,7 +91,7 @@ export const GET = createRouteHandler(null, async (request) => {
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/StudentResponse'
+ *               $ref: '#/components/schemas/CreateStudentResponse'
  *       400:
  *         description: Validation error or duplicate studentId
  *         content:
@@ -101,7 +108,13 @@ export const GET = createRouteHandler(null, async (request) => {
 export const POST = createRouteHandler(createStudentSchema, async (request, body) => {
   try {
     const student = await createStudent(body);
-    return NextResponse.json({ student }, { status: 201 });
+    return NextResponse.json(
+      {
+        message: ACCOUNT_CREATED_MESSAGE,
+        student: toStudentSummary(student),
+      },
+      { status: 201 }
+    );
   } catch (error) {
     return handleError(error);
   }

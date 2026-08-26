@@ -47,7 +47,7 @@ const studentInclude = {
 } as const;
 
 export async function assignStudentsToClass(classId: string, studentIds: string[]) {
-  await findClassById(classId);
+  const classRecord = await findClassById(classId);
 
   const uniqueStudentIds = [...new Set(studentIds)];
   const students = await prisma.student.findMany({
@@ -74,6 +74,8 @@ export async function assignStudentsToClass(classId: string, studentIds: string[
   });
 
   return {
+    classId,
+    className: classRecord.className,
     students: updatedStudents,
     assignedCount: updatedStudents.length,
   };

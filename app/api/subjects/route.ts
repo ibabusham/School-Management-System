@@ -2,6 +2,10 @@ import { createRouteHandler } from "@/app/utils/create-route-handles";
 import { createSubject, getSubjectList } from "./Services/subjects.services";
 import { NextResponse } from "next/server";
 import { createSubjectSchema, subjectListQuerySchema } from "./schemas";
+import {
+  SUBJECT_CREATED_MESSAGE,
+  toSubjectSummary,
+} from "./responses";
 import { handleError } from "@/app/utils/errors.utility";
 
 /**
@@ -63,7 +67,10 @@ export const GET = createRouteHandler(null, async (request) => {
     }
 
     const result = await getSubjectList(parsed.data);
-    return NextResponse.json(result);
+    return NextResponse.json({
+      data: result.data.map(toSubjectSummary),
+      pagination: result.pagination,
+    });
   } catch (error) {
     return handleError(error);
   }
@@ -96,7 +103,7 @@ export const GET = createRouteHandler(null, async (request) => {
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/SubjectResponse'
+ *               $ref: '#/components/schemas/CreateSubjectResponse'
  *       400:
  *         description: Validation error
  *         content:
@@ -119,7 +126,13 @@ export const GET = createRouteHandler(null, async (request) => {
 export const POST = createRouteHandler(createSubjectSchema, async (_request, body) => {
   try {
     const subject = await createSubject(body);
-    return NextResponse.json({ subject }, { status: 201 });
+    return NextResponse.json(
+      {
+        message: SUBJECT_CREATED_MESSAGE,
+        subject: toSubjectSummary(subject),
+      },
+      { status: 201 }
+    );
   } catch (error) {
     return handleError(error);
   }

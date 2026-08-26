@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { unassignStudentFromClass } from "../../../Services/classes.services";
+import { STUDENT_UNASSIGNED_MESSAGE } from "../../../responses";
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 import { handleError } from "@/app/utils/errors.utility";
 
@@ -31,7 +32,7 @@ import { handleError } from "@/app/utils/errors.utility";
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/StudentResponse'
+ *               $ref: '#/components/schemas/UnassignStudentResponse'
  *       401:
  *         description: Unauthorized
  *         content:
@@ -49,7 +50,10 @@ export const DELETE = createRouteHandler(null, async (request, body, context) =>
   try {
     const { id, studentId } = await context.params;
     const result = await unassignStudentFromClass(id, studentId);
-    return NextResponse.json(result);
+    return NextResponse.json({
+      message: STUDENT_UNASSIGNED_MESSAGE,
+      ...result,
+    });
   } catch (error) {
     return handleError(error);
   }

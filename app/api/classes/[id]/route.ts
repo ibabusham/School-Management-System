@@ -1,5 +1,6 @@
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 import { deleteClass, getClassById, updateClass } from "../Services/classes.services";
+import { CLASS_DELETED_MESSAGE } from "../responses";
 import { updateClassSchema } from "../schemas";
 import { NextResponse } from "next/server";
 import { handleError } from "@/app/utils/errors.utility";
@@ -127,7 +128,7 @@ export const PATCH = createRouteHandler(updateClassSchema, async (_request, body
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/ClassResponse'
+ *               $ref: '#/components/schemas/DeleteClassResponse'
  *       401:
  *         description: Unauthorized
  *         content:
@@ -145,7 +146,10 @@ export const DELETE = createRouteHandler(null, async (_request, _body, context) 
   try {
     const { id } = await context.params;
     const classData = await deleteClass(id);
-    return NextResponse.json({ classData });
+    return NextResponse.json({
+      message: CLASS_DELETED_MESSAGE,
+      classData,
+    });
   } catch (error) {
     return handleError(error);
   }

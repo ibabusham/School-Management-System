@@ -3,6 +3,7 @@ import { deleteTeacher } from "@/app/api/teachers/services/teacher.service";
 import { getTeacherById } from "@/app/api/teachers/services/teacher.service";
 import { updateTeacher } from "@/app/api/teachers/services/teacher.service";
 import { updateTeacherSchema } from "@/app/api/teachers/schemas";
+import { ACCOUNT_DELETED_MESSAGE } from "@/app/api/teachers/responses";
 import { handleError } from "@/app/utils/errors.utility";
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 
@@ -129,7 +130,7 @@ export const PATCH = createRouteHandler(updateTeacherSchema, async (request, bod
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/TeacherResponse'
+ *               $ref: '#/components/schemas/DeleteTeacherResponse'
  *       401:
  *         description: Unauthorized
  *         content:
@@ -147,7 +148,10 @@ export const DELETE = createRouteHandler(null, async (request, body, context) =>
   try {
     const { id } = await context.params;
     const teacher = await deleteTeacher(id);
-    return NextResponse.json({ teacher });
+    return NextResponse.json({
+      message: ACCOUNT_DELETED_MESSAGE,
+      teacher,
+    });
   } catch (error) {
     return handleError(error);
   }

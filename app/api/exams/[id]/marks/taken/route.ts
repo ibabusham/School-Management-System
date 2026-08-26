@@ -1,6 +1,7 @@
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 import { NextResponse } from "next/server";
 import { getTakenSubmissions } from "../../../services/exams.services";
+import { toTakenSubmissionSummary } from "../../../responses";
 import { submissionListQuerySchema } from "../../../schemas";
 import { handleError } from "@/app/utils/errors.utility";
 
@@ -71,7 +72,10 @@ export const GET = createRouteHandler(null, async (request, _body, context) => {
     }
 
     const result = await getTakenSubmissions(id, parsed.data);
-    return NextResponse.json(result);
+    return NextResponse.json({
+      data: result.data.map(toTakenSubmissionSummary),
+      pagination: result.pagination,
+    });
   } catch (error) {
     return handleError(error);
   }

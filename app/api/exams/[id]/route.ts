@@ -1,6 +1,10 @@
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 import { NextResponse } from "next/server";
 import { deleteExam, getExam, updateExam } from "../services/exams.services";
+import {
+  EXAM_DELETED_MESSAGE,
+  EXAM_UPDATED_MESSAGE,
+} from "../responses";
 import { updateExamSchema } from "../schemas";
 import { handleError } from "@/app/utils/errors.utility";
 
@@ -78,7 +82,7 @@ export const GET = createRouteHandler(null, async (_request, _body, context) => 
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/ExamResponse'
+ *               $ref: '#/components/schemas/UpdateExamResponse'
  *       400:
  *         description: Validation error
  *         content:
@@ -102,7 +106,10 @@ export const PATCH = createRouteHandler(updateExamSchema, async (_request, body,
   try {
     const { id } = await context.params;
     const exam = await updateExam(id, body);
-    return NextResponse.json({ exam });
+    return NextResponse.json({
+      message: EXAM_UPDATED_MESSAGE,
+      exam,
+    });
   } catch (error) {
     return handleError(error);
   }
@@ -130,7 +137,7 @@ export const PATCH = createRouteHandler(updateExamSchema, async (_request, body,
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/ExamResponse'
+ *               $ref: '#/components/schemas/DeleteExamResponse'
  *       401:
  *         description: Unauthorized
  *         content:
@@ -148,7 +155,10 @@ export const DELETE = createRouteHandler(null, async (_request, _body, context) 
   try {
     const { id } = await context.params;
     const exam = await deleteExam(id);
-    return NextResponse.json({ exam });
+    return NextResponse.json({
+      message: EXAM_DELETED_MESSAGE,
+      exam,
+    });
   } catch (error) {
     return handleError(error);
   }

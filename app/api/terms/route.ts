@@ -2,6 +2,7 @@ import { createRouteHandler } from "@/app/utils/create-route-handles";
 import { NextResponse } from "next/server";
 import { createTerm, getTerms } from "./services/terms.services";
 import { createTermSchema, termListQuerySchema } from "./schemas";
+import { TERM_CREATED_MESSAGE } from "@/app/api/shared/operation-messages";
 import { handleError } from "@/app/utils/errors.utility";
 
 /**
@@ -95,7 +96,7 @@ export const GET = createRouteHandler(null, async (request) => {
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/TermResponse'
+ *               $ref: '#/components/schemas/CreateTermResponse'
  *       400:
  *         description:  Validation error or maximum of 2 terms per academic year
  *         content:
@@ -118,7 +119,13 @@ export const GET = createRouteHandler(null, async (request) => {
 export const POST = createRouteHandler(createTermSchema, async (_request, body) => {
   try {
     const term = await createTerm(body);
-    return NextResponse.json({ term }, { status: 201 });
+    return NextResponse.json(
+      {
+        message: TERM_CREATED_MESSAGE,
+        term,
+      },
+      { status: 201 }
+    );
   } catch (error) {
     return handleError(error);
   }

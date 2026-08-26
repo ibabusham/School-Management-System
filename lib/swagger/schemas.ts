@@ -93,6 +93,20 @@ export const learningProgressSchema = z.object({
   learningStatus: z.enum(["ACTIVE", "INACTIVE"]),
 });
 
+export const studentSummarySchema = z.object({
+  id: z.string(),
+  studentId: z.number().int(),
+  firstName: z.string(),
+  lastName: z.string(),
+});
+
+export const teacherSummarySchema = z.object({
+  id: z.string(),
+  employId: z.number().int(),
+  name: z.string(),
+  specilization: z.string(),
+});
+
 export const studentSchema = z.object({
   id: z.string(),
   studentId: z.number().int(),
@@ -124,6 +138,12 @@ export const subjectSchema = z.object({
   teacher: teacherSchema.optional(),
 });
 
+export const subjectSummarySchema = z.object({
+  id: z.string(),
+  subjectName: z.string(),
+  subjectCode: z.string(),
+});
+
 export const termSchema = z.object({
   id: z.string(),
   termName: z.string(),
@@ -140,6 +160,29 @@ export const examSchema = z.object({
   maximumGrade: z.number().int(),
   subjectId: z.string(),
   subject: subjectSchema.optional(),
+});
+
+export const examSummarySchema = z.object({
+  id: z.string(),
+  examName: z.string(),
+  examDate: z.string().datetime().or(z.string()),
+});
+
+export const takenSubmissionSummarySchema = z.object({
+  id: z.string(),
+  studentId: z.string(),
+  examId: z.string(),
+  score: z.number().int().nullable(),
+  takenAt: z.string().datetime().or(z.string()),
+  firstName: z.string(),
+  lastName: z.string(),
+});
+
+export const markSubmissionSummarySchema = z.object({
+  id: z.string(),
+  studentId: z.string(),
+  examId: z.string(),
+  score: z.number().int().nullable(),
 });
 
 export const examSubmissionSchema = z.object({
@@ -179,53 +222,153 @@ export const swaggerComponentSchemas = {
   BulkMarkExamRequest: zodToOpenApiSchema(bulkMarkExamSchema),
   Teacher: zodToOpenApiSchema(teacherSchema),
   Student: zodToOpenApiSchema(studentSchema),
+  StudentSummary: zodToOpenApiSchema(studentSummarySchema),
+  TeacherSummary: zodToOpenApiSchema(teacherSummarySchema),
   Class: zodToOpenApiSchema(classSchema),
   Subject: zodToOpenApiSchema(subjectSchema),
+  SubjectSummary: zodToOpenApiSchema(subjectSummarySchema),
   Term: zodToOpenApiSchema(termSchema),
   Exam: zodToOpenApiSchema(examSchema),
+  ExamSummary: zodToOpenApiSchema(examSummarySchema),
+  TakenSubmissionSummary: zodToOpenApiSchema(takenSubmissionSummarySchema),
+  MarkSubmissionSummary: zodToOpenApiSchema(markSubmissionSummarySchema),
   ExamSubmission: zodToOpenApiSchema(examSubmissionSchema),
   TeacherResponse: zodToOpenApiSchema(z.object({ teacher: teacherSchema })),
   StudentResponse: zodToOpenApiSchema(z.object({ student: studentSchema })),
+  CreateStudentResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      student: studentSummarySchema,
+    })
+  ),
+  DeleteStudentResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      student: studentSchema,
+    })
+  ),
+  CreateTeacherResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      teacher: teacherSummarySchema,
+    })
+  ),
+  DeleteTeacherResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      teacher: teacherSchema,
+    })
+  ),
   ClassResponse: zodToOpenApiSchema(z.object({ classData: classSchema })),
+  DeleteClassResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      classData: classSchema,
+    })
+  ),
   ClassPerformance: zodToOpenApiSchema(classPerformanceSchema),
   ClassPerformanceResponse: zodToOpenApiSchema(
     z.object({ performance: classPerformanceSchema })
   ),
   SubjectResponse: zodToOpenApiSchema(z.object({ subject: subjectSchema })),
+  CreateSubjectResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      subject: subjectSummarySchema,
+    })
+  ),
+  UpdateSubjectResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      subject: subjectSchema,
+    })
+  ),
+  DeleteSubjectResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      subject: subjectSchema,
+    })
+  ),
   TermResponse: zodToOpenApiSchema(z.object({ term: termSchema })),
+  CreateTermResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      term: termSchema,
+    })
+  ),
+  UpdateTermResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      term: termSchema,
+    })
+  ),
+  DeleteTermResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      term: termSchema,
+    })
+  ),
   ExamResponse: zodToOpenApiSchema(z.object({ exam: examSchema })),
+  CreateExamResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      exam: examSummarySchema,
+    })
+  ),
+  UpdateExamResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      exam: examSchema,
+    })
+  ),
+  DeleteExamResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      exam: examSchema,
+    })
+  ),
   MarkExamResponse: zodToOpenApiSchema(
     z.object({
-      submissions: z.array(examSubmissionSchema),
-      markedCount: z.number().int(),
+      message: z.string(),
+      data: z.array(markSubmissionSummarySchema),
+      pagination: paginationSchema,
     })
   ),
   AssignStudentsResponse: zodToOpenApiSchema(
     z.object({
-      students: z.array(studentSchema),
+      message: z.string(),
+      classId: z.string(),
+      className: z.string(),
+      students: z.array(studentSummarySchema),
       assignedCount: z.number().int(),
     })
   ),
+  UnassignStudentResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      student: studentSchema,
+    })
+  ),
   TeacherListResponse: zodToOpenApiSchema(
-    z.object({ data: z.array(teacherSchema), pagination: paginationSchema })
+    z.object({ data: z.array(teacherSummarySchema), pagination: paginationSchema })
   ),
   StudentListResponse: zodToOpenApiSchema(
-    z.object({ data: z.array(studentSchema), pagination: paginationSchema })
+    z.object({ data: z.array(studentSummarySchema), pagination: paginationSchema })
   ),
   ClassListResponse: zodToOpenApiSchema(
     z.object({ data: z.array(classSchema), pagination: paginationSchema })
   ),
   SubjectListResponse: zodToOpenApiSchema(
-    z.object({ data: z.array(subjectSchema), pagination: paginationSchema })
+    z.object({ data: z.array(subjectSummarySchema), pagination: paginationSchema })
   ),
   TermListResponse: zodToOpenApiSchema(
     z.object({ data: z.array(termSchema), pagination: paginationSchema })
   ),
   ExamListResponse: zodToOpenApiSchema(
-    z.object({ data: z.array(examSchema), pagination: paginationSchema })
+    z.object({ data: z.array(examSummarySchema), pagination: paginationSchema })
   ),
   ExamSubmissionListResponse: zodToOpenApiSchema(
-    z.object({ data: z.array(examSubmissionSchema), pagination: paginationSchema })
+    z.object({ data: z.array(takenSubmissionSummarySchema), pagination: paginationSchema })
   ),
   LoginResponse: zodToOpenApiSchema(
     z.object({
@@ -262,6 +405,24 @@ export const swaggerComponentSchemas = {
   CreateAcademicYearRequest: zodToOpenApiSchema(createAcademicYearSchema),
   UpdateAcademicYearRequest: zodToOpenApiSchema(updateAcademicYearSchema),
   AcademicYear: zodToOpenApiSchema(academicYearSchema),
+  CreateAcademicYearResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      data: academicYearSchema,
+    })
+  ),
+  UpdateAcademicYearResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      data: academicYearSchema,
+    })
+  ),
+  DeleteAcademicYearResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      data: academicYearSchema,
+    })
+  ),
   AcademicYearListResponse: zodToOpenApiSchema(
     z.object({ data: z.array(academicYearSchema), pagination: paginationSchema })
   ),

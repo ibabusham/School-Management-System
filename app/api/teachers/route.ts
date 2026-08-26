@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { createTeacher, listTeachers } from "./services/teacher.service";
 import { createTeacherSchema, teacherListQuerySchema } from "@/app/api/teachers/schemas";
+import {
+  ACCOUNT_CREATED_MESSAGE,
+  toTeacherSummary,
+} from "@/app/api/teachers/responses";
 import { handleError } from "@/app/utils/errors.utility";
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 
@@ -48,7 +52,10 @@ export const GET = createRouteHandler(null, async (request) => {
       return handleError(parsed.error);
     }
     const result = await listTeachers(parsed.data);
-    return NextResponse.json(result);
+    return NextResponse.json({
+      data: result.data.map(toTeacherSummary),
+      pagination: result.pagination,
+    });
   } catch (error) {
     return handleError(error);
   }
@@ -82,7 +89,7 @@ export const GET = createRouteHandler(null, async (request) => {
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/TeacherResponse'
+ *               $ref: '#/components/schemas/CreateTeacherResponse'
  *       400:
  *         description: Validation error or duplicate employId
  *         content:
@@ -99,7 +106,13 @@ export const GET = createRouteHandler(null, async (request) => {
 export const POST = createRouteHandler(createTeacherSchema, async (request, body) => {
   try {
     const teacher = await createTeacher(body);
-    return NextResponse.json({ teacher }, { status: 201 });
+    return NextResponse.json(
+      {
+        message: ACCOUNT_CREATED_MESSAGE,
+        teacher: toTeacherSummary(teacher),
+      },
+      { status: 201 }
+    );
   } catch (error) {
     return handleError(error);
   }

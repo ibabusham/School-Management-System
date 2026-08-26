@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { assignStudentsToClass } from "../../Services/classes.services";
 import { assignStudentsSchema } from "../../schemas";
+import {
+  STUDENTS_ASSIGNED_MESSAGE,
+  toAssignedStudentSummary,
+} from "../../responses";
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 import { handleError } from "@/app/utils/errors.utility";
 
@@ -58,7 +62,13 @@ export const POST = createRouteHandler(
     try {
       const { id } = await context.params;
       const result = await assignStudentsToClass(id, body.studentIds);
-      return NextResponse.json(result);
+      return NextResponse.json({
+        message: STUDENTS_ASSIGNED_MESSAGE,
+        classId: result.classId,
+        className: result.className,
+        students: result.students.map(toAssignedStudentSummary),
+        assignedCount: result.assignedCount,
+      });
     } catch (error) {
       return handleError(error);
     }
