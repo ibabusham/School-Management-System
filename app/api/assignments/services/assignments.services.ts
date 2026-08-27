@@ -1,4 +1,3 @@
-import { randomUUID } from "crypto";
 import { prisma } from "@/app/lib/prisma";
 import { AppError } from "@/app/utils/errors.utility";
 import type {
@@ -59,7 +58,6 @@ async function findAssignmentById(id: string) {
 
 function mapCreateData(input: CreateAssignmentInput) {
   return {
-    id: randomUUID(),
     assignmentTitle: input.title,
     assignmentDescription: input.description,
     attachment: input.attachments,
@@ -206,7 +204,6 @@ export async function markAssignment(assignmentId: string, input: BulkMarkAssign
           },
         },
         create: {
-          id: randomUUID(),
           assignmentID: assignmentId,
           studentId: mark.studentId,
           score: mark.score,

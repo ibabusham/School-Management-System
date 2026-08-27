@@ -25941,7 +25941,7 @@ export namespace Prisma {
   }
 
   export type AssignmentSubmissionsCreateInput = {
-    id: string
+    id?: string
     score?: number | null
     takenAt?: Date | string
     assignment: AssignmentsCreateNestedOneWithoutSubmissionsInput
@@ -25949,7 +25949,7 @@ export namespace Prisma {
   }
 
   export type AssignmentSubmissionsUncheckedCreateInput = {
-    id: string
+    id?: string
     assignmentID: string
     studentId: string
     score?: number | null
@@ -25973,7 +25973,7 @@ export namespace Prisma {
   }
 
   export type AssignmentSubmissionsCreateManyInput = {
-    id: string
+    id?: string
     assignmentID: string
     studentId: string
     score?: number | null
@@ -29112,14 +29112,14 @@ export namespace Prisma {
   }
 
   export type AssignmentSubmissionsCreateWithoutStudentInput = {
-    id: string
+    id?: string
     score?: number | null
     takenAt?: Date | string
     assignment: AssignmentsCreateNestedOneWithoutSubmissionsInput
   }
 
   export type AssignmentSubmissionsUncheckedCreateWithoutStudentInput = {
-    id: string
+    id?: string
     assignmentID: string
     score?: number | null
     takenAt?: Date | string
@@ -30101,14 +30101,14 @@ export namespace Prisma {
   }
 
   export type AssignmentSubmissionsCreateWithoutAssignmentInput = {
-    id: string
+    id?: string
     score?: number | null
     takenAt?: Date | string
     student: StudentCreateNestedOneWithoutAssignmentSubmissionsInput
   }
 
   export type AssignmentSubmissionsUncheckedCreateWithoutAssignmentInput = {
-    id: string
+    id?: string
     studentId: string
     score?: number | null
     takenAt?: Date | string
@@ -31208,7 +31208,7 @@ export namespace Prisma {
   }
 
   export type AssignmentSubmissionsCreateManyStudentInput = {
-    id: string
+    id?: string
     assignmentID: string
     score?: number | null
     takenAt?: Date | string
@@ -31587,7 +31587,7 @@ export namespace Prisma {
   }
 
   export type AssignmentSubmissionsCreateManyAssignmentInput = {
-    id: string
+    id?: string
     studentId: string
     score?: number | null
     takenAt?: Date | string

@@ -13,3 +13,4 @@ ALTER TABLE "ProgressNotes" ALTER COLUMN "id" SET DEFAULT gen_random_uuid();
 ALTER TABLE "ClassesPerformence" ALTER COLUMN "id" SET DEFAULT gen_random_uuid();
 ALTER TABLE "Attendences" ALTER COLUMN "id" SET DEFAULT gen_random_uuid();
 ALTER TABLE "ExamSubmissions" ALTER COLUMN "id" SET DEFAULT gen_random_uuid();
+ALTER TABLE "AssignmentSubmissions" ALTER COLUMN "id" SET DEFAULT gen_random_uuid();
