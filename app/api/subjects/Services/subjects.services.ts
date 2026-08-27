@@ -27,7 +27,7 @@ const subjectInclude = {
   },
 } as const;
 
-async function findSubjectById(id: string) {
+export async function findSubjectById(id: string) {
   const subject = await prisma.subjects.findUnique({
     where: { id },
     include: subjectInclude,

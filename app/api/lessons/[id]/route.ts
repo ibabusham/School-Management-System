@@ -1,8 +1,9 @@
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 import { handleError } from "@/app/utils/errors.utility";
 import { NextResponse } from "next/server";
-import { deleteLesson, getLesson, updateLesson } from "../services/lessons.services";
+import { deleteLesson, updateLesson } from "../services/lessons.services";
 import { parseLessonRouteId, updateLessonSchema } from "../schemas";
+import { findLessonById } from "../services/lessons.services";
 import {
   LESSON_DELETED_MESSAGE,
   LESSON_UPDATED_MESSAGE,
@@ -55,7 +56,7 @@ export const GET = createRouteHandler(null, async (_request, _body, context) => 
   try {
     const { id } = await context.params;
     const lessonId = parseLessonRouteId(id);
-    const lesson = await getLesson(lessonId);
+    const lesson = await findLessonById(lessonId);
     return NextResponse.json({ lesson: toLesson(lesson) });
   } catch (error) {
     return handleError(error);

@@ -2,7 +2,8 @@ import { prisma } from "@/app/lib/prisma";
 import { AppError } from "@/app/utils/errors.utility";
 import { CreateLessonInput, LessonListQuery, UpdateLessonInput } from "../schemas";
 import { randomUUID } from "crypto";
-
+import { findSubjectById } from "@/app/api/subjects/Services/subjects.services";
+import { pickDefined } from "@/app/utils/pick-defined";
 
 const lessonInclude = {
     subject: {
@@ -12,19 +13,7 @@ const lessonInclude = {
         },
     },
 } as const;
-
-async function findSubjectById(id: string) {
-    const subject = await prisma.subjects.findUnique({
-        where: { id },
-        include: { class: true },
-    });
-    if (!subject) {
-        throw new AppError("Subject not found", 404);
-    }
-    return subject;
-}
-
-async function findLessonById(id: string) {
+export async function findLessonById(id: string) {
     const lesson = await prisma.lessons.findUnique({
         where: { id },
         include: lessonInclude,
@@ -34,50 +23,25 @@ async function findLessonById(id: string) {
     }
     return lesson;
 }
-
-function mapCreateData(input: CreateLessonInput) {
-    return {
-        id: randomUUID() as string,
-        lessonTitle: input.lessonTitle,
-        lessonDescription: input.lessonDescription,
-        subjectId: input.subjectId,
-        lessonDate: input.lessonDate,
-        learningObjectinve: input.learningObjectinve,
-        learningMaterial: input.learningMaterial,
-        completionStatus: input.completionStatus,
-    };
-}
-
 function mapUpdateData(input: UpdateLessonInput) {
-    const { lessonTitle, 
-        lessonDescription,
-         subjectId, lessonDate, 
-         learningObjectinve, 
-         learningMaterial, 
-         completionStatus } = input;
-    return {
-        ...(lessonTitle !== undefined && { lessonTitle: lessonTitle }),
-        ...(lessonDescription !== undefined && { lessonDescription: lessonDescription }),
-        ...(subjectId !== undefined && { subjectId: subjectId }),
-        ...(lessonDate !== undefined && { lessonDate: lessonDate }),
-        ...(learningObjectinve !== undefined && { learningObjectinve: learningObjectinve }),
-        ...(learningMaterial !== undefined && { learningMaterial: learningMaterial }),
-        ...(completionStatus !== undefined && { completionStatus: completionStatus }),
-    };
+    return pickDefined(input);
 }
-
 export async function createLesson(input: CreateLessonInput) {
     await findSubjectById(input.subjectId);
     return prisma.lessons.create({
-        data: mapCreateData(input),
+        data: {
+            id: randomUUID() as string,
+            lessonTitle: input.lessonTitle,
+            lessonDescription: input.lessonDescription,
+            subjectId: input.subjectId,
+            lessonDate: input.lessonDate,
+            learningObjectinve: input.learningObjectinve,
+            learningMaterial: input.learningMaterial,
+            completionStatus: input.completionStatus,
+        },
         include: lessonInclude,
     });
 }
-
-export async function getLesson(id: string) {
-    return findLessonById(id);
-}
-
 export async function getLessonList(query: LessonListQuery) {
   const { page, limit, subjectId } = query;
   const skip = (page - 1) * limit;
