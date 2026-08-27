@@ -7,12 +7,12 @@ import type {
 } from "@/app/api/teachers/schemas";
 import type { Teacher } from "@/prisma/generated/client";
 import { AppError } from "@/app/utils/errors.utility";
+import { pickDefined } from "@/app/utils/pick-defined";
 
 function toSafeTeacher(teacher: Teacher) {
   const { ...safeTeacher } = teacher;
   return safeTeacher;
 }
-
 export async function createTeacher(data: CreateTeacherInput) {
   const hashedPassword = await hash(data.password, 10);
   const existingUser = await prisma.user.findUnique({ where: { username: data.username } });
@@ -64,30 +64,26 @@ export async function createTeacher(data: CreateTeacherInput) {
 
   return teacher;
 }
-
 export async function updateTeacher(teacherId: string, data: UpdateTeacherInput) {
   await findActiveTeacherById(teacherId);
 
-  return prisma.$transaction(async (tx) => {
-    return tx.teacher.update({
-      where: { id: teacherId },
-      data,
-      include: {
-        user: {
-          select: {
-            id: true,
-            name: true,
-            username: true,
-            role: true,
-            accountStatus: true,
-            createdAt: true,
-          },
-        },
+ return prisma.teacher.update({
+  where: { id: teacherId },
+  data: pickDefined(data),
+  include: {
+    user: {
+      select: {
+        id: true,
+        name: true,
+        username: true,
+        role: true,
+        accountStatus: true,
+        createdAt: true,
       },
-    });
-  });
+    },
+  },
+});
 }
-
 export async function deleteTeacher(teacherId: string) {
   await findActiveTeacherById(teacherId);
 
@@ -125,7 +121,6 @@ export async function deleteTeacher(teacherId: string) {
   });
   return teacher;
 }
-
 export async function listTeachers(query: TeacherListQuery) {
   const { page, limit } = query;
   const skip = (page - 1) * limit;
@@ -163,12 +158,10 @@ export async function listTeachers(query: TeacherListQuery) {
     },
   };
 }
-
 export async function getTeacherById(userId: string) {
   const teacher = await findActiveTeacherById(userId);
   return toSafeTeacher(teacher);
 }
-
 async function findActiveTeacherById(teacherId: string) {
   const teacher = await prisma.teacher.findFirst({
     where: {
@@ -181,5 +174,14 @@ async function findActiveTeacherById(teacherId: string) {
     throw new AppError("Teacher not found", 404);
   }
 
+  return teacher;
+}
+export async function findTeacherById(id: string) {
+  const teacher = await prisma.teacher.findFirst({
+    where: { id, accountStatus: true },
+  });
+  if (!teacher) {
+    throw new AppError("Teacher not found", 404);
+  }
   return teacher;
 }

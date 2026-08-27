@@ -26,3 +26,7 @@ export const ASSIGNMENT_CREATED_MESSAGE = "assignment created successfully";
 export const ASSIGNMENT_UPDATED_MESSAGE = "assignment updated successfully";
 export const ASSIGNMENT_DELETED_MESSAGE = "assignment deleted successfully";
 export const ASSIGNMENT_MARKED_MESSAGE = "assignment marked successfully";
+
+export const LESSON_CREATED_MESSAGE = "lesson created successfully";
+export const LESSON_UPDATED_MESSAGE = "lesson updated successfully";
+export const LESSON_DELETED_MESSAGE = "lesson deleted successfully";

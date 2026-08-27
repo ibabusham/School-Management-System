@@ -1,14 +1,15 @@
 import { prisma } from "@/app/lib/prisma";
 import { AppError } from "@/app/utils/errors.utility";
 import type { CreateClassInput, UpdateClassInput, GetClassListQueryInput } from "../schemas";
-
+import { pickDefined } from "@/app/utils/pick-defined";
+import { findAcademicYearById } from "@/app/api/academicYears/services/academicyear.services";
 const classInclude = {
   academicYears: { include: { year: true } },
   students: true,
   subjects: true,
 } as const;
 
-async function findClassById(id: string) {
+export async function findClassById(id: string) {
   const classRecord = await prisma.classes.findUnique({
     where: { id },
   });
@@ -19,19 +20,6 @@ async function findClassById(id: string) {
 
   return classRecord;
 }
-
-async function findAcademicYearById(id: string) {
-  const academicYear = await prisma.academicYears.findUnique({
-    where: { id },
-  });
-
-  if (!academicYear) {
-    throw new AppError("Academic year not found", 404);
-  }
-
-  return academicYear;
-}
-
 const studentInclude = {
   user: {
     select: {
@@ -44,7 +32,6 @@ const studentInclude = {
     },
   },
 } as const;
-
 export async function assignStudentsToClass(classId: string, studentIds: string[]) {
   const classRecord = await findClassById(classId);
 
@@ -79,7 +66,6 @@ export async function assignStudentsToClass(classId: string, studentIds: string[
     assignedCount: updatedStudents.length,
   };
 }
-
 export async function unassignStudentFromClass(classId: string, studentId: string) {
   await findClassById(classId);
 
@@ -103,7 +89,6 @@ export async function unassignStudentFromClass(classId: string, studentId: strin
 
   return { student: updatedStudent };
 }
-
 export async function createClass(data: CreateClassInput) {
   let yearId: string;
 
@@ -136,35 +121,30 @@ export async function createClass(data: CreateClassInput) {
     include: classInclude,
   });
 }
-
 export async function updateClass(classId: string, data: UpdateClassInput) {
   await findClassById(classId);
 
   if (data.academicYearId) {
     await findAcademicYearById(data.academicYearId);
   }
-
-  return prisma.$transaction(async (tx) => {
-    if (data.academicYearId) {
-      await tx.classAcademicYear.deleteMany({ where: { classId } });
-      await tx.classAcademicYear.create({
-        data: {
-          classId,
-          yearId: data.academicYearId,
-        },
-      });
-    }
-
-    return tx.classes.update({
-      where: { id: classId },
-      data: {
-        ...(data.className && { className: data.className }),
-      },
-      include: classInclude,
+return prisma.$transaction(async (tx) => {
+  if (data.academicYearId) {
+    await tx.classAcademicYear.deleteMany({
+      where: { classId },
     });
+    await tx.classAcademicYear.create({
+      data: { classId, yearId: data.academicYearId },
+    });
+  }
+  return tx.classes.update({
+    where: { id: classId },
+    data: pickDefined({className: data.className}),
+    include: classInclude,
   });
-}
+});
+ 
 
+}
 export async function deleteClass(id: string) {
   await findClassById(id);
 
@@ -172,7 +152,6 @@ export async function deleteClass(id: string) {
     where: { id },
   });
 }
-
 export async function getClassById(id: string) {
   const classRecord = await prisma.classes.findUnique({
     where: { id },
@@ -185,7 +164,6 @@ export async function getClassById(id: string) {
 
   return classRecord;
 }
-
 export async function getClassList(data: GetClassListQueryInput) {
   const { page, limit } = data;
   const skip = (page - 1) * limit;
@@ -210,7 +188,6 @@ export async function getClassList(data: GetClassListQueryInput) {
     },
   };
 }
-
 export async function getClassPerformance(classId: string) {
   await findClassById(classId);
 

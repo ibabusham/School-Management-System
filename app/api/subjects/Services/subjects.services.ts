@@ -7,7 +7,9 @@ import type {
   SubjectListQuery,
   UpdateSubjectInput,
 } from "../schemas";
-
+import { pickDefined } from "@/app/utils/pick-defined";
+import { findTeacherById } from "@/app/api/teachers/services/teacher.service";
+import { findClassById } from "@/app/api/classes/Services/classes.services";
 const subjectInclude = {
   class: true,
   teacher: {
@@ -25,8 +27,7 @@ const subjectInclude = {
     },
   },
 } as const;
-
-async function findSubjectById(id: string) {
+export async function findSubjectById(id: string) {
   const subject = await prisma.subjects.findUnique({
     where: { id },
     include: subjectInclude,
@@ -37,40 +38,6 @@ async function findSubjectById(id: string) {
   }
 
   return subject;
-}
-
-async function findClassById(id: string) {
-  const classRecord = await prisma.classes.findUnique({ where: { id } });
-
-  if (!classRecord) {
-    throw new AppError("Class not found", 404);
-  }
-
-  return classRecord;
-}
-
-async function findTeacherById(id: string) {
-  const teacher = await prisma.teacher.findFirst({
-    where: { id, accountStatus: true },
-  });
-
-  if (!teacher) {
-    throw new AppError("Teacher not found", 404);
-  }
-
-  return teacher;
-}
-
-function mapUpdateData(data: UpdateSubjectInput) {
-  const { subjectName, subjectCode, description, classId, teacherId } = data;
-
-  return {
-    ...(subjectName !== undefined && { subjectName }),
-    ...(subjectCode !== undefined && { subjectCode }),
-    ...(description !== undefined && { description }),
-    ...(classId !== undefined && { classId }),
-    ...(teacherId !== undefined && { teacherId }),
-  };
 }
 
 export async function createSubject(data: CreateSubjectInput) {
@@ -88,25 +55,22 @@ export async function createSubject(data: CreateSubjectInput) {
     include: subjectInclude,
   });
 }
-
 export async function updateSubject(subjectId: string, data: UpdateSubjectInput) {
   await findSubjectById(subjectId);
 
   if (data.classId) {
     await findClassById(data.classId);
   }
-
   if (data.teacherId) {
     await findTeacherById(data.teacherId);
   }
 
-  return prisma.subjects.update({
+    return prisma.subjects.update({
     where: { id: subjectId },
-    data: mapUpdateData(data),
+    data: pickDefined(data),
     include: subjectInclude,
-  });
+});
 }
-
 export async function deleteSubject(id: string) {
   await findSubjectById(id);
 
@@ -114,11 +78,9 @@ export async function deleteSubject(id: string) {
     where: { id },
   });
 }
-
 export async function getSubjectById(id: string) {
   return findSubjectById(id);
 }
-
 export async function getSubjectList(data: SubjectListQuery) {
   const { page, limit, search } = data;
   const skip = (page - 1) * limit;
@@ -152,7 +114,6 @@ export async function getSubjectList(data: SubjectListQuery) {
     },
   };
 }
-
 export async function assignSubjectToClass(subjectId: string, data: AssignSubjectToClassInput) {
   await findSubjectById(subjectId);
   await findClassById(data.classId);
@@ -163,7 +124,6 @@ export async function assignSubjectToClass(subjectId: string, data: AssignSubjec
     include: subjectInclude,
   });
 }
-
 export async function assignSubjectToTeacher(subjectId: string, data: AssignSubjectToTeacherInput) {
   await findSubjectById(subjectId);
   await findTeacherById(data.teacherId);

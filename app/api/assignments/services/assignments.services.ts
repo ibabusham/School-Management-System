@@ -7,6 +7,8 @@ import type {
   SubmissionListQuery,
   UpdateAssignmentInput,
 } from "../schemas";
+import { pickDefined } from "@/app/utils/pick-defined";
+import { findSubjectById } from "@/app/api/subjects/Services/subjects.services";
 
 const assignmentInclude = {
   subject: {
@@ -29,20 +31,6 @@ const studentInclude = {
     },
   },
 } as const;
-
-async function findSubjectById(id: string) {
-  const subject = await prisma.subjects.findUnique({
-    where: { id },
-    include: { class: true },
-  });
-
-  if (!subject) {
-    throw new AppError("Subject not found", 404);
-  }
-
-  return subject;
-}
-
 async function findAssignmentById(id: string) {
   const assignment = await prisma.assignments.findUnique({
     where: { id },
@@ -55,7 +43,6 @@ async function findAssignmentById(id: string) {
 
   return assignment;
 }
-
 function mapCreateData(input: CreateAssignmentInput) {
   return {
     assignmentTitle: input.title,
@@ -67,22 +54,6 @@ function mapCreateData(input: CreateAssignmentInput) {
     submissionInstructions: input.submissionInstructions,
   };
 }
-
-function mapUpdateData(input: UpdateAssignmentInput) {
-  const { title, description, attachments, dueDate, maximumGrade, subjectId, submissionInstructions } =
-    input;
-
-  return {
-    ...(title !== undefined && { assignmentTitle: title }),
-    ...(description !== undefined && { assignmentDescription: description }),
-    ...(attachments !== undefined && { attachment: attachments }),
-    ...(dueDate !== undefined && { dueDate }),
-    ...(maximumGrade !== undefined && { maximumGrade }),
-    ...(subjectId !== undefined && { subjectId }),
-    ...(submissionInstructions !== undefined && { submissionInstructions }),
-  };
-}
-
 export async function createAssignment(input: CreateAssignmentInput) {
   await findSubjectById(input.subjectId);
 
@@ -91,11 +62,9 @@ export async function createAssignment(input: CreateAssignmentInput) {
     include: assignmentInclude,
   });
 }
-
 export async function getAssignment(id: string) {
   return findAssignmentById(id);
 }
-
 export async function getAssignmentList(query: AssignmentListQuery) {
   const { page, limit, subjectId } = query;
   const skip = (page - 1) * limit;
@@ -124,20 +93,19 @@ export async function getAssignmentList(query: AssignmentListQuery) {
     },
   };
 }
-
 export async function updateAssignment(id: string, input: UpdateAssignmentInput) {
   await findAssignmentById(id);
 
   if (input.subjectId) {
     await findSubjectById(input.subjectId);
   }
-
+  
   if (input.maximumGrade !== undefined) {
     const { _max } = await prisma.assignmentSubmissions.aggregate({
       where: { assignmentID: id },
       _max: { score: true },
     });
-
+  
     const highestScore = _max.score;
     if (highestScore !== null && input.maximumGrade < highestScore) {
       throw new AppError(
@@ -149,11 +117,18 @@ export async function updateAssignment(id: string, input: UpdateAssignmentInput)
 
   return prisma.assignments.update({
     where: { id },
-    data: mapUpdateData(input),
+    data: pickDefined({
+      assignmentTitle: input.title,
+      assignmentDescription: input.description,
+      attachment: input.attachments,
+      dueDate: input.dueDate,
+      maximumGrade: input.maximumGrade,
+      subjectId: input.subjectId,
+      submissionInstructions: input.submissionInstructions,
+    }),
     include: assignmentInclude,
   });
 }
-
 export async function deleteAssignment(id: string) {
   await findAssignmentById(id);
 
@@ -162,7 +137,6 @@ export async function deleteAssignment(id: string) {
     include: assignmentInclude,
   });
 }
-
 async function assertStudentEligibleForAssignment(assignmentId: string, studentId: string) {
   const assignment = await findAssignmentById(assignmentId);
 
@@ -180,7 +154,6 @@ async function assertStudentEligibleForAssignment(assignmentId: string, studentI
 
   return { assignment, student };
 }
-
 export async function markAssignment(assignmentId: string, input: BulkMarkAssignmentInput) {
   const assignment = await findAssignmentById(assignmentId);
 
@@ -217,7 +190,6 @@ export async function markAssignment(assignmentId: string, input: BulkMarkAssign
   
   return { submissions };
 }
-
 export async function getTakenSubmissions(assignmentId: string, query: SubmissionListQuery) {
   await findAssignmentById(assignmentId);
 
@@ -248,7 +220,6 @@ export async function getTakenSubmissions(assignmentId: string, query: Submissio
     },
   };
 }
-
 export async function getMissingSubmissions(assignmentId: string, query: SubmissionListQuery) {
   const assignment = await findAssignmentById(assignmentId);
   const classId = assignment.subject.classId;

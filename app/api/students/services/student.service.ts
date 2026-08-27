@@ -9,12 +9,12 @@ import type {
 import type { Student } from "@/prisma/generated/client";
 import { Status } from "@/prisma/generated/client";
 import { AppError } from "@/app/utils/errors.utility";
+import { pickDefined } from "@/app/utils/pick-defined";
 
 function toSafeStudent(student: Student) {
   const { ...safeStudent } = student;
   return safeStudent;
 }
-
 export async function createStudent(data: CreateStudentInput) {
   const hashedPassword = await hash(data.password, 10);
   const existingUser = await prisma.user.findUnique({ where: { username: data.username } });
@@ -81,41 +81,27 @@ export async function createStudent(data: CreateStudentInput) {
 
   return student;
 }
-
 export async function updateStudent(studentId: string, data: UpdateStudentInput) {
   await findActiveStudentById(studentId);
-
-  return prisma.$transaction(async (tx) => {
-    return tx.student.update({
-      where: { id: studentId },
-      data: {
-        firstName: data.firstName,
-        lastName: data.lastName,
-        email: data.email,
-        phoneNumber: data.phoneNumber,
-        dateOfBirth: data.dateOfBirth,
-        enrollmentDate: data.enrollmentDate,
-        learningProgressId: data.learningProgressId,
-        gender: data.gender,
-        studentId: data.studentId,
-        accountStatus: true,
-      },
-      include: {
-        user: {
-          select: {
-            id: true,
-            name: true,
-            username: true,
-            role: true,
-            accountStatus: true,
-            createdAt: true,
-          },
+  return prisma.student.update({
+    where: { id: studentId },
+    data: pickDefined(data),
+    include: {
+      user: {
+        select: {
+          id: true,
+          name: true,
+          username: true,
+          role: true,
+          accountStatus: true,
+          createdAt: true,
         },
-      },
-    });
+     
+    }, 
+    learningProgress: true,
+    },
   });
 }
-
 export async function deleteStudent(studentId: string) {
   await findActiveStudentById(studentId);
 
@@ -144,7 +130,6 @@ export async function deleteStudent(studentId: string) {
   });
   return student;
 }
-
 export async function listStudents(query: StudentListQuery) {
   const { page, limit } = query;
   const skip = (page - 1) * limit;
@@ -182,12 +167,10 @@ export async function listStudents(query: StudentListQuery) {
     },
   };
 }
-
 export async function getStudentById(studentId: string) {
   const student = await findActiveStudentById(studentId);
   return toSafeStudent(student);
 }
-
 async function findActiveStudentById(studentId: string) {
   const student = await prisma.student.findFirst({
     where: {
