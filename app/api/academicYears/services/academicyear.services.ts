@@ -1,4 +1,3 @@
-import { randomUUID } from "crypto";
 import { prisma } from "@/app/lib/prisma";
 import type {
   CreateAcademicYear,
@@ -40,7 +39,6 @@ export async function createAcademicYear(data: CreateAcademicYear) {
   }
   return prisma.academicYears.create({
     data: {
-      id: randomUUID(),
       yearName: data.yearName,
       startDate: data.startDate,
       endDate: data.endDate,

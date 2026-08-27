@@ -1,4 +1,3 @@
-import { randomUUID } from "crypto";
 import { prisma } from "@/app/lib/prisma";
 import { AppError } from "@/app/utils/errors.utility";
 import type { CreateClassInput, UpdateClassInput, GetClassListQueryInput } from "../schemas";
@@ -114,7 +113,6 @@ export async function createClass(data: CreateClassInput) {
   } else {
     const academicYear = await prisma.academicYears.create({
       data: {
-        id: randomUUID(),
         yearName: data.yearName!,
         startDate: data.startDate!,
         endDate: data.endDate!,
@@ -126,7 +124,6 @@ export async function createClass(data: CreateClassInput) {
 
   return prisma.classes.create({
     data: {
-      id: randomUUID(),
       className: data.className,
       academicYears: {
         create: {

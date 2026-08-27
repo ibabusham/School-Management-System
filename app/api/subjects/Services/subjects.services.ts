@@ -1,4 +1,3 @@
-import { randomUUID } from "crypto";
 import { prisma } from "@/app/lib/prisma";
 import { AppError } from "@/app/utils/errors.utility";
 import type {
@@ -80,7 +79,6 @@ export async function createSubject(data: CreateSubjectInput) {
 
   return prisma.subjects.create({
     data: {
-      id: randomUUID(),
       subjectName: data.subjectName,
       subjectCode: data.subjectCode,
       description: data.description,

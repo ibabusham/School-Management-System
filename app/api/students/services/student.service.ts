@@ -9,7 +9,6 @@ import type {
 import type { Student } from "@/prisma/generated/client";
 import { Status } from "@/prisma/generated/client";
 import { AppError } from "@/app/utils/errors.utility";
-import { randomUUID } from "crypto";
 
 function toSafeStudent(student: Student) {
   const { ...safeStudent } = student;
@@ -41,8 +40,18 @@ export async function createStudent(data: CreateStudentInput) {
       },
     });
 
+    const learningProgress = await tx.learningProgresses.create({
+      data: {
+        subjectsAverages: 0,
+        overallAvreages: 0,
+        attendencePercentage: 0,
+        learningStatus: Status.ACTIVE,
+      },
+    });
+
     return tx.student.create({
       data: {
+        id: user.id,
         firstName: data.firstName,
         lastName: data.lastName,
         studentId: data.studentId,
@@ -52,18 +61,7 @@ export async function createStudent(data: CreateStudentInput) {
         enrollmentDate: data.enrollmentDate,
         gender: data.gender,
         accountStatus: true,
-        user: {
-          connect: { id: user.id },
-        },
-        learningProgress: {
-          create: {
-            id: randomUUID(),
-            subjectsAverages: 0,
-            overallAvreages: 0,
-            attendencePercentage: 0,
-            learningStatus: Status.ACTIVE,
-          },
-        },
+        learningProgressId: learningProgress.id,
       },
       include: {
         user: {
