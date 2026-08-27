@@ -6,6 +6,7 @@ import type {
   GetAcademicYear,
 } from "@/app/api/academicYears/schemas";
 import { AppError } from "@/app/utils/errors.utility";
+import { pickDefined } from "@/app/utils/pick-defined";
 
 export async function findAcademicYearById(id: string) {
   const academicYear = await prisma.academicYears.findUnique({
@@ -18,17 +19,6 @@ export async function findAcademicYearById(id: string) {
 
   return academicYear;
 }
-
-function mapUpdateData(data: UpdateAcademicYear) {
-  const { id: _id, yearName, startDate, endDate } = data;
-
-  return {
-    ...(yearName !== undefined && { yearName }),
-    ...(startDate !== undefined && { startDate }),
-    ...(endDate !== undefined && { endDate }),
-  };
-}
-
 export async function createAcademicYear(data: CreateAcademicYear) {
   const activeAcademicYear = await prisma.academicYears.findFirst({
     where: {
@@ -48,20 +38,27 @@ export async function createAcademicYear(data: CreateAcademicYear) {
     },
   });
 }
-
 export async function updateAcademicYear(id: string, data: UpdateAcademicYear) {
   await findAcademicYearById(id);
+
   const active = await prisma.academicYears.findFirst({
-    where: { status: "ACTIVE", NOT: { id } },
+    where: {
+      status: "ACTIVE",
+      NOT: { id },
+    },
   });
-  if (active) throw new AppError("Only one academic year can be active at a time", 400);
-
-  return prisma.academicYears.update({
-    where: { id },
-    data: mapUpdateData(data),
-  });
+  if (active) {
+    throw new AppError("Only one academic year can be active at a time", 400);
+  }
+return prisma.academicYears.update({
+  where: { id },
+  data: pickDefined({
+    yearName: data.yearName,
+    startDate: data.startDate,
+    endDate: data.endDate,
+  }),
+});
 }
-
 export async function deleteAcademicYear(id: string) {
   await findAcademicYearById(id);
 
@@ -69,7 +66,6 @@ export async function deleteAcademicYear(id: string) {
     where: { id },
   });
 }
-
 export async function findAcademicYear(data: GetAcademicYear) {
   const { page, limit, search } = data;
   const skip = (page - 1) * limit;

@@ -8,7 +8,8 @@ import type {
   SubmissionListQuery,
   UpdateExamInput,
 } from "../schemas";
-
+import { pickDefined } from "@/app/utils/pick-defined";
+import { findSubjectById } from "@/app/api/subjects/Services/subjects.services";
 const examInclude = {
   subject: {
     include: {
@@ -31,20 +32,6 @@ const studentInclude = {
     },
   },
 } as const;
-
-async function findSubjectById(id: string) {
-  const subject = await prisma.subjects.findUnique({
-    where: { id },
-    include: { class: true },
-  });
-
-  if (!subject) {
-    throw new AppError("Subject not found", 404);
-  }
-
-  return subject;
-}
-
 async function findExamById(id: string) {
   const exam = await prisma.exams.findUnique({
     where: { id },
@@ -57,18 +44,6 @@ async function findExamById(id: string) {
 
   return exam;
 }
-
-function mapUpdateData(data: UpdateExamInput) {
-  const { examName, examDate, subjectId, maximumGrade } = data;
-
-  return {
-    ...(examName !== undefined && { examName }),
-    ...(examDate !== undefined && { examDate }),
-    ...(subjectId !== undefined && { subjectId }),
-    ...(maximumGrade !== undefined && { maximumGrade }),
-  };
-}
-
 export async function createExam(input: CreateExamInput) {
   await findSubjectById(input.subjectId);
 
@@ -128,16 +103,14 @@ export async function deleteExam(id: string) {
 
 export async function updateExam(id: string, input: UpdateExamInput) {
   await findExamById(id);
-
   if (input.subjectId) {
     await findSubjectById(input.subjectId);
   }
-
-  return prisma.exams.update({
-    where: { id },
-    data: mapUpdateData(input),
-    include: examInclude,
-  });
+return prisma.exams.update({
+  where: { id },
+  data: pickDefined(input),
+  include: examInclude,
+});
 }
 
 async function assertStudentEligibleForExam(examId: string, studentId: string) {

@@ -23,9 +23,6 @@ export async function findLessonById(id: string) {
     }
     return lesson;
 }
-function mapUpdateData(input: UpdateLessonInput) {
-    return pickDefined(input);
-}
 export async function createLesson(input: CreateLessonInput) {
     await findSubjectById(input.subjectId);
     return prisma.lessons.create({
@@ -76,7 +73,7 @@ export async function updateLesson(id: string, input: UpdateLessonInput) {
 
     return prisma.lessons.update({
         where: { id },
-        data: mapUpdateData(input),
+        data: pickDefined(input),
         include: lessonInclude,
     });
 }

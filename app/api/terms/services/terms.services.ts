@@ -2,20 +2,12 @@ import { randomUUID } from "crypto";
 import { prisma } from "@/app/lib/prisma";
 import { AppError } from "@/app/utils/errors.utility";
 import type { CreateTermInput, TermListQuery, UpdateTermInput } from "../schemas";
+import { pickDefined } from "@/app/utils/pick-defined";
+import { findAcademicYearById } from "@/app/api/academicYears/services/academicyear.services";
 
 const termInclude = {
   year: true,
 } as const;
-
-async function findAcademicYearById(id: string) {
-  const academicYear = await prisma.academicYears.findUnique({ where: { id } });
-
-  if (!academicYear) {
-    throw new AppError("Academic year not found", 404);
-  }
-
-  return academicYear;
-}
 
 async function findTermById(id: string) {
   const term = await prisma.terms.findUnique({
@@ -29,18 +21,6 @@ async function findTermById(id: string) {
 
   return term;
 }
-
-function mapUpdateData(data: UpdateTermInput) {
-  const { termName, startDate, endDate, yearId } = data;
-
-  return {
-    ...(termName !== undefined && { termName }),
-    ...(startDate !== undefined && { startDate }),
-    ...(endDate !== undefined && { endDate }),
-    ...(yearId !== undefined && { yearId }),
-  };
-}
-
 export async function createTerm(term: CreateTermInput) {
   await findAcademicYearById(term.yearId);
   const termsCount = await prisma.terms.count({
@@ -63,21 +43,18 @@ export async function createTerm(term: CreateTermInput) {
     include: termInclude,
   });
 }
-
 export async function updateTerm(id: string, term: UpdateTermInput) {
   await findTermById(id);
 
   if (term.yearId) {
     await findAcademicYearById(term.yearId);
   }
-
-  return prisma.terms.update({
-    where: { id },
-    data: mapUpdateData(term),
-    include: termInclude,
-  });
+ return prisma.terms.update({
+  where: { id },
+  data: pickDefined(term),
+  include: termInclude,
+});
 }
-
 export async function deleteTerm(id: string) {
   await findTermById(id);
 
@@ -86,11 +63,9 @@ export async function deleteTerm(id: string) {
     include: termInclude,
   });
 }
-
 export async function getTerm(id: string) {
   return findTermById(id);
 }
-
 export async function getTerms(query: TermListQuery) {
   const { page, limit, search } = query;
   const skip = (page - 1) * limit;
