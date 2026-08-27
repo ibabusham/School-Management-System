@@ -38,6 +38,11 @@ import {
   createExamSchema,
   updateExamSchema,
 } from "@/app/api/exams/schemas";
+import {
+  bulkMarkAssignmentSchema,
+  createAssignmentSchema,
+  updateAssignmentSchema,
+} from "@/app/api/assignments/schemas";
 import { z } from "zod";
 import { zodToOpenApiSchema } from "./zod-to-schema";
 
@@ -194,6 +199,44 @@ export const examSubmissionSchema = z.object({
   student: studentSchema.optional(),
 });
 
+export const assignmentSchema = z.object({
+  id: z.string(),
+  assignmentTitle: z.string(),
+  assignmentDescription: z.string(),
+  dueDate: z.string().datetime().or(z.string()),
+  maximumGrade: z.number().int(),
+  attachment: z.string(),
+  submissionInstructions: z.string(),
+  subjectId: z.string(),
+  subject: subjectSchema.optional(),
+});
+
+export const assignmentSummarySchema = z.object({
+  id: z.string(),
+  assignmentTitle: z.string(),
+  assignmentDescription: z.string(),
+  dueDate: z.string().datetime().or(z.string()),
+  maximumGrade: z.number().int(),
+  subjectId: z.string(),
+});
+
+export const takenAssignmentSubmissionSummarySchema = z.object({
+  id: z.string(),
+  assignmentId: z.string(),
+  studentId: z.string(),
+  score: z.number().int().nullable(),
+  takenAt: z.string().datetime().or(z.string()),
+  firstName: z.string(),
+  lastName: z.string(),
+});
+
+export const markAssignmentSubmissionSummarySchema = z.object({
+  id: z.string(),
+  assignmentId: z.string(),
+  studentId: z.string(),
+  score: z.number().int().nullable(),
+});
+
 export const paginationSchema = z.object({
   page: z.number().int(),
   limit: z.number().int(),
@@ -220,6 +263,9 @@ export const swaggerComponentSchemas = {
   CreateExamRequest: zodToOpenApiSchema(createExamSchema),
   UpdateExamRequest: zodToOpenApiSchema(updateExamSchema),
   BulkMarkExamRequest: zodToOpenApiSchema(bulkMarkExamSchema),
+  CreateAssignmentRequest: zodToOpenApiSchema(createAssignmentSchema),
+  UpdateAssignmentRequest: zodToOpenApiSchema(updateAssignmentSchema),
+  BulkMarkAssignmentRequest: zodToOpenApiSchema(bulkMarkAssignmentSchema),
   Teacher: zodToOpenApiSchema(teacherSchema),
   Student: zodToOpenApiSchema(studentSchema),
   StudentSummary: zodToOpenApiSchema(studentSummarySchema),
@@ -233,6 +279,10 @@ export const swaggerComponentSchemas = {
   TakenSubmissionSummary: zodToOpenApiSchema(takenSubmissionSummarySchema),
   MarkSubmissionSummary: zodToOpenApiSchema(markSubmissionSummarySchema),
   ExamSubmission: zodToOpenApiSchema(examSubmissionSchema),
+  Assignment: zodToOpenApiSchema(assignmentSchema),
+  AssignmentSummary: zodToOpenApiSchema(assignmentSummarySchema),
+  TakenAssignmentSubmissionSummary: zodToOpenApiSchema(takenAssignmentSubmissionSummarySchema),
+  MarkAssignmentSubmissionSummary: zodToOpenApiSchema(markAssignmentSubmissionSummarySchema),
   TeacherResponse: zodToOpenApiSchema(z.object({ teacher: teacherSchema })),
   StudentResponse: zodToOpenApiSchema(z.object({ student: studentSchema })),
   CreateStudentResponse: zodToOpenApiSchema(
@@ -369,6 +419,41 @@ export const swaggerComponentSchemas = {
   ),
   ExamSubmissionListResponse: zodToOpenApiSchema(
     z.object({ data: z.array(takenSubmissionSummarySchema), pagination: paginationSchema })
+  ),
+  AssignmentResponse: zodToOpenApiSchema(z.object({ assignment: assignmentSchema })),
+  CreateAssignmentResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      assignment: assignmentSummarySchema,
+    })
+  ),
+  UpdateAssignmentResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      assignment: assignmentSchema,
+    })
+  ),
+  DeleteAssignmentResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      assignment: assignmentSchema,
+    })
+  ),
+  MarkAssignmentResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      data: z.array(markAssignmentSubmissionSummarySchema),
+      pagination: paginationSchema,
+    })
+  ),
+  AssignmentListResponse: zodToOpenApiSchema(
+    z.object({ data: z.array(assignmentSummarySchema), pagination: paginationSchema })
+  ),
+  AssignmentSubmissionListResponse: zodToOpenApiSchema(
+    z.object({
+      data: z.array(takenAssignmentSubmissionSummarySchema),
+      pagination: paginationSchema,
+    })
   ),
   LoginResponse: zodToOpenApiSchema(
     z.object({

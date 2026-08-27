@@ -76,8 +76,9 @@ model Student {
   class            Classes?           @relation(fields: [classId], references: [id], onDelete: SetNull)
   learningProgress LearningProgresses @relation(fields: [learningProgressId], references: [id], onDelete: Restrict)
 
-  attendances     Attendences[]
-  examSubmissions ExamSubmissions[]
+  attendances           Attendences[]
+  examSubmissions       ExamSubmissions[]
+  assignmentSubmissions AssignmentSubmissions[]
 }
 
 enum Gender {
@@ -158,7 +159,8 @@ model Assignments {
   submissionInstructions String
   subjectId              String
 
-  subject Subjects @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  submissions AssignmentSubmissions[]
+  subject     Subjects                @relation(fields: [subjectId], references: [id], onDelete: Cascade)
 }
 
 model Lessons {
@@ -251,4 +253,17 @@ model ExamSubmissions {
   student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
 
   @@unique([examId, studentId])
+}
+
+model AssignmentSubmissions {
+  id           String   @id
+  assignmentID String
+  studentId    String
+  score        Int?
+  takenAt      DateTime @default(now())
+
+  assignment Assignments @relation(fields: [assignmentID], references: [id], onDelete: Cascade)
+  student    Student     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([assignmentID, studentId])
 }

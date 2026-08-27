@@ -48,6 +48,55 @@ export function handleError(error: unknown) {
           { status: 404 }
         );
       }
+      case "P2000": {
+        return NextResponse.json(
+          { error: "value too long for a field" },
+          { status: 400 }
+        );
+      }
+      case "P2001": {
+        return NextResponse.json(
+          { error: "Related record not found" },
+          { status: 404 }
+        );
+      }
+      case "P2011": {
+        return NextResponse.json(
+          { error: "A Required field is missing" },
+          { status: 400 }
+        );
+      }
+      case "P2014": {
+        return NextResponse.json(
+            { error: "Invalid relation between records" },
+          { status: 400 }
+        );
+      }
+      case "P2015": {
+        return NextResponse.json(
+          { error: "Related record not found" },
+          { status: 404 }
+        );
+      }
+      case "P2021" : {
+        return NextResponse.json(
+          { error: "Database table not found" },
+          { status: 500 }
+        );
+      }
+      case "P2022": {
+        return NextResponse.json(
+          { error: "Database column not found" },
+          { status: 500 }
+        );
+      }
+    
+      case "P2024": {
+        return NextResponse.json(
+          { error: "Database operation timed out" },
+          { status: 503 }
+        );
+      }
       default:
         break;
     }
