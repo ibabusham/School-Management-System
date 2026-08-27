@@ -276,6 +276,14 @@ exports.Prisma.ExamSubmissionsScalarFieldEnum = {
   takenAt: 'takenAt'
 };
 
+exports.Prisma.AssignmentSubmissionsScalarFieldEnum = {
+  id: 'id',
+  assignmentID: 'assignmentID',
+  studentId: 'studentId',
+  score: 'score',
+  takenAt: 'takenAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -328,7 +336,8 @@ exports.Prisma.ModelName = {
   ProgressNotes: 'ProgressNotes',
   ClassesPerformence: 'ClassesPerformence',
   Attendences: 'Attendences',
-  ExamSubmissions: 'ExamSubmissions'
+  ExamSubmissions: 'ExamSubmissions',
+  AssignmentSubmissions: 'AssignmentSubmissions'
 };
 
 /**

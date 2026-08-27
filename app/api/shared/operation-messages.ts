@@ -21,3 +21,8 @@ export const EXAM_CREATED_MESSAGE = "exam created successfully";
 export const EXAM_UPDATED_MESSAGE = "exam updated successfully";
 export const EXAM_DELETED_MESSAGE = "exam deleted successfully";
 export const EXAM_MARKED_MESSAGE = "exam marked successfully";
+
+export const ASSIGNMENT_CREATED_MESSAGE = "assignment created successfully";
+export const ASSIGNMENT_UPDATED_MESSAGE = "assignment updated successfully";
+export const ASSIGNMENT_DELETED_MESSAGE = "assignment deleted successfully";
+export const ASSIGNMENT_MARKED_MESSAGE = "assignment marked successfully";
