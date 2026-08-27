@@ -87,7 +87,7 @@ enum Gender {
 }
 
 model Classes {
-  id         String @id
+  id         String @id @default(uuid())
   className String
 
   academicYears ClassAcademicYear[]
@@ -97,7 +97,7 @@ model Classes {
 }
 
 model Subjects {
-  id           String @id
+  id           String @id @default(uuid())
   subjectName String
   subjectCode String
   description  String
@@ -119,7 +119,7 @@ enum Status {
 }
 
 model AcademicYears {
-  id         String   @id
+  id         String   @id @default(uuid())
   yearName  String
   startDate DateTime
   endDate   DateTime
@@ -130,7 +130,7 @@ model AcademicYears {
 }
 
 model Terms {
-  id         String   @id
+  id         String   @id @default(uuid())
   termName  String
   startDate DateTime
   endDate   DateTime
@@ -150,7 +150,7 @@ model ClassAcademicYear {
 }
 
 model Assignments {
-  id                       String   @id
+  id                       String   @id @default(uuid())
   assignmentTitle         String
   assignmentDescription   String
   dueDate                 DateTime
@@ -164,7 +164,7 @@ model Assignments {
 }
 
 model Lessons {
-  id                  String      @id
+  id                  String      @id @default(uuid())
   lessonTitle        String
   lessonDescription  String
   lessonDate         DateTime
@@ -182,7 +182,7 @@ enum iscompleate {
 }
 
 model Exams {
-  id            String   @id
+  id            String   @id @default(uuid())
   examName     String
   examDate     DateTime
   maximumGrade Int
@@ -193,7 +193,7 @@ model Exams {
 }
 
 model LearningProgresses {
-  id                     String @id
+  id                     String @id @default(uuid())
   subjectsAverages      Int
   overallAvreages       Int
   attendencePercentage  Int
@@ -204,7 +204,7 @@ model LearningProgresses {
 }
 
 model ProgressNotes {
-  id                    String   @id
+  id                    String   @id @default(uuid())
   noteDate             DateTime
   noteObservation      String
   strengths             String
@@ -217,7 +217,7 @@ model ProgressNotes {
 }
 
 model ClassesPerformence {
-  id                            String @id
+  id                            String @id @default(uuid())
   classAvg                     Int
   highestGrade                 Int
   lowestGrade                  Int
@@ -231,7 +231,7 @@ model ClassesPerformence {
 }
 
 model Attendences {
-  id                     String   @id
+  id                     String   @id @default(uuid())
   attendanceDate        DateTime
   attendanceStatus      String
   attendancePercentage  Int
@@ -243,7 +243,7 @@ model Attendences {
 }
 
 model ExamSubmissions {
-  id         String   @id
+  id         String   @id @default(uuid())
   examId     String
   studentId  String
   score      Int?     
@@ -256,7 +256,7 @@ model ExamSubmissions {
 }
 
 model AssignmentSubmissions {
-  id String @id
+  id String @id @default(uuid())
   assignmentID String
   studentId String
   score Int?

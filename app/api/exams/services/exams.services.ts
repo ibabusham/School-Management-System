@@ -1,4 +1,3 @@
-import { randomUUID } from "crypto";
 import { prisma } from "@/app/lib/prisma";
 import { AppError } from "@/app/utils/errors.utility";
 import type {
@@ -49,7 +48,6 @@ export async function createExam(input: CreateExamInput) {
 
   return prisma.exams.create({
     data: {
-      id: randomUUID(),
       examName: input.examName,
       examDate: input.examDate,
       subjectId: input.subjectId,
@@ -154,7 +152,6 @@ export async function markExam(examId: string, input: BulkMarkExamInput) {
           },
         },
         create: {
-          id: randomUUID(),
           examId,
           studentId: mark.studentId,
           score: mark.score,

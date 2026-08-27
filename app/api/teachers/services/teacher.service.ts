@@ -39,17 +39,13 @@ export async function createTeacher(data: CreateTeacherInput) {
     });
     return tx.teacher.create({
       data: {
+        id: user.id,
         email: data.email,
         name: data.name,
         employId: data.employId,
         phoneNumber: data.phoneNumber ?? " ",
         specilization: data.specilization,
         accountStatus: true,
-        user: {
-          connect: {
-            id: user.id,
-          },
-        },
       },
       include: {
         user: {

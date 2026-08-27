@@ -1,4 +1,3 @@
-import { randomUUID } from "crypto";
 import { prisma } from "@/app/lib/prisma";
 import { AppError } from "@/app/utils/errors.utility";
 import type { CreateTermInput, TermListQuery, UpdateTermInput } from "../schemas";
@@ -34,7 +33,6 @@ export async function createTerm(term: CreateTermInput) {
 
   return prisma.terms.create({
     data: {
-      id: randomUUID(),
       termName: term.termName,
       startDate: term.startDate,
       endDate: term.endDate,

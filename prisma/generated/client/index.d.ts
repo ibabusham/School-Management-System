@@ -25115,7 +25115,7 @@ export namespace Prisma {
   }
 
   export type ClassesCreateInput = {
-    id: string
+    id?: string
     className: string
     academicYears?: ClassAcademicYearCreateNestedManyWithoutClassInput
     students?: StudentCreateNestedManyWithoutClassInput
@@ -25124,7 +25124,7 @@ export namespace Prisma {
   }
 
   export type ClassesUncheckedCreateInput = {
-    id: string
+    id?: string
     className: string
     academicYears?: ClassAcademicYearUncheckedCreateNestedManyWithoutClassInput
     students?: StudentUncheckedCreateNestedManyWithoutClassInput
@@ -25151,7 +25151,7 @@ export namespace Prisma {
   }
 
   export type ClassesCreateManyInput = {
-    id: string
+    id?: string
     className: string
   }
 
@@ -25166,7 +25166,7 @@ export namespace Prisma {
   }
 
   export type SubjectsCreateInput = {
-    id: string
+    id?: string
     subjectName: string
     subjectCode: string
     description: string
@@ -25179,7 +25179,7 @@ export namespace Prisma {
   }
 
   export type SubjectsUncheckedCreateInput = {
-    id: string
+    id?: string
     subjectName: string
     subjectCode: string
     description: string
@@ -25218,7 +25218,7 @@ export namespace Prisma {
   }
 
   export type SubjectsCreateManyInput = {
-    id: string
+    id?: string
     subjectName: string
     subjectCode: string
     description: string
@@ -25243,7 +25243,7 @@ export namespace Prisma {
   }
 
   export type AcademicYearsCreateInput = {
-    id: string
+    id?: string
     yearName: string
     startDate: Date | string
     endDate: Date | string
@@ -25253,7 +25253,7 @@ export namespace Prisma {
   }
 
   export type AcademicYearsUncheckedCreateInput = {
-    id: string
+    id?: string
     yearName: string
     startDate: Date | string
     endDate: Date | string
@@ -25283,7 +25283,7 @@ export namespace Prisma {
   }
 
   export type AcademicYearsCreateManyInput = {
-    id: string
+    id?: string
     yearName: string
     startDate: Date | string
     endDate: Date | string
@@ -25307,7 +25307,7 @@ export namespace Prisma {
   }
 
   export type TermsCreateInput = {
-    id: string
+    id?: string
     termName: string
     startDate: Date | string
     endDate: Date | string
@@ -25315,7 +25315,7 @@ export namespace Prisma {
   }
 
   export type TermsUncheckedCreateInput = {
-    id: string
+    id?: string
     termName: string
     startDate: Date | string
     endDate: Date | string
@@ -25339,7 +25339,7 @@ export namespace Prisma {
   }
 
   export type TermsCreateManyInput = {
-    id: string
+    id?: string
     termName: string
     startDate: Date | string
     endDate: Date | string
@@ -25396,7 +25396,7 @@ export namespace Prisma {
   }
 
   export type AssignmentsCreateInput = {
-    id: string
+    id?: string
     assignmentTitle: string
     assignmentDescription: string
     dueDate: Date | string
@@ -25408,7 +25408,7 @@ export namespace Prisma {
   }
 
   export type AssignmentsUncheckedCreateInput = {
-    id: string
+    id?: string
     assignmentTitle: string
     assignmentDescription: string
     dueDate: Date | string
@@ -25444,7 +25444,7 @@ export namespace Prisma {
   }
 
   export type AssignmentsCreateManyInput = {
-    id: string
+    id?: string
     assignmentTitle: string
     assignmentDescription: string
     dueDate: Date | string
@@ -25476,7 +25476,7 @@ export namespace Prisma {
   }
 
   export type LessonsCreateInput = {
-    id: string
+    id?: string
     lessonTitle: string
     lessonDescription: string
     lessonDate: Date | string
@@ -25487,7 +25487,7 @@ export namespace Prisma {
   }
 
   export type LessonsUncheckedCreateInput = {
-    id: string
+    id?: string
     lessonTitle: string
     lessonDescription: string
     lessonDate: Date | string
@@ -25520,7 +25520,7 @@ export namespace Prisma {
   }
 
   export type LessonsCreateManyInput = {
-    id: string
+    id?: string
     lessonTitle: string
     lessonDescription: string
     lessonDate: Date | string
@@ -25552,7 +25552,7 @@ export namespace Prisma {
   }
 
   export type ExamsCreateInput = {
-    id: string
+    id?: string
     examName: string
     examDate: Date | string
     maximumGrade: number
@@ -25561,7 +25561,7 @@ export namespace Prisma {
   }
 
   export type ExamsUncheckedCreateInput = {
-    id: string
+    id?: string
     examName: string
     examDate: Date | string
     maximumGrade: number
@@ -25588,7 +25588,7 @@ export namespace Prisma {
   }
 
   export type ExamsCreateManyInput = {
-    id: string
+    id?: string
     examName: string
     examDate: Date | string
     maximumGrade: number
@@ -25611,7 +25611,7 @@ export namespace Prisma {
   }
 
   export type LearningProgressesCreateInput = {
-    id: string
+    id?: string
     subjectsAverages: number
     overallAvreages: number
     attendencePercentage: number
@@ -25621,7 +25621,7 @@ export namespace Prisma {
   }
 
   export type LearningProgressesUncheckedCreateInput = {
-    id: string
+    id?: string
     subjectsAverages: number
     overallAvreages: number
     attendencePercentage: number
@@ -25651,7 +25651,7 @@ export namespace Prisma {
   }
 
   export type LearningProgressesCreateManyInput = {
-    id: string
+    id?: string
     subjectsAverages: number
     overallAvreages: number
     attendencePercentage: number
@@ -25675,7 +25675,7 @@ export namespace Prisma {
   }
 
   export type ProgressNotesCreateInput = {
-    id: string
+    id?: string
     noteDate: Date | string
     noteObservation: string
     strengths: string
@@ -25685,7 +25685,7 @@ export namespace Prisma {
   }
 
   export type ProgressNotesUncheckedCreateInput = {
-    id: string
+    id?: string
     noteDate: Date | string
     noteObservation: string
     strengths: string
@@ -25715,7 +25715,7 @@ export namespace Prisma {
   }
 
   export type ProgressNotesCreateManyInput = {
-    id: string
+    id?: string
     noteDate: Date | string
     noteObservation: string
     strengths: string
@@ -25743,7 +25743,7 @@ export namespace Prisma {
   }
 
   export type ClassesPerformenceCreateInput = {
-    id: string
+    id?: string
     classAvg: number
     highestGrade: number
     lowestGrade: number
@@ -25755,7 +25755,7 @@ export namespace Prisma {
   }
 
   export type ClassesPerformenceUncheckedCreateInput = {
-    id: string
+    id?: string
     classAvg: number
     highestGrade: number
     lowestGrade: number
@@ -25791,7 +25791,7 @@ export namespace Prisma {
   }
 
   export type ClassesPerformenceCreateManyInput = {
-    id: string
+    id?: string
     classAvg: number
     highestGrade: number
     lowestGrade: number
@@ -25826,7 +25826,7 @@ export namespace Prisma {
   }
 
   export type AttendencesCreateInput = {
-    id: string
+    id?: string
     attendanceDate: Date | string
     attendanceStatus: string
     attendancePercentage: number
@@ -25835,7 +25835,7 @@ export namespace Prisma {
   }
 
   export type AttendencesUncheckedCreateInput = {
-    id: string
+    id?: string
     attendanceDate: Date | string
     attendanceStatus: string
     attendancePercentage: number
@@ -25862,7 +25862,7 @@ export namespace Prisma {
   }
 
   export type AttendencesCreateManyInput = {
-    id: string
+    id?: string
     attendanceDate: Date | string
     attendanceStatus: string
     attendancePercentage: number
@@ -25887,7 +25887,7 @@ export namespace Prisma {
   }
 
   export type ExamSubmissionsCreateInput = {
-    id: string
+    id?: string
     score?: number | null
     takenAt?: Date | string
     exam: ExamsCreateNestedOneWithoutSubmissionsInput
@@ -25895,7 +25895,7 @@ export namespace Prisma {
   }
 
   export type ExamSubmissionsUncheckedCreateInput = {
-    id: string
+    id?: string
     examId: string
     studentId: string
     score?: number | null
@@ -25919,7 +25919,7 @@ export namespace Prisma {
   }
 
   export type ExamSubmissionsCreateManyInput = {
-    id: string
+    id?: string
     examId: string
     studentId: string
     score?: number | null
@@ -25941,7 +25941,7 @@ export namespace Prisma {
   }
 
   export type AssignmentSubmissionsCreateInput = {
-    id: string
+    id?: string
     score?: number | null
     takenAt?: Date | string
     assignment: AssignmentsCreateNestedOneWithoutSubmissionsInput
@@ -25949,7 +25949,7 @@ export namespace Prisma {
   }
 
   export type AssignmentSubmissionsUncheckedCreateInput = {
-    id: string
+    id?: string
     assignmentID: string
     studentId: string
     score?: number | null
@@ -25973,7 +25973,7 @@ export namespace Prisma {
   }
 
   export type AssignmentSubmissionsCreateManyInput = {
-    id: string
+    id?: string
     assignmentID: string
     studentId: string
     score?: number | null
@@ -28835,7 +28835,7 @@ export namespace Prisma {
   }
 
   export type SubjectsCreateWithoutTeacherInput = {
-    id: string
+    id?: string
     subjectName: string
     subjectCode: string
     description: string
@@ -28847,7 +28847,7 @@ export namespace Prisma {
   }
 
   export type SubjectsUncheckedCreateWithoutTeacherInput = {
-    id: string
+    id?: string
     subjectName: string
     subjectCode: string
     description: string
@@ -28869,7 +28869,7 @@ export namespace Prisma {
   }
 
   export type ProgressNotesCreateWithoutTeacherInput = {
-    id: string
+    id?: string
     noteDate: Date | string
     noteObservation: string
     strengths: string
@@ -28878,7 +28878,7 @@ export namespace Prisma {
   }
 
   export type ProgressNotesUncheckedCreateWithoutTeacherInput = {
-    id: string
+    id?: string
     noteDate: Date | string
     noteObservation: string
     strengths: string
@@ -29018,7 +29018,7 @@ export namespace Prisma {
   }
 
   export type ClassesCreateWithoutStudentsInput = {
-    id: string
+    id?: string
     className: string
     academicYears?: ClassAcademicYearCreateNestedManyWithoutClassInput
     subjects?: SubjectsCreateNestedManyWithoutClassInput
@@ -29026,7 +29026,7 @@ export namespace Prisma {
   }
 
   export type ClassesUncheckedCreateWithoutStudentsInput = {
-    id: string
+    id?: string
     className: string
     academicYears?: ClassAcademicYearUncheckedCreateNestedManyWithoutClassInput
     subjects?: SubjectsUncheckedCreateNestedManyWithoutClassInput
@@ -29039,7 +29039,7 @@ export namespace Prisma {
   }
 
   export type LearningProgressesCreateWithoutStudentInput = {
-    id: string
+    id?: string
     subjectsAverages: number
     overallAvreages: number
     attendencePercentage: number
@@ -29048,7 +29048,7 @@ export namespace Prisma {
   }
 
   export type LearningProgressesUncheckedCreateWithoutStudentInput = {
-    id: string
+    id?: string
     subjectsAverages: number
     overallAvreages: number
     attendencePercentage: number
@@ -29062,7 +29062,7 @@ export namespace Prisma {
   }
 
   export type AttendencesCreateWithoutStudentInput = {
-    id: string
+    id?: string
     attendanceDate: Date | string
     attendanceStatus: string
     attendancePercentage: number
@@ -29070,7 +29070,7 @@ export namespace Prisma {
   }
 
   export type AttendencesUncheckedCreateWithoutStudentInput = {
-    id: string
+    id?: string
     attendanceDate: Date | string
     attendanceStatus: string
     attendancePercentage: number
@@ -29088,14 +29088,14 @@ export namespace Prisma {
   }
 
   export type ExamSubmissionsCreateWithoutStudentInput = {
-    id: string
+    id?: string
     score?: number | null
     takenAt?: Date | string
     exam: ExamsCreateNestedOneWithoutSubmissionsInput
   }
 
   export type ExamSubmissionsUncheckedCreateWithoutStudentInput = {
-    id: string
+    id?: string
     examId: string
     score?: number | null
     takenAt?: Date | string
@@ -29112,14 +29112,14 @@ export namespace Prisma {
   }
 
   export type AssignmentSubmissionsCreateWithoutStudentInput = {
-    id: string
+    id?: string
     score?: number | null
     takenAt?: Date | string
     assignment: AssignmentsCreateNestedOneWithoutSubmissionsInput
   }
 
   export type AssignmentSubmissionsUncheckedCreateWithoutStudentInput = {
-    id: string
+    id?: string
     assignmentID: string
     score?: number | null
     takenAt?: Date | string
@@ -29371,7 +29371,7 @@ export namespace Prisma {
   }
 
   export type SubjectsCreateWithoutClassInput = {
-    id: string
+    id?: string
     subjectName: string
     subjectCode: string
     description: string
@@ -29383,7 +29383,7 @@ export namespace Prisma {
   }
 
   export type SubjectsUncheckedCreateWithoutClassInput = {
-    id: string
+    id?: string
     subjectName: string
     subjectCode: string
     description: string
@@ -29405,7 +29405,7 @@ export namespace Prisma {
   }
 
   export type ClassesPerformenceCreateWithoutClassInput = {
-    id: string
+    id?: string
     classAvg: number
     highestGrade: number
     lowestGrade: number
@@ -29416,7 +29416,7 @@ export namespace Prisma {
   }
 
   export type ClassesPerformenceUncheckedCreateWithoutClassInput = {
-    id: string
+    id?: string
     classAvg: number
     highestGrade: number
     lowestGrade: number
@@ -29539,7 +29539,7 @@ export namespace Prisma {
   }
 
   export type ClassesCreateWithoutSubjectsInput = {
-    id: string
+    id?: string
     className: string
     academicYears?: ClassAcademicYearCreateNestedManyWithoutClassInput
     students?: StudentCreateNestedManyWithoutClassInput
@@ -29547,7 +29547,7 @@ export namespace Prisma {
   }
 
   export type ClassesUncheckedCreateWithoutSubjectsInput = {
-    id: string
+    id?: string
     className: string
     academicYears?: ClassAcademicYearUncheckedCreateNestedManyWithoutClassInput
     students?: StudentUncheckedCreateNestedManyWithoutClassInput
@@ -29587,7 +29587,7 @@ export namespace Prisma {
   }
 
   export type AssignmentsCreateWithoutSubjectInput = {
-    id: string
+    id?: string
     assignmentTitle: string
     assignmentDescription: string
     dueDate: Date | string
@@ -29598,7 +29598,7 @@ export namespace Prisma {
   }
 
   export type AssignmentsUncheckedCreateWithoutSubjectInput = {
-    id: string
+    id?: string
     assignmentTitle: string
     assignmentDescription: string
     dueDate: Date | string
@@ -29619,7 +29619,7 @@ export namespace Prisma {
   }
 
   export type LessonsCreateWithoutSubjectInput = {
-    id: string
+    id?: string
     lessonTitle: string
     lessonDescription: string
     lessonDate: Date | string
@@ -29629,7 +29629,7 @@ export namespace Prisma {
   }
 
   export type LessonsUncheckedCreateWithoutSubjectInput = {
-    id: string
+    id?: string
     lessonTitle: string
     lessonDescription: string
     lessonDate: Date | string
@@ -29649,7 +29649,7 @@ export namespace Prisma {
   }
 
   export type ExamsCreateWithoutSubjectInput = {
-    id: string
+    id?: string
     examName: string
     examDate: Date | string
     maximumGrade: number
@@ -29657,7 +29657,7 @@ export namespace Prisma {
   }
 
   export type ExamsUncheckedCreateWithoutSubjectInput = {
-    id: string
+    id?: string
     examName: string
     examDate: Date | string
     maximumGrade: number
@@ -29675,7 +29675,7 @@ export namespace Prisma {
   }
 
   export type AttendencesCreateWithoutSubjectInput = {
-    id: string
+    id?: string
     attendanceDate: Date | string
     attendanceStatus: string
     attendancePercentage: number
@@ -29683,7 +29683,7 @@ export namespace Prisma {
   }
 
   export type AttendencesUncheckedCreateWithoutSubjectInput = {
-    id: string
+    id?: string
     attendanceDate: Date | string
     attendanceStatus: string
     attendancePercentage: number
@@ -29882,14 +29882,14 @@ export namespace Prisma {
   }
 
   export type TermsCreateWithoutYearInput = {
-    id: string
+    id?: string
     termName: string
     startDate: Date | string
     endDate: Date | string
   }
 
   export type TermsUncheckedCreateWithoutYearInput = {
-    id: string
+    id?: string
     termName: string
     startDate: Date | string
     endDate: Date | string
@@ -29949,7 +29949,7 @@ export namespace Prisma {
   }
 
   export type AcademicYearsCreateWithoutTermsInput = {
-    id: string
+    id?: string
     yearName: string
     startDate: Date | string
     endDate: Date | string
@@ -29958,7 +29958,7 @@ export namespace Prisma {
   }
 
   export type AcademicYearsUncheckedCreateWithoutTermsInput = {
-    id: string
+    id?: string
     yearName: string
     startDate: Date | string
     endDate: Date | string
@@ -30001,7 +30001,7 @@ export namespace Prisma {
   }
 
   export type ClassesCreateWithoutAcademicYearsInput = {
-    id: string
+    id?: string
     className: string
     students?: StudentCreateNestedManyWithoutClassInput
     subjects?: SubjectsCreateNestedManyWithoutClassInput
@@ -30009,7 +30009,7 @@ export namespace Prisma {
   }
 
   export type ClassesUncheckedCreateWithoutAcademicYearsInput = {
-    id: string
+    id?: string
     className: string
     students?: StudentUncheckedCreateNestedManyWithoutClassInput
     subjects?: SubjectsUncheckedCreateNestedManyWithoutClassInput
@@ -30022,7 +30022,7 @@ export namespace Prisma {
   }
 
   export type AcademicYearsCreateWithoutClassesInput = {
-    id: string
+    id?: string
     yearName: string
     startDate: Date | string
     endDate: Date | string
@@ -30031,7 +30031,7 @@ export namespace Prisma {
   }
 
   export type AcademicYearsUncheckedCreateWithoutClassesInput = {
-    id: string
+    id?: string
     yearName: string
     startDate: Date | string
     endDate: Date | string
@@ -30101,14 +30101,14 @@ export namespace Prisma {
   }
 
   export type AssignmentSubmissionsCreateWithoutAssignmentInput = {
-    id: string
+    id?: string
     score?: number | null
     takenAt?: Date | string
     student: StudentCreateNestedOneWithoutAssignmentSubmissionsInput
   }
 
   export type AssignmentSubmissionsUncheckedCreateWithoutAssignmentInput = {
-    id: string
+    id?: string
     studentId: string
     score?: number | null
     takenAt?: Date | string
@@ -30125,7 +30125,7 @@ export namespace Prisma {
   }
 
   export type SubjectsCreateWithoutAssignmentsInput = {
-    id: string
+    id?: string
     subjectName: string
     subjectCode: string
     description: string
@@ -30137,7 +30137,7 @@ export namespace Prisma {
   }
 
   export type SubjectsUncheckedCreateWithoutAssignmentsInput = {
-    id: string
+    id?: string
     subjectName: string
     subjectCode: string
     description: string
@@ -30205,7 +30205,7 @@ export namespace Prisma {
   }
 
   export type SubjectsCreateWithoutLessonsInput = {
-    id: string
+    id?: string
     subjectName: string
     subjectCode: string
     description: string
@@ -30217,7 +30217,7 @@ export namespace Prisma {
   }
 
   export type SubjectsUncheckedCreateWithoutLessonsInput = {
-    id: string
+    id?: string
     subjectName: string
     subjectCode: string
     description: string
@@ -30269,7 +30269,7 @@ export namespace Prisma {
   }
 
   export type SubjectsCreateWithoutExamsInput = {
-    id: string
+    id?: string
     subjectName: string
     subjectCode: string
     description: string
@@ -30281,7 +30281,7 @@ export namespace Prisma {
   }
 
   export type SubjectsUncheckedCreateWithoutExamsInput = {
-    id: string
+    id?: string
     subjectName: string
     subjectCode: string
     description: string
@@ -30298,14 +30298,14 @@ export namespace Prisma {
   }
 
   export type ExamSubmissionsCreateWithoutExamInput = {
-    id: string
+    id?: string
     score?: number | null
     takenAt?: Date | string
     student: StudentCreateNestedOneWithoutExamSubmissionsInput
   }
 
   export type ExamSubmissionsUncheckedCreateWithoutExamInput = {
-    id: string
+    id?: string
     studentId: string
     score?: number | null
     takenAt?: Date | string
@@ -30412,7 +30412,7 @@ export namespace Prisma {
   }
 
   export type ProgressNotesCreateWithoutLearningProgressInput = {
-    id: string
+    id?: string
     noteDate: Date | string
     noteObservation: string
     strengths: string
@@ -30421,7 +30421,7 @@ export namespace Prisma {
   }
 
   export type ProgressNotesUncheckedCreateWithoutLearningProgressInput = {
-    id: string
+    id?: string
     noteDate: Date | string
     noteObservation: string
     strengths: string
@@ -30528,7 +30528,7 @@ export namespace Prisma {
   }
 
   export type LearningProgressesCreateWithoutProgressNotesInput = {
-    id: string
+    id?: string
     subjectsAverages: number
     overallAvreages: number
     attendencePercentage: number
@@ -30537,7 +30537,7 @@ export namespace Prisma {
   }
 
   export type LearningProgressesUncheckedCreateWithoutProgressNotesInput = {
-    id: string
+    id?: string
     subjectsAverages: number
     overallAvreages: number
     attendencePercentage: number
@@ -30613,7 +30613,7 @@ export namespace Prisma {
   }
 
   export type ClassesCreateWithoutPerformanceInput = {
-    id: string
+    id?: string
     className: string
     academicYears?: ClassAcademicYearCreateNestedManyWithoutClassInput
     students?: StudentCreateNestedManyWithoutClassInput
@@ -30621,7 +30621,7 @@ export namespace Prisma {
   }
 
   export type ClassesUncheckedCreateWithoutPerformanceInput = {
-    id: string
+    id?: string
     className: string
     academicYears?: ClassAcademicYearUncheckedCreateNestedManyWithoutClassInput
     students?: StudentUncheckedCreateNestedManyWithoutClassInput
@@ -30700,7 +30700,7 @@ export namespace Prisma {
   }
 
   export type SubjectsCreateWithoutAttendancesInput = {
-    id: string
+    id?: string
     subjectName: string
     subjectCode: string
     description: string
@@ -30712,7 +30712,7 @@ export namespace Prisma {
   }
 
   export type SubjectsUncheckedCreateWithoutAttendancesInput = {
-    id: string
+    id?: string
     subjectName: string
     subjectCode: string
     description: string
@@ -30809,7 +30809,7 @@ export namespace Prisma {
   }
 
   export type ExamsCreateWithoutSubmissionsInput = {
-    id: string
+    id?: string
     examName: string
     examDate: Date | string
     maximumGrade: number
@@ -30817,7 +30817,7 @@ export namespace Prisma {
   }
 
   export type ExamsUncheckedCreateWithoutSubmissionsInput = {
-    id: string
+    id?: string
     examName: string
     examDate: Date | string
     maximumGrade: number
@@ -30941,7 +30941,7 @@ export namespace Prisma {
   }
 
   export type AssignmentsCreateWithoutSubmissionsInput = {
-    id: string
+    id?: string
     assignmentTitle: string
     assignmentDescription: string
     dueDate: Date | string
@@ -30952,7 +30952,7 @@ export namespace Prisma {
   }
 
   export type AssignmentsUncheckedCreateWithoutSubmissionsInput = {
-    id: string
+    id?: string
     assignmentTitle: string
     assignmentDescription: string
     dueDate: Date | string
@@ -31117,7 +31117,7 @@ export namespace Prisma {
   }
 
   export type SubjectsCreateManyTeacherInput = {
-    id: string
+    id?: string
     subjectName: string
     subjectCode: string
     description: string
@@ -31125,7 +31125,7 @@ export namespace Prisma {
   }
 
   export type ProgressNotesCreateManyTeacherInput = {
-    id: string
+    id?: string
     noteDate: Date | string
     noteObservation: string
     strengths: string
@@ -31193,7 +31193,7 @@ export namespace Prisma {
   }
 
   export type AttendencesCreateManyStudentInput = {
-    id: string
+    id?: string
     attendanceDate: Date | string
     attendanceStatus: string
     attendancePercentage: number
@@ -31201,14 +31201,14 @@ export namespace Prisma {
   }
 
   export type ExamSubmissionsCreateManyStudentInput = {
-    id: string
+    id?: string
     examId: string
     score?: number | null
     takenAt?: Date | string
   }
 
   export type AssignmentSubmissionsCreateManyStudentInput = {
-    id: string
+    id?: string
     assignmentID: string
     score?: number | null
     takenAt?: Date | string
@@ -31299,7 +31299,7 @@ export namespace Prisma {
   }
 
   export type SubjectsCreateManyClassInput = {
-    id: string
+    id?: string
     subjectName: string
     subjectCode: string
     description: string
@@ -31399,7 +31399,7 @@ export namespace Prisma {
   }
 
   export type AssignmentsCreateManySubjectInput = {
-    id: string
+    id?: string
     assignmentTitle: string
     assignmentDescription: string
     dueDate: Date | string
@@ -31409,7 +31409,7 @@ export namespace Prisma {
   }
 
   export type LessonsCreateManySubjectInput = {
-    id: string
+    id?: string
     lessonTitle: string
     lessonDescription: string
     lessonDate: Date | string
@@ -31419,14 +31419,14 @@ export namespace Prisma {
   }
 
   export type ExamsCreateManySubjectInput = {
-    id: string
+    id?: string
     examName: string
     examDate: Date | string
     maximumGrade: number
   }
 
   export type AttendencesCreateManySubjectInput = {
-    id: string
+    id?: string
     attendanceDate: Date | string
     attendanceStatus: string
     attendancePercentage: number
@@ -31547,7 +31547,7 @@ export namespace Prisma {
   }
 
   export type TermsCreateManyYearInput = {
-    id: string
+    id?: string
     termName: string
     startDate: Date | string
     endDate: Date | string
@@ -31587,7 +31587,7 @@ export namespace Prisma {
   }
 
   export type AssignmentSubmissionsCreateManyAssignmentInput = {
-    id: string
+    id?: string
     studentId: string
     score?: number | null
     takenAt?: Date | string
@@ -31615,7 +31615,7 @@ export namespace Prisma {
   }
 
   export type ExamSubmissionsCreateManyExamInput = {
-    id: string
+    id?: string
     studentId: string
     score?: number | null
     takenAt?: Date | string
@@ -31643,7 +31643,7 @@ export namespace Prisma {
   }
 
   export type ProgressNotesCreateManyLearningProgressInput = {
-    id: string
+    id?: string
     noteDate: Date | string
     noteObservation: string
     strengths: string
