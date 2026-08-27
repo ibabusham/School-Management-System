@@ -43,12 +43,17 @@ import {
   createAssignmentSchema,
   updateAssignmentSchema,
 } from "@/app/api/assignments/schemas";
+import {
+  createLessonSchema,
+  updateLessonSchema,
+} from "@/app/api/lessons/schemas";
 import { z } from "zod";
 import { zodToOpenApiSchema } from "./zod-to-schema";
 
 const roleSchema = z.enum(["ADMIN", "TEACHER", "STUDENT"]);
 const genderSchema = z.enum(["MALE", "FEMALE"]);
 const academicYearStatusSchema = z.enum(["ACTIVE", "INACTIVE"]);
+const lessonCompletionStatusSchema = z.enum(["COMPLEATED", "INCOMPLEATE"]);
 
 export const academicYearSchema = z.object({
   id: z.string(),
@@ -237,6 +242,26 @@ export const markAssignmentSubmissionSummarySchema = z.object({
   score: z.number().int().nullable(),
 });
 
+export const lessonSchema = z.object({
+  id: z.string(),
+  lessonTitle: z.string(),
+  lessonDescription: z.string(),
+  lessonDate: z.string().datetime().or(z.string()),
+  learningObjectinve: z.string(),
+  learningMaterial: z.string(),
+  completionStatus: lessonCompletionStatusSchema,
+  subjectId: z.string(),
+  subject: subjectSchema.optional(),
+});
+
+export const lessonSummarySchema = z.object({
+  id: z.string(),
+  lessonTitle: z.string(),
+  lessonDescription: z.string(),
+  lessonDate: z.string().datetime().or(z.string()),
+  subjectId: z.string(),
+});
+
 export const paginationSchema = z.object({
   page: z.number().int(),
   limit: z.number().int(),
@@ -266,6 +291,8 @@ export const swaggerComponentSchemas = {
   CreateAssignmentRequest: zodToOpenApiSchema(createAssignmentSchema),
   UpdateAssignmentRequest: zodToOpenApiSchema(updateAssignmentSchema),
   BulkMarkAssignmentRequest: zodToOpenApiSchema(bulkMarkAssignmentSchema),
+  CreateLessonRequest: zodToOpenApiSchema(createLessonSchema),
+  UpdateLessonRequest: zodToOpenApiSchema(updateLessonSchema),
   Teacher: zodToOpenApiSchema(teacherSchema),
   Student: zodToOpenApiSchema(studentSchema),
   StudentSummary: zodToOpenApiSchema(studentSummarySchema),
@@ -283,6 +310,8 @@ export const swaggerComponentSchemas = {
   AssignmentSummary: zodToOpenApiSchema(assignmentSummarySchema),
   TakenAssignmentSubmissionSummary: zodToOpenApiSchema(takenAssignmentSubmissionSummarySchema),
   MarkAssignmentSubmissionSummary: zodToOpenApiSchema(markAssignmentSubmissionSummarySchema),
+  Lesson: zodToOpenApiSchema(lessonSchema),
+  LessonSummary: zodToOpenApiSchema(lessonSummarySchema),
   TeacherResponse: zodToOpenApiSchema(z.object({ teacher: teacherSchema })),
   StudentResponse: zodToOpenApiSchema(z.object({ student: studentSchema })),
   CreateStudentResponse: zodToOpenApiSchema(
@@ -454,6 +483,28 @@ export const swaggerComponentSchemas = {
       data: z.array(takenAssignmentSubmissionSummarySchema),
       pagination: paginationSchema,
     })
+  ),
+  LessonResponse: zodToOpenApiSchema(z.object({ lesson: lessonSchema })),
+  CreateLessonResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      lesson: lessonSummarySchema,
+    })
+  ),
+  UpdateLessonResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      lesson: lessonSchema,
+    })
+  ),
+  DeleteLessonResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      lesson: lessonSchema,
+    })
+  ),
+  LessonListResponse: zodToOpenApiSchema(
+    z.object({ data: z.array(lessonSummarySchema), pagination: paginationSchema })
   ),
   LoginResponse: zodToOpenApiSchema(
     z.object({
