@@ -6,12 +6,7 @@ import {
   SUBJECT_CREATED_MESSAGE,
   toSubjectSummary,
 } from "./responses";
-import {
-  assertAdmin,
-  assertTeacherOrAdmin,
-} from "@/app/api/auth/services/authorize";
 import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
-import { isTeacher } from "@/app/api/auth/services/roles";
 import { handleError } from "@/app/utils/errors.utility";
 
 /**
@@ -68,8 +63,6 @@ import { handleError } from "@/app/utils/errors.utility";
 export const GET = createRouteHandler(null, async (request) => {
   try {
     const auth = await getAuthPayload(request);
-  
-    assertTeacherOrAdmin(auth);
 
     const queryParams = request.nextUrl.searchParams;
     const parsed = subjectListQuerySchema.safeParse({
@@ -82,8 +75,7 @@ export const GET = createRouteHandler(null, async (request) => {
       return handleError(parsed.error);
     }
 
-    const teacherId = isTeacher(auth) ? auth.sub : undefined;
-    const result = await getSubjectList(parsed.data, teacherId);
+    const result = await getSubjectList(parsed.data, auth);
     return NextResponse.json({
       data: result.data.map(toSubjectSummary),
       pagination: result.pagination,
@@ -149,8 +141,6 @@ export const GET = createRouteHandler(null, async (request) => {
 export const POST = createRouteHandler(createSubjectSchema, async (request, body) => {
   try {
     const auth = await getAuthPayload(request);
-    // RBAC: only admins may create subjects
-    assertAdmin(auth);
 
     const subject = await createSubject(body);
     return NextResponse.json(

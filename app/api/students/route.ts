@@ -6,9 +6,7 @@ import {
 } from "@/app/api/students/responses";
 import { NextResponse } from "next/server";
 import { handleError } from "@/app/utils/errors.utility";
-import { assertAdmin } from "@/app/api/auth/services/authorize";
 import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
-import { assertNotStudent } from "@/app/api/auth/services/authorize";
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 
 /**
@@ -53,9 +51,6 @@ import { createRouteHandler } from "@/app/utils/create-route-handles";
 export const GET = createRouteHandler(null, async (request) => {
   try {
     const auth = await getAuthPayload(request);
-    // RBAC: students cannot list all students
-    assertNotStudent(auth);
-    assertAdmin(auth);
 
      const queryParams = request.nextUrl.searchParams;
      const parsed = studentListQuerySchema.safeParse({
@@ -128,8 +123,6 @@ export const GET = createRouteHandler(null, async (request) => {
 export const POST = createRouteHandler(createStudentSchema, async (request, body) => {
   try {
     const auth = await getAuthPayload(request);
-    // RBAC: only admins may create students
-    assertAdmin(auth);
 
     const student = await createStudent(body);
     return NextResponse.json(

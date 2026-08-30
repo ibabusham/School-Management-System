@@ -2,7 +2,6 @@ import { createRouteHandler } from "@/app/utils/create-route-handles";
 import { NextResponse } from "next/server";
 import { assignSubjectToClass } from "../../Services/subjects.services";
 import { assignSubjectToClassSchema } from "../../schemas";
-import { assertAdmin } from "@/app/api/auth/services/authorize";
 import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 import { handleError } from "@/app/utils/errors.utility";
 
@@ -66,8 +65,6 @@ export const POST = createRouteHandler(
   async (request, body, context) => {
     try {
       const auth = await getAuthPayload(request);
-      // RBAC: only admins may reassign subjects to classes
-      assertAdmin(auth);
 
       const { id } = await context.params;
       const subject = await assignSubjectToClass(id, body);

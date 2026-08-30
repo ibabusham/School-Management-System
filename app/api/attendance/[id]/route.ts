@@ -12,12 +12,7 @@ import {
   getAttendance,
   updateAttendance,
 } from "../services/attendance.services";
-import { assertTeacherOrAdmin } from "@/app/api/auth/services/authorize";
 import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
-import {
-  requireTeacherOwnsAttendance,
-  requireTeacherOwnsSubject,
-} from "@/app/api/auth/services/teacher-scope";
 
 /**
  * @swagger
@@ -64,11 +59,8 @@ export const GET = createRouteHandler(null, async (request, _body, context) => {
   try {
     const auth = await getAuthPayload(request);
     const { id } = await context.params;
-    // RBAC: teacher must own the attendance record's subject
-    assertTeacherOrAdmin(auth);
-    await requireTeacherOwnsAttendance(auth, id);
 
-    const attendance = await getAttendance(id);
+    const attendance = await getAttendance(id, auth);
 
     return NextResponse.json({ attendance: toAttendance(attendance) });
   } catch (error) {
@@ -142,14 +134,8 @@ export const PATCH = createRouteHandler(
     try {
       const auth = await getAuthPayload(request);
       const { id } = await context.params;
-      // RBAC: teacher must own record; if changing subject, must own new subject too
-      assertTeacherOrAdmin(auth);
-      await requireTeacherOwnsAttendance(auth, id);
-      if (body.subjectId) {
-        await requireTeacherOwnsSubject(auth, body.subjectId);
-      }
 
-      const attendance = await updateAttendance(id, body);
+      const attendance = await updateAttendance(id, body, auth);
 
       return NextResponse.json({
         message: ATTENDANCE_UPDATED_MESSAGE,
@@ -206,11 +192,8 @@ export const DELETE = createRouteHandler(null, async (request, _body, context) =
   try {
     const auth = await getAuthPayload(request);
     const { id } = await context.params;
-    // RBAC: teacher must own the attendance record's subject
-    assertTeacherOrAdmin(auth);
-    await requireTeacherOwnsAttendance(auth, id);
 
-    const attendance = await deleteAttendance(id);
+    const attendance = await deleteAttendance(id, auth);
 
     return NextResponse.json({
       message: ATTENDANCE_DELETED_MESSAGE,

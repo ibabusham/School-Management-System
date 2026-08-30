@@ -11,12 +11,7 @@ import {
   ASSIGNMENT_DELETED_MESSAGE,
   ASSIGNMENT_UPDATED_MESSAGE,
 } from "../responses";
-import { assertTeacherOrAdmin } from "@/app/api/auth/services/authorize";
 import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
-import {
-  requireTeacherOwnsAssignment,
-  requireTeacherOwnsSubject,
-} from "@/app/api/auth/services/teacher-scope";
 
 /**
  * @swagger
@@ -65,11 +60,8 @@ export const GET = createRouteHandler(null, async (request, _body, context) => {
     const auth = await getAuthPayload(request);
     const { id } = await context.params;
     const assignmentId = parseAssignmentRouteId(id);
-    // RBAC: teacher must own the assignment's subject
-    assertTeacherOrAdmin(auth);
-    await requireTeacherOwnsAssignment(auth, assignmentId);
 
-    const assignment = await getAssignment(assignmentId);
+    const assignment = await getAssignment(assignmentId, auth);
     return NextResponse.json({ assignment });
   } catch (error) {
     return handleError(error);
@@ -135,14 +127,8 @@ export const PATCH = createRouteHandler(updateAssignmentSchema, async (request, 
     const auth = await getAuthPayload(request);
     const { id } = await context.params;
     const assignmentId = parseAssignmentRouteId(id);
-    // RBAC: teacher must own assignment; if reassigning subject, must own new subject too
-    assertTeacherOrAdmin(auth);
-    await requireTeacherOwnsAssignment(auth, assignmentId);
-    if (body.subjectId) {
-      await requireTeacherOwnsSubject(auth, body.subjectId);
-    }
 
-    const assignment = await updateAssignment(assignmentId, body);
+    const assignment = await updateAssignment(assignmentId, body, auth);
     return NextResponse.json({
       message: ASSIGNMENT_UPDATED_MESSAGE,
       assignment,
@@ -199,11 +185,8 @@ export const DELETE = createRouteHandler(null, async (request, _body, context) =
     const auth = await getAuthPayload(request);
     const { id } = await context.params;
     const assignmentId = parseAssignmentRouteId(id);
-    // RBAC: teacher must own the assignment's subject
-    assertTeacherOrAdmin(auth);
-    await requireTeacherOwnsAssignment(auth, assignmentId);
 
-    const assignment = await deleteAssignment(assignmentId);
+    const assignment = await deleteAssignment(assignmentId, auth);
     return NextResponse.json({
       message: ASSIGNMENT_DELETED_MESSAGE,
       assignment,

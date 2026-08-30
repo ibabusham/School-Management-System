@@ -27,7 +27,8 @@ export const getApiDocs = async () => {
           "- **TEACHER** — scoped to subjects where `Subjects.teacherId` matches the token `sub`; may read class performance and students in those classes",
           "- **STUDENT** — self-service only: own profile, learning progress, and read-only academic calendar (years/terms)",
           "",
-          "Protected routes return **401** when the Bearer token is missing or invalid, and **403** when the role or scope is not allowed.",
+          "Protected routes return **401** when the Bearer token is missing or invalid (enforced in `proxy.ts`).",
+          "**403** may come from the proxy (JWT valid but role not allowed for that path/method) or from services (role allowed but resource out of scope, e.g. teacher accessing another teacher's subject).",
         ].join("\n"),
       },
       tags: [

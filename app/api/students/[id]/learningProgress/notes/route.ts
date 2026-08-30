@@ -1,11 +1,7 @@
 import { NextResponse } from "next/server";
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 import { handleError } from "@/app/utils/errors.utility";
-import {
-  assertLearningProgressReadAccess,
-  assertProgressNoteCreateAccess,
-  getAuthPayload,
-} from "@/app/api/auth/services/requireAuth";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 import {
   createProgressNoteSchema,
   learningProgressNotesQuerySchema,
@@ -75,8 +71,6 @@ export const GET = createRouteHandler(null, async (request, _body, context) => {
   try {
     const auth = await getAuthPayload(request);
     const { id } = await context.params;
-    // RBAC: admin/teacher (in scope) or student (self only)
-    await assertLearningProgressReadAccess(auth, id);
 
     const queryParams = request.nextUrl.searchParams;
     const parsed = learningProgressNotesQuerySchema.safeParse({
@@ -88,7 +82,7 @@ export const GET = createRouteHandler(null, async (request, _body, context) => {
       return handleError(parsed.error);
     }
 
-    const result = await listProgressNotes(id, parsed.data);
+    const result = await listProgressNotes(id, parsed.data, auth);
 
     return NextResponse.json({
       data: result.data.map(toProgressNote),
@@ -157,8 +151,6 @@ export const POST = createRouteHandler(createProgressNoteSchema, async (request,
   try {
     const auth = await getAuthPayload(request);
     const { id } = await context.params;
-    // RBAC: admin or teacher in scope; students cannot create notes
-    await assertProgressNoteCreateAccess(auth, id);
 
     const note = await createProgressNote(id, auth, body);
 

@@ -1,11 +1,7 @@
 import { NextResponse } from "next/server";
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 import { handleError } from "@/app/utils/errors.utility";
-import {
-  assertLearningProgressReadAccess,
-  assertProgressNoteModifyAccess,
-  getAuthPayload,
-} from "@/app/api/auth/services/requireAuth";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 import { updateProgressNoteSchema } from "../../schemas";
 import {
   deleteProgressNote,
@@ -69,10 +65,8 @@ export const GET = createRouteHandler(null, async (request, _body, context) => {
   try {
     const auth = await getAuthPayload(request);
     const { id, noteId } = await context.params;
-    // RBAC: admin/teacher (in scope) or student (self only)
-    await assertLearningProgressReadAccess(auth, id);
 
-    const note = await getProgressNote(id, noteId);
+    const note = await getProgressNote(id, noteId, auth);
 
     return NextResponse.json({ progressNote: toProgressNote(note) });
   } catch (error) {
@@ -147,9 +141,6 @@ export const PATCH = createRouteHandler(
     try {
       const auth = await getAuthPayload(request);
       const { id, noteId } = await context.params;
-      const existingNote = await getProgressNote(id, noteId);
-      // RBAC: admin or authoring teacher in scope; students denied
-      await assertProgressNoteModifyAccess(auth, id, existingNote.teacherId);
 
       const note = await updateProgressNote(id, noteId, auth, body);
 
@@ -214,9 +205,6 @@ export const DELETE = createRouteHandler(null, async (request, _body, context) =
   try {
     const auth = await getAuthPayload(request);
     const { id, noteId } = await context.params;
-    const existingNote = await getProgressNote(id, noteId);
-    // RBAC: admin or authoring teacher in scope; students denied
-    await assertProgressNoteModifyAccess(auth, id, existingNote.teacherId);
 
     const note = await deleteProgressNote(id, noteId, auth);
 

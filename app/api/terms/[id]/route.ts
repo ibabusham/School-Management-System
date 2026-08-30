@@ -7,10 +7,6 @@ import {
   TERM_DELETED_MESSAGE,
   TERM_UPDATED_MESSAGE,
 } from "@/app/api/shared/operation-messages";
-import {
-  assertAdmin,
-  assertCalendarReadAccess,
-} from "@/app/api/auth/services/authorize";
 import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 
 /**
@@ -58,8 +54,6 @@ import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 export const GET = createRouteHandler(null, async (request, _body, context) => {
   try {
     const auth = await getAuthPayload(request);
-    // RBAC: calendar read — admin, teacher, and student may view a term
-    assertCalendarReadAccess(auth);
 
     const { id } = await context.params;
     const term = await getTerm(id);
@@ -130,8 +124,6 @@ export const GET = createRouteHandler(null, async (request, _body, context) => {
 export const PATCH = createRouteHandler(updateTermSchema, async (request, body, context) => {
   try {
     const auth = await getAuthPayload(request);
-    // RBAC: only admins may update terms
-    assertAdmin(auth);
 
     const { id } = await context.params;
     const term = await updateTerm(id, body);
@@ -189,8 +181,6 @@ export const PATCH = createRouteHandler(updateTermSchema, async (request, body, 
 export const DELETE = createRouteHandler(null, async (request, _body, context) => {
   try {
     const auth = await getAuthPayload(request);
-    // RBAC: only admins may delete terms
-    assertAdmin(auth);
 
     const { id } = await context.params;
     const term = await deleteTerm(id);

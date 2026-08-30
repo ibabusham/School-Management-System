@@ -3,10 +3,6 @@ import { NextResponse } from "next/server";
 import { createTerm, getTerms } from "./services/terms.services";
 import { createTermSchema, termListQuerySchema } from "./schemas";
 import { TERM_CREATED_MESSAGE } from "@/app/api/shared/operation-messages";
-import {
-  assertAdmin,
-  assertCalendarReadAccess,
-} from "@/app/api/auth/services/authorize";
 import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 import { handleError } from "@/app/utils/errors.utility";
 
@@ -64,8 +60,6 @@ import { handleError } from "@/app/utils/errors.utility";
 export const GET = createRouteHandler(null, async (request) => {
   try {
     const auth = await getAuthPayload(request);
-    // RBAC: calendar read — admin, teacher, and student may list terms
-    assertCalendarReadAccess(auth);
 
     const queryParams = request.nextUrl.searchParams;
     const parsed = termListQuerySchema.safeParse({
@@ -140,8 +134,6 @@ export const GET = createRouteHandler(null, async (request) => {
 export const POST = createRouteHandler(createTermSchema, async (request, body) => {
   try {
     const auth = await getAuthPayload(request);
-    // RBAC: only admins may create terms
-    assertAdmin(auth);
 
     const term = await createTerm(body);
     return NextResponse.json(

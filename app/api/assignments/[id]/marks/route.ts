@@ -8,9 +8,7 @@ import {
   buildMarkPagination,
   toMarkSubmissionSummary,
 } from "../../responses";
-import { assertTeacherOrAdmin } from "@/app/api/auth/services/authorize";
 import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
-import { requireTeacherOwnsAssignment } from "@/app/api/auth/services/teacher-scope";
 
 /**
  * @swagger
@@ -78,11 +76,8 @@ export const POST = createRouteHandler(
       const auth = await getAuthPayload(request);
       const { id } = await context.params;
       const assignmentId = parseAssignmentRouteId(id);
-      // RBAC: only teacher who owns the assignment's subject (or admin) may mark
-      assertTeacherOrAdmin(auth);
-      await requireTeacherOwnsAssignment(auth, assignmentId);
 
-      const result = await markAssignment(assignmentId, body);
+      const result = await markAssignment(assignmentId, body, auth);
       const data = result.submissions.map(toMarkSubmissionSummary);
       return NextResponse.json({
         message: ASSIGNMENT_MARKED_MESSAGE,

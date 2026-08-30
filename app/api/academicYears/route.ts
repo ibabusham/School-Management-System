@@ -5,10 +5,6 @@ import {
   getAcademicYearSchema,
 } from "./schemas";
 import { createAcademicYear, findAcademicYear } from "./services/academicyear.services";
-import {
-  assertAdmin,
-  assertCalendarReadAccess,
-} from "@/app/api/auth/services/authorize";
 import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 import { ACADEMIC_YEAR_CREATED_MESSAGE } from "@/app/api/shared/operation-messages";
 import { handleError } from "@/app/utils/errors.utility";
@@ -68,8 +64,6 @@ import { NextResponse } from "next/server";
 export const GET = createRouteHandler(null, async (request) => {
   try {
     const auth = await getAuthPayload(request);
-    // RBAC: calendar read — admin, teacher, and student may list academic years
-    assertCalendarReadAccess(auth);
 
     const queryParams = request.nextUrl.searchParams;
     const parsed = getAcademicYearSchema.safeParse({
@@ -138,8 +132,6 @@ export const POST = createRouteHandler(
   async (request, body: CreateAcademicYear) => {
     try {
       const auth = await getAuthPayload(request);
-      // RBAC: only admins may create academic years
-      assertAdmin(auth);
 
       const academicYear = await createAcademicYear(body);
       return NextResponse.json(

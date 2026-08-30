@@ -2,12 +2,7 @@ import { createRouteHandler } from "@/app/utils/create-route-handles";
 import { createExam, getExamList } from "./services/exams.services";
 import { EXAM_CREATED_MESSAGE, toExamSummary } from "./responses";
 import { createExamSchema, examListQuerySchema } from "./schemas";
-import { assertTeacherOrAdmin } from "@/app/api/auth/services/authorize";
 import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
-import {
-  getScopedSubjectIds,
-  requireTeacherOwnsSubject,
-} from "@/app/api/auth/services/teacher-scope";
 import { NextResponse } from "next/server";
 import { handleError } from "@/app/utils/errors.utility";
 
@@ -66,8 +61,6 @@ import { handleError } from "@/app/utils/errors.utility";
 export const GET = createRouteHandler(null, async (request) => {
   try {
     const auth = await getAuthPayload(request);
-    // RBAC: students blocked; teachers only see exams for their subjects
-    assertTeacherOrAdmin(auth);
 
     const queryParams = request.nextUrl.searchParams;
     const parsed = examListQuerySchema.safeParse({
@@ -80,8 +73,7 @@ export const GET = createRouteHandler(null, async (request) => {
       return handleError(parsed.error);
     }
 
-    const scopedSubjectIds = await getScopedSubjectIds(auth);
-    const result = await getExamList(parsed.data, scopedSubjectIds);
+    const result = await getExamList(parsed.data, auth);
     return NextResponse.json({
       data: result.data.map(toExamSummary),
       pagination: result.pagination,
@@ -146,11 +138,8 @@ export const GET = createRouteHandler(null, async (request) => {
 export const POST = createRouteHandler(createExamSchema, async (request, body) => {
   try {
     const auth = await getAuthPayload(request);
-    // RBAC: teacher must own the target subject; students blocked
-    assertTeacherOrAdmin(auth);
-    await requireTeacherOwnsSubject(auth, body.subjectId);
 
-    const exam = await createExam(body);
+    const exam = await createExam(body, auth);
     return NextResponse.json(
       {
         message: EXAM_CREATED_MESSAGE,

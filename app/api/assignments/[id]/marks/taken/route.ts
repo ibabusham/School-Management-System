@@ -4,9 +4,7 @@ import { handleError } from "@/app/utils/errors.utility";
 import { submissionListQuerySchema, parseAssignmentRouteId } from "../../../schemas";
 import { getTakenSubmissions } from "../../../services/assignments.services";
 import { toTakenSubmissionSummary } from "../../../responses";
-import { assertTeacherOrAdmin } from "@/app/api/auth/services/authorize";
 import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
-import { requireTeacherOwnsAssignment } from "@/app/api/auth/services/teacher-scope";
 
 /**
  * @swagger
@@ -72,9 +70,6 @@ export const GET = createRouteHandler(null, async (request, _body, context) => {
     const auth = await getAuthPayload(request);
     const { id } = await context.params;
     const assignmentId = parseAssignmentRouteId(id);
-    // RBAC: teacher must own the assignment's subject to view submissions
-    assertTeacherOrAdmin(auth);
-    await requireTeacherOwnsAssignment(auth, assignmentId);
 
     const queryParams = request.nextUrl.searchParams;
     const parsed = submissionListQuerySchema.safeParse({
@@ -86,7 +81,7 @@ export const GET = createRouteHandler(null, async (request, _body, context) => {
       return handleError(parsed.error);
     }
 
-    const result = await getTakenSubmissions(assignmentId, parsed.data);
+    const result = await getTakenSubmissions(assignmentId, parsed.data, auth);
     return NextResponse.json({
       data: result.data.map(toTakenSubmissionSummary),
       pagination: result.pagination,

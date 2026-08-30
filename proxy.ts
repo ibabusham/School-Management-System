@@ -1,41 +1,54 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
-import { isAuthenticated } from './app/api/auth/services/requireAuth';
-
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import {
+  AUTH_HEADER_NAMES,
+  verifyBearerToken,
+} from "./app/api/auth/services/requireAuth";
+import {
+  isPublicRoute,
+  isRoleAllowed,
+  matchPolicy,
+} from "./app/api/auth/services/proxy-policies";
 
 export const config = {
-    matcher: [
-      '/api/:path*',
-    ],
-  };
+  matcher: ["/api/:path*"],
+};
 
-function isExcluded(pathname: string): boolean {
-    const excludedRoutes = [
-      '/api/auth/login',
-      '/api/auth/refreshToken',
-      '/api/auth/forgotPassword',
-      '/api/auth/resetPassword',
-      '/api/auth/logout',
-    ];
-    
-    // Checks if current path exactly matches or starts with any excluded route
-    return excludedRoutes.some(route => 
-      pathname === route || pathname.startsWith(`${route}/`)
+export async function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  if (isPublicRoute(pathname)) {
+    return NextResponse.next();
+  }
+
+  let payload;
+  try {
+    payload = await verifyBearerToken(request);
+  } catch {
+    return NextResponse.json(
+      { error: "Unauthorized or missing token" },
+      { status: 401 }
     );
   }
 
-
-export async function proxy(request: NextRequest) {
-    const { pathname } = request.nextUrl;
-  
-    // Use the helper to skip proxying if the route is excluded
-    if (isExcluded(pathname)) {
-      return NextResponse.next(); 
-    }
-  
-   const valid = await isAuthenticated(request);
-   if (!valid) {
-    return NextResponse.json({ error: 'Unauthorized or missing token' }, { status: 401 });
-   }
-   return NextResponse.next();
+  const policy = matchPolicy(request.method, pathname);
+  if (!policy) {
+    return NextResponse.json({ error: "Access denied" }, { status: 403 });
   }
+
+  if (!isRoleAllowed(payload.role, policy)) {
+    return NextResponse.json(
+      { error: "Forbidden — insufficient role" },
+      { status: 403 }
+    );
+  }
+
+  const headers = new Headers(request.headers);
+  headers.set(AUTH_HEADER_NAMES.sub, payload.sub);
+  headers.set(AUTH_HEADER_NAMES.role, payload.role);
+  headers.set(AUTH_HEADER_NAMES.username, payload.username);
+
+  return NextResponse.next({
+    request: { headers },
+  });
+}

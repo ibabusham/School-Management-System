@@ -6,12 +6,7 @@ import {
   EXAM_UPDATED_MESSAGE,
 } from "../responses";
 import { updateExamSchema } from "../schemas";
-import { assertTeacherOrAdmin } from "@/app/api/auth/services/authorize";
 import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
-import {
-  requireTeacherOwnsExam,
-  requireTeacherOwnsSubject,
-} from "@/app/api/auth/services/teacher-scope";
 import { handleError } from "@/app/utils/errors.utility";
 
 /**
@@ -60,11 +55,8 @@ export const GET = createRouteHandler(null, async (request, _body, context) => {
   try {
     const auth = await getAuthPayload(request);
     const { id } = await context.params;
-    // RBAC: teacher must own the exam's subject
-    assertTeacherOrAdmin(auth);
-    await requireTeacherOwnsExam(auth, id);
 
-    const exam = await getExam(id);
+    const exam = await getExam(id, auth);
     return NextResponse.json({ exam });
   } catch (error) {
     return handleError(error);
@@ -129,14 +121,8 @@ export const PATCH = createRouteHandler(updateExamSchema, async (request, body, 
   try {
     const auth = await getAuthPayload(request);
     const { id } = await context.params;
-    // RBAC: teacher must own exam; if reassigning subject, must own new subject too
-    assertTeacherOrAdmin(auth);
-    await requireTeacherOwnsExam(auth, id);
-    if (body.subjectId) {
-      await requireTeacherOwnsSubject(auth, body.subjectId);
-    }
 
-    const exam = await updateExam(id, body);
+    const exam = await updateExam(id, body, auth);
     return NextResponse.json({
       message: EXAM_UPDATED_MESSAGE,
       exam,
@@ -192,11 +178,8 @@ export const DELETE = createRouteHandler(null, async (request, _body, context) =
   try {
     const auth = await getAuthPayload(request);
     const { id } = await context.params;
-    // RBAC: teacher must own the exam's subject
-    assertTeacherOrAdmin(auth);
-    await requireTeacherOwnsExam(auth, id);
 
-    const exam = await deleteExam(id);
+    const exam = await deleteExam(id, auth);
     return NextResponse.json({
       message: EXAM_DELETED_MESSAGE,
       exam,

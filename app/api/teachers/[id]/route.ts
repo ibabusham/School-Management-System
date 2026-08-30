@@ -4,11 +4,6 @@ import { getTeacherById } from "@/app/api/teachers/services/teacher.service";
 import { updateTeacher } from "@/app/api/teachers/services/teacher.service";
 import { updateTeacherSchema } from "@/app/api/teachers/schemas";
 import { ACCOUNT_DELETED_MESSAGE } from "@/app/api/teachers/responses";
-import {
-  assertAdmin,
-  assertTeacherProfileReadAccess,
-  assertTeacherProfileWriteAccess,
-} from "@/app/api/auth/services/authorize";
 import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 import { handleError } from "@/app/utils/errors.utility";
 import { createRouteHandler } from "@/app/utils/create-route-handles";
@@ -58,10 +53,8 @@ export const GET = createRouteHandler(null, async (request, body, context) => {
   try {
     const auth = await getAuthPayload(request);
     const { id } = await context.params;
-    // RBAC: admin (any) or teacher (own profile only)
-    assertTeacherProfileReadAccess(auth, id);
 
-    const teacher = await getTeacherById(id);
+    const teacher = await getTeacherById(id, auth);
     return NextResponse.json({ teacher });
   } catch (error) {
     return handleError(error);
@@ -126,10 +119,8 @@ export const PATCH = createRouteHandler(updateTeacherSchema, async (request, bod
   try {
     const auth = await getAuthPayload(request);
     const { id } = await context.params;
-    // RBAC: admin (any) or teacher (own profile only)
-    assertTeacherProfileWriteAccess(auth, id);
 
-    const teacher = await updateTeacher(id, body);
+    const teacher = await updateTeacher(id, body, auth);
     return NextResponse.json({ teacher });
   } catch (error) {
     return handleError(error);
@@ -180,8 +171,6 @@ export const PATCH = createRouteHandler(updateTeacherSchema, async (request, bod
 export const DELETE = createRouteHandler(null, async (request, body, context) => {
   try {
     const auth = await getAuthPayload(request);
-    // RBAC: only admins may delete teachers
-    assertAdmin(auth);
 
     const { id } = await context.params;
     const teacher = await deleteTeacher(id);

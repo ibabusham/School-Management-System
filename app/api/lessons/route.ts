@@ -6,12 +6,7 @@ import { lessonListQuerySchema } from "./schemas";
 import { createLesson, getLessonList } from "./services/lessons.services";
 import { LESSON_CREATED_MESSAGE, toLessonSummary } from "./responses";
 import type { CreateLessonInput } from "./schemas";
-import { assertTeacherOrAdmin } from "@/app/api/auth/services/authorize";
 import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
-import {
-  getScopedSubjectIds,
-  requireTeacherOwnsSubject,
-} from "@/app/api/auth/services/teacher-scope";
 
 /**
  * @swagger
@@ -68,8 +63,6 @@ import {
 export const GET = createRouteHandler(null, async (request) => {
   try {
     const auth = await getAuthPayload(request);
-    // RBAC: students blocked; teachers only see lessons for their subjects
-    assertTeacherOrAdmin(auth);
 
     const queryParams = request.nextUrl.searchParams;
     const parsed = lessonListQuerySchema.safeParse({
@@ -82,8 +75,7 @@ export const GET = createRouteHandler(null, async (request) => {
       return handleError(parsed.error);
     }
 
-    const scopedSubjectIds = await getScopedSubjectIds(auth);
-    const result = await getLessonList(parsed.data, scopedSubjectIds);
+    const result = await getLessonList(parsed.data, auth);
     return NextResponse.json({
       data: result.data.map(toLessonSummary),
       pagination: result.pagination,
@@ -151,11 +143,8 @@ export const GET = createRouteHandler(null, async (request) => {
 export const POST = createRouteHandler(createLessonSchema, async (request, body: CreateLessonInput) => {
   try {
     const auth = await getAuthPayload(request);
-    // RBAC: teacher must own the target subject; students blocked
-    assertTeacherOrAdmin(auth);
-    await requireTeacherOwnsSubject(auth, body.subjectId);
 
-    const lesson = await createLesson(body);
+    const lesson = await createLesson(body, auth);
     return NextResponse.json(
       {
         message: LESSON_CREATED_MESSAGE,

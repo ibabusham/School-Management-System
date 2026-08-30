@@ -1,20 +1,14 @@
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 import { handleError } from "@/app/utils/errors.utility";
 import { NextResponse } from "next/server";
-import { deleteLesson, updateLesson } from "../services/lessons.services";
+import { deleteLesson, getLesson, updateLesson } from "../services/lessons.services";
 import { parseLessonRouteId, updateLessonSchema } from "../schemas";
-import { findLessonById } from "../services/lessons.services";
 import {
   LESSON_DELETED_MESSAGE,
   LESSON_UPDATED_MESSAGE,
   toLesson,
 } from "../responses";
-import { assertTeacherOrAdmin } from "@/app/api/auth/services/authorize";
 import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
-import {
-  requireTeacherOwnsLesson,
-  requireTeacherOwnsSubject,
-} from "@/app/api/auth/services/teacher-scope";
 
 /**
  * @swagger
@@ -69,11 +63,8 @@ export const GET = createRouteHandler(null, async (request, _body, context) => {
     const auth = await getAuthPayload(request);
     const { id } = await context.params;
     const lessonId = parseLessonRouteId(id);
-    // RBAC: teacher must own the lesson's subject
-    assertTeacherOrAdmin(auth);
-    await requireTeacherOwnsLesson(auth, lessonId);
 
-    const lesson = await findLessonById(lessonId);
+    const lesson = await getLesson(lessonId, auth);
     return NextResponse.json({ lesson: toLesson(lesson) });
   } catch (error) {
     return handleError(error);
@@ -139,14 +130,8 @@ export const PATCH = createRouteHandler(updateLessonSchema, async (request, body
     const auth = await getAuthPayload(request);
     const { id } = await context.params;
     const lessonId = parseLessonRouteId(id);
-    // RBAC: teacher must own lesson; if reassigning subject, must own new subject too
-    assertTeacherOrAdmin(auth);
-    await requireTeacherOwnsLesson(auth, lessonId);
-    if (body.subjectId) {
-      await requireTeacherOwnsSubject(auth, body.subjectId);
-    }
 
-    const lesson = await updateLesson(lessonId, body);
+    const lesson = await updateLesson(lessonId, body, auth);
     return NextResponse.json({
       message: LESSON_UPDATED_MESSAGE,
       lesson: toLesson(lesson),
@@ -209,11 +194,8 @@ export const DELETE = createRouteHandler(null, async (request, _body, context) =
     const auth = await getAuthPayload(request);
     const { id } = await context.params;
     const lessonId = parseLessonRouteId(id);
-    // RBAC: teacher must own the lesson's subject
-    assertTeacherOrAdmin(auth);
-    await requireTeacherOwnsLesson(auth, lessonId);
 
-    const lesson = await deleteLesson(lessonId);
+    const lesson = await deleteLesson(lessonId, auth);
     return NextResponse.json({
       message: LESSON_DELETED_MESSAGE,
       lesson: toLesson(lesson),

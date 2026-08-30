@@ -1,5 +1,4 @@
 import { createRouteHandler } from "@/app/utils/create-route-handles";
-import { assertClassPerformanceReadAccess } from "@/app/api/auth/services/authorize";
 import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 import { NextResponse } from "next/server";
 import { getClassPerformance } from "../../Services/classes.services";
@@ -52,10 +51,8 @@ export const GET = createRouteHandler(null, async (request, _body, context) => {
   try {
     const auth = await getAuthPayload(request);
     const { id } = await context.params;
-    // RBAC: admin (any class) or teacher (class must include one of their subjects)
-    await assertClassPerformanceReadAccess(auth, id);
 
-    const performance = await getClassPerformance(id);
+    const performance = await getClassPerformance(id, auth);
     return NextResponse.json({ performance });
   } catch (error) {
     return handleError(error);

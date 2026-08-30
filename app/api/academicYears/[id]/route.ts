@@ -12,10 +12,6 @@ import {
   ACADEMIC_YEAR_DELETED_MESSAGE,
   ACADEMIC_YEAR_UPDATED_MESSAGE,
 } from "@/app/api/shared/operation-messages";
-import {
-  assertAdmin,
-  assertCalendarReadAccess,
-} from "@/app/api/auth/services/authorize";
 import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 
 /**
@@ -63,8 +59,6 @@ import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 export const GET = createRouteHandler(null, async (request, _body, context) => {
   try {
     const auth = await getAuthPayload(request);
-    // RBAC: calendar read — admin, teacher, and student may view an academic year
-    assertCalendarReadAccess(auth);
 
     const { id } = await context.params;
     const academicYear = await findAcademicYearById(id);
@@ -137,8 +131,6 @@ export const PATCH = createRouteHandler(
   async (request, body: UpdateAcademicYear, context: RouteContext) => {
     try {
       const auth = await getAuthPayload(request);
-      // RBAC: only admins may update academic years
-      assertAdmin(auth);
 
       const { id } = await context.params;
       const academicYear = await updateAcademicYear(id, body);
@@ -197,8 +189,6 @@ export const PATCH = createRouteHandler(
 export const DELETE = createRouteHandler(null, async (request, _body, context) => {
   try {
     const auth = await getAuthPayload(request);
-    // RBAC: only admins may delete academic years
-    assertAdmin(auth);
 
     const { id } = await context.params;
     const academicYear = await deleteAcademicYear(id);

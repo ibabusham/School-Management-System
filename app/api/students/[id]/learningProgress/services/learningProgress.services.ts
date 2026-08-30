@@ -1,5 +1,7 @@
 import { prisma } from "@/app/lib/prisma";
 import type { JwtPayload } from "@/app/api/auth/services/jwt";
+import { assertSelf } from "@/app/api/auth/services/authorize";
+import { isAdmin, isStudent, isTeacher } from "@/app/api/auth/services/roles";
 import { assertStudentInTeacherScope } from "@/app/api/auth/services/teacher-scope";
 import { AppError } from "@/app/utils/errors.utility";
 import type {
@@ -108,6 +110,24 @@ function assertCanModifyNote(payload: JwtPayload, noteTeacherId: string) {
   throw new AppError("You can only modify your own progress notes", 403);
 }
 
+async function assertCanReadStudentProgress(auth: JwtPayload, studentId: string) {
+  if (isAdmin(auth)) {
+    return;
+  }
+
+  if (isStudent(auth)) {
+    assertSelf(auth, studentId);
+    return;
+  }
+
+  if (isTeacher(auth)) {
+    await assertStudentInTeacherScope(auth.sub, studentId);
+    return;
+  }
+
+  throw new AppError("Access denied", 403);
+}
+
 function buildPagination(page: number, limit: number, total: number) {
   return {
     page,
@@ -117,7 +137,12 @@ function buildPagination(page: number, limit: number, total: number) {
   };
 }
 
-export async function getLearningProgress(studentId: string, query: LearningProgressNotesQuery) {
+export async function getLearningProgress(
+  studentId: string,
+  query: LearningProgressNotesQuery,
+  auth: JwtPayload
+) {
+  await assertCanReadStudentProgress(auth, studentId);
   const { learningProgress } = await findLearningProgressForStudent(studentId);
   const { page, limit } = query;
   const skip = (page - 1) * limit;
@@ -141,7 +166,12 @@ export async function getLearningProgress(studentId: string, query: LearningProg
   };
 }
 
-export async function listProgressNotes(studentId: string, query: LearningProgressNotesQuery) {
+export async function listProgressNotes(
+  studentId: string,
+  query: LearningProgressNotesQuery,
+  auth: JwtPayload
+) {
+  await assertCanReadStudentProgress(auth, studentId);
   const { learningProgress } = await findLearningProgressForStudent(studentId);
   const { page, limit } = query;
   const skip = (page - 1) * limit;
@@ -173,7 +203,6 @@ export async function createProgressNote(
   const teacherId = resolveTeacherId(payload, input.teacherId);
   await findTeacherById(teacherId);
 
-  // Defense in depth: teacher must be scoped to the student's class
   if (payload.role === "TEACHER") {
     await assertStudentInTeacherScope(payload.sub, studentId);
   }
@@ -191,7 +220,12 @@ export async function createProgressNote(
   });
 }
 
-export async function getProgressNote(studentId: string, noteId: string) {
+export async function getProgressNote(
+  studentId: string,
+  noteId: string,
+  auth: JwtPayload
+) {
+  await assertCanReadStudentProgress(auth, studentId);
   return findProgressNoteForStudent(studentId, noteId);
 }
 
@@ -203,6 +237,10 @@ export async function updateProgressNote(
 ) {
   const note = await findProgressNoteForStudent(studentId, noteId);
   assertCanModifyNote(payload, note.teacherId);
+
+  if (payload.role === "TEACHER") {
+    await assertStudentInTeacherScope(payload.sub, studentId);
+  }
 
   return prisma.progressNotes.update({
     where: { id: noteId },
@@ -221,6 +259,10 @@ export async function updateProgressNote(
 export async function deleteProgressNote(studentId: string, noteId: string, payload: JwtPayload) {
   const note = await findProgressNoteForStudent(studentId, noteId);
   assertCanModifyNote(payload, note.teacherId);
+
+  if (payload.role === "TEACHER") {
+    await assertStudentInTeacherScope(payload.sub, studentId);
+  }
 
   return prisma.progressNotes.delete({
     where: { id: noteId },

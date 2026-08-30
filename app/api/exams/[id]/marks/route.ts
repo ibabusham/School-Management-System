@@ -7,9 +7,7 @@ import {
   toMarkSubmissionSummary,
 } from "../../responses";
 import { bulkMarkExamSchema } from "../../schemas";
-import { assertTeacherOrAdmin } from "@/app/api/auth/services/authorize";
 import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
-import { requireTeacherOwnsExam } from "@/app/api/auth/services/teacher-scope";
 import { handleError } from "@/app/utils/errors.utility";
 
 /**
@@ -77,11 +75,8 @@ export const POST = createRouteHandler(
     try {
       const auth = await getAuthPayload(request);
       const { id } = await context.params;
-      // RBAC: only teacher who owns the exam's subject (or admin) may mark
-      assertTeacherOrAdmin(auth);
-      await requireTeacherOwnsExam(auth, id);
 
-      const result = await markExam(id, body);
+      const result = await markExam(id, body, auth);
       const data = result.submissions.map(toMarkSubmissionSummary);
       return NextResponse.json({
         message: EXAM_MARKED_MESSAGE,
