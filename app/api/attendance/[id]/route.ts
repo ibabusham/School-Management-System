@@ -47,6 +47,12 @@ import {
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Attendance record not found
  *         content:
@@ -107,6 +113,12 @@ export const GET = createRouteHandler(null, async (request, _body, context) => {
  *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
  *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
  *         content:
  *           application/json:
  *             schema:
@@ -173,6 +185,12 @@ export const PATCH = createRouteHandler(
  *               $ref: '#/components/schemas/DeleteAttendanceResponse'
  *       401:
  *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
  *         content:
  *           application/json:
  *             schema:

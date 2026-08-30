@@ -35,6 +35,81 @@ export function assertStudentAccess(payload: JwtPayload, studentId: string) {
   }
 }
 
+
+export function assertNotStudent(payload: JwtPayload) {
+  if (isStudent(payload)) {
+    throw new AppError("Students cannot access this resource", 403);
+  }
+}
+
+
+export async function assertLearningProgressReadAccess(
+  payload: JwtPayload,
+  studentId: string
+) {
+  if (isAdmin(payload)) {
+    return;
+  }
+
+  if (isStudent(payload)) {
+    assertSelf(payload, studentId);
+    return;
+  }
+
+  if (isTeacher(payload)) {
+    await requireStudentInTeacherScope(payload, studentId);
+    return;
+  }
+
+  throw new AppError("Access denied", 403);
+}
+
+/**
+ * POST progress note
+ * - ADMIN: any student (must pass teacherId in body)
+ * - TEACHER: student in class scope; note is authored as the logged-in teacher
+ * - STUDENT: denied
+ */
+export async function assertProgressNoteCreateAccess(
+  payload: JwtPayload,
+  studentId: string
+) {
+  // RBAC: students cannot create progress notes
+  assertNotStudent(payload);
+  assertTeacherOrAdmin(payload);
+
+  if (isTeacher(payload)) {
+    await requireStudentInTeacherScope(payload, studentId);
+  }
+}
+
+/**
+ * PATCH/DELETE progress note
+ * - ADMIN: any note
+ * - TEACHER: must be note author and student must be in class scope
+ * - STUDENT: denied
+ */
+export async function assertProgressNoteModifyAccess(
+  payload: JwtPayload,
+  studentId: string,
+  noteTeacherId: string
+) {
+  // RBAC: students cannot modify progress notes
+  assertNotStudent(payload);
+
+  if (isAdmin(payload)) {
+    return;
+  }
+
+  if (isTeacher(payload)) {
+    assertSelf(payload, noteTeacherId);
+    await requireStudentInTeacherScope(payload, studentId);
+    return;
+  }
+
+  throw new AppError("Access denied", 403);
+}
+
 export function assertCalendarReadAccess(payload: JwtPayload) {
   if (isAdmin(payload) || isTeacher(payload) || isStudent(payload)) {
     return;

@@ -8,6 +8,7 @@ import { NextResponse } from "next/server";
 import { handleError } from "@/app/utils/errors.utility";
 import { assertAdmin } from "@/app/api/auth/services/authorize";
 import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
+import { assertNotStudent } from "@/app/api/auth/services/authorize";
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 
 /**
@@ -42,11 +43,18 @@ import { createRouteHandler } from "@/app/utils/create-route-handles";
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 export const GET = createRouteHandler(null, async (request) => {
   try {
     const auth = await getAuthPayload(request);
-    // RBAC: only admins may list all students
+    // RBAC: students cannot list all students
+    assertNotStudent(auth);
     assertAdmin(auth);
 
      const queryParams = request.nextUrl.searchParams;
@@ -106,6 +114,12 @@ export const GET = createRouteHandler(null, async (request) => {
  *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
  *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
  *         content:
  *           application/json:
  *             schema:

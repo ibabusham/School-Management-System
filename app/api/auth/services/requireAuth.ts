@@ -1,7 +1,12 @@
 import { verifyToken, type JwtPayload } from "@/app/api/auth/services/jwt";
-import { assertStudentAccess, assertTeacherOrAdmin } from "./authorize";
 
-export { assertStudentAccess, assertTeacherOrAdmin };
+export {
+  assertStudentAccess,
+  assertTeacherOrAdmin,
+  assertLearningProgressReadAccess,
+  assertProgressNoteCreateAccess,
+  assertProgressNoteModifyAccess,
+} from "./authorize";
 
 export class AuthError extends Error {
   status = 401 as const;

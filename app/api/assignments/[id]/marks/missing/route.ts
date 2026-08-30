@@ -54,6 +54,12 @@ import { requireTeacherOwnsAssignment } from "@/app/api/auth/services/teacher-sc
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Assignment not found
  *         content:

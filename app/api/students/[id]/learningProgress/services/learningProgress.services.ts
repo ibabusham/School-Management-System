@@ -1,5 +1,6 @@
 import { prisma } from "@/app/lib/prisma";
 import type { JwtPayload } from "@/app/api/auth/services/jwt";
+import { assertStudentInTeacherScope } from "@/app/api/auth/services/teacher-scope";
 import { AppError } from "@/app/utils/errors.utility";
 import type {
   CreateProgressNoteInput,
@@ -171,6 +172,11 @@ export async function createProgressNote(
   const { learningProgress } = await findLearningProgressForStudent(studentId);
   const teacherId = resolveTeacherId(payload, input.teacherId);
   await findTeacherById(teacherId);
+
+  // Defense in depth: teacher must be scoped to the student's class
+  if (payload.role === "TEACHER") {
+    await assertStudentInTeacherScope(payload.sub, studentId);
+  }
 
   return prisma.progressNotes.create({
     data: {
