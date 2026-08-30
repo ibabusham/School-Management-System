@@ -1,4 +1,5 @@
 import { hash } from "bcrypt";
+import { randomUUID } from "crypto";
 
 import { prisma } from "@/app/lib/prisma";
 import type {
@@ -42,6 +43,7 @@ export async function createStudent(data: CreateStudentInput) {
 
     const learningProgress = await tx.learningProgresses.create({
       data: {
+        id: randomUUID(),
         subjectsAverages: 0,
         overallAvreages: 0,
         attendencePercentage: 0,

@@ -30,3 +30,11 @@ export const ASSIGNMENT_MARKED_MESSAGE = "assignment marked successfully";
 export const LESSON_CREATED_MESSAGE = "lesson created successfully";
 export const LESSON_UPDATED_MESSAGE = "lesson updated successfully";
 export const LESSON_DELETED_MESSAGE = "lesson deleted successfully";
+
+export const ATTENDANCE_CREATED_MESSAGE = "attendance recorded successfully";
+export const ATTENDANCE_UPDATED_MESSAGE = "attendance updated successfully";
+export const ATTENDANCE_DELETED_MESSAGE = "attendance deleted successfully";
+
+export const PROGRESS_NOTE_CREATED_MESSAGE = "progress note created successfully";
+export const PROGRESS_NOTE_UPDATED_MESSAGE = "progress note updated successfully";
+export const PROGRESS_NOTE_DELETED_MESSAGE = "progress note deleted successfully";

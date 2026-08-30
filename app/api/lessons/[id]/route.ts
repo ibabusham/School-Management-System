@@ -78,7 +78,7 @@ export const GET = createRouteHandler(null, async (_request, _body, context) => 
  *         schema:
  *           type: string
  *           format: uuid
- *         description: Lesson id
+ *         description: Lesson id (UUID of the lesson record to update)
  *     requestBody:
  *       required: true
  *       content:

@@ -3,6 +3,10 @@ import { AppError } from "@/app/utils/errors.utility";
 import type { CreateClassInput, UpdateClassInput, GetClassListQueryInput } from "../schemas";
 import { pickDefined } from "@/app/utils/pick-defined";
 import { findAcademicYearById } from "@/app/api/academicYears/services/academicyear.services";
+import {
+  ensureClassPerformanceRecord,
+  recalculateClassPerformance,
+} from "@/app/api/classes/Services/recalculate-class-performance";
 const classInclude = {
   academicYears: { include: { year: true } },
   students: true,
@@ -54,6 +58,8 @@ export async function assignStudentsToClass(classId: string, studentIds: string[
     data: { classId },
   });
 
+  await recalculateClassPerformance(classId);
+
   const updatedStudents = await prisma.student.findMany({
     where: { id: { in: uniqueStudentIds } },
     include: studentInclude,
@@ -87,6 +93,8 @@ export async function unassignStudentFromClass(classId: string, studentId: strin
     include: studentInclude,
   });
 
+  await recalculateClassPerformance(classId);
+
   return { student: updatedStudent };
 }
 export async function createClass(data: CreateClassInput) {
@@ -115,6 +123,17 @@ export async function createClass(data: CreateClassInput) {
           year: {
             connect: { id: yearId },
           },
+        },
+      },
+      performance: {
+        create: {
+          classAvg: 0,
+          highestGrade: 0,
+          lowestGrade: 0,
+          assignmentsCompleationRate: 0,
+          attendenceRate: 0,
+          studentRequiringSupport: 0,
+          classStatus: "ACTIVE",
         },
       },
     },
@@ -190,6 +209,7 @@ export async function getClassList(data: GetClassListQueryInput) {
 }
 export async function getClassPerformance(classId: string) {
   await findClassById(classId);
+  await ensureClassPerformanceRecord(classId);
 
   const performance = await prisma.classesPerformence.findUnique({
     where: { classId },
