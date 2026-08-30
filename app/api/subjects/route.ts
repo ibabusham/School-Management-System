@@ -6,6 +6,12 @@ import {
   SUBJECT_CREATED_MESSAGE,
   toSubjectSummary,
 } from "./responses";
+import {
+  assertAdmin,
+  assertTeacherOrAdmin,
+} from "@/app/api/auth/services/authorize";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
+import { isTeacher } from "@/app/api/auth/services/roles";
 import { handleError } from "@/app/utils/errors.utility";
 
 /**
@@ -55,6 +61,10 @@ import { handleError } from "@/app/utils/errors.utility";
  */
 export const GET = createRouteHandler(null, async (request) => {
   try {
+    const auth = await getAuthPayload(request);
+    // RBAC: students blocked; teachers only see subjects they are assigned to
+    assertTeacherOrAdmin(auth);
+
     const queryParams = request.nextUrl.searchParams;
     const parsed = subjectListQuerySchema.safeParse({
       page: queryParams.get("page") ?? undefined,
@@ -66,7 +76,8 @@ export const GET = createRouteHandler(null, async (request) => {
       return handleError(parsed.error);
     }
 
-    const result = await getSubjectList(parsed.data);
+    const teacherId = isTeacher(auth) ? auth.sub : undefined;
+    const result = await getSubjectList(parsed.data, teacherId);
     return NextResponse.json({
       data: result.data.map(toSubjectSummary),
       pagination: result.pagination,
@@ -123,8 +134,12 @@ export const GET = createRouteHandler(null, async (request) => {
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const POST = createRouteHandler(createSubjectSchema, async (_request, body) => {
+export const POST = createRouteHandler(createSubjectSchema, async (request, body) => {
   try {
+    const auth = await getAuthPayload(request);
+    // RBAC: only admins may create subjects
+    assertAdmin(auth);
+
     const subject = await createSubject(body);
     return NextResponse.json(
       {

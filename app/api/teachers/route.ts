@@ -5,6 +5,8 @@ import {
   ACCOUNT_CREATED_MESSAGE,
   toTeacherSummary,
 } from "@/app/api/teachers/responses";
+import { assertAdmin } from "@/app/api/auth/services/authorize";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 import { handleError } from "@/app/utils/errors.utility";
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 
@@ -43,6 +45,10 @@ import { createRouteHandler } from "@/app/utils/create-route-handles";
  */
 export const GET = createRouteHandler(null, async (request) => {
   try {
+    const auth = await getAuthPayload(request);
+    // RBAC: only admins may list all teachers
+    assertAdmin(auth);
+
     const queryParams = request.nextUrl.searchParams;
     const parsed = teacherListQuerySchema.safeParse({
       page: queryParams.get("page") ?? undefined,
@@ -105,6 +111,10 @@ export const GET = createRouteHandler(null, async (request) => {
  */
 export const POST = createRouteHandler(createTeacherSchema, async (request, body) => {
   try {
+    const auth = await getAuthPayload(request);
+    // RBAC: only admins may create teachers
+    assertAdmin(auth);
+
     const teacher = await createTeacher(body);
     return NextResponse.json(
       {

@@ -6,6 +6,12 @@ import { lessonListQuerySchema } from "./schemas";
 import { createLesson, getLessonList } from "./services/lessons.services";
 import { LESSON_CREATED_MESSAGE, toLessonSummary } from "./responses";
 import type { CreateLessonInput } from "./schemas";
+import { assertTeacherOrAdmin } from "@/app/api/auth/services/authorize";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
+import {
+  getScopedSubjectIds,
+  requireTeacherOwnsSubject,
+} from "@/app/api/auth/services/teacher-scope";
 
 /**
  * @swagger
@@ -55,6 +61,10 @@ import type { CreateLessonInput } from "./schemas";
  */
 export const GET = createRouteHandler(null, async (request) => {
   try {
+    const auth = await getAuthPayload(request);
+    // RBAC: students blocked; teachers only see lessons for their subjects
+    assertTeacherOrAdmin(auth);
+
     const queryParams = request.nextUrl.searchParams;
     const parsed = lessonListQuerySchema.safeParse({
       page: queryParams.get("page") ?? undefined,
@@ -66,7 +76,8 @@ export const GET = createRouteHandler(null, async (request) => {
       return handleError(parsed.error);
     }
 
-    const result = await getLessonList(parsed.data);
+    const scopedSubjectIds = await getScopedSubjectIds(auth);
+    const result = await getLessonList(parsed.data, scopedSubjectIds);
     return NextResponse.json({
       data: result.data.map(toLessonSummary),
       pagination: result.pagination,
@@ -125,8 +136,13 @@ export const GET = createRouteHandler(null, async (request) => {
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const POST = createRouteHandler(createLessonSchema, async (_request, body: CreateLessonInput) => {
+export const POST = createRouteHandler(createLessonSchema, async (request, body: CreateLessonInput) => {
   try {
+    const auth = await getAuthPayload(request);
+    // RBAC: teacher must own the target subject; students blocked
+    assertTeacherOrAdmin(auth);
+    await requireTeacherOwnsSubject(auth, body.subjectId);
+
     const lesson = await createLesson(body);
     return NextResponse.json(
       {

@@ -11,6 +11,12 @@ import {
   ASSIGNMENT_DELETED_MESSAGE,
   ASSIGNMENT_UPDATED_MESSAGE,
 } from "../responses";
+import { assertTeacherOrAdmin } from "@/app/api/auth/services/authorize";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
+import {
+  requireTeacherOwnsAssignment,
+  requireTeacherOwnsSubject,
+} from "@/app/api/auth/services/teacher-scope";
 
 /**
  * @swagger
@@ -48,10 +54,15 @@ import {
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const GET = createRouteHandler(null, async (_request, _body, context) => {
+export const GET = createRouteHandler(null, async (request, _body, context) => {
   try {
+    const auth = await getAuthPayload(request);
     const { id } = await context.params;
     const assignmentId = parseAssignmentRouteId(id);
+    // RBAC: teacher must own the assignment's subject
+    assertTeacherOrAdmin(auth);
+    await requireTeacherOwnsAssignment(auth, assignmentId);
+
     const assignment = await getAssignment(assignmentId);
     return NextResponse.json({ assignment });
   } catch (error) {
@@ -107,10 +118,18 @@ export const GET = createRouteHandler(null, async (_request, _body, context) => 
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const PATCH = createRouteHandler(updateAssignmentSchema, async (_request, body, context) => {
+export const PATCH = createRouteHandler(updateAssignmentSchema, async (request, body, context) => {
   try {
+    const auth = await getAuthPayload(request);
     const { id } = await context.params;
     const assignmentId = parseAssignmentRouteId(id);
+    // RBAC: teacher must own assignment; if reassigning subject, must own new subject too
+    assertTeacherOrAdmin(auth);
+    await requireTeacherOwnsAssignment(auth, assignmentId);
+    if (body.subjectId) {
+      await requireTeacherOwnsSubject(auth, body.subjectId);
+    }
+
     const assignment = await updateAssignment(assignmentId, body);
     return NextResponse.json({
       message: ASSIGNMENT_UPDATED_MESSAGE,
@@ -157,10 +176,15 @@ export const PATCH = createRouteHandler(updateAssignmentSchema, async (_request,
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const DELETE = createRouteHandler(null, async (_request, _body, context) => {
+export const DELETE = createRouteHandler(null, async (request, _body, context) => {
   try {
+    const auth = await getAuthPayload(request);
     const { id } = await context.params;
     const assignmentId = parseAssignmentRouteId(id);
+    // RBAC: teacher must own the assignment's subject
+    assertTeacherOrAdmin(auth);
+    await requireTeacherOwnsAssignment(auth, assignmentId);
+
     const assignment = await deleteAssignment(assignmentId);
     return NextResponse.json({
       message: ASSIGNMENT_DELETED_MESSAGE,

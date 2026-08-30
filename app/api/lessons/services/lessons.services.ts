@@ -4,6 +4,8 @@ import { CreateLessonInput, LessonListQuery, UpdateLessonInput } from "../schema
 import { randomUUID } from "crypto";
 import { findSubjectById } from "@/app/api/subjects/Services/subjects.services";
 import { pickDefined } from "@/app/utils/pick-defined";
+import type { ScopedSubjectIds } from "@/app/api/auth/services/teacher-scope";
+import { buildSubjectIdScopeWhere } from "@/app/api/auth/services/teacher-scope";
 
 const lessonInclude = {
     subject: {
@@ -39,12 +41,10 @@ export async function createLesson(input: CreateLessonInput) {
         include: lessonInclude,
     });
 }
-export async function getLessonList(query: LessonListQuery) {
+export async function getLessonList(query: LessonListQuery, scopedSubjectIds?: ScopedSubjectIds) {
   const { page, limit, subjectId } = query;
   const skip = (page - 1) * limit;
-  const where = {
-    ...(subjectId && { subjectId }),
-  };
+  const where = buildSubjectIdScopeWhere(scopedSubjectIds, subjectId);
   const [lessons, total] = await Promise.all([
     prisma.lessons.findMany({ where,
          skip,

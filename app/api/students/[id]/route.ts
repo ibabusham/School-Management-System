@@ -6,6 +6,11 @@ import { updateStudentSchema } from "../schemas";
 import {
   ACCOUNT_DELETED_MESSAGE,
 } from "@/app/api/students/responses";
+import {
+  assertAdmin,
+  assertStudentProfileReadAccess,
+} from "@/app/api/auth/services/authorize";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 
 /**
  * @swagger
@@ -44,7 +49,11 @@ import {
  */
 export const GET = createRouteHandler(null, async (request, body, context) => {
   try {
+    const auth = await getAuthPayload(request);
     const { id } = await context.params;
+    // RBAC: admin (any), teacher (in scope), or student (self only)
+    await assertStudentProfileReadAccess(auth, id);
+
     const student = await getStudentById(id);
     return NextResponse.json({ student });
   } catch (error) {
@@ -102,6 +111,10 @@ export const GET = createRouteHandler(null, async (request, body, context) => {
  */
 export const PATCH = createRouteHandler(updateStudentSchema, async (request, body, context) => {
   try {
+    const auth = await getAuthPayload(request);
+    // RBAC: only admins may update student records
+    assertAdmin(auth);
+
     const { id } = await context.params;
     const student = await updateStudent(id, body);
     return NextResponse.json({ student });
@@ -147,6 +160,10 @@ export const PATCH = createRouteHandler(updateStudentSchema, async (request, bod
  */
 export const DELETE = createRouteHandler(null, async (request, body, context) => {
   try {
+    const auth = await getAuthPayload(request);
+    // RBAC: only admins may delete student records
+    assertAdmin(auth);
+
     const { id } = await context.params;
     const student = await deleteStudent(id);
     return NextResponse.json({

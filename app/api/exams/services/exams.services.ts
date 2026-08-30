@@ -11,6 +11,8 @@ import { pickDefined } from "@/app/utils/pick-defined";
 import { findSubjectById } from "@/app/api/subjects/Services/subjects.services";
 import { recalculateLearningProgressForStudents } from "@/app/api/learning-progress/services/recalculate-learning-progress";
 import { recalculateClassPerformance } from "@/app/api/classes/Services/recalculate-class-performance";
+import type { ScopedSubjectIds } from "@/app/api/auth/services/teacher-scope";
+import { buildSubjectIdScopeWhere } from "@/app/api/auth/services/teacher-scope";
 const examInclude = {
   subject: {
     include: {
@@ -63,12 +65,10 @@ export async function getExam(id: string) {
   return findExamById(id);
 }
 
-export async function getExamList(query: ExamListQuery) {
+export async function getExamList(query: ExamListQuery, scopedSubjectIds?: ScopedSubjectIds) {
   const { page, limit, subjectId } = query;
   const skip = (page - 1) * limit;
-  const where = {
-    ...(subjectId && { subjectId }),
-  };
+  const where = buildSubjectIdScopeWhere(scopedSubjectIds, subjectId);
 
   const [exams, total] = await Promise.all([
     prisma.exams.findMany({

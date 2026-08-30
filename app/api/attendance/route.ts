@@ -7,6 +7,12 @@ import {
   toAttendance,
 } from "./responses";
 import { createAttendance, getAttendanceList } from "./services/attendance.services";
+import { assertTeacherOrAdmin } from "@/app/api/auth/services/authorize";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
+import {
+  getScopedSubjectIds,
+  requireTeacherOwnsSubject,
+} from "@/app/api/auth/services/teacher-scope";
 
 /**
  * @swagger
@@ -63,6 +69,10 @@ import { createAttendance, getAttendanceList } from "./services/attendance.servi
  */
 export const GET = createRouteHandler(null, async (request) => {
   try {
+    const auth = await getAuthPayload(request);
+    // RBAC: students blocked; teachers only see attendance for their subjects
+    assertTeacherOrAdmin(auth);
+
     const queryParams = request.nextUrl.searchParams;
     const parsed = attendanceListQuerySchema.safeParse({
       page: queryParams.get("page") ?? undefined,
@@ -77,7 +87,8 @@ export const GET = createRouteHandler(null, async (request) => {
       return handleError(parsed.error);
     }
 
-    const result = await getAttendanceList(parsed.data);
+    const scopedSubjectIds = await getScopedSubjectIds(auth);
+    const result = await getAttendanceList(parsed.data, scopedSubjectIds);
 
     return NextResponse.json({
       data: result.data.map(toAttendance),
@@ -134,8 +145,13 @@ export const GET = createRouteHandler(null, async (request) => {
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const POST = createRouteHandler(createAttendanceSchema, async (_request, body) => {
+export const POST = createRouteHandler(createAttendanceSchema, async (request, body) => {
   try {
+    const auth = await getAuthPayload(request);
+    // RBAC: teacher must own the target subject; students blocked
+    assertTeacherOrAdmin(auth);
+    await requireTeacherOwnsSubject(auth, body.subjectId);
+
     const attendance = await createAttendance(body);
 
     return NextResponse.json(

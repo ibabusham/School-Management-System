@@ -1,7 +1,8 @@
 import { verifyToken, type JwtPayload } from "@/app/api/auth/services/jwt";
-import { AppError } from "@/app/utils/errors.utility";
+import { assertStudentAccess, assertTeacherOrAdmin } from "./authorize";
 
-// Thrown when the request has no valid access token
+export { assertStudentAccess, assertTeacherOrAdmin };
+
 export class AuthError extends Error {
   status = 401 as const;
 
@@ -22,7 +23,6 @@ function getBearerToken(request: Request) {
   return accessToken || null;
 }
 
-// Reads `Authorization: Bearer <accessToken>`, verifies the JWT, and returns its payload.
 export async function getAuthPayload(request: Request): Promise<JwtPayload> {
   const accessToken = getBearerToken(request);
 
@@ -37,19 +37,6 @@ export async function getAuthPayload(request: Request): Promise<JwtPayload> {
   }
 }
 
-export function assertStudentAccess(payload: JwtPayload, studentId: string) {
-  if (payload.role === "STUDENT" && payload.sub !== studentId) {
-    throw new AppError("You can only access your own learning progress", 403);
-  }
-}
-
-export function assertTeacherOrAdmin(payload: JwtPayload) {
-  if (payload.role !== "TEACHER" && payload.role !== "ADMIN") {
-    throw new AppError("Teacher or admin access required", 403);
-  }
-}
-
-// Used by proxy.ts — returns true when the token is valid.
 export async function isAuthenticated(request: Request): Promise<JwtPayload | boolean> {
   try {
     await getAuthPayload(request);

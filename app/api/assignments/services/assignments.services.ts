@@ -11,6 +11,8 @@ import { pickDefined } from "@/app/utils/pick-defined";
 import { findSubjectById } from "@/app/api/subjects/Services/subjects.services";
 import { recalculateLearningProgressForStudents } from "@/app/api/learning-progress/services/recalculate-learning-progress";
 import { recalculateClassPerformance } from "@/app/api/classes/Services/recalculate-class-performance";
+import type { ScopedSubjectIds } from "@/app/api/auth/services/teacher-scope";
+import { buildSubjectIdScopeWhere } from "@/app/api/auth/services/teacher-scope";
 
 const assignmentInclude = {
   subject: {
@@ -67,12 +69,13 @@ export async function createAssignment(input: CreateAssignmentInput) {
 export async function getAssignment(id: string) {
   return findAssignmentById(id);
 }
-export async function getAssignmentList(query: AssignmentListQuery) {
+export async function getAssignmentList(
+  query: AssignmentListQuery,
+  scopedSubjectIds?: ScopedSubjectIds
+) {
   const { page, limit, subjectId } = query;
   const skip = (page - 1) * limit;
-  const where = {
-    ...(subjectId && { subjectId }),
-  };
+  const where = buildSubjectIdScopeWhere(scopedSubjectIds, subjectId);
 
   const [assignments, total] = await Promise.all([
     prisma.assignments.findMany({

@@ -4,6 +4,9 @@ import { handleError } from "@/app/utils/errors.utility";
 import { toStudentSummary } from "@/app/api/students/responses";
 import { submissionListQuerySchema, parseAssignmentRouteId } from "../../../schemas";
 import { getMissingSubmissions } from "../../../services/assignments.services";
+import { assertTeacherOrAdmin } from "@/app/api/auth/services/authorize";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
+import { requireTeacherOwnsAssignment } from "@/app/api/auth/services/teacher-scope";
 
 /**
  * @swagger
@@ -60,8 +63,13 @@ import { getMissingSubmissions } from "../../../services/assignments.services";
  */
 export const GET = createRouteHandler(null, async (request, _body, context) => {
   try {
+    const auth = await getAuthPayload(request);
     const { id } = await context.params;
     const assignmentId = parseAssignmentRouteId(id);
+    // RBAC: teacher must own the assignment's subject to view missing submissions
+    assertTeacherOrAdmin(auth);
+    await requireTeacherOwnsAssignment(auth, assignmentId);
+
     const queryParams = request.nextUrl.searchParams;
     const parsed = submissionListQuerySchema.safeParse({
       page: queryParams.get("page") ?? undefined,

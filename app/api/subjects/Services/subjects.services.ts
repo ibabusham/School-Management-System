@@ -81,10 +81,11 @@ export async function deleteSubject(id: string) {
 export async function getSubjectById(id: string) {
   return findSubjectById(id);
 }
-export async function getSubjectList(data: SubjectListQuery) {
+export async function getSubjectList(data: SubjectListQuery, teacherId?: string) {
   const { page, limit, search } = data;
   const skip = (page - 1) * limit;
   const where = {
+    ...(teacherId && { teacherId }),
     ...(search && {
       OR: [
         { subjectName: { contains: search, mode: "insensitive" as const } },

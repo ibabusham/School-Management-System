@@ -8,6 +8,9 @@ import {
   buildMarkPagination,
   toMarkSubmissionSummary,
 } from "../../responses";
+import { assertTeacherOrAdmin } from "@/app/api/auth/services/authorize";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
+import { requireTeacherOwnsAssignment } from "@/app/api/auth/services/teacher-scope";
 
 /**
  * @swagger
@@ -64,10 +67,15 @@ import {
  */
 export const POST = createRouteHandler(
   bulkMarkAssignmentSchema,
-  async (_request, body, context) => {
+  async (request, body, context) => {
     try {
+      const auth = await getAuthPayload(request);
       const { id } = await context.params;
       const assignmentId = parseAssignmentRouteId(id);
+      // RBAC: only teacher who owns the assignment's subject (or admin) may mark
+      assertTeacherOrAdmin(auth);
+      await requireTeacherOwnsAssignment(auth, assignmentId);
+
       const result = await markAssignment(assignmentId, body);
       const data = result.submissions.map(toMarkSubmissionSummary);
       return NextResponse.json({

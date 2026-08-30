@@ -9,6 +9,8 @@ import type {
   CreateAttendanceInput,
   UpdateAttendanceInput,
 } from "../schemas";
+import type { ScopedSubjectIds } from "@/app/api/auth/services/teacher-scope";
+import { buildSubjectIdScopeWhere } from "@/app/api/auth/services/teacher-scope";
 import { pickDefined } from "@/app/utils/pick-defined";
 
 function attendancePercentageForStatus(status: AttendanceStatus) {
@@ -130,13 +132,16 @@ export async function getAttendance(id: string) {
   return findAttendanceById(id);
 }
 
-export async function getAttendanceList(query: AttendanceListQuery) {
+export async function getAttendanceList(
+  query: AttendanceListQuery,
+  scopedSubjectIds?: ScopedSubjectIds
+) {
   const { page, limit, studentId, subjectId, fromDate, toDate } = query;
   const skip = (page - 1) * limit;
 
   const where = {
+    ...buildSubjectIdScopeWhere(scopedSubjectIds, subjectId),
     ...(studentId && { studentId }),
-    ...(subjectId && { subjectId }),
     ...((fromDate || toDate) && {
       attendanceDate: {
         ...(fromDate && { gte: startOfDay(fromDate) }),

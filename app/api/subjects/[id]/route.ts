@@ -6,6 +6,9 @@ import {
   SUBJECT_DELETED_MESSAGE,
   SUBJECT_UPDATED_MESSAGE,
 } from "../responses";
+import { assertAdmin } from "@/app/api/auth/services/authorize";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
+import { requireTeacherOwnsSubject } from "@/app/api/auth/services/teacher-scope";
 import { handleError } from "@/app/utils/errors.utility";
 
 /**
@@ -44,9 +47,13 @@ import { handleError } from "@/app/utils/errors.utility";
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const GET = createRouteHandler(null, async (_request, _body, context) => {
+export const GET = createRouteHandler(null, async (request, _body, context) => {
   try {
+    const auth = await getAuthPayload(request);
     const { id } = await context.params;
+    // RBAC: admin (any) or teacher (must own this subject); students denied
+    await requireTeacherOwnsSubject(auth, id);
+
     const subject = await getSubjectById(id);
     return NextResponse.json({ subject });
   } catch (error) {
@@ -102,8 +109,12 @@ export const GET = createRouteHandler(null, async (_request, _body, context) => 
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const PATCH = createRouteHandler(updateSubjectSchema, async (_request, body, context) => {
+export const PATCH = createRouteHandler(updateSubjectSchema, async (request, body, context) => {
   try {
+    const auth = await getAuthPayload(request);
+    // RBAC: only admins may update subjects
+    assertAdmin(auth);
+
     const { id } = await context.params;
     const subject = await updateSubject(id, body);
     return NextResponse.json({
@@ -151,8 +162,12 @@ export const PATCH = createRouteHandler(updateSubjectSchema, async (_request, bo
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const DELETE = createRouteHandler(null, async (_request, _body, context) => {
+export const DELETE = createRouteHandler(null, async (request, _body, context) => {
   try {
+    const auth = await getAuthPayload(request);
+    // RBAC: only admins may delete subjects
+    assertAdmin(auth);
+
     const { id } = await context.params;
     const subject = await deleteSubject(id);
     return NextResponse.json({

@@ -1,6 +1,8 @@
 import { getClassListQuerySchema, createClassSchema } from "./schemas";
 import { createClass, getClassList } from "./Services/classes.services";
 import { NextResponse } from "next/server";
+import { assertAdmin } from "@/app/api/auth/services/authorize";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 import { handleError } from "@/app/utils/errors.utility";
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 
@@ -39,6 +41,10 @@ import { createRouteHandler } from "@/app/utils/create-route-handles";
  */
 export const GET = createRouteHandler(null, async (request) => {
   try {
+    const auth = await getAuthPayload(request);
+    // RBAC: only admins may list classes
+    assertAdmin(auth);
+
     const queryParams = request.nextUrl.searchParams;
     const parsed = getClassListQuerySchema.safeParse({
       page: queryParams.get("page") ?? undefined,
@@ -97,6 +103,10 @@ export const GET = createRouteHandler(null, async (request) => {
  */
 export const POST = createRouteHandler(createClassSchema, async (request, body) => {
   try {
+    const auth = await getAuthPayload(request);
+    // RBAC: only admins may create classes
+    assertAdmin(auth);
+
     const classData = await createClass(body);
     return NextResponse.json({ classData }, { status: 201 });
   } catch (error) {

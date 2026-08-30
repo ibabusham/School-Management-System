@@ -12,6 +12,12 @@ import {
   getAttendance,
   updateAttendance,
 } from "../services/attendance.services";
+import { assertTeacherOrAdmin } from "@/app/api/auth/services/authorize";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
+import {
+  requireTeacherOwnsAttendance,
+  requireTeacherOwnsSubject,
+} from "@/app/api/auth/services/teacher-scope";
 
 /**
  * @swagger
@@ -48,9 +54,14 @@ import {
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const GET = createRouteHandler(null, async (_request, _body, context) => {
+export const GET = createRouteHandler(null, async (request, _body, context) => {
   try {
+    const auth = await getAuthPayload(request);
     const { id } = await context.params;
+    // RBAC: teacher must own the attendance record's subject
+    assertTeacherOrAdmin(auth);
+    await requireTeacherOwnsAttendance(auth, id);
+
     const attendance = await getAttendance(id);
 
     return NextResponse.json({ attendance: toAttendance(attendance) });
@@ -115,9 +126,17 @@ export const GET = createRouteHandler(null, async (_request, _body, context) => 
  */
 export const PATCH = createRouteHandler(
   updateAttendanceSchema,
-  async (_request, body, context) => {
+  async (request, body, context) => {
     try {
+      const auth = await getAuthPayload(request);
       const { id } = await context.params;
+      // RBAC: teacher must own record; if changing subject, must own new subject too
+      assertTeacherOrAdmin(auth);
+      await requireTeacherOwnsAttendance(auth, id);
+      if (body.subjectId) {
+        await requireTeacherOwnsSubject(auth, body.subjectId);
+      }
+
       const attendance = await updateAttendance(id, body);
 
       return NextResponse.json({
@@ -165,9 +184,14 @@ export const PATCH = createRouteHandler(
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const DELETE = createRouteHandler(null, async (_request, _body, context) => {
+export const DELETE = createRouteHandler(null, async (request, _body, context) => {
   try {
+    const auth = await getAuthPayload(request);
     const { id } = await context.params;
+    // RBAC: teacher must own the attendance record's subject
+    assertTeacherOrAdmin(auth);
+    await requireTeacherOwnsAttendance(auth, id);
+
     const attendance = await deleteAttendance(id);
 
     return NextResponse.json({

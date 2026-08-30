@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { assignSubjectToTeacherSchema } from "../../schemas";
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 import { assignSubjectToTeacher } from "../../Services/subjects.services";
+import { assertAdmin } from "@/app/api/auth/services/authorize";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 import { handleError } from "@/app/utils/errors.utility";
 
 /**
@@ -55,8 +57,12 @@ import { handleError } from "@/app/utils/errors.utility";
  */
 export const POST = createRouteHandler(
   assignSubjectToTeacherSchema,
-  async (_request, body, context) => {
+  async (request, body, context) => {
     try {
+      const auth = await getAuthPayload(request);
+      // RBAC: only admins may reassign subjects to teachers
+      assertAdmin(auth);
+
       const { id } = await context.params;
       const subject = await assignSubjectToTeacher(id, body);
       return NextResponse.json({ subject });
