@@ -17,7 +17,7 @@ export const getApiDocs = async () => {
     definition: {
       openapi: "3.0.0",
       info: {
-        title: "School Management System API",
+        title: "Shield's School API",
         version: "0.1.0",
         description: [
           "REST API for auth, students, teachers, classes, subjects, academic years, terms, exams, assignments, lessons, learning progress, and attendance.",
