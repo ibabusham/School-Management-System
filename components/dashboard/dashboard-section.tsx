@@ -24,23 +24,23 @@ export function DashboardSection({
 }) {
   return (
     <Card className="overflow-hidden">
-      <div className="flex flex-wrap items-start justify-between gap-4 border-b border-white/10 px-6 py-4">
+      <div className="flex flex-col items-center gap-4 border-b border-white/10 px-8 py-6 text-center">
         <div>
-          <h2 className="text-sm font-bold text-white">{title}</h2>
+          <h2 className="text-lg font-extrabold text-white">{title}</h2>
           {description ? (
-            <p className="mt-0.5 text-xs text-sidebar-muted">{description}</p>
+            <p className="mt-1 text-sm font-bold text-sidebar-muted">{description}</p>
           ) : null}
         </div>
         {href && linkLabel ? (
           <Link
             href={href}
-            className="inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/15"
+            className="inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-white/15"
           >
             {linkLabel}
           </Link>
         ) : null}
       </div>
-      <div className="p-6">{children}</div>
+      <div className="p-8 text-center font-bold">{children}</div>
     </Card>
   );
 }

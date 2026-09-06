@@ -143,7 +143,7 @@ export default function AdminClassDetailPage() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <PageHeader
         eyebrow="Administration"
         title={classData?.className ?? "Class details"}

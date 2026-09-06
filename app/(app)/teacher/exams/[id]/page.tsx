@@ -83,7 +83,7 @@ export default function TeacherExamDetailPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <div>
         <Link
           href="/teacher/exams"
@@ -107,7 +107,7 @@ export default function TeacherExamDetailPage() {
       {error ? <Alert>{error}</Alert> : null}
 
       {exam ? (
-        <dl className="grid gap-4 sm:grid-cols-3">
+        <dl className="grid gap-8 sm:grid-cols-3">
           <StatCard label="Maximum grade" value={String(exam.maximumGrade)} large />
           <StatCard
             label="Not graded"

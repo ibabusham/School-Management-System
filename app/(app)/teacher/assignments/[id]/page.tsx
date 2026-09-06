@@ -85,7 +85,7 @@ export default function TeacherAssignmentDetailPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <div>
         <Link
           href="/teacher/assignments"
@@ -109,7 +109,7 @@ export default function TeacherAssignmentDetailPage() {
       {error ? <Alert>{error}</Alert> : null}
 
       {assignment ? (
-        <dl className="grid gap-4 sm:grid-cols-3">
+        <dl className="grid gap-8 sm:grid-cols-3">
           <StatCard
             label="Maximum grade"
             value={String(assignment.maximumGrade)}

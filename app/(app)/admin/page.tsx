@@ -58,7 +58,7 @@ export default function AdminDashboardPage() {
   }, [user]);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <PageHeader
         eyebrow="Administration"
         title="Admin Dashboard"
@@ -73,7 +73,7 @@ export default function AdminDashboardPage() {
         </Card>
       ) : counts ? (
         <>
-          <dl className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <dl className="grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
             <StatCard label="Students" value={String(counts.students)} large />
             <StatCard label="Teachers" value={String(counts.teachers)} large />
             <StatCard label="Classes" value={String(counts.classes)} large />

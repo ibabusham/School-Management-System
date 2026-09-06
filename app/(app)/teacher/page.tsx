@@ -61,7 +61,7 @@ export default function TeacherDashboardPage() {
   }, [user]);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <PageHeader
         eyebrow="Teacher Portal"
         title={user ? `Welcome, ${user.name}` : "Dashboard"}
@@ -76,7 +76,7 @@ export default function TeacherDashboardPage() {
         </Card>
       ) : (
         <>
-          <dl className="grid gap-4 sm:grid-cols-3">
+          <dl className="grid gap-8 sm:grid-cols-3">
             <StatCard label="Subjects" value={String(subjectCount)} large />
             <StatCard label="Exams" value={String(examCount)} large />
             <StatCard
@@ -113,7 +113,7 @@ export default function TeacherDashboardPage() {
             )}
           </DashboardSection>
 
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-8 lg:grid-cols-2">
             <DashboardSection
               title="Recent exams"
               description="Latest exams across your subjects."

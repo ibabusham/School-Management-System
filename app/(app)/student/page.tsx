@@ -60,7 +60,7 @@ export default function StudentDashboardPage() {
   }, [user]);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <PageHeader
         eyebrow="Student Portal"
         title={user ? `Welcome, ${user.name}` : "Dashboard"}
@@ -76,7 +76,7 @@ export default function StudentDashboardPage() {
       ) : (
         <>
           {progress ? (
-            <dl className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <dl className="grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
               <StatCard
                 label="Subject average"
                 value={`${progress.subjectsAverages}%`}
@@ -100,7 +100,7 @@ export default function StudentDashboardPage() {
             </dl>
           ) : null}
 
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-8 lg:grid-cols-2">
             <DashboardSection
               title="Your profile"
               description="Account details at a glance."

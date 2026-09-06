@@ -54,22 +54,22 @@ export function DataTableCard<T extends { id: string }>({
   return (
     <Card className="overflow-hidden">
       {/* Table header with title and optional action button */}
-      <div className="flex flex-wrap items-start justify-between gap-4 border-b border-white/10 px-6 py-4">
+      <div className="flex flex-col items-center gap-4 border-b border-white/10 px-8 py-6 text-center">
         <div>
-          <h2 className="text-sm font-bold text-white">{title}</h2>
-          <p className="mt-0.5 text-xs text-sidebar-muted">{description}</p>
+          <h2 className="text-lg font-extrabold text-white">{title}</h2>
+          <p className="mt-1 text-sm font-bold text-sidebar-muted">{description}</p>
         </div>
         {action}
       </div>
 
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-white/10 text-sm">
+        <table className="min-w-full divide-y divide-white/10 text-sm font-bold">
           <thead className="bg-white/5">
             <tr>
               {columns.map((column) => (
                 <th
                   key={column.key}
-                  className={`px-4 py-3 text-left font-medium text-sidebar-muted ${column.className ?? ""}`}
+                  className={`px-6 py-4 text-center font-extrabold text-sidebar-muted ${column.className ?? ""}`}
                 >
                   {column.header}
                 </th>
@@ -81,7 +81,7 @@ export function DataTableCard<T extends { id: string }>({
               <tr>
                 <td
                   colSpan={columns.length}
-                  className="px-4 py-8 text-center text-sidebar-muted"
+                  className="px-6 py-10 text-center font-bold text-sidebar-muted"
                 >
                   Loading...
                 </td>
@@ -90,7 +90,7 @@ export function DataTableCard<T extends { id: string }>({
               <tr>
                 <td
                   colSpan={columns.length}
-                  className="px-4 py-8 text-center text-sidebar-muted"
+                  className="px-6 py-10 text-center font-bold text-sidebar-muted"
                 >
                   {emptyMessage}
                 </td>
@@ -99,7 +99,10 @@ export function DataTableCard<T extends { id: string }>({
               rows.map((row) => (
                 <tr key={row.id} className="hover:bg-white/5">
                   {columns.map((column) => (
-                    <td key={column.key} className={`px-4 py-3 ${column.className ?? ""}`}>
+                    <td
+                      key={column.key}
+                      className={`px-6 py-4 text-center [&>div]:mx-auto [&>div]:justify-center ${column.className ?? ""}`}
+                    >
                       {column.cell(row)}
                     </td>
                   ))}
@@ -111,8 +114,8 @@ export function DataTableCard<T extends { id: string }>({
       </div>
 
       {pagination ? (
-        <div className="flex items-center justify-between border-t border-white/10 px-4 py-3">
-          <p className="text-sm text-sidebar-muted">
+        <div className="flex flex-col items-center justify-center gap-3 border-t border-white/10 px-8 py-4 sm:flex-row sm:justify-between">
+          <p className="text-sm font-bold text-sidebar-muted">
             Page {pagination.page} of {pagination.totalPages} ({pagination.total}{" "}
             total)
           </p>

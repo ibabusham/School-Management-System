@@ -205,7 +205,7 @@ export default function AdminClassesPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <PageHeader
         eyebrow="Administration"
         title="Classes"

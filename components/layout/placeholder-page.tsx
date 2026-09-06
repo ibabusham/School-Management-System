@@ -17,7 +17,7 @@ export function PlaceholderPage({
   description: string;
 }) {
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <PageHeader eyebrow={eyebrow} title={title} description={description} />
       <Card className="flex flex-col items-center justify-center p-16 text-center">
         <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/20">

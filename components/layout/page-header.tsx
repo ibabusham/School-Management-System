@@ -18,18 +18,18 @@ export function PageHeader({
   description?: string;
 }) {
   return (
-    <Card className="px-6 py-5">
-      <header>
+    <Card className="px-8 py-8">
+      <header className="mx-auto max-w-3xl">
         {eyebrow ? (
-          <p className="text-xs font-semibold uppercase tracking-widest text-primary">
+          <p className="text-xs font-extrabold uppercase tracking-widest text-primary">
             {eyebrow}
           </p>
         ) : null}
-        <h1 className="mt-2 text-3xl font-semibold tracking-tight text-white">
+        <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-white">
           {title}
         </h1>
         {description ? (
-          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-sidebar-muted">
+          <p className="mt-3 text-base font-bold leading-relaxed text-sidebar-muted">
             {description}
           </p>
         ) : null}

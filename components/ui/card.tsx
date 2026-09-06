@@ -14,7 +14,7 @@ export function Card({
 }: HTMLAttributes<HTMLDivElement>) {
   return (
     <BrandSurface
-      className={`rounded-xl border border-card-border/50 shadow-card ${className}`}
+      className={`rounded-2xl border border-card-border/50 text-center font-bold shadow-card ${className}`}
       {...props}
     >
       {children}

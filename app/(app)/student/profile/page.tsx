@@ -36,7 +36,7 @@ export default function StudentProfilePage() {
   }, [user]);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <PageHeader
         eyebrow="Student Portal"
         title="My Profile"

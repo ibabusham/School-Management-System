@@ -198,7 +198,7 @@ export default function AdminStudentsPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <PageHeader
         eyebrow="Administration"
         title="Students"
