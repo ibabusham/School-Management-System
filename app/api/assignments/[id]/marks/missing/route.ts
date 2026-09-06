@@ -4,6 +4,7 @@ import { handleError } from "@/app/utils/errors.utility";
 import { toStudentSummary } from "@/app/api/students/responses";
 import { submissionListQuerySchema, parseAssignmentRouteId } from "../../../schemas";
 import { getMissingSubmissions } from "../../../services/assignments.services";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 
 /**
  * @swagger
@@ -51,6 +52,12 @@ import { getMissingSubmissions } from "../../../services/assignments.services";
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Assignment not found
  *         content:
@@ -60,8 +67,10 @@ import { getMissingSubmissions } from "../../../services/assignments.services";
  */
 export const GET = createRouteHandler(null, async (request, _body, context) => {
   try {
+    const auth = await getAuthPayload(request);
     const { id } = await context.params;
     const assignmentId = parseAssignmentRouteId(id);
+
     const queryParams = request.nextUrl.searchParams;
     const parsed = submissionListQuerySchema.safeParse({
       page: queryParams.get("page") ?? undefined,
@@ -72,7 +81,7 @@ export const GET = createRouteHandler(null, async (request, _body, context) => {
       return handleError(parsed.error);
     }
 
-    const result = await getMissingSubmissions(assignmentId, parsed.data);
+    const result = await getMissingSubmissions(assignmentId, parsed.data, auth);
     return NextResponse.json({
       data: result.data.map(toStudentSummary),
       pagination: result.pagination,

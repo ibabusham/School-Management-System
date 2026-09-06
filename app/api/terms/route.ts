@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { createTerm, getTerms } from "./services/terms.services";
 import { createTermSchema, termListQuerySchema } from "./schemas";
 import { TERM_CREATED_MESSAGE } from "@/app/api/shared/operation-messages";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 import { handleError } from "@/app/utils/errors.utility";
 
 /**
@@ -49,9 +50,17 @@ import { handleError } from "@/app/utils/errors.utility";
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 export const GET = createRouteHandler(null, async (request) => {
   try {
+    const auth = await getAuthPayload(request);
+
     const queryParams = request.nextUrl.searchParams;
     const parsed = termListQuerySchema.safeParse({
       page: queryParams.get("page") ?? undefined,
@@ -109,6 +118,12 @@ export const GET = createRouteHandler(null, async (request) => {
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Academic year not found
  *         content:
@@ -116,8 +131,10 @@ export const GET = createRouteHandler(null, async (request) => {
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const POST = createRouteHandler(createTermSchema, async (_request, body) => {
+export const POST = createRouteHandler(createTermSchema, async (request, body) => {
   try {
+    const auth = await getAuthPayload(request);
+
     const term = await createTerm(body);
     return NextResponse.json(
       {

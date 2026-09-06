@@ -11,6 +11,10 @@ import type { Student } from "@/prisma/generated/client";
 import { Status } from "@/prisma/generated/client";
 import { AppError } from "@/app/utils/errors.utility";
 import { pickDefined } from "@/app/utils/pick-defined";
+import type { JwtPayload } from "@/app/api/auth/services/jwt";
+import { assertSelf } from "@/app/api/auth/services/authorize";
+import { isAdmin, isStudent, isTeacher } from "@/app/api/auth/services/roles";
+import { assertStudentInTeacherScope } from "@/app/api/auth/services/teacher-scope";
 
 function toSafeStudent(student: Student) {
   const { ...safeStudent } = student;
@@ -169,7 +173,15 @@ export async function listStudents(query: StudentListQuery) {
     },
   };
 }
-export async function getStudentById(studentId: string) {
+export async function getStudentById(studentId: string, auth: JwtPayload) {
+  if (isStudent(auth)) {
+    assertSelf(auth, studentId);
+  } else if (isTeacher(auth)) {
+    await assertStudentInTeacherScope(auth.sub, studentId);
+  } else if (!isAdmin(auth)) {
+    throw new AppError("Access denied", 403);
+  }
+
   const student = await findActiveStudentById(studentId);
   return toSafeStudent(student);
 }

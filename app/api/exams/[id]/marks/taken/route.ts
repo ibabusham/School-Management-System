@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { getTakenSubmissions } from "../../../services/exams.services";
 import { toTakenSubmissionSummary } from "../../../responses";
 import { submissionListQuerySchema } from "../../../schemas";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 import { handleError } from "@/app/utils/errors.utility";
 
 /**
@@ -51,6 +52,12 @@ import { handleError } from "@/app/utils/errors.utility";
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Exam not found
  *         content:
@@ -60,7 +67,9 @@ import { handleError } from "@/app/utils/errors.utility";
  */
 export const GET = createRouteHandler(null, async (request, _body, context) => {
   try {
+    const auth = await getAuthPayload(request);
     const { id } = await context.params;
+
     const queryParams = request.nextUrl.searchParams;
     const parsed = submissionListQuerySchema.safeParse({
       page: queryParams.get("page") ?? undefined,
@@ -71,7 +80,7 @@ export const GET = createRouteHandler(null, async (request, _body, context) => {
       return handleError(parsed.error);
     }
 
-    const result = await getTakenSubmissions(id, parsed.data);
+    const result = await getTakenSubmissions(id, parsed.data, auth);
     return NextResponse.json({
       data: result.data.map(toTakenSubmissionSummary),
       pagination: result.pagination,

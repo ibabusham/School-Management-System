@@ -12,6 +12,7 @@ import {
   getAttendance,
   updateAttendance,
 } from "../services/attendance.services";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 
 /**
  * @swagger
@@ -41,6 +42,12 @@ import {
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Attendance record not found
  *         content:
@@ -48,10 +55,12 @@ import {
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const GET = createRouteHandler(null, async (_request, _body, context) => {
+export const GET = createRouteHandler(null, async (request, _body, context) => {
   try {
+    const auth = await getAuthPayload(request);
     const { id } = await context.params;
-    const attendance = await getAttendance(id);
+
+    const attendance = await getAttendance(id, auth);
 
     return NextResponse.json({ attendance: toAttendance(attendance) });
   } catch (error) {
@@ -100,6 +109,12 @@ export const GET = createRouteHandler(null, async (_request, _body, context) => 
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Attendance record not found
  *         content:
@@ -115,10 +130,12 @@ export const GET = createRouteHandler(null, async (_request, _body, context) => 
  */
 export const PATCH = createRouteHandler(
   updateAttendanceSchema,
-  async (_request, body, context) => {
+  async (request, body, context) => {
     try {
+      const auth = await getAuthPayload(request);
       const { id } = await context.params;
-      const attendance = await updateAttendance(id, body);
+
+      const attendance = await updateAttendance(id, body, auth);
 
       return NextResponse.json({
         message: ATTENDANCE_UPDATED_MESSAGE,
@@ -158,6 +175,12 @@ export const PATCH = createRouteHandler(
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Attendance record not found
  *         content:
@@ -165,10 +188,12 @@ export const PATCH = createRouteHandler(
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const DELETE = createRouteHandler(null, async (_request, _body, context) => {
+export const DELETE = createRouteHandler(null, async (request, _body, context) => {
   try {
+    const auth = await getAuthPayload(request);
     const { id } = await context.params;
-    const attendance = await deleteAttendance(id);
+
+    const attendance = await deleteAttendance(id, auth);
 
     return NextResponse.json({
       message: ATTENDANCE_DELETED_MESSAGE,

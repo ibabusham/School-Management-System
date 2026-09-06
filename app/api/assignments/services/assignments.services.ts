@@ -11,6 +11,13 @@ import { pickDefined } from "@/app/utils/pick-defined";
 import { findSubjectById } from "@/app/api/subjects/Services/subjects.services";
 import { recalculateLearningProgressForStudents } from "@/app/api/learning-progress/services/recalculate-learning-progress";
 import { recalculateClassPerformance } from "@/app/api/classes/Services/recalculate-class-performance";
+import type { JwtPayload } from "@/app/api/auth/services/jwt";
+import {
+  buildSubjectIdScopeWhere,
+  getScopedSubjectIds,
+  requireTeacherOwnsAssignment,
+  requireTeacherOwnsSubject,
+} from "@/app/api/auth/services/teacher-scope";
 
 const assignmentInclude = {
   subject: {
@@ -56,7 +63,8 @@ function mapCreateData(input: CreateAssignmentInput) {
     submissionInstructions: input.submissionInstructions,
   };
 }
-export async function createAssignment(input: CreateAssignmentInput) {
+export async function createAssignment(input: CreateAssignmentInput, auth: JwtPayload) {
+  await requireTeacherOwnsSubject(auth, input.subjectId);
   await findSubjectById(input.subjectId);
 
   return prisma.assignments.create({
@@ -64,15 +72,15 @@ export async function createAssignment(input: CreateAssignmentInput) {
     include: assignmentInclude,
   });
 }
-export async function getAssignment(id: string) {
+export async function getAssignment(id: string, auth: JwtPayload) {
+  await requireTeacherOwnsAssignment(auth, id);
   return findAssignmentById(id);
 }
-export async function getAssignmentList(query: AssignmentListQuery) {
+export async function getAssignmentList(query: AssignmentListQuery, auth: JwtPayload) {
+  const scopedSubjectIds = await getScopedSubjectIds(auth);
   const { page, limit, subjectId } = query;
   const skip = (page - 1) * limit;
-  const where = {
-    ...(subjectId && { subjectId }),
-  };
+  const where = buildSubjectIdScopeWhere(scopedSubjectIds, subjectId);
 
   const [assignments, total] = await Promise.all([
     prisma.assignments.findMany({
@@ -95,10 +103,16 @@ export async function getAssignmentList(query: AssignmentListQuery) {
     },
   };
 }
-export async function updateAssignment(id: string, input: UpdateAssignmentInput) {
+export async function updateAssignment(
+  id: string,
+  input: UpdateAssignmentInput,
+  auth: JwtPayload
+) {
+  await requireTeacherOwnsAssignment(auth, id);
   await findAssignmentById(id);
 
   if (input.subjectId) {
+    await requireTeacherOwnsSubject(auth, input.subjectId);
     await findSubjectById(input.subjectId);
   }
   
@@ -131,7 +145,8 @@ export async function updateAssignment(id: string, input: UpdateAssignmentInput)
     include: assignmentInclude,
   });
 }
-export async function deleteAssignment(id: string) {
+export async function deleteAssignment(id: string, auth: JwtPayload) {
+  await requireTeacherOwnsAssignment(auth, id);
   await findAssignmentById(id);
 
   return prisma.assignments.delete({
@@ -156,7 +171,12 @@ async function assertStudentEligibleForAssignment(assignmentId: string, studentI
 
   return { assignment, student };
 }
-export async function markAssignment(assignmentId: string, input: BulkMarkAssignmentInput) {
+export async function markAssignment(
+  assignmentId: string,
+  input: BulkMarkAssignmentInput,
+  auth: JwtPayload
+) {
+  await requireTeacherOwnsAssignment(auth, assignmentId);
   const assignment = await findAssignmentById(assignmentId);
 
   for (const mark of input.marks) {
@@ -196,7 +216,12 @@ export async function markAssignment(assignmentId: string, input: BulkMarkAssign
   
   return { submissions };
 }
-export async function getTakenSubmissions(assignmentId: string, query: SubmissionListQuery) {
+export async function getTakenSubmissions(
+  assignmentId: string,
+  query: SubmissionListQuery,
+  auth: JwtPayload
+) {
+  await requireTeacherOwnsAssignment(auth, assignmentId);
   await findAssignmentById(assignmentId);
 
   const { page, limit } = query;
@@ -226,7 +251,12 @@ export async function getTakenSubmissions(assignmentId: string, query: Submissio
     },
   };
 }
-export async function getMissingSubmissions(assignmentId: string, query: SubmissionListQuery) {
+export async function getMissingSubmissions(
+  assignmentId: string,
+  query: SubmissionListQuery,
+  auth: JwtPayload
+) {
+  await requireTeacherOwnsAssignment(auth, assignmentId);
   const assignment = await findAssignmentById(assignmentId);
   const classId = assignment.subject.classId;
 

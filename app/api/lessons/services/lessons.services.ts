@@ -4,6 +4,13 @@ import { CreateLessonInput, LessonListQuery, UpdateLessonInput } from "../schema
 import { randomUUID } from "crypto";
 import { findSubjectById } from "@/app/api/subjects/Services/subjects.services";
 import { pickDefined } from "@/app/utils/pick-defined";
+import type { JwtPayload } from "@/app/api/auth/services/jwt";
+import {
+  buildSubjectIdScopeWhere,
+  getScopedSubjectIds,
+  requireTeacherOwnsLesson,
+  requireTeacherOwnsSubject,
+} from "@/app/api/auth/services/teacher-scope";
 
 const lessonInclude = {
     subject: {
@@ -23,7 +30,8 @@ export async function findLessonById(id: string) {
     }
     return lesson;
 }
-export async function createLesson(input: CreateLessonInput) {
+export async function createLesson(input: CreateLessonInput, auth: JwtPayload) {
+    await requireTeacherOwnsSubject(auth, input.subjectId);
     await findSubjectById(input.subjectId);
     return prisma.lessons.create({
         data: {
@@ -39,12 +47,15 @@ export async function createLesson(input: CreateLessonInput) {
         include: lessonInclude,
     });
 }
-export async function getLessonList(query: LessonListQuery) {
+export async function getLesson(id: string, auth: JwtPayload) {
+    await requireTeacherOwnsLesson(auth, id);
+    return findLessonById(id);
+}
+export async function getLessonList(query: LessonListQuery, auth: JwtPayload) {
+  const scopedSubjectIds = await getScopedSubjectIds(auth);
   const { page, limit, subjectId } = query;
   const skip = (page - 1) * limit;
-  const where = {
-    ...(subjectId && { subjectId }),
-  };
+  const where = buildSubjectIdScopeWhere(scopedSubjectIds, subjectId);
   const [lessons, total] = await Promise.all([
     prisma.lessons.findMany({ where,
          skip,
@@ -64,10 +75,12 @@ export async function getLessonList(query: LessonListQuery) {
     },
   };
 }
-export async function updateLesson(id: string, input: UpdateLessonInput) {
+export async function updateLesson(id: string, input: UpdateLessonInput, auth: JwtPayload) {
+    await requireTeacherOwnsLesson(auth, id);
     await findLessonById(id);
 
     if (input.subjectId) {
+        await requireTeacherOwnsSubject(auth, input.subjectId);
         await findSubjectById(input.subjectId);
     }
 
@@ -77,7 +90,8 @@ export async function updateLesson(id: string, input: UpdateLessonInput) {
         include: lessonInclude,
     });
 }
-export async function deleteLesson(id: string) {
+export async function deleteLesson(id: string, auth: JwtPayload) {
+    await requireTeacherOwnsLesson(auth, id);
     await findLessonById(id);
     return prisma.lessons.delete({
         where: { id },      

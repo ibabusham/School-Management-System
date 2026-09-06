@@ -8,6 +8,7 @@ import {
   buildMarkPagination,
   toMarkSubmissionSummary,
 } from "../../responses";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 
 /**
  * @swagger
@@ -55,6 +56,12 @@ import {
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Assignment or student not found
  *         content:
@@ -64,11 +71,13 @@ import {
  */
 export const POST = createRouteHandler(
   bulkMarkAssignmentSchema,
-  async (_request, body, context) => {
+  async (request, body, context) => {
     try {
+      const auth = await getAuthPayload(request);
       const { id } = await context.params;
       const assignmentId = parseAssignmentRouteId(id);
-      const result = await markAssignment(assignmentId, body);
+
+      const result = await markAssignment(assignmentId, body, auth);
       const data = result.submissions.map(toMarkSubmissionSummary);
       return NextResponse.json({
         message: ASSIGNMENT_MARKED_MESSAGE,

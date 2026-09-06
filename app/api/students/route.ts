@@ -6,6 +6,7 @@ import {
 } from "@/app/api/students/responses";
 import { NextResponse } from "next/server";
 import { handleError } from "@/app/utils/errors.utility";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 
 /**
@@ -40,9 +41,17 @@ import { createRouteHandler } from "@/app/utils/create-route-handles";
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 export const GET = createRouteHandler(null, async (request) => {
-  try { 
+  try {
+    const auth = await getAuthPayload(request);
+
      const queryParams = request.nextUrl.searchParams;
      const parsed = studentListQuerySchema.safeParse({
       page: queryParams.get("page") ?? undefined,
@@ -104,9 +113,17 @@ export const GET = createRouteHandler(null, async (request) => {
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 export const POST = createRouteHandler(createStudentSchema, async (request, body) => {
   try {
+    const auth = await getAuthPayload(request);
+
     const student = await createStudent(body);
     return NextResponse.json(
       {

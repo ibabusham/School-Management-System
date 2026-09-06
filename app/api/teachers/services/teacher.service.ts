@@ -8,6 +8,9 @@ import type {
 import type { Teacher } from "@/prisma/generated/client";
 import { AppError } from "@/app/utils/errors.utility";
 import { pickDefined } from "@/app/utils/pick-defined";
+import type { JwtPayload } from "@/app/api/auth/services/jwt";
+import { assertSelf } from "@/app/api/auth/services/authorize";
+import { isAdmin, isTeacher } from "@/app/api/auth/services/roles";
 
 function toSafeTeacher(teacher: Teacher) {
   const { ...safeTeacher } = teacher;
@@ -64,7 +67,12 @@ export async function createTeacher(data: CreateTeacherInput) {
 
   return teacher;
 }
-export async function updateTeacher(teacherId: string, data: UpdateTeacherInput) {
+export async function updateTeacher(
+  teacherId: string,
+  data: UpdateTeacherInput,
+  auth: JwtPayload
+) {
+  assertTeacherSelfOrAdmin(auth, teacherId);
   await findActiveTeacherById(teacherId);
 
  return prisma.teacher.update({
@@ -158,9 +166,23 @@ export async function listTeachers(query: TeacherListQuery) {
     },
   };
 }
-export async function getTeacherById(userId: string) {
-  const teacher = await findActiveTeacherById(userId);
+export async function getTeacherById(teacherId: string, auth: JwtPayload) {
+  assertTeacherSelfOrAdmin(auth, teacherId);
+  const teacher = await findActiveTeacherById(teacherId);
   return toSafeTeacher(teacher);
+}
+
+function assertTeacherSelfOrAdmin(auth: JwtPayload, teacherId: string) {
+  if (isAdmin(auth)) {
+    return;
+  }
+
+  if (isTeacher(auth)) {
+    assertSelf(auth, teacherId);
+    return;
+  }
+
+  throw new AppError("Access denied", 403);
 }
 async function findActiveTeacherById(teacherId: string) {
   const teacher = await prisma.teacher.findFirst({

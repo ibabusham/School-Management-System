@@ -6,6 +6,7 @@ import {
   toAssignedStudentSummary,
 } from "../../responses";
 import { createRouteHandler } from "@/app/utils/create-route-handles";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 import { handleError } from "@/app/utils/errors.utility";
 
 /**
@@ -49,6 +50,12 @@ import { handleError } from "@/app/utils/errors.utility";
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Class or student not found
  *         content:
@@ -60,6 +67,8 @@ export const POST = createRouteHandler(
   assignStudentsSchema,
   async (request, body, context) => {
     try {
+      const auth = await getAuthPayload(request);
+
       const { id } = await context.params;
       const result = await assignStudentsToClass(id, body.studentIds);
       return NextResponse.json({

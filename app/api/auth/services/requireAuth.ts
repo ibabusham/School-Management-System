@@ -1,7 +1,7 @@
 import { verifyToken, type JwtPayload } from "@/app/api/auth/services/jwt";
-import { AppError } from "@/app/utils/errors.utility";
 
-// Thrown when the request has no valid access token
+export { assertSelf } from "./authorize";
+
 export class AuthError extends Error {
   status = 401 as const;
 
@@ -10,6 +10,10 @@ export class AuthError extends Error {
     this.name = "AuthError";
   }
 }
+
+const AUTH_SUB_HEADER = "x-auth-sub";
+const AUTH_ROLE_HEADER = "x-auth-role";
+const AUTH_USERNAME_HEADER = "x-auth-username";
 
 function getBearerToken(request: Request) {
   const header = request.headers.get("authorization");
@@ -22,8 +26,19 @@ function getBearerToken(request: Request) {
   return accessToken || null;
 }
 
-// Reads `Authorization: Bearer <accessToken>`, verifies the JWT, and returns its payload.
-export async function getAuthPayload(request: Request): Promise<JwtPayload> {
+export function getAuthPayloadFromHeaders(request: Request): JwtPayload | null {
+  const sub = request.headers.get(AUTH_SUB_HEADER);
+  const role = request.headers.get(AUTH_ROLE_HEADER);
+  const username = request.headers.get(AUTH_USERNAME_HEADER);
+
+  if (!sub || !role || !username) {
+    return null;
+  }
+
+  return { sub, role, username };
+}
+
+export async function verifyBearerToken(request: Request): Promise<JwtPayload> {
   const accessToken = getBearerToken(request);
 
   if (!accessToken) {
@@ -37,24 +52,26 @@ export async function getAuthPayload(request: Request): Promise<JwtPayload> {
   }
 }
 
-export function assertStudentAccess(payload: JwtPayload, studentId: string) {
-  if (payload.role === "STUDENT" && payload.sub !== studentId) {
-    throw new AppError("You can only access your own learning progress", 403);
+export async function getAuthPayload(request: Request): Promise<JwtPayload> {
+  const fromHeaders = getAuthPayloadFromHeaders(request);
+  if (fromHeaders) {
+    return fromHeaders;
   }
+
+  return verifyBearerToken(request);
 }
 
-export function assertTeacherOrAdmin(payload: JwtPayload) {
-  if (payload.role !== "TEACHER" && payload.role !== "ADMIN") {
-    throw new AppError("Teacher or admin access required", 403);
-  }
-}
-
-// Used by proxy.ts — returns true when the token is valid.
-export async function isAuthenticated(request: Request): Promise<JwtPayload | boolean> {
+export async function isAuthenticated(request: Request): Promise<boolean> {
   try {
-    await getAuthPayload(request);
+    await verifyBearerToken(request);
     return true;
   } catch {
     return false;
   }
 }
+
+export const AUTH_HEADER_NAMES = {
+  sub: AUTH_SUB_HEADER,
+  role: AUTH_ROLE_HEADER,
+  username: AUTH_USERNAME_HEADER,
+} as const;

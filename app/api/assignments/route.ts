@@ -5,6 +5,7 @@ import { assignmentListQuerySchema } from "./schemas";
 import { createAssignment, getAssignmentList } from "./services/assignments.services";
 import { ASSIGNMENT_CREATED_MESSAGE, toAssignmentSummary } from "./responses";
 import { createAssignmentSchema } from "./schemas";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 
 /**
  * @swagger
@@ -51,9 +52,17 @@ import { createAssignmentSchema } from "./schemas";
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 export const GET = createRouteHandler(null, async (request) => {
   try {
+    const auth = await getAuthPayload(request);
+
     const queryParams = request.nextUrl.searchParams;
     const parsed = assignmentListQuerySchema.safeParse({
       page: queryParams.get("page") ?? undefined,
@@ -65,7 +74,7 @@ export const GET = createRouteHandler(null, async (request) => {
       return handleError(parsed.error);
     }
 
-    const result = await getAssignmentList(parsed.data);
+    const result = await getAssignmentList(parsed.data, auth);
     return NextResponse.json({
       data: result.data.map(toAssignmentSummary),
       pagination: result.pagination,
@@ -117,6 +126,12 @@ export const GET = createRouteHandler(null, async (request) => {
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Subject not found
  *         content:
@@ -124,9 +139,11 @@ export const GET = createRouteHandler(null, async (request) => {
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const POST = createRouteHandler(createAssignmentSchema, async (_request, body) => {
+export const POST = createRouteHandler(createAssignmentSchema, async (request, body) => {
   try {
-    const assignment = await createAssignment(body);
+    const auth = await getAuthPayload(request);
+
+    const assignment = await createAssignment(body, auth);
     return NextResponse.json(
       {
         message: ASSIGNMENT_CREATED_MESSAGE,

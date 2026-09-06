@@ -7,6 +7,7 @@ import {
   toAttendance,
 } from "./responses";
 import { createAttendance, getAttendanceList } from "./services/attendance.services";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 
 /**
  * @swagger
@@ -60,9 +61,17 @@ import { createAttendance, getAttendanceList } from "./services/attendance.servi
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 export const GET = createRouteHandler(null, async (request) => {
   try {
+    const auth = await getAuthPayload(request);
+
     const queryParams = request.nextUrl.searchParams;
     const parsed = attendanceListQuerySchema.safeParse({
       page: queryParams.get("page") ?? undefined,
@@ -77,7 +86,7 @@ export const GET = createRouteHandler(null, async (request) => {
       return handleError(parsed.error);
     }
 
-    const result = await getAttendanceList(parsed.data);
+    const result = await getAttendanceList(parsed.data, auth);
 
     return NextResponse.json({
       data: result.data.map(toAttendance),
@@ -121,6 +130,12 @@ export const GET = createRouteHandler(null, async (request) => {
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Student or subject not found
  *         content:
@@ -134,9 +149,11 @@ export const GET = createRouteHandler(null, async (request) => {
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const POST = createRouteHandler(createAttendanceSchema, async (_request, body) => {
+export const POST = createRouteHandler(createAttendanceSchema, async (request, body) => {
   try {
-    const attendance = await createAttendance(body);
+    const auth = await getAuthPayload(request);
+
+    const attendance = await createAttendance(body, auth);
 
     return NextResponse.json(
       {

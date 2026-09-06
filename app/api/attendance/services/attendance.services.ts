@@ -9,6 +9,13 @@ import type {
   CreateAttendanceInput,
   UpdateAttendanceInput,
 } from "../schemas";
+import type { JwtPayload } from "@/app/api/auth/services/jwt";
+import {
+  buildSubjectIdScopeWhere,
+  getScopedSubjectIds,
+  requireTeacherOwnsAttendance,
+  requireTeacherOwnsSubject,
+} from "@/app/api/auth/services/teacher-scope";
 import { pickDefined } from "@/app/utils/pick-defined";
 
 function attendancePercentageForStatus(status: AttendanceStatus) {
@@ -104,7 +111,8 @@ async function syncMetrics(studentId: string, classId: string | null) {
   }
 }
 
-export async function createAttendance(input: CreateAttendanceInput) {
+export async function createAttendance(input: CreateAttendanceInput, auth: JwtPayload) {
+  await requireTeacherOwnsSubject(auth, input.subjectId);
   const { student, subject } = await assertStudentInSubjectClass(
     input.studentId,
     input.subjectId
@@ -126,17 +134,19 @@ export async function createAttendance(input: CreateAttendanceInput) {
   return attendance;
 }
 
-export async function getAttendance(id: string) {
+export async function getAttendance(id: string, auth: JwtPayload) {
+  await requireTeacherOwnsAttendance(auth, id);
   return findAttendanceById(id);
 }
 
-export async function getAttendanceList(query: AttendanceListQuery) {
+export async function getAttendanceList(query: AttendanceListQuery, auth: JwtPayload) {
+  const scopedSubjectIds = await getScopedSubjectIds(auth);
   const { page, limit, studentId, subjectId, fromDate, toDate } = query;
   const skip = (page - 1) * limit;
 
   const where = {
+    ...buildSubjectIdScopeWhere(scopedSubjectIds, subjectId),
     ...(studentId && { studentId }),
-    ...(subjectId && { subjectId }),
     ...((fromDate || toDate) && {
       attendanceDate: {
         ...(fromDate && { gte: startOfDay(fromDate) }),
@@ -166,13 +176,22 @@ export async function getAttendanceList(query: AttendanceListQuery) {
   };
 }
 
-export async function updateAttendance(id: string, input: UpdateAttendanceInput) {
+export async function updateAttendance(
+  id: string,
+  input: UpdateAttendanceInput,
+  auth: JwtPayload
+) {
+  await requireTeacherOwnsAttendance(auth, id);
   const existing = await findAttendanceById(id);
 
   const studentId = input.studentId ?? existing.studentId;
   const subjectId = input.subjectId ?? existing.subjectId;
   const attendanceDate = input.attendanceDate ?? existing.attendanceDate;
   const attendanceStatus = input.attendanceStatus ?? existing.attendanceStatus;
+
+  if (input.subjectId) {
+    await requireTeacherOwnsSubject(auth, subjectId);
+  }
 
   const { student, subject } = await assertStudentInSubjectClass(studentId, subjectId);
   await assertNoDuplicateAttendance(studentId, subjectId, attendanceDate, id);
@@ -202,7 +221,8 @@ export async function updateAttendance(id: string, input: UpdateAttendanceInput)
   return attendance;
 }
 
-export async function deleteAttendance(id: string) {
+export async function deleteAttendance(id: string, auth: JwtPayload) {
+  await requireTeacherOwnsAttendance(auth, id);
   const attendance = await findAttendanceById(id);
   const subject = await findSubjectById(attendance.subjectId);
 

@@ -8,6 +8,9 @@ import type {
   UpdateSubjectInput,
 } from "../schemas";
 import { pickDefined } from "@/app/utils/pick-defined";
+import type { JwtPayload } from "@/app/api/auth/services/jwt";
+import { isTeacher } from "@/app/api/auth/services/roles";
+import { requireTeacherOwnsSubject } from "@/app/api/auth/services/teacher-scope";
 import { findTeacherById } from "@/app/api/teachers/services/teacher.service";
 import { findClassById } from "@/app/api/classes/Services/classes.services";
 const subjectInclude = {
@@ -78,13 +81,16 @@ export async function deleteSubject(id: string) {
     where: { id },
   });
 }
-export async function getSubjectById(id: string) {
+export async function getSubjectById(id: string, auth: JwtPayload) {
+  await requireTeacherOwnsSubject(auth, id);
   return findSubjectById(id);
 }
-export async function getSubjectList(data: SubjectListQuery) {
+export async function getSubjectList(data: SubjectListQuery, auth: JwtPayload) {
+  const teacherId = isTeacher(auth) ? auth.sub : undefined;
   const { page, limit, search } = data;
   const skip = (page - 1) * limit;
   const where = {
+    ...(teacherId && { teacherId }),
     ...(search && {
       OR: [
         { subjectName: { contains: search, mode: "insensitive" as const } },

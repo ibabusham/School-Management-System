@@ -11,6 +11,13 @@ import { pickDefined } from "@/app/utils/pick-defined";
 import { findSubjectById } from "@/app/api/subjects/Services/subjects.services";
 import { recalculateLearningProgressForStudents } from "@/app/api/learning-progress/services/recalculate-learning-progress";
 import { recalculateClassPerformance } from "@/app/api/classes/Services/recalculate-class-performance";
+import type { JwtPayload } from "@/app/api/auth/services/jwt";
+import {
+  buildSubjectIdScopeWhere,
+  getScopedSubjectIds,
+  requireTeacherOwnsExam,
+  requireTeacherOwnsSubject,
+} from "@/app/api/auth/services/teacher-scope";
 const examInclude = {
   subject: {
     include: {
@@ -45,7 +52,8 @@ async function findExamById(id: string) {
 
   return exam;
 }
-export async function createExam(input: CreateExamInput) {
+export async function createExam(input: CreateExamInput, auth: JwtPayload) {
+  await requireTeacherOwnsSubject(auth, input.subjectId);
   await findSubjectById(input.subjectId);
 
   return prisma.exams.create({
@@ -59,16 +67,16 @@ export async function createExam(input: CreateExamInput) {
   });
 }
 
-export async function getExam(id: string) {
+export async function getExam(id: string, auth: JwtPayload) {
+  await requireTeacherOwnsExam(auth, id);
   return findExamById(id);
 }
 
-export async function getExamList(query: ExamListQuery) {
+export async function getExamList(query: ExamListQuery, auth: JwtPayload) {
+  const scopedSubjectIds = await getScopedSubjectIds(auth);
   const { page, limit, subjectId } = query;
   const skip = (page - 1) * limit;
-  const where = {
-    ...(subjectId && { subjectId }),
-  };
+  const where = buildSubjectIdScopeWhere(scopedSubjectIds, subjectId);
 
   const [exams, total] = await Promise.all([
     prisma.exams.findMany({
@@ -92,7 +100,8 @@ export async function getExamList(query: ExamListQuery) {
   };
 }
 
-export async function deleteExam(id: string) {
+export async function deleteExam(id: string, auth: JwtPayload) {
+  await requireTeacherOwnsExam(auth, id);
   await findExamById(id);
 
   return prisma.exams.delete({
@@ -101,9 +110,11 @@ export async function deleteExam(id: string) {
   });
 }
 
-export async function updateExam(id: string, input: UpdateExamInput) {
+export async function updateExam(id: string, input: UpdateExamInput, auth: JwtPayload) {
+  await requireTeacherOwnsExam(auth, id);
   await findExamById(id);
   if (input.subjectId) {
+    await requireTeacherOwnsSubject(auth, input.subjectId);
     await findSubjectById(input.subjectId);
   }
 return prisma.exams.update({
@@ -131,7 +142,8 @@ async function assertStudentEligibleForExam(examId: string, studentId: string) {
   return { exam, student };
 }
 
-export async function markExam(examId: string, input: BulkMarkExamInput) {
+export async function markExam(examId: string, input: BulkMarkExamInput, auth: JwtPayload) {
+  await requireTeacherOwnsExam(auth, examId);
   const exam = await findExamById(examId);
 
   for (const mark of input.marks) {
@@ -175,7 +187,12 @@ export async function markExam(examId: string, input: BulkMarkExamInput) {
   return { submissions };
 }
 
-export async function getTakenSubmissions(examId: string, query: SubmissionListQuery) {
+export async function getTakenSubmissions(
+  examId: string,
+  query: SubmissionListQuery,
+  auth: JwtPayload
+) {
+  await requireTeacherOwnsExam(auth, examId);
   await findExamById(examId);
 
   const { page, limit } = query;
@@ -206,7 +223,12 @@ export async function getTakenSubmissions(examId: string, query: SubmissionListQ
   };
 }
 
-export async function getMissingSubmissions(examId: string, query: SubmissionListQuery) {
+export async function getMissingSubmissions(
+  examId: string,
+  query: SubmissionListQuery,
+  auth: JwtPayload
+) {
+  await requireTeacherOwnsExam(auth, examId);
   const exam = await findExamById(examId);
   const classId = exam.subject.classId;
 

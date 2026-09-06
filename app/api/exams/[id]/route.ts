@@ -6,6 +6,7 @@ import {
   EXAM_UPDATED_MESSAGE,
 } from "../responses";
 import { updateExamSchema } from "../schemas";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 import { handleError } from "@/app/utils/errors.utility";
 
 /**
@@ -37,6 +38,12 @@ import { handleError } from "@/app/utils/errors.utility";
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Exam not found
  *         content:
@@ -44,10 +51,12 @@ import { handleError } from "@/app/utils/errors.utility";
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const GET = createRouteHandler(null, async (_request, _body, context) => {
+export const GET = createRouteHandler(null, async (request, _body, context) => {
   try {
+    const auth = await getAuthPayload(request);
     const { id } = await context.params;
-    const exam = await getExam(id);
+
+    const exam = await getExam(id, auth);
     return NextResponse.json({ exam });
   } catch (error) {
     return handleError(error);
@@ -95,6 +104,12 @@ export const GET = createRouteHandler(null, async (_request, _body, context) => 
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Exam or subject not found
  *         content:
@@ -102,10 +117,12 @@ export const GET = createRouteHandler(null, async (_request, _body, context) => 
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const PATCH = createRouteHandler(updateExamSchema, async (_request, body, context) => {
+export const PATCH = createRouteHandler(updateExamSchema, async (request, body, context) => {
   try {
+    const auth = await getAuthPayload(request);
     const { id } = await context.params;
-    const exam = await updateExam(id, body);
+
+    const exam = await updateExam(id, body, auth);
     return NextResponse.json({
       message: EXAM_UPDATED_MESSAGE,
       exam,
@@ -144,6 +161,12 @@ export const PATCH = createRouteHandler(updateExamSchema, async (_request, body,
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Exam not found
  *         content:
@@ -151,10 +174,12 @@ export const PATCH = createRouteHandler(updateExamSchema, async (_request, body,
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const DELETE = createRouteHandler(null, async (_request, _body, context) => {
+export const DELETE = createRouteHandler(null, async (request, _body, context) => {
   try {
+    const auth = await getAuthPayload(request);
     const { id } = await context.params;
-    const exam = await deleteExam(id);
+
+    const exam = await deleteExam(id, auth);
     return NextResponse.json({
       message: EXAM_DELETED_MESSAGE,
       exam,

@@ -1,14 +1,14 @@
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 import { handleError } from "@/app/utils/errors.utility";
 import { NextResponse } from "next/server";
-import { deleteLesson, updateLesson } from "../services/lessons.services";
+import { deleteLesson, getLesson, updateLesson } from "../services/lessons.services";
 import { parseLessonRouteId, updateLessonSchema } from "../schemas";
-import { findLessonById } from "../services/lessons.services";
 import {
   LESSON_DELETED_MESSAGE,
   LESSON_UPDATED_MESSAGE,
   toLesson,
 } from "../responses";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 
 /**
  * @swagger
@@ -45,6 +45,12 @@ import {
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Lesson not found
  *         content:
@@ -52,11 +58,13 @@ import {
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const GET = createRouteHandler(null, async (_request, _body, context) => {
+export const GET = createRouteHandler(null, async (request, _body, context) => {
   try {
+    const auth = await getAuthPayload(request);
     const { id } = await context.params;
     const lessonId = parseLessonRouteId(id);
-    const lesson = await findLessonById(lessonId);
+
+    const lesson = await getLesson(lessonId, auth);
     return NextResponse.json({ lesson: toLesson(lesson) });
   } catch (error) {
     return handleError(error);
@@ -104,6 +112,12 @@ export const GET = createRouteHandler(null, async (_request, _body, context) => 
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Lesson or subject not found
  *         content:
@@ -111,11 +125,13 @@ export const GET = createRouteHandler(null, async (_request, _body, context) => 
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const PATCH = createRouteHandler(updateLessonSchema, async (_request, body, context) => {
+export const PATCH = createRouteHandler(updateLessonSchema, async (request, body, context) => {
   try {
+    const auth = await getAuthPayload(request);
     const { id } = await context.params;
     const lessonId = parseLessonRouteId(id);
-    const lesson = await updateLesson(lessonId, body);
+
+    const lesson = await updateLesson(lessonId, body, auth);
     return NextResponse.json({
       message: LESSON_UPDATED_MESSAGE,
       lesson: toLesson(lesson),
@@ -160,6 +176,12 @@ export const PATCH = createRouteHandler(updateLessonSchema, async (_request, bod
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Lesson not found
  *         content:
@@ -167,11 +189,13 @@ export const PATCH = createRouteHandler(updateLessonSchema, async (_request, bod
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const DELETE = createRouteHandler(null, async (_request, _body, context) => {
+export const DELETE = createRouteHandler(null, async (request, _body, context) => {
   try {
+    const auth = await getAuthPayload(request);
     const { id } = await context.params;
     const lessonId = parseLessonRouteId(id);
-    const lesson = await deleteLesson(lessonId);
+
+    const lesson = await deleteLesson(lessonId, auth);
     return NextResponse.json({
       message: LESSON_DELETED_MESSAGE,
       lesson: toLesson(lesson),

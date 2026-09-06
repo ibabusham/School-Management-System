@@ -5,6 +5,7 @@ import {
   getAcademicYearSchema,
 } from "./schemas";
 import { createAcademicYear, findAcademicYear } from "./services/academicyear.services";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 import { ACADEMIC_YEAR_CREATED_MESSAGE } from "@/app/api/shared/operation-messages";
 import { handleError } from "@/app/utils/errors.utility";
 import { NextResponse } from "next/server";
@@ -53,9 +54,17 @@ import { NextResponse } from "next/server";
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 export const GET = createRouteHandler(null, async (request) => {
   try {
+    const auth = await getAuthPayload(request);
+
     const queryParams = request.nextUrl.searchParams;
     const parsed = getAcademicYearSchema.safeParse({
       page: queryParams.get("page") ?? undefined,
@@ -111,11 +120,19 @@ export const GET = createRouteHandler(null, async (request) => {
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 export const POST = createRouteHandler(
   createAcademicYearSchema,
   async (request, body: CreateAcademicYear) => {
     try {
+      const auth = await getAuthPayload(request);
+
       const academicYear = await createAcademicYear(body);
       return NextResponse.json(
         {

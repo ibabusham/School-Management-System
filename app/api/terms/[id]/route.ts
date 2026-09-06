@@ -7,6 +7,7 @@ import {
   TERM_DELETED_MESSAGE,
   TERM_UPDATED_MESSAGE,
 } from "@/app/api/shared/operation-messages";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 
 /**
  * @swagger
@@ -37,6 +38,12 @@ import {
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Term not found
  *         content:
@@ -44,8 +51,10 @@ import {
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const GET = createRouteHandler(null, async (_request, _body, context) => {
+export const GET = createRouteHandler(null, async (request, _body, context) => {
   try {
+    const auth = await getAuthPayload(request);
+
     const { id } = await context.params;
     const term = await getTerm(id);
     return NextResponse.json({ term });
@@ -99,6 +108,12 @@ export const GET = createRouteHandler(null, async (_request, _body, context) => 
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Term or academic year not found
  *         content:
@@ -106,8 +121,10 @@ export const GET = createRouteHandler(null, async (_request, _body, context) => 
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const PATCH = createRouteHandler(updateTermSchema, async (_request, body, context) => {
+export const PATCH = createRouteHandler(updateTermSchema, async (request, body, context) => {
   try {
+    const auth = await getAuthPayload(request);
+
     const { id } = await context.params;
     const term = await updateTerm(id, body);
     return NextResponse.json({
@@ -148,6 +165,12 @@ export const PATCH = createRouteHandler(updateTermSchema, async (_request, body,
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Term not found
  *         content:
@@ -155,8 +178,10 @@ export const PATCH = createRouteHandler(updateTermSchema, async (_request, body,
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const DELETE = createRouteHandler(null, async (_request, _body, context) => {
+export const DELETE = createRouteHandler(null, async (request, _body, context) => {
   try {
+    const auth = await getAuthPayload(request);
+
     const { id } = await context.params;
     const term = await deleteTerm(id);
     return NextResponse.json({

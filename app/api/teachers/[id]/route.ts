@@ -4,6 +4,7 @@ import { getTeacherById } from "@/app/api/teachers/services/teacher.service";
 import { updateTeacher } from "@/app/api/teachers/services/teacher.service";
 import { updateTeacherSchema } from "@/app/api/teachers/schemas";
 import { ACCOUNT_DELETED_MESSAGE } from "@/app/api/teachers/responses";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 import { handleError } from "@/app/utils/errors.utility";
 import { createRouteHandler } from "@/app/utils/create-route-handles";
 
@@ -35,6 +36,12 @@ import { createRouteHandler } from "@/app/utils/create-route-handles";
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Teacher not found
  *         content:
@@ -44,8 +51,10 @@ import { createRouteHandler } from "@/app/utils/create-route-handles";
  */
 export const GET = createRouteHandler(null, async (request, body, context) => {
   try {
+    const auth = await getAuthPayload(request);
     const { id } = await context.params;
-    const teacher = await getTeacherById(id);
+
+    const teacher = await getTeacherById(id, auth);
     return NextResponse.json({ teacher });
   } catch (error) {
     return handleError(error);
@@ -93,6 +102,12 @@ export const GET = createRouteHandler(null, async (request, body, context) => {
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Teacher not found
  *         content:
@@ -102,8 +117,10 @@ export const GET = createRouteHandler(null, async (request, body, context) => {
  */
 export const PATCH = createRouteHandler(updateTeacherSchema, async (request, body, context) => {
   try {
+    const auth = await getAuthPayload(request);
     const { id } = await context.params;
-    const teacher = await updateTeacher(id, body);
+
+    const teacher = await updateTeacher(id, body, auth);
     return NextResponse.json({ teacher });
   } catch (error) {
     return handleError(error);
@@ -138,6 +155,12 @@ export const PATCH = createRouteHandler(updateTeacherSchema, async (request, bod
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Teacher not found
  *         content:
@@ -147,6 +170,8 @@ export const PATCH = createRouteHandler(updateTeacherSchema, async (request, bod
  */
 export const DELETE = createRouteHandler(null, async (request, body, context) => {
   try {
+    const auth = await getAuthPayload(request);
+
     const { id } = await context.params;
     const teacher = await deleteTeacher(id);
     return NextResponse.json({

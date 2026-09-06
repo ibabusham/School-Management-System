@@ -2,6 +2,7 @@ import { createRouteHandler } from "@/app/utils/create-route-handles";
 import { deleteClass, getClassById, updateClass } from "../Services/classes.services";
 import { CLASS_DELETED_MESSAGE } from "../responses";
 import { updateClassSchema } from "../schemas";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 import { NextResponse } from "next/server";
 import { handleError } from "@/app/utils/errors.utility";
 
@@ -33,6 +34,12 @@ import { handleError } from "@/app/utils/errors.utility";
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Class not found
  *         content:
@@ -40,8 +47,10 @@ import { handleError } from "@/app/utils/errors.utility";
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const GET = createRouteHandler(null, async (_request, _body, context) => {
+export const GET = createRouteHandler(null, async (request, _body, context) => {
   try {
+    const auth = await getAuthPayload(request);
+
     const { id } = await context.params;
     const classData = await getClassById(id);
     return NextResponse.json({ classData });
@@ -91,6 +100,12 @@ export const GET = createRouteHandler(null, async (_request, _body, context) => 
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Class not found
  *         content:
@@ -98,8 +113,10 @@ export const GET = createRouteHandler(null, async (_request, _body, context) => 
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const PATCH = createRouteHandler(updateClassSchema, async (_request, body, context) => {
+export const PATCH = createRouteHandler(updateClassSchema, async (request, body, context) => {
   try {
+    const auth = await getAuthPayload(request);
+
     const { id } = await context.params;
     const classData = await updateClass(id, body);
     return NextResponse.json({ classData });
@@ -136,6 +153,12 @@ export const PATCH = createRouteHandler(updateClassSchema, async (_request, body
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Class not found
  *         content:
@@ -143,8 +166,10 @@ export const PATCH = createRouteHandler(updateClassSchema, async (_request, body
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const DELETE = createRouteHandler(null, async (_request, _body, context) => {
+export const DELETE = createRouteHandler(null, async (request, _body, context) => {
   try {
+    const auth = await getAuthPayload(request);
+
     const { id } = await context.params;
     const classData = await deleteClass(id);
     return NextResponse.json({

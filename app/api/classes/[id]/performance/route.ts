@@ -1,4 +1,5 @@
 import { createRouteHandler } from "@/app/utils/create-route-handles";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 import { NextResponse } from "next/server";
 import { getClassPerformance } from "../../Services/classes.services";
 import { handleError } from "@/app/utils/errors.utility";
@@ -33,6 +34,12 @@ import { handleError } from "@/app/utils/errors.utility";
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Class or performance not found
  *         content:
@@ -40,10 +47,12 @@ import { handleError } from "@/app/utils/errors.utility";
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-export const GET = createRouteHandler(null, async (_request, _body, context) => {
+export const GET = createRouteHandler(null, async (request, _body, context) => {
   try {
+    const auth = await getAuthPayload(request);
     const { id } = await context.params;
-    const performance = await getClassPerformance(id);
+
+    const performance = await getClassPerformance(id, auth);
     return NextResponse.json({ performance });
   } catch (error) {
     return handleError(error);

@@ -1,5 +1,7 @@
 import { prisma } from "@/app/lib/prisma";
 import { AppError } from "@/app/utils/errors.utility";
+import type { JwtPayload } from "@/app/api/auth/services/jwt";
+import { requireTeacherOwnsClass } from "@/app/api/auth/services/teacher-scope";
 import type { CreateClassInput, UpdateClassInput, GetClassListQueryInput } from "../schemas";
 import { pickDefined } from "@/app/utils/pick-defined";
 import { findAcademicYearById } from "@/app/api/academicYears/services/academicyear.services";
@@ -207,7 +209,8 @@ export async function getClassList(data: GetClassListQueryInput) {
     },
   };
 }
-export async function getClassPerformance(classId: string) {
+export async function getClassPerformance(classId: string, auth: JwtPayload) {
+  await requireTeacherOwnsClass(auth, classId);
   await findClassById(classId);
   await ensureClassPerformanceRecord(classId);
 

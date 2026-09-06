@@ -7,6 +7,7 @@ import {
   toMarkSubmissionSummary,
 } from "../../responses";
 import { bulkMarkExamSchema } from "../../schemas";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 import { handleError } from "@/app/utils/errors.utility";
 
 /**
@@ -55,6 +56,12 @@ import { handleError } from "@/app/utils/errors.utility";
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Exam or student not found
  *         content:
@@ -64,10 +71,12 @@ import { handleError } from "@/app/utils/errors.utility";
  */
 export const POST = createRouteHandler(
   bulkMarkExamSchema,
-  async (_request, body, context) => {
+  async (request, body, context) => {
     try {
+      const auth = await getAuthPayload(request);
       const { id } = await context.params;
-      const result = await markExam(id, body);
+
+      const result = await markExam(id, body, auth);
       const data = result.submissions.map(toMarkSubmissionSummary);
       return NextResponse.json({
         message: EXAM_MARKED_MESSAGE,

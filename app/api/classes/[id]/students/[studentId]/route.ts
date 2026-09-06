@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { unassignStudentFromClass } from "../../../Services/classes.services";
 import { STUDENT_UNASSIGNED_MESSAGE } from "../../../responses";
 import { createRouteHandler } from "@/app/utils/create-route-handles";
+import { getAuthPayload } from "@/app/api/auth/services/requireAuth";
 import { handleError } from "@/app/utils/errors.utility";
 
 /**
@@ -39,6 +40,12 @@ import { handleError } from "@/app/utils/errors.utility";
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *         description: Forbidden — insufficient role or out-of-scope access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Class or student not found in class
  *         content:
@@ -48,6 +55,8 @@ import { handleError } from "@/app/utils/errors.utility";
  */
 export const DELETE = createRouteHandler(null, async (request, body, context) => {
   try {
+    const auth = await getAuthPayload(request);
+
     const { id, studentId } = await context.params;
     const result = await unassignStudentFromClass(id, studentId);
     return NextResponse.json({
