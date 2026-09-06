@@ -40,7 +40,7 @@ export const getApiDocs = async () => {
         {
           name: "Students",
           description:
-            "**ADMIN:** list/create/update/delete. **TEACHER:** get student by id when the student is in a class linked to the teacher's subjects. **STUDENT:** get own profile; read own learning progress and notes (not create/update/delete notes).",
+            "**ADMIN:** list/create/update/delete. **TEACHER:** list students in classes linked to the teacher's subjects; get student by id in that same scope. **STUDENT:** get own profile; read own learning progress and notes (not create/update/delete notes).",
         },
         {
           name: "Teachers",

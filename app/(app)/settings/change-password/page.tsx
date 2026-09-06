@@ -81,38 +81,56 @@ export default function ChangePasswordPage() {
         title="New password"
         description="Choose a new password, then sign in again."
       >
-        <form onSubmit={handleSubmit} className="max-w-md space-y-4">
-          <FormField label="Old password" htmlFor="oldPassword">
+        <form
+          onSubmit={handleSubmit}
+          className="mx-auto flex w-full max-w-md flex-col items-center space-y-4 text-center font-extrabold text-white [&_label]:text-center [&_label]:font-extrabold [&_label]:text-white"
+        >
+          <FormField
+            label="Old password"
+            htmlFor="oldPassword"
+            className="w-full"
+          >
             <Input
               id="oldPassword"
               type="password"
               required
               value={oldPassword}
               onChange={(event) => setOldPassword(event.target.value)}
+              className="text-center font-bold text-white"
             />
           </FormField>
 
-          <FormField label="New password" htmlFor="newPassword">
+          <FormField
+            label="New password"
+            htmlFor="newPassword"
+            className="w-full"
+          >
             <Input
               id="newPassword"
               type="password"
               required
               value={newPassword}
               onChange={(event) => setNewPassword(event.target.value)}
+              className="text-center font-bold text-white"
             />
           </FormField>
 
-          <FormField label="Confirm new password" htmlFor="confirmPassword">
+          <FormField
+            label="Confirm new password"
+            htmlFor="confirmPassword"
+            className="w-full"
+          >
             <Input
               id="confirmPassword"
               type="password"
               required
               value={confirmPassword}
               onChange={(event) => setConfirmPassword(event.target.value)}
+              className="text-center font-bold text-white"
             />
           </FormField>
 
-          <div className="flex justify-end pt-2">
+          <div className="flex w-full justify-center pt-2">
             <Button type="submit" disabled={isLoading}>
               {isLoading ? "Changing..." : "Change password"}
             </Button>

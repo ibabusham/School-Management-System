@@ -12,14 +12,17 @@ import { ApiError } from "@/lib/api/client";
 import {
   assignStudentsToClass,
   fetchClass,
+  fetchClassPerformance,
   unassignStudentFromClass,
   type AssignedStudent,
   type ClassDetail,
+  type ClassPerformance,
 } from "@/lib/api/classes";
 import { fetchStudents, type StudentSummary } from "@/lib/api/students";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { DataTableCard } from "@/components/admin/data-table-card";
 import { DashboardSection } from "@/components/dashboard/dashboard-section";
+import { StatCard } from "@/components/dashboard/stat-card";
 import { PageHeader } from "@/components/layout/page-header";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -33,6 +36,7 @@ export default function AdminClassDetailPage() {
   const classId = params.id;
 
   const [classData, setClassData] = useState<ClassDetail | null>(null);
+  const [performance, setPerformance] = useState<ClassPerformance | null>(null);
   const [allStudents, setAllStudents] = useState<StudentSummary[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
@@ -46,12 +50,15 @@ export default function AdminClassDetailPage() {
     setError(null);
 
     try {
-      const [classRecord, studentsResult] = await Promise.all([
+      const [classRecord, studentsResult, perf] = await Promise.all([
         fetchClass(classId),
         fetchStudents(1, 100),
+        // Defensive: a performance failure shouldn't blank the whole page.
+        fetchClassPerformance(classId).catch(() => null),
       ]);
       setClassData(classRecord);
       setAllStudents(studentsResult.data);
+      setPerformance(perf);
     } catch (err) {
       setError(err instanceof ApiError ? err.message : "Failed to load class.");
     } finally {
@@ -177,6 +184,23 @@ export default function AdminClassDetailPage() {
               </div>
             </div>
           </DashboardSection>
+
+          {performance ? (
+            <DashboardSection
+              title="Class performance"
+              description="Aggregate stats for this class."
+            >
+              <dl className="grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
+                <StatCard label="Class average" value={`${performance.classAvg}%`} large />
+                <StatCard label="Highest grade" value={String(performance.highestGrade)} large />
+                <StatCard label="Lowest grade" value={String(performance.lowestGrade)} large />
+                <StatCard label="Attendance rate" value={`${performance.attendenceRate}%`} large />
+                <StatCard label="Assignments completed" value={`${performance.assignmentsCompleationRate}%`} />
+                <StatCard label="Students needing support" value={String(performance.studentRequiringSupport)} />
+                <StatCard label="Status" value={performance.classStatus} />
+              </dl>
+            </DashboardSection>
+          ) : null}
 
           <DataTableCard
             title="Enrolled students"

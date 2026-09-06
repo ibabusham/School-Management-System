@@ -1,27 +1,25 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { apiRequest, ApiError } from "@/lib/api/client";
+import { ApiError } from "@/lib/api/client";
+import {
+  fetchLearningProgress,
+  fetchProgressNotes,
+  type LearningProgress,
+  type ProgressNote,
+} from "@/lib/api/learning-progress";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { StatCard } from "@/components/dashboard/stat-card";
+import { DashboardSection } from "@/components/dashboard/dashboard-section";
 import { PageHeader } from "@/components/layout/page-header";
 import { Alert } from "@/components/ui/alert";
 import { Card } from "@/components/ui/card";
-
-type LearningProgressResponse = {
-  learningProgress: {
-    subjectsAverages: number;
-    overallAvreages: number;
-    attendencePercentage: number;
-    learningStatus: string;
-  };
-};
+import { formatDate } from "@/lib/utils/dates";
 
 export default function StudentLearningProgressPage() {
   const { user } = useRequireAuth(["STUDENT"]);
-  const [progress, setProgress] = useState<
-    LearningProgressResponse["learningProgress"] | null
-  >(null);
+  const [progress, setProgress] = useState<LearningProgress | null>(null);
+  const [notes, setNotes] = useState<ProgressNote[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -29,10 +27,15 @@ export default function StudentLearningProgressPage() {
       return;
     }
 
-    void apiRequest<LearningProgressResponse>(
-      `/api/students/${user.id}/learningProgress?page=1&limit=1`
-    )
-      .then((data) => setProgress(data.learningProgress))
+    // Load learning progress stats and progress notes in parallel.
+    void Promise.all([
+      fetchLearningProgress(user.id),
+      fetchProgressNotes(user.id, 1, 100),
+    ])
+      .then(([progressRecord, notesResult]) => {
+        setProgress(progressRecord);
+        setNotes(notesResult.data);
+      })
       .catch((err) => {
         setError(
           err instanceof ApiError ? err.message : "Failed to load learning progress."
@@ -45,7 +48,7 @@ export default function StudentLearningProgressPage() {
       <PageHeader
         eyebrow="Student Portal"
         title="Learning Progress"
-        description="Your academic progress and attendance summary."
+        description="Your academic progress, attendance summary, and teacher notes."
       />
 
       {error ? <Alert>{error}</Alert> : null}
@@ -76,6 +79,53 @@ export default function StudentLearningProgressPage() {
           </p>
         </Card>
       )}
+
+      {/* Read-only notes section — students can view but not edit. */}
+      <DashboardSection
+        title="Teacher notes"
+        description="Observations and recommendations from your teachers."
+      >
+        {notes.length > 0 ? (
+          <div className="flex flex-col gap-4">
+            {notes.map((note) => (
+              <Card key={note.id} className="p-6">
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="text-sm font-bold text-white">
+                    {note.teacher?.name ?? "Teacher"}
+                  </span>
+                  <span className="text-xs text-sidebar-muted">
+                    {note.noteDate ? formatDate(note.noteDate) : "—"}
+                  </span>
+                </div>
+                <div className="space-y-2 text-sm">
+                  <p>
+                    <span className="font-bold text-white">Observation: </span>
+                    <span className="text-sidebar-muted">
+                      {note.noteObservation}
+                    </span>
+                  </p>
+                  <p>
+                    <span className="font-bold text-white">Strengths: </span>
+                    <span className="text-sidebar-muted">{note.strengths}</span>
+                  </p>
+                  <p>
+                    <span className="font-bold text-white">
+                      Areas for improvement:{" "}
+                    </span>
+                    <span className="text-sidebar-muted">
+                      {note.areasForImprovement}
+                    </span>
+                  </p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        ) : (
+          <p className="text-sm text-sidebar-muted">
+            No teacher notes yet.
+          </p>
+        )}
+      </DashboardSection>
     </div>
   );
 }

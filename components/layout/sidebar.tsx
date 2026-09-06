@@ -42,9 +42,13 @@ const NAV_ITEMS: NavEntry[] = [
   { href: "/admin/teachers", label: "Teachers", roles: ["ADMIN"] },
   { href: "/admin/classes", label: "Classes", roles: ["ADMIN"] },
   { href: "/admin/subjects", label: "Subjects", roles: ["ADMIN"] },
+  { href: "/admin/terms", label: "Terms", roles: ["ADMIN"] },
   { href: "/teacher", label: "Dashboard", roles: ["TEACHER"] },
+  { href: "/teacher/students", label: "Students", roles: ["TEACHER"] },
   { href: "/teacher/exams", label: "Exams", roles: ["TEACHER"] },
   { href: "/teacher/assignments", label: "Assignments", roles: ["TEACHER"] },
+  { href: "/teacher/lessons", label: "Lessons", roles: ["TEACHER"] },
+  { href: "/teacher/attendance", label: "Attendance", roles: ["TEACHER"] },
   { href: "/student", label: "Dashboard", roles: ["STUDENT"] },
   { href: "/student/profile", label: "My Profile", roles: ["STUDENT"] },
   {

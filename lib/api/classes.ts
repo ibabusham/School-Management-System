@@ -118,3 +118,22 @@ export async function unassignStudentFromClass(
     { method: "DELETE" }
   );
 }
+
+export type ClassPerformance = {
+  id: string;
+  classAvg: number;
+  highestGrade: number;
+  lowestGrade: number;
+  assignmentsCompleationRate: number;
+  attendenceRate: number;
+  studentRequiringSupport: number;
+  classStatus: string;
+  classId: string;
+};
+
+export async function fetchClassPerformance(classId: string) {
+  const result = await apiRequest<{ performance: ClassPerformance }>(
+    `/api/classes/${classId}/performance`
+  );
+  return result.performance;
+}
