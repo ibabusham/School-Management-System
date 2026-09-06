@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { ApiError } from "@/lib/api/client";
 import {
@@ -228,9 +229,15 @@ export default function AdminStudentsPage() {
           {
             key: "actions",
             header: "Actions",
-            className: "w-40",
+            className: "w-56",
             cell: (row) => (
               <div className="flex gap-2">
+                <Link
+                  href={`/admin/students/${row.id}`}
+                  className="inline-flex items-center justify-center rounded-lg bg-primary px-3 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-hover"
+                >
+                  Manage
+                </Link>
                 <Button
                   type="button"
                   variant="secondary"

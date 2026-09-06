@@ -15,7 +15,6 @@ import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { DataTableCard } from "@/components/admin/data-table-card";
 import { PageHeader } from "@/components/layout/page-header";
 import { Alert } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
 
 export default function TeacherStudentsPage() {
   // Only teachers can access this route.
@@ -83,7 +82,7 @@ export default function TeacherStudentsPage() {
                 href={`/teacher/students/${row.id}`}
                 className="inline-flex items-center justify-center rounded-lg bg-primary px-3 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-hover"
               >
-                View
+                Manage
               </Link>
             ),
           },

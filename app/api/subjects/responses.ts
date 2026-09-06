@@ -7,11 +7,16 @@ export {
 } from "@/app/api/shared/operation-messages";
 
 export function toSubjectSummary(
-  subject: Pick<Subjects, "id" | "subjectName" | "subjectCode">
+  subject: Pick<Subjects, "id" | "subjectName" | "subjectCode" | "teacherId" | "classId"> & {
+    class?: { className: string };
+  }
 ) {
   return {
     id: subject.id,
     subjectName: subject.subjectName,
     subjectCode: subject.subjectCode,
+    teacherId: subject.teacherId,
+    classId: subject.classId,
+    className: subject.class?.className,
   };
 }

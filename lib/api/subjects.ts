@@ -5,6 +5,9 @@ export type SubjectSummary = {
   id: string;
   subjectName: string;
   subjectCode: string;
+  teacherId?: string;
+  classId?: string;
+  className?: string;
 };
 
 export type SubjectDetail = SubjectSummary & {
