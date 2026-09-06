@@ -9,6 +9,8 @@ import type {
 } from "../schemas";
 import { pickDefined } from "@/app/utils/pick-defined";
 import { findSubjectById } from "@/app/api/subjects/Services/subjects.services";
+import { recalculateLearningProgressForStudents } from "@/app/api/learning-progress/services/recalculate-learning-progress";
+import { recalculateClassPerformance } from "@/app/api/classes/Services/recalculate-class-performance";
 
 const assignmentInclude = {
   subject: {
@@ -187,6 +189,10 @@ export async function markAssignment(assignmentId: string, input: BulkMarkAssign
       })
     )
   );
+
+  const studentIds = [...new Set(input.marks.map((mark) => mark.studentId))];
+  await recalculateLearningProgressForStudents(studentIds);
+  await recalculateClassPerformance(assignment.subject.classId);
   
   return { submissions };
 }

@@ -9,6 +9,8 @@ import type {
 } from "../schemas";
 import { pickDefined } from "@/app/utils/pick-defined";
 import { findSubjectById } from "@/app/api/subjects/Services/subjects.services";
+import { recalculateLearningProgressForStudents } from "@/app/api/learning-progress/services/recalculate-learning-progress";
+import { recalculateClassPerformance } from "@/app/api/classes/Services/recalculate-class-performance";
 const examInclude = {
   subject: {
     include: {
@@ -165,6 +167,10 @@ export async function markExam(examId: string, input: BulkMarkExamInput) {
       })
     )
   );
+
+  const studentIds = [...new Set(input.marks.map((mark) => mark.studentId))];
+  await recalculateLearningProgressForStudents(studentIds);
+  await recalculateClassPerformance(exam.subject.classId);
 
   return { submissions };
 }

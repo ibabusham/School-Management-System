@@ -66,7 +66,8 @@ export const GET = createRouteHandler(null, async (request, body, context) => {
  *         required: true
  *         schema:
  *           type: string
- *         description: Student id (User id)
+ *           format: uuid
+ *         description: Student id (User id of the student record to update)
  *     requestBody:
  *       required: true
  *       content:

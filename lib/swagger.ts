@@ -10,11 +10,11 @@ export const getApiDocs = async () => {
         title: "School Management System API",
         version: "0.1.0",
         description:
-          "REST API for auth, students, teachers, classes, subjects, academic years, terms, exams, assignments, and lessons.",
+          "REST API for auth, students, teachers, classes, subjects, academic years, terms, exams, assignments, lessons, learning progress, and attendance.",
       },
       tags: [
         { name: "Auth", description: "Login, tokens, and password management" },
-        { name: "Students", description: "Student CRUD and listing" },
+        { name: "Students", description: "Student CRUD, learning progress, and progress notes" },
         { name: "Teachers", description: "Teacher CRUD and listing" },
         { name: "Classes", description: "Class CRUD and listing" },
         { name: "Subjects", description: "Subject CRUD and listing" },
@@ -23,6 +23,7 @@ export const getApiDocs = async () => {
         { name: "Exams", description: "Exam CRUD and listing" },
         { name: "Assignments", description: "Assignment CRUD and listing" },
         { name: "Lessons", description: "Lesson CRUD and listing" },
+        { name: "Attendance", description: "Attendance CRUD and listing" },
     
       ],
       components: {

@@ -4,6 +4,7 @@ import {
   PrismaClientKnownRequestError,
   PrismaClientValidationError,
 } from "@prisma/client-runtime-utils";
+import { AuthError } from "@/app/api/auth/services/requireAuth";
 
 export class AppError extends Error {
   statusCode: number =500;
@@ -16,6 +17,10 @@ export class AppError extends Error {
 export function handleError(error: unknown) {
   if (error instanceof AppError) {
     return NextResponse.json({ error: error.message }, { status: error.statusCode });
+  }
+
+  if (error instanceof AuthError) {
+    return NextResponse.json({ error: error.message }, { status: error.status });
   }
 
   if (error instanceof ZodError) {

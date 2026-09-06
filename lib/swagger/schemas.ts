@@ -47,6 +47,15 @@ import {
   createLessonSchema,
   updateLessonSchema,
 } from "@/app/api/lessons/schemas";
+import {
+  createProgressNoteSchema,
+  updateProgressNoteSchema,
+} from "@/app/api/students/[id]/learningProgress/schemas";
+import {
+  attendanceStatusSchema,
+  createAttendanceSchema,
+  updateAttendanceSchema,
+} from "@/app/api/attendance/schemas";
 import { z } from "zod";
 import { zodToOpenApiSchema } from "./zod-to-schema";
 
@@ -115,6 +124,21 @@ export const teacherSummarySchema = z.object({
   employId: z.number().int(),
   name: z.string(),
   specilization: z.string(),
+});
+
+export const progressNoteSchema = z.object({
+  id: z.string(),
+  noteDate: z.string().datetime().or(z.string()),
+  noteObservation: z.string(),
+  strengths: z.string(),
+  areasForImprovement: z.string(),
+  teacherId: z.string(),
+  learningProgressId: z.string(),
+  teacher: teacherSummarySchema.optional(),
+});
+
+export const learningProgressReportSchema = learningProgressSchema.extend({
+  progressNotes: z.array(progressNoteSchema),
 });
 
 export const studentSchema = z.object({
@@ -259,6 +283,15 @@ export const lessonSummarySchema = z.object({
   lessonTitle: z.string(),
   lessonDescription: z.string(),
   lessonDate: z.string().datetime().or(z.string()),
+  subjectId: z.string(),
+});
+
+export const attendanceSchema = z.object({
+  id: z.string(),
+  attendanceDate: z.string().datetime().or(z.string()),
+  attendanceStatus: attendanceStatusSchema,
+  attendancePercentage: z.number().int(),
+  studentId: z.string(),
   subjectId: z.string(),
 });
 
@@ -564,6 +597,60 @@ export const swaggerComponentSchemas = {
   ),
   AcademicYearResponse: zodToOpenApiSchema(
     z.object({ data: academicYearSchema })
+  ),
+  LearningProgressReportResponse: zodToOpenApiSchema(
+    z.object({
+      learningProgress: learningProgressReportSchema,
+      notesPagination: paginationSchema,
+    })
+  ),
+  ProgressNoteResponse: zodToOpenApiSchema(z.object({ progressNote: progressNoteSchema })),
+  ProgressNoteListResponse: zodToOpenApiSchema(
+    z.object({ data: z.array(progressNoteSchema), pagination: paginationSchema })
+  ),
+  CreateProgressNoteRequest: zodToOpenApiSchema(createProgressNoteSchema),
+  CreateProgressNoteResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      progressNote: progressNoteSchema,
+    })
+  ),
+  UpdateProgressNoteRequest: zodToOpenApiSchema(updateProgressNoteSchema),
+  UpdateProgressNoteResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      progressNote: progressNoteSchema,
+    })
+  ),
+  DeleteProgressNoteResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      progressNote: progressNoteSchema,
+    })
+  ),
+  AttendanceResponse: zodToOpenApiSchema(z.object({ attendance: attendanceSchema })),
+  AttendanceListResponse: zodToOpenApiSchema(
+    z.object({ data: z.array(attendanceSchema), pagination: paginationSchema })
+  ),
+  CreateAttendanceRequest: zodToOpenApiSchema(createAttendanceSchema),
+  CreateAttendanceResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      attendance: attendanceSchema,
+    })
+  ),
+  UpdateAttendanceRequest: zodToOpenApiSchema(updateAttendanceSchema),
+  UpdateAttendanceResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      attendance: attendanceSchema,
+    })
+  ),
+  DeleteAttendanceResponse: zodToOpenApiSchema(
+    z.object({
+      message: z.string(),
+      attendance: attendanceSchema,
+    })
   ),
   ErrorResponse: zodToOpenApiSchema(z.object({ error: z.string() })),
 };

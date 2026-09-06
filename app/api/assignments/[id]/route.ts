@@ -74,7 +74,7 @@ export const GET = createRouteHandler(null, async (_request, _body, context) => 
  *         schema:
  *           type: string
  *           format: uuid
- *         description: Assignment id
+ *         description: Assignment id (UUID of the assignment record to update)
  *     requestBody:
  *       required: true
  *       content:
