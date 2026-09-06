@@ -1,7 +1,7 @@
 /**
  * Generic content container with border and shadow.
  *
- * Uses BrandSurface for the same charcoal + burgundy gradient as the sidebar.
+ * Uses BrandSurface for a gray mix (slate / charcoal) instead of burgundy.
  * Extend with className for padding etc.
  */
 import { type HTMLAttributes } from "react";
@@ -14,7 +14,7 @@ export function Card({
 }: HTMLAttributes<HTMLDivElement>) {
   return (
     <BrandSurface
-      className={`rounded-xl border border-sidebar-border/40 shadow-card ${className}`}
+      className={`rounded-xl border border-card-border/50 shadow-card ${className}`}
       {...props}
     >
       {children}

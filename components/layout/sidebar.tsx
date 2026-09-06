@@ -2,11 +2,13 @@
  * Left navigation sidebar for authenticated users.
  *
  * - Shows role-specific menu items (admin / teacher / student)
+ * - Nested folders (e.g. Settings > Change Password)
  * - Highlights the active route
  * - Displays user info and logout button
  */
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SchoolMark } from "@/components/brand/school-mark";
@@ -14,14 +16,28 @@ import { useAuth } from "@/lib/auth/auth-context";
 import type { UserRole } from "@/lib/auth/types";
 import { Button } from "@/components/ui/button";
 
-type NavItem = {
+type NavLink = {
   href: string;
   label: string;
   roles: UserRole[];
 };
 
+type NavFolder = {
+  id: string;
+  label: string;
+  roles: UserRole[];
+  children: NavLink[];
+};
+
+type NavEntry = NavLink | NavFolder;
+
+function isFolder(entry: NavEntry): entry is NavFolder {
+  return "children" in entry;
+}
+
 /** All nav links — filtered at render time by the logged-in user's role. */
-const NAV_ITEMS: NavItem[] = [
+const NAV_ITEMS: NavEntry[] = [
+  { href: "/admin", label: "Dashboard", roles: ["ADMIN"] },
   { href: "/admin/students", label: "Students", roles: ["ADMIN"] },
   { href: "/admin/teachers", label: "Teachers", roles: ["ADMIN"] },
   { href: "/admin/classes", label: "Classes", roles: ["ADMIN"] },
@@ -36,7 +52,20 @@ const NAV_ITEMS: NavItem[] = [
     label: "Learning Progress",
     roles: ["STUDENT"],
   },
+  {
+    id: "settings",
+    label: "Settings",
+    roles: ["ADMIN", "TEACHER", "STUDENT"],
+    children: [
+      {
+        href: "/settings/change-password",
+        label: "Change Password",
+        roles: ["ADMIN", "TEACHER", "STUDENT"],
+      },
+    ],
+  },
 ];
+
 
 const ROLE_LABELS: Record<UserRole, string> = {
   ADMIN: "Administrator",
@@ -47,12 +76,38 @@ const ROLE_LABELS: Record<UserRole, string> = {
 export function Sidebar() {
   const pathname = usePathname();
   const { user, logout } = useAuth();
+  const [openFolders, setOpenFolders] = useState<Record<string, boolean>>({
+    settings: true,
+  });
 
   if (!user) {
     return null;
   }
 
   const items = NAV_ITEMS.filter((item) => item.roles.includes(user.role));
+
+  function isActive(href: string) {
+    return (
+      pathname === href ||
+      (href !== "/admin" &&
+        href !== "/teacher" &&
+        href !== "/student" &&
+        href !== "/settings" &&
+        pathname.startsWith(`${href}/`))
+    );
+  }
+
+  function toggleFolder(id: string) {
+    setOpenFolders((current) => ({ ...current, [id]: !current[id] }));
+  }
+
+  function linkClass(href: string) {
+    return `rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+      isActive(href)
+        ? "bg-primary text-white shadow-sm shadow-primary/20"
+        : "text-sidebar-muted hover:bg-sidebar-hover hover:text-white"
+    }`;
+  }
 
   // Build initials from name for the avatar circle (e.g. "John Doe" → "JD")
   const initials = user.name
@@ -107,23 +162,50 @@ export function Sidebar() {
           Menu
         </p>
         {items.map((item) => {
-          // Mark link active if URL matches exactly or is a child route
-          const active =
-            pathname === item.href ||
-            (item.href !== "/teacher" &&
-              item.href !== "/student" &&
-              pathname.startsWith(`${item.href}/`));
+          if (isFolder(item)) {
+            const children = item.children.filter((child) =>
+              child.roles.includes(user.role)
+            );
+            const folderOpen =
+              openFolders[item.id] ||
+              children.some((child) => isActive(child.href));
+
+            return (
+              <div key={item.id}>
+                <button
+                  type="button"
+                  onClick={() => toggleFolder(item.id)}
+                  className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium text-sidebar-muted transition-colors hover:bg-sidebar-hover hover:text-white"
+                >
+                  {item.label}
+                  <span
+                    className={`text-xs transition-transform ${
+                      folderOpen ? "rotate-90" : ""
+                    }`}
+                    aria-hidden
+                  >
+                    ▸
+                  </span>
+                </button>
+                {folderOpen ? (
+                  <div className="ml-3 mt-1 flex flex-col gap-1 border-l border-white/10 pl-2">
+                    {children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        className={linkClass(child.href)}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+            );
+          }
 
           return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-                active
-                  ? "bg-primary text-white shadow-sm shadow-primary/20"
-                  : "text-sidebar-muted hover:bg-sidebar-hover hover:text-white"
-              }`}
-            >
+            <Link key={item.href} href={item.href} className={linkClass(item.href)}>
               {item.label}
             </Link>
           );

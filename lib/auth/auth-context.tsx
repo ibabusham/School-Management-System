@@ -61,7 +61,7 @@ export function useAuth() {
 export function getRoleHomePath(role: UserRole) {
   switch (role) {
     case "ADMIN":
-      return "/admin/students";
+      return "/admin";
     case "TEACHER":
       return "/teacher";
     case "STUDENT":

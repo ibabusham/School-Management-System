@@ -15,10 +15,23 @@ export type ClassSummary = {
   id: string;
   className: string;
   academicYears: ClassAcademicYearLink[];
-  students: { id: string }[];
+  students: AssignedStudent[];
   subjects: { id: string }[];
 };
+export type AssignedStudent = {
+  id: string;
+  studentId: number;
+  firstName: string;
+  lastName: string;
+};
 
+export type AssignStudentsResponse = {
+  message: string;
+  classId: string;
+  className: string;
+  students: AssignedStudent[];
+  assignedCount: number;
+};
 export type ClassDetail = ClassSummary;
 
 export type CreateClassInput =
@@ -82,4 +95,26 @@ export async function deleteClass(id: string) {
   return apiRequest<{ message: string }>(`/api/classes/${id}`, {
     method: "DELETE",
   });
+}
+export async function assignStudentsToClass(
+  classId: string,
+  studentIds: string[]
+) {
+  return apiRequest<AssignStudentsResponse>(
+    `/api/classes/${classId}/students`,
+    {
+      method: "POST",
+      body: { studentIds },
+    }
+  );
+}
+
+export async function unassignStudentFromClass(
+  classId: string,
+  studentId: string
+) {
+  return apiRequest<{ message: string }>(
+    `/api/classes/${classId}/students/${studentId}`,
+    { method: "DELETE" }
+  );
 }

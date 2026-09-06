@@ -23,7 +23,7 @@ function DashboardLoading() {
           <div className="h-8 w-48 animate-pulse rounded-lg bg-border" />
           <div className="h-4 w-72 animate-pulse rounded bg-border" />
         </div>
-        <BrandSurface className="h-64 animate-pulse rounded-xl border border-sidebar-border/40 opacity-80" />
+        <BrandSurface className="h-64 animate-pulse rounded-xl border border-card-border/50 opacity-80" />
       </div>
     </div>
   );

@@ -25,8 +25,8 @@
   --color-error: #e5383b;
   --color-error-bg: #f5f3f4;
   --color-error-border: #e5383b;
-  --color-card-border: #b1a7a6;
-  --color-card-bg: #161a1d;
+  --color-card-border: #737373;
+  --color-card-bg: #262626;
   --shadow-card: 0 1px 2px 0 rgb(11 9 10 / 0.05), 0 4px 12px -2px rgb(11 9 10 / 0.08);
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 }

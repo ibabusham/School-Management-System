@@ -17,7 +17,7 @@ const variants = {
     "bg-primary text-white hover:bg-primary-hover disabled:bg-muted shadow-sm",
   secondary:
     "bg-surface text-foreground-secondary border border-border hover:bg-background",
-  ghost: "bg-transparent text-foreground-secondary hover:bg-background",
+  ghost: "bg-transparent text-muted hover:bg-white/10 hover:text-white",
   // outline is tuned for the dark sidebar (logout button)
   outline:
     "border border-white/20 bg-white/10 text-white hover:bg-white/15 disabled:opacity-50",

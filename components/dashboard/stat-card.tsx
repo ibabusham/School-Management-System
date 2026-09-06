@@ -18,7 +18,7 @@ export function StatCard({
   hint?: string;
 }) {
   return (
-    <BrandSurface className="rounded-xl border border-sidebar-border/40 p-5 shadow-card">
+    <BrandSurface className="rounded-xl border border-card-border/50 p-5 shadow-card">
       <dl>
         <dt className="text-xs font-bold uppercase tracking-wider text-sidebar-muted">
           {label}

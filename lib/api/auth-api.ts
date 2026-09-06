@@ -23,9 +23,30 @@ export async function logoutRequest() {
         body: { refreshToken: current.refreshToken },
       });
     } catch {
-      // ignore logout errors locally
+      //nothing to do here
     }
   }
 
   setSession(null);
+}
+export async function changePassword(oldPassword: string, newPassword: string) {
+  return apiRequest<{ message: string }>("/api/auth/changePassword", {
+    method: "POST",
+    auth: true,
+    body: { oldPassword, newPassword },
+  });
+}
+export async function forgotPassword(email: string) {
+  return apiRequest<{ message: string; token?: string }>("/api/auth/forgotPassword", {
+    method: "POST",
+    auth: false,
+    body: { email },
+  });
+}
+export async function resetPassword(token: string, newPassword: string) {
+  return apiRequest<{ message: string }>("/api/auth/resetPassword", {
+    method: "POST",
+    auth: false,
+    body: { token, newPassword },
+  });
 }
