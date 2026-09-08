@@ -39,23 +39,28 @@ export async function createAcademicYear(data: CreateAcademicYear) {
 export async function updateAcademicYear(id: string, data: UpdateAcademicYear) {
   await findAcademicYearById(id);
 
-  const active = await prisma.academicYears.findFirst({
-    where: {
-      status: "ACTIVE",
-      NOT: { id },
-    },
-  });
-  if (active) {
-    throw new AppError("Only one academic year can be active at a time", 400);
+  // Only enforce the "one active year" rule when activating this year.
+  if (data.status === "ACTIVE") {
+    const active = await prisma.academicYears.findFirst({
+      where: {
+        status: "ACTIVE",
+        NOT: { id },
+      },
+    });
+    if (active) {
+      throw new AppError("Only one academic year can be active at a time", 400);
+    }
   }
-return prisma.academicYears.update({
-  where: { id },
-  data: pickDefined({
-    yearName: data.yearName,
-    startDate: data.startDate,
-    endDate: data.endDate,
-  }),
-});
+
+  return prisma.academicYears.update({
+    where: { id },
+    data: pickDefined({
+      yearName: data.yearName,
+      startDate: data.startDate,
+      endDate: data.endDate,
+      status: data.status,
+    }),
+  });
 }
 export async function deleteAcademicYear(id: string) {
   await findAcademicYearById(id);

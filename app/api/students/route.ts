@@ -60,7 +60,7 @@ export const GET = createRouteHandler(null, async (request) => {
     if (!parsed.success) {
       return handleError(parsed.error);
     }
-    const result = await listStudents(parsed.data);
+    const result = await listStudents(parsed.data, auth);
     return NextResponse.json({
       data: result.data.map(toStudentSummary),
       pagination: result.pagination,

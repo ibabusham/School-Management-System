@@ -11,6 +11,7 @@ export const academicYearSchema = z.object({
   yearName: z.string().min(1, "Academic year name is required"),
   startDate: validDate("Valid start date is required"),
   endDate: validDate("Valid end date is required"),
+  status: z.enum(["ACTIVE", "INACTIVE"]).optional(),
 });
 
 export const createAcademicYearSchema = academicYearSchema

@@ -14,9 +14,17 @@ import { pickDefined } from "@/app/utils/pick-defined";
 import type { JwtPayload } from "@/app/api/auth/services/jwt";
 import { assertSelf } from "@/app/api/auth/services/authorize";
 import { isAdmin, isStudent, isTeacher } from "@/app/api/auth/services/roles";
-import { assertStudentInTeacherScope } from "@/app/api/auth/services/teacher-scope";
+import {
+  assertStudentInTeacherScope,
+  getTeacherClassIds,
+} from "@/app/api/auth/services/teacher-scope";
 
-function toSafeStudent(student: Student) {
+function toSafeStudent(
+  student: Student & {
+    class?: { id: string; className: string } | null;
+    user?: { username: string };
+  }
+) {
   const { ...safeStudent } = student;
   return safeStudent;
 }
@@ -136,10 +144,20 @@ export async function deleteStudent(studentId: string) {
   });
   return student;
 }
-export async function listStudents(query: StudentListQuery) {
+export async function listStudents(query: StudentListQuery, auth: JwtPayload) {
   const { page, limit } = query;
   const skip = (page - 1) * limit;
-  const where = { accountStatus: true };
+  const where: { accountStatus: true; classId?: { in: string[] } } = {
+    accountStatus: true,
+  };
+
+  if (isTeacher(auth)) {
+    const classIds = await getTeacherClassIds(auth.sub);
+    // Empty in:[] returns no rows — a teacher with no subjects sees no students.
+    where.classId = { in: classIds };
+  } else if (!isAdmin(auth)) {
+    throw new AppError("Access denied", 403);
+  }
 
   const [students, total] = await Promise.all([
     prisma.student.findMany({
@@ -190,6 +208,14 @@ async function findActiveStudentById(studentId: string) {
     where: {
       id: studentId,
       accountStatus: true,
+    },
+    include: {
+      class: {
+        select: { id: true, className: true },
+      },
+      user: {
+        select: { username: true },
+      },
     },
   });
 

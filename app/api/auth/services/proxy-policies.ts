@@ -111,7 +111,12 @@ export const PROXY_POLICIES: ProxyPolicy[] = [
     roles: [...ADMIN_ONLY],
   },
   {
-    methods: ["GET", "POST"],
+    methods: ["GET"],
+    pattern: /^\/api\/students$/,
+    roles: [...TEACHER_OR_ADMIN],
+  },
+  {
+    methods: ["POST"],
     pattern: /^\/api\/students$/,
     roles: [...ADMIN_ONLY],
   },
