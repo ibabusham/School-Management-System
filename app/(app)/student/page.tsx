@@ -1,10 +1,13 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ApiError } from "@/lib/api/client";
-import { fetchLearningProgress } from "@/lib/api/learning-progress";
-import { fetchStudent } from "@/lib/api/students";
+import {
+  fetchLearningProgress,
+  fetchProgressNotes,
+  type ProgressNote,
+  type SubjectAverage,
+} from "@/lib/api/learning-progress";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { DashboardBarChart } from "@/components/dashboard/dashboard-bar-chart";
 import { DashboardSection } from "@/components/dashboard/dashboard-section";
@@ -13,22 +16,20 @@ import { StatCard } from "@/components/dashboard/stat-card";
 import { PageHeader } from "@/components/layout/page-header";
 import { Alert } from "@/components/ui/alert";
 import { Card } from "@/components/ui/card";
+import { EmptyState } from "@/components/ui/empty-state";
+import { formatDate } from "@/lib/utils/dates";
 
 export default function StudentDashboardPage() {
   const { user } = useRequireAuth(["STUDENT"]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [profile, setProfile] = useState<{
-    studentId: number;
-    firstName: string;
-    lastName: string;
-    email: string;
-  } | null>(null);
+  const [notes, setNotes] = useState<ProgressNote[]>([]);
   const [progress, setProgress] = useState<{
     subjectsAverages: number;
     overallAvreages: number;
     attendencePercentage: number;
     learningStatus: string;
+    subjectAverages: SubjectAverage[];
   } | null>(null);
 
   useEffect(() => {
@@ -40,17 +41,18 @@ export default function StudentDashboardPage() {
     setError(null);
 
     void Promise.all([
-      fetchStudent(user.id),
       fetchLearningProgress(user.id),
+      fetchProgressNotes(user.id, 1, 3),
     ])
-      .then(([student, learningProgress]) => {
-        setProfile({
-          studentId: student.studentId,
-          firstName: student.firstName,
-          lastName: student.lastName,
-          email: student.email,
+      .then(([learningProgress, notesResult]) => {
+        setProgress({
+          subjectsAverages: learningProgress.subjectsAverages,
+          overallAvreages: learningProgress.overallAvreages,
+          attendencePercentage: learningProgress.attendencePercentage,
+          learningStatus: learningProgress.learningStatus,
+          subjectAverages: learningProgress.subjectAverages ?? [],
         });
-        setProgress(learningProgress);
+        setNotes(notesResult.data);
       })
       .catch((err) => {
         setError(
@@ -119,57 +121,72 @@ export default function StudentDashboardPage() {
 
           <div className="grid gap-8 lg:grid-cols-2">
             <DashboardSection
-              title="Your profile"
-              description="Account details at a glance."
-              href="/student/profile"
-              linkLabel="View profile"
+              title="Recent teacher notes"
+              description="Latest observations from your teachers."
+              href="/student/learning-progress"
+              linkLabel="View all notes"
             >
-              {profile ? (
-                <dl className="grid gap-4 sm:grid-cols-2">
-                  <FieldCard>
-                    <dt className="text-xs font-bold uppercase tracking-wider text-sidebar-muted">
-                      Student ID
-                    </dt>
-                    <dd className="mt-2 text-sm font-medium text-white">
-                      {profile.studentId}
-                    </dd>
-                  </FieldCard>
-                  <FieldCard>
-                    <dt className="text-xs font-bold uppercase tracking-wider text-sidebar-muted">
-                      Email
-                    </dt>
-                    <dd className="mt-2 text-sm text-white">{profile.email}</dd>
-                  </FieldCard>
-                  <FieldCard>
-                    <dt className="text-xs font-bold uppercase tracking-wider text-sidebar-muted">
-                      Name
-                    </dt>
-                    <dd className="mt-2 text-sm text-white">
-                      {profile.firstName} {profile.lastName}
-                    </dd>
-                  </FieldCard>
-                </dl>
-              ) : null}
+              {notes.length > 0 ? (
+                <div className="flex flex-col gap-4 text-left">
+                  {notes.map((note) => (
+                    <div
+                      key={note.id}
+                      className="rounded-xl border border-white/10 bg-white/5 p-4"
+                    >
+                      <div className="mb-2 flex items-center justify-between gap-3">
+                        <span className="text-sm font-bold text-white">
+                          {note.teacher?.name ?? "Teacher"}
+                        </span>
+                        <span className="text-xs text-sidebar-muted">
+                          {note.noteDate ? formatDate(note.noteDate) : "—"}
+                        </span>
+                      </div>
+                      <p className="text-sm font-bold text-sidebar-muted">
+                        {note.noteObservation}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <EmptyState
+                  title="No teacher notes yet"
+                  description="When teachers add observations, they will appear here."
+                />
+              )}
             </DashboardSection>
 
             <DashboardSection
-              title="Quick links"
-              description="Jump to your student pages."
+              title="Subject averages"
+              description="Your average in each subject from graded work."
             >
-              <div className="flex flex-col gap-3">
-                <Link
-                  href="/student/profile"
-                  className="inline-flex w-full items-center justify-center rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/15"
-                >
-                  My Profile
-                </Link>
-                <Link
-                  href="/student/learning-progress"
-                  className="inline-flex w-full items-center justify-center rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/15"
-                >
-                  Learning Progress
-                </Link>
-              </div>
+              {progress && progress.subjectAverages.length > 0 ? (
+                <div className="space-y-6">
+                  <dl className="grid gap-4 sm:grid-cols-2">
+                    {progress.subjectAverages.map((subject) => (
+                      <FieldCard key={subject.subjectId}>
+                        <dt className="text-xs font-bold uppercase tracking-wider text-sidebar-muted">
+                          {subject.subjectName}
+                        </dt>
+                        <dd className="mt-2 text-2xl font-extrabold text-white">
+                          {subject.average}%
+                        </dd>
+                      </FieldCard>
+                    ))}
+                  </dl>
+                  <DashboardBarChart
+                    valueSuffix="%"
+                    data={progress.subjectAverages.map((subject) => ({
+                      name: subject.subjectName,
+                      value: subject.average,
+                    }))}
+                  />
+                </div>
+              ) : (
+                <EmptyState
+                  title="No subject grades yet"
+                  description="Averages appear here after exams or assignments are graded."
+                />
+              )}
             </DashboardSection>
           </div>
         </>

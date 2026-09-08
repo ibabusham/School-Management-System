@@ -1,11 +1,18 @@
 import { apiRequest } from "@/lib/api/client";
 import type { Pagination } from "@/lib/auth/types";
 
+export type SubjectAverage = {
+  subjectId: string;
+  subjectName: string;
+  average: number;
+};
+
 export type LearningProgress = {
   subjectsAverages: number;
   overallAvreages: number;
   attendencePercentage: number;
   learningStatus: string;
+  subjectAverages?: SubjectAverage[];
 };
 
 export async function fetchLearningProgress(studentId: string) {

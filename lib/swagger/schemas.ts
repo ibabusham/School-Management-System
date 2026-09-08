@@ -110,6 +110,15 @@ export const learningProgressSchema = z.object({
   overallAvreages: z.number().int(),
   attendencePercentage: z.number().int(),
   learningStatus: z.enum(["ACTIVE", "INACTIVE"]),
+  subjectAverages: z
+    .array(
+      z.object({
+        subjectId: z.string(),
+        subjectName: z.string(),
+        average: z.number().int(),
+      })
+    )
+    .optional(),
 });
 
 export const studentSummarySchema = z.object({

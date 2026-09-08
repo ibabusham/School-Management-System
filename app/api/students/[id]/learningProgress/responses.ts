@@ -1,4 +1,5 @@
 import type { LearningProgresses, ProgressNotes, Teacher } from "@/prisma/generated/client";
+import type { SubjectAverage } from "@/app/api/learning-progress/services/recalculate-learning-progress";
 
 export {
   PROGRESS_NOTE_CREATED_MESSAGE,
@@ -34,7 +35,8 @@ export function toProgressNote(note: ProgressNoteWithTeacher) {
 
 export function toLearningProgress(
   learningProgress: LearningProgresses,
-  progressNotes: ProgressNoteWithTeacher[]
+  progressNotes: ProgressNoteWithTeacher[],
+  subjectAverages: SubjectAverage[] = []
 ) {
   return {
     id: learningProgress.id,
@@ -42,6 +44,7 @@ export function toLearningProgress(
     overallAvreages: learningProgress.overallAvreages,
     attendencePercentage: learningProgress.attendencePercentage,
     learningStatus: learningProgress.learningStatus,
+    subjectAverages,
     progressNotes: progressNotes.map(toProgressNote),
   };
 }
