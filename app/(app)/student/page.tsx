@@ -85,7 +85,7 @@ export default function StudentDashboardPage() {
                   large
                 />
                 <StatCard
-                  label="Overall average"
+                  label="GPA"
                   value={`${progress.overallAvreages}%`}
                   large
                 />
@@ -109,7 +109,7 @@ export default function StudentDashboardPage() {
                   valueSuffix="%"
                   data={[
                     { name: "Subject avg", value: progress.subjectsAverages },
-                    { name: "Overall avg", value: progress.overallAvreages },
+                    { name: "GPA", value: progress.overallAvreages },
                     { name: "Attendance", value: progress.attendencePercentage },
                   ]}
                 />

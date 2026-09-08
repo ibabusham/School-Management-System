@@ -281,7 +281,7 @@ export default function AdminStudentDetailPage() {
                   large
                 />
                 <StatCard
-                  label="Overall average"
+                  label="GPA"
                   value={`${progress.overallAvreages}%`}
                   large
                 />

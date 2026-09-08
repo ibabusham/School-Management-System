@@ -503,24 +503,39 @@ export default function TeacherAttendancePage() {
             />
           </FormField>
 
-          <FormField label="Status" htmlFor="attendanceStatus">
-            <Select
-              id="attendanceStatus"
-              required
-              value={form.attendanceStatus}
-              onChange={(event) =>
-                updateField(
-                  "attendanceStatus",
-                  event.target.value as AttendanceStatus
-                )
-              }
+          <FormField label="Status">
+            <div
+              role="radiogroup"
+              aria-label="Attendance status"
+              className="grid grid-cols-2 gap-2"
             >
-              {STATUS_OPTIONS.map((status) => (
-                <option key={status} value={status}>
-                  {status.charAt(0) + status.slice(1).toLowerCase()}
-                </option>
-              ))}
-            </Select>
+              {STATUS_OPTIONS.map((status) => {
+                const selected = form.attendanceStatus === status;
+                return (
+                  <label
+                    key={status}
+                    className={`flex cursor-pointer items-center gap-2.5 rounded-lg border px-3 py-2.5 text-sm font-bold transition-colors ${
+                      selected
+                        ? "border-primary bg-primary/10 text-foreground"
+                        : "border-border bg-surface text-foreground hover:border-primary/40"
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="attendanceStatus"
+                      value={status}
+                      checked={selected}
+                      required
+                      className="h-4 w-4 accent-primary"
+                      onChange={() =>
+                        updateField("attendanceStatus", status)
+                      }
+                    />
+                    {status.charAt(0) + status.slice(1).toLowerCase()}
+                  </label>
+                );
+              })}
+            </div>
           </FormField>
 
           {formError ? <Alert>{formError}</Alert> : null}
