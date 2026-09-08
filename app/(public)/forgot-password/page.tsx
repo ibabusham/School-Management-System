@@ -20,7 +20,6 @@ import { toast } from "sonner";
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState<string | null>(null);
   const [resetToken, setResetToken] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,13 +27,11 @@ export default function ForgotPasswordPage() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError(null);
-    setMessage(null);
     setResetToken(null);
     setIsSubmitting(true);
 
     try {
       const result = await forgotPassword(email);
-      setMessage(result.message);
       toast.success(result.message);
       if (result.token) {
         setResetToken(result.token);
@@ -69,7 +66,6 @@ export default function ForgotPasswordPage() {
         </div>
 
         {error ? <Alert>{error}</Alert> : null}
-        {message ? <Alert variant="info">{message}</Alert> : null}
 
         {resetToken ? (
           <Alert variant="info">

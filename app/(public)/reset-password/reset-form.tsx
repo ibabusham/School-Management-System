@@ -25,13 +25,12 @@ export function ResetPasswordForm() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
+  const [didSucceed, setDidSucceed] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError(null);
-    setSuccess(null);
 
     if (!token) {
       setError("Invalid reset link.");
@@ -50,8 +49,8 @@ export function ResetPasswordForm() {
 
     try {
       const result = await resetPassword(token, newPassword);
-      setSuccess(result.message);
       toast.success(result.message);
+      setDidSucceed(true);
     } catch (err) {
       setError(
         err instanceof ApiError ? err.message : "Failed to reset password."
@@ -69,9 +68,8 @@ export function ResetPasswordForm() {
     >
       {!token ? (
         <Alert>Invalid or missing reset token.</Alert>
-      ) : success ? (
+      ) : didSucceed ? (
         <div className="space-y-5">
-          <Alert variant="info">{success}</Alert>
           <Link
             href="/login"
             className="inline-flex h-11 w-full items-center justify-center rounded-lg bg-primary text-base font-medium text-white shadow-sm shadow-primary/20 hover:bg-primary-hover"
@@ -117,7 +115,7 @@ export function ResetPasswordForm() {
         </form>
       )}
 
-      {!success ? (
+      {!didSucceed ? (
         <p className="mt-8 text-center text-sm text-muted-foreground">
           Remembered your password?{" "}
           <Link href="/login" className="font-medium text-primary hover:underline">
