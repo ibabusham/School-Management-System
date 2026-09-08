@@ -3,6 +3,7 @@ import type { JwtPayload } from "@/app/api/auth/services/jwt";
 import { assertSelf } from "@/app/api/auth/services/authorize";
 import { isAdmin, isStudent, isTeacher } from "@/app/api/auth/services/roles";
 import { assertStudentInTeacherScope } from "@/app/api/auth/services/teacher-scope";
+import { getSubjectAveragesForStudent } from "@/app/api/learning-progress/services/recalculate-learning-progress";
 import { AppError } from "@/app/utils/errors.utility";
 import type {
   CreateProgressNoteInput,
@@ -148,7 +149,7 @@ export async function getLearningProgress(
   const skip = (page - 1) * limit;
   const where = { learningProgressId: learningProgress.id };
 
-  const [progressNotes, total] = await Promise.all([
+  const [progressNotes, total, subjectAverages] = await Promise.all([
     prisma.progressNotes.findMany({
       where,
       skip,
@@ -157,11 +158,13 @@ export async function getLearningProgress(
       include: progressNoteInclude,
     }),
     prisma.progressNotes.count({ where }),
+    getSubjectAveragesForStudent(studentId),
   ]);
 
   return {
     learningProgress,
     progressNotes,
+    subjectAverages,
     notesPagination: buildPagination(page, limit, total),
   };
 }

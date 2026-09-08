@@ -77,7 +77,11 @@ export const GET = createRouteHandler(null, async (request, _body, context) => {
     const result = await getLearningProgress(id, parsed.data, auth);
 
     return NextResponse.json({
-      learningProgress: toLearningProgress(result.learningProgress, result.progressNotes),
+      learningProgress: toLearningProgress(
+        result.learningProgress,
+        result.progressNotes,
+        result.subjectAverages
+      ),
       notesPagination: result.notesPagination,
     });
   } catch (error) {

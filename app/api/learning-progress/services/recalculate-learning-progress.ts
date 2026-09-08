@@ -19,6 +19,92 @@ function averageRounded(values: number[]) {
   return Math.round(values.reduce((sum, value) => sum + value, 0) / values.length);
 }
 
+export type SubjectAverage = {
+  subjectId: string;
+  subjectName: string;
+  average: number;
+};
+
+/** Live per-subject exam+assignment averages for a student (not stored). */
+export async function getSubjectAveragesForStudent(studentId: string) {
+  const [examSubmissions, assignmentSubmissions] = await Promise.all([
+    prisma.examSubmissions.findMany({
+      where: {
+        studentId,
+        score: { not: null },
+      },
+      include: {
+        exam: {
+          select: {
+            maximumGrade: true,
+            subjectId: true,
+          },
+        },
+      },
+    }),
+    prisma.assignmentSubmissions.findMany({
+      where: {
+        studentId,
+        score: { not: null },
+      },
+      include: {
+        assignment: {
+          select: {
+            maximumGrade: true,
+            subjectId: true,
+          },
+        },
+      },
+    }),
+  ]);
+
+  const subjectPercentages = new Map<string, number[]>();
+
+  for (const submission of examSubmissions) {
+    if (submission.score === null) {
+      continue;
+    }
+
+    const percentage = scoreToPercentage(submission.score, submission.exam.maximumGrade);
+    const subjectValues = subjectPercentages.get(submission.exam.subjectId) ?? [];
+    subjectValues.push(percentage);
+    subjectPercentages.set(submission.exam.subjectId, subjectValues);
+  }
+
+  for (const submission of assignmentSubmissions) {
+    if (submission.score === null) {
+      continue;
+    }
+
+    const percentage = scoreToPercentage(
+      submission.score,
+      submission.assignment.maximumGrade
+    );
+    const subjectValues = subjectPercentages.get(submission.assignment.subjectId) ?? [];
+    subjectValues.push(percentage);
+    subjectPercentages.set(submission.assignment.subjectId, subjectValues);
+  }
+
+  const subjectIds = [...subjectPercentages.keys()];
+  if (subjectIds.length === 0) {
+    return [];
+  }
+
+  const subjects = await prisma.subjects.findMany({
+    where: { id: { in: subjectIds } },
+    select: { id: true, subjectName: true },
+  });
+  const nameById = new Map(subjects.map((subject) => [subject.id, subject.subjectName]));
+
+  return subjectIds
+    .map((subjectId) => ({
+      subjectId,
+      subjectName: nameById.get(subjectId) ?? "Subject",
+      average: averageRounded(subjectPercentages.get(subjectId) ?? []),
+    }))
+    .sort((a, b) => a.subjectName.localeCompare(b.subjectName));
+}
+
 export async function recalculateLearningProgressForStudent(studentId: string) {
   const student = await prisma.student.findFirst({
     where: {
