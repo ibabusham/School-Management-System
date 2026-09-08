@@ -30,6 +30,8 @@ import { Input } from "@/components/ui/input";
 import { Modal } from "@/components/ui/modal";
 import { Select } from "@/components/ui/select";
 import { formatDate, toDateInputValue } from "@/lib/utils/dates";
+import { useConfirm } from "@/components/ui/confirm-dialog";
+import { toast } from "sonner";
 
 /** Shape of the create/edit form — dates are "YYYY-MM-DD" from <input type="date">. */
 type TermFormState = {
@@ -60,6 +62,7 @@ function termToForm(term: Term): TermFormState {
 export default function AdminTermsPage() {
   // Only admins can access this route — redirects others to their home page.
   useRequireAuth(["ADMIN"]);
+  const confirm = useConfirm();
 
   // --- List state (table + pagination) ---
   const [terms, setTerms] = useState<Term[]>([]);
@@ -185,6 +188,7 @@ export default function AdminTermsPage() {
         await createTerm(payload);
       }
 
+      toast.success(editingId ? "Term updated." : "Term created.");
       closeModal();
       await loadTerms(page);
     } catch (err) {
@@ -198,7 +202,10 @@ export default function AdminTermsPage() {
   }
 
   async function handleDelete(term: Term) {
-    const confirmed = window.confirm(`Delete term "${term.termName}"?`);
+    const confirmed = await confirm({
+      title: "Delete term",
+      description: `Delete term "${term.termName}"? This cannot be undone.`,
+    });
     if (!confirmed) {
       return;
     }
@@ -207,6 +214,7 @@ export default function AdminTermsPage() {
 
     try {
       await deleteTerm(term.id);
+      toast.success("Term deleted.");
       await loadTerms(page);
     } catch (err) {
       setError(err instanceof ApiError ? err.message : "Failed to delete term.");
@@ -280,7 +288,13 @@ export default function AdminTermsPage() {
         ]}
         rows={terms}
         isLoading={isLoading}
-        emptyMessage="No terms found."
+        emptyMessage="No terms yet."
+        emptyDescription="Create a term inside an academic year. Each year can have up to two terms."
+        emptyAction={
+          <Button type="button" onClick={openCreate} disabled={!canCreate}>
+            Add term
+          </Button>
+        }
         pagination={pagination}
         page={page}
         onPageChange={setPage}

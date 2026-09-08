@@ -9,6 +9,7 @@ import { fetchClasses } from "@/lib/api/classes";
 import { fetchSubjects } from "@/lib/api/subjects";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { StatCard } from "@/components/dashboard/stat-card";
+import { DashboardBarChart } from "@/components/dashboard/dashboard-bar-chart";
 import { DashboardSection } from "@/components/dashboard/dashboard-section";
 import { PageHeader } from "@/components/layout/page-header";
 import { Alert } from "@/components/ui/alert";
@@ -79,6 +80,20 @@ export default function AdminDashboardPage() {
             <StatCard label="Classes" value={String(counts.classes)} large />
             <StatCard label="Subjects" value={String(counts.subjects)} large />
           </dl>
+
+          <DashboardSection
+            title="School overview"
+            description="How many records exist across the portal."
+          >
+            <DashboardBarChart
+              data={[
+                { name: "Students", value: counts.students },
+                { name: "Teachers", value: counts.teachers },
+                { name: "Classes", value: counts.classes },
+                { name: "Subjects", value: counts.subjects },
+              ]}
+            />
+          </DashboardSection>
 
           <DashboardSection
             title="Quick links"

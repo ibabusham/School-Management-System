@@ -26,6 +26,8 @@ import { Input } from "@/components/ui/input";
 import { Modal } from "@/components/ui/modal";
 import { Select } from "@/components/ui/select";
 import { formatDate, toDateInputValue } from "@/lib/utils/dates";
+import { useConfirm } from "@/components/ui/confirm-dialog";
+import { toast } from "sonner";
 
 type AssignmentFormState = {
   title: string;
@@ -67,6 +69,7 @@ function tomorrowDateInputValue() {
 
 export default function TeacherAssignmentsPage() {
   useRequireAuth(["TEACHER"]);
+  const confirm = useConfirm();
 
   const [assignments, setAssignments] = useState<AssignmentSummary[]>([]);
   const [subjects, setSubjects] = useState<SubjectSummary[]>([]);
@@ -205,6 +208,7 @@ export default function TeacherAssignmentsPage() {
         await createAssignment(payload);
       }
 
+      toast.success(editingId ? "Assignment updated." : "Assignment created.");
       closeModal();
       await loadAssignments(page, subjectFilter);
     } catch (err) {
@@ -217,9 +221,10 @@ export default function TeacherAssignmentsPage() {
   }
 
   async function handleDelete(assignment: AssignmentSummary) {
-    const confirmed = window.confirm(
-      `Delete assignment "${assignment.assignmentTitle}"?`
-    );
+    const confirmed = await confirm({
+      title: "Delete assignment",
+      description: `Delete assignment "${assignment.assignmentTitle}"? This cannot be undone.`,
+    });
     if (!confirmed) {
       return;
     }
@@ -228,6 +233,7 @@ export default function TeacherAssignmentsPage() {
 
     try {
       await deleteAssignment(assignment.id);
+      toast.success("Assignment deleted.");
       await loadAssignments(page, subjectFilter);
     } catch (err) {
       setError(
@@ -335,7 +341,13 @@ export default function TeacherAssignmentsPage() {
         ]}
         rows={assignments}
         isLoading={isLoading}
-        emptyMessage="No assignments found."
+        emptyMessage="No assignments yet."
+        emptyDescription="Create an assignment for one of your subjects."
+        emptyAction={
+          <Button type="button" onClick={openCreate} disabled={subjects.length === 0}>
+            Add assignment
+          </Button>
+        }
         pagination={pagination}
         page={page}
         onPageChange={setPage}

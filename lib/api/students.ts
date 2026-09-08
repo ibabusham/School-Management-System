@@ -19,6 +19,8 @@ export type StudentDetail = StudentSummary & {
   classId: string | null;
   learningProgressId: string;
   accountStatus: boolean;
+  class?: { id: string; className: string } | null;
+  user?: { username: string };
 };
 
 export type CreateStudentInput = {

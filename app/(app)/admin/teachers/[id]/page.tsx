@@ -69,6 +69,10 @@ export default function AdminTeacherDetailPage() {
         eyebrow="Administration"
         title={teacher?.name ?? "Teacher details"}
         description="View this teacher’s profile and assigned subjects."
+        breadcrumbs={[
+          { label: "Teachers", href: "/admin/teachers" },
+          { label: teacher?.name ?? "Details" },
+        ]}
       />
 
       {error ? <Alert>{error}</Alert> : null}
@@ -150,7 +154,8 @@ export default function AdminTeacherDetailPage() {
             ]}
             rows={subjects}
             isLoading={false}
-            emptyMessage="This teacher has no assigned subjects."
+            emptyMessage="No subjects assigned yet."
+            emptyDescription="Subjects assigned to this teacher will appear here."
             pagination={pagination}
             page={1}
             onPageChange={() => undefined}

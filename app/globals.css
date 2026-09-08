@@ -1,32 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  /* Palette */
+  /* Palette — blush cream page + red accent on dark cards */
   --color-ink: #0b090a;
-  --color-charcoal: #161a1d;
+  --color-charcoal: #1a1214;
   --color-burgundy-dark: #660708;
   --color-crimson: #a4161a;
   --color-primary: #ba181b;
   --color-accent: #e5383b;
-  --color-muted: #b1a7a6;
-  --color-border: #e4d5c1;
-  --color-background: #f3ead8;
-  --color-surface: #faf6ee;
+  --color-muted: #c4b0ae;
+  --color-border: #ead7d3;
+  --color-background: #f6ece8;
+  --color-surface: #faf4f2;
 
   /* Semantic aliases */
   --color-primary-hover: #a4161a;
   --color-foreground: #0b090a;
-  --color-foreground-secondary: #161a1d;
-  --color-muted-foreground: #b1a7a6;
-  --color-sidebar: #161a1d;
+  --color-foreground-secondary: #1a1214;
+  --color-muted-foreground: #c4b0ae;
+  --color-sidebar: #1a1214;
   --color-sidebar-hover: #0b090a;
-  --color-sidebar-muted: #b1a7a6;
+  --color-sidebar-muted: #c4b0ae;
   --color-sidebar-border: #660708;
   --color-error: #e5383b;
-  --color-error-bg: #f3ead8;
+  --color-error-bg: #f6ece8;
   --color-error-border: #e5383b;
-  --color-card-border: #737373;
-  --color-card-bg: #262626;
+  --color-card-border: #8a5a5a;
+  --color-card-bg: #1f1416;
   --shadow-card: 0 1px 2px 0 rgb(11 9 10 / 0.05), 0 4px 12px -2px rgb(11 9 10 / 0.08);
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 }

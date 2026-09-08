@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { ApiError } from "@/lib/api/client";
@@ -20,6 +19,7 @@ import { PageHeader } from "@/components/layout/page-header";
 import { Alert } from "@/components/ui/alert";
 import { Card } from "@/components/ui/card";
 import { formatDate } from "@/lib/utils/dates";
+import { toast } from "sonner";
 
 export default function TeacherExamDetailPage() {
   useRequireAuth(["TEACHER"]);
@@ -35,7 +35,6 @@ export default function TeacherExamDetailPage() {
     []
   );
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
   const [gradeError, setGradeError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -66,12 +65,11 @@ export default function TeacherExamDetailPage() {
 
   async function handleSaveMarks(marks: { studentId: string; score: number }[]) {
     setGradeError(null);
-    setSuccess(null);
     setIsSaving(true);
 
     try {
       const result = await submitExamMarks(examId, marks);
-      setSuccess(result.message);
+      toast.success(result.message);
       await loadData();
     } catch (err) {
       setGradeError(
@@ -84,25 +82,19 @@ export default function TeacherExamDetailPage() {
 
   return (
     <div className="space-y-10">
-      <div>
-        <Link
-          href="/teacher/exams"
-          className="text-sm font-medium text-primary hover:text-primary-hover"
-        >
-          ← Back to exams
-        </Link>
-        <div className="mt-4">
-          <PageHeader
-            eyebrow="Teacher Portal"
-            title={exam?.examName ?? "Exam details"}
-            description={
-              exam
-                ? `${exam.subject?.subjectName ?? "Subject"} · ${formatDate(exam.examDate)}`
-                : "Loading exam details..."
-            }
-          />
-        </div>
-      </div>
+      <PageHeader
+        eyebrow="Teacher Portal"
+        title={exam?.examName ?? "Exam details"}
+        description={
+          exam
+            ? `${exam.subject?.subjectName ?? "Subject"} · ${formatDate(exam.examDate)}`
+            : "Loading exam details..."
+        }
+        breadcrumbs={[
+          { label: "Exams", href: "/teacher/exams" },
+          { label: exam?.examName ?? "Details" },
+        ]}
+      />
 
       {error ? <Alert>{error}</Alert> : null}
 
@@ -147,7 +139,6 @@ export default function TeacherExamDetailPage() {
         takenSubmissions={takenSubmissions}
         isLoading={isLoading}
         isSaving={isSaving}
-        successMessage={success}
         errorMessage={gradeError}
         onSave={handleSaveMarks}
       />

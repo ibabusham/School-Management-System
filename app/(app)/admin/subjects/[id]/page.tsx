@@ -74,6 +74,10 @@ export default function AdminSubjectDetailPage() {
         eyebrow="Administration"
         title={subject?.subjectName ?? "Subject details"}
         description="View this subject’s class, teacher, lessons, exams, and assignments."
+        breadcrumbs={[
+          { label: "Subjects", href: "/admin/subjects" },
+          { label: subject?.subjectName ?? "Details" },
+        ]}
       />
 
       {error ? <Alert>{error}</Alert> : null}
@@ -131,7 +135,8 @@ export default function AdminSubjectDetailPage() {
             ]}
             rows={lessons}
             isLoading={false}
-            emptyMessage="No lessons for this subject."
+            emptyMessage="No lessons yet."
+            emptyDescription="Lessons for this subject will appear here."
             pagination={{
               ...emptyPagination,
               total: lessons.length,
@@ -160,7 +165,8 @@ export default function AdminSubjectDetailPage() {
             ]}
             rows={exams}
             isLoading={false}
-            emptyMessage="No exams for this subject."
+            emptyMessage="No exams yet."
+            emptyDescription="Exams for this subject will appear here."
             pagination={{
               ...emptyPagination,
               total: exams.length,
@@ -191,7 +197,8 @@ export default function AdminSubjectDetailPage() {
             ]}
             rows={assignments}
             isLoading={false}
-            emptyMessage="No assignments for this subject."
+            emptyMessage="No assignments yet."
+            emptyDescription="Assignments for this subject will appear here."
             pagination={{
               ...emptyPagination,
               total: assignments.length,

@@ -32,6 +32,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Modal } from "@/components/ui/modal";
 import { Select } from "@/components/ui/select";
+import { useConfirm } from "@/components/ui/confirm-dialog";
+import { toast } from "sonner";
 
 /** Shape of the create/edit form — mirrors CreateSubjectInput fields. */
 type SubjectFormState = {
@@ -65,6 +67,7 @@ function subjectToForm(subject: SubjectDetail): SubjectFormState {
 export default function AdminSubjectsPage() {
   // Only admins can access this route — redirects others to their home page.
   useRequireAuth(["ADMIN"]);
+  const confirm = useConfirm();
 
   // --- List state (table + pagination) ---
   const [subjects, setSubjects] = useState<SubjectSummary[]>([]);
@@ -201,6 +204,7 @@ export default function AdminSubjectsPage() {
         await createSubject(payload);
       }
 
+      toast.success(editingId ? "Subject updated." : "Subject created.");
       closeModal();
       await loadSubjects(page);
     } catch (err) {
@@ -213,9 +217,10 @@ export default function AdminSubjectsPage() {
   }
 
   async function handleDelete(subject: SubjectSummary) {
-    const confirmed = window.confirm(
-      `Delete subject "${subject.subjectName}" (${subject.subjectCode})?`
-    );
+    const confirmed = await confirm({
+      title: "Delete subject",
+      description: `Delete subject "${subject.subjectName}" (${subject.subjectCode})? This cannot be undone.`,
+    });
     if (!confirmed) {
       return;
     }
@@ -224,6 +229,7 @@ export default function AdminSubjectsPage() {
 
     try {
       await deleteSubject(subject.id);
+      toast.success("Subject deleted.");
       await loadSubjects(page);
     } catch (err) {
       setError(err instanceof ApiError ? err.message : "Failed to delete subject.");
@@ -293,7 +299,13 @@ export default function AdminSubjectsPage() {
         ]}
         rows={subjects}
         isLoading={isLoading}
-        emptyMessage="No subjects found."
+        emptyMessage="No subjects yet."
+        emptyDescription="Create a subject and assign it to a class and teacher."
+        emptyAction={
+          <Button type="button" onClick={openCreate} disabled={!canCreate}>
+            Add subject
+          </Button>
+        }
         pagination={pagination}
         page={page}
         onPageChange={setPage}

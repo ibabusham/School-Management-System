@@ -31,6 +31,8 @@ import { Input } from "@/components/ui/input";
 import { Modal } from "@/components/ui/modal";
 import { Select } from "@/components/ui/select";
 import { formatDate, toDateInputValue } from "@/lib/utils/dates";
+import { useConfirm } from "@/components/ui/confirm-dialog";
+import { toast } from "sonner";
 
 /** Shape of the create/edit form. */
 type LessonFormState = {
@@ -70,6 +72,7 @@ function lessonToForm(lesson: LessonDetail): LessonFormState {
 export default function TeacherLessonsPage() {
   // Only teachers can access this route.
   useRequireAuth(["TEACHER"]);
+  const confirm = useConfirm();
 
   // --- List state (table + pagination) ---
   const [lessons, setLessons] = useState<LessonSummary[]>([]);
@@ -205,6 +208,7 @@ export default function TeacherLessonsPage() {
         await createLesson(payload);
       }
 
+      toast.success(editingId ? "Lesson updated." : "Lesson created.");
       closeModal();
       await loadLessons(page, subjectFilter);
     } catch (err) {
@@ -217,7 +221,10 @@ export default function TeacherLessonsPage() {
   }
 
   async function handleDelete(lesson: LessonSummary) {
-    const confirmed = window.confirm(`Delete lesson "${lesson.lessonTitle}"?`);
+    const confirmed = await confirm({
+      title: "Delete lesson",
+      description: `Delete lesson "${lesson.lessonTitle}"? This cannot be undone.`,
+    });
     if (!confirmed) {
       return;
     }
@@ -226,6 +233,7 @@ export default function TeacherLessonsPage() {
 
     try {
       await deleteLesson(lesson.id);
+      toast.success("Lesson deleted.");
       await loadLessons(page, subjectFilter);
     } catch (err) {
       setError(err instanceof ApiError ? err.message : "Failed to delete lesson.");
@@ -313,7 +321,13 @@ export default function TeacherLessonsPage() {
         ]}
         rows={lessons}
         isLoading={isLoading}
-        emptyMessage="No lessons found."
+        emptyMessage="No lessons yet."
+        emptyDescription="Plan a lesson for one of your subjects."
+        emptyAction={
+          <Button type="button" onClick={openCreate} disabled={subjects.length === 0}>
+            Add lesson
+          </Button>
+        }
         pagination={pagination}
         page={page}
         onPageChange={setPage}

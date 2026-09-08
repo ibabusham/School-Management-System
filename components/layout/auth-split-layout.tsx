@@ -21,7 +21,7 @@ export function AuthSplitLayout({
     <div className="flex min-h-screen">
       <aside className="relative hidden w-[58%] shrink-0 overflow-hidden bg-charcoal lg:flex lg:flex-col lg:justify-between">
         <div
-          className="pointer-events-none absolute inset-0 bg-linear-to-br from-burgundy-dark/80 via-charcoal to-ink"
+          className="pointer-events-none absolute inset-0 bg-linear-to-br from-primary/80 via-charcoal to-ink"
           aria-hidden
         />
         <div
@@ -29,7 +29,7 @@ export function AuthSplitLayout({
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-crimson/15 blur-3xl"
+          className="pointer-events-none absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-accent/20 blur-3xl"
           aria-hidden
         />
 

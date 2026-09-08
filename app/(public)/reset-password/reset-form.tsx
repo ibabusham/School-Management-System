@@ -16,6 +16,7 @@ import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
 
 export function ResetPasswordForm() {
   const searchParams = useSearchParams();
@@ -50,6 +51,7 @@ export function ResetPasswordForm() {
     try {
       const result = await resetPassword(token, newPassword);
       setSuccess(result.message);
+      toast.success(result.message);
     } catch (err) {
       setError(
         err instanceof ApiError ? err.message : "Failed to reset password."

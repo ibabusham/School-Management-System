@@ -32,6 +32,8 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Modal } from "@/components/ui/modal";
 import { formatDate, toDateInputValue } from "@/lib/utils/dates";
+import { useConfirm } from "@/components/ui/confirm-dialog";
+import { toast } from "sonner";
 
 type NoteFormState = {
   noteDate: string;
@@ -58,6 +60,7 @@ function noteToForm(note: ProgressNote): NoteFormState {
 
 export default function AdminStudentDetailPage() {
   useRequireAuth(["ADMIN"]);
+  const confirm = useConfirm();
 
   const params = useParams<{ id: string }>();
   const studentId = params.id;
@@ -170,6 +173,7 @@ export default function AdminStudentDetailPage() {
         await createProgressNote(studentId, payload);
       }
 
+      toast.success(editingId ? "Note updated." : "Note added.");
       closeModal();
       await loadData(page);
     } catch (err) {
@@ -182,7 +186,10 @@ export default function AdminStudentDetailPage() {
   }
 
   async function handleDelete(note: ProgressNote) {
-    const confirmed = window.confirm("Delete this progress note?");
+    const confirmed = await confirm({
+      title: "Delete note",
+      description: "Delete this progress note? This cannot be undone.",
+    });
     if (!confirmed) {
       return;
     }
@@ -191,6 +198,7 @@ export default function AdminStudentDetailPage() {
 
     try {
       await deleteProgressNote(studentId, note.id);
+      toast.success("Note deleted.");
       await loadData(page);
     } catch (err) {
       setError(err instanceof ApiError ? err.message : "Failed to delete note.");
@@ -207,6 +215,10 @@ export default function AdminStudentDetailPage() {
         eyebrow="Administration"
         title={studentName}
         description="View profile, class, learning progress, and notes."
+        breadcrumbs={[
+          { label: "Students", href: "/admin/students" },
+          { label: studentName },
+        ]}
       />
 
       {error ? <Alert>{error}</Alert> : null}
@@ -336,6 +348,12 @@ export default function AdminStudentDetailPage() {
             rows={notes}
             isLoading={false}
             emptyMessage="No progress notes yet."
+            emptyDescription="Add an observation about this student’s learning."
+            emptyAction={
+              <Button type="button" onClick={openCreate}>
+                Add note
+              </Button>
+            }
             pagination={pagination}
             page={page}
             onPageChange={setPage}

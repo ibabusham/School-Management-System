@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import {
@@ -20,6 +19,7 @@ import { PageHeader } from "@/components/layout/page-header";
 import { Alert } from "@/components/ui/alert";
 import { Card } from "@/components/ui/card";
 import { formatDate } from "@/lib/utils/dates";
+import { toast } from "sonner";
 
 export default function TeacherAssignmentDetailPage() {
   useRequireAuth(["TEACHER"]);
@@ -35,7 +35,6 @@ export default function TeacherAssignmentDetailPage() {
     AssignmentTakenSubmission[]
   >([]);
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
   const [gradeError, setGradeError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -68,12 +67,11 @@ export default function TeacherAssignmentDetailPage() {
 
   async function handleSaveMarks(marks: { studentId: string; score: number }[]) {
     setGradeError(null);
-    setSuccess(null);
     setIsSaving(true);
 
     try {
       const result = await submitAssignmentMarks(assignmentId, marks);
-      setSuccess(result.message);
+      toast.success(result.message);
       await loadData();
     } catch (err) {
       setGradeError(
@@ -86,25 +84,19 @@ export default function TeacherAssignmentDetailPage() {
 
   return (
     <div className="space-y-10">
-      <div>
-        <Link
-          href="/teacher/assignments"
-          className="text-sm font-medium text-primary hover:text-primary-hover"
-        >
-          ← Back to assignments
-        </Link>
-        <div className="mt-4">
-          <PageHeader
-            eyebrow="Teacher Portal"
-            title={assignment?.assignmentTitle ?? "Assignment details"}
-            description={
-              assignment
-                ? `${assignment.subject?.subjectName ?? "Subject"} · Due ${formatDate(assignment.dueDate)}`
-                : "Loading assignment details..."
-            }
-          />
-        </div>
-      </div>
+      <PageHeader
+        eyebrow="Teacher Portal"
+        title={assignment?.assignmentTitle ?? "Assignment details"}
+        description={
+          assignment
+            ? `${assignment.subject?.subjectName ?? "Subject"} · Due ${formatDate(assignment.dueDate)}`
+            : "Loading assignment details..."
+        }
+        breadcrumbs={[
+          { label: "Assignments", href: "/teacher/assignments" },
+          { label: assignment?.assignmentTitle ?? "Details" },
+        ]}
+      />
 
       {error ? <Alert>{error}</Alert> : null}
 
@@ -168,7 +160,6 @@ export default function TeacherAssignmentDetailPage() {
         takenSubmissions={takenSubmissions}
         isLoading={isLoading}
         isSaving={isSaving}
-        successMessage={success}
         errorMessage={gradeError}
         onSave={handleSaveMarks}
       />

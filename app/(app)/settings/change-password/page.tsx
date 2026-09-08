@@ -18,6 +18,7 @@ import { PageHeader } from "@/components/layout/page-header";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
 export default function ChangePasswordPage() {
   useRequireAuth(["ADMIN", "TEACHER", "STUDENT"]);
@@ -28,13 +29,11 @@ export default function ChangePasswordPage() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError(null);
-    setSuccess(null);
 
     if (newPassword.length < 8) {
       setError("New password must be at least 8 characters.");
@@ -53,7 +52,7 @@ export default function ChangePasswordPage() {
 
     try {
       const result = await changePassword(oldPassword, newPassword);
-      setSuccess(result.message);
+      toast.success(result.message);
       setTimeout(() => {
         void logout().then(() => router.replace("/login"));
       }, 1500);
@@ -72,10 +71,13 @@ export default function ChangePasswordPage() {
         eyebrow="Settings"
         title="Change Password"
         description="Update your account password."
+        breadcrumbs={[
+          { label: "Settings", href: "/settings" },
+          { label: "Change Password" },
+        ]}
       />
 
       {error ? <Alert>{error}</Alert> : null}
-      {success ? <Alert variant="info">{success}</Alert> : null}
 
       <DashboardSection
         title="New password"

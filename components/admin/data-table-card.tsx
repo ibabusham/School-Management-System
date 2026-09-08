@@ -17,6 +17,7 @@
  */
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { EmptyState } from "@/components/ui/empty-state";
 import type { Pagination } from "@/lib/auth/types";
 
 /** Defines one column: header text + how to render each row's cell. */
@@ -35,6 +36,8 @@ export function DataTableCard<T extends { id: string }>({
   rows,
   isLoading,
   emptyMessage,
+  emptyDescription,
+  emptyAction,
   pagination,
   page,
   onPageChange,
@@ -47,6 +50,8 @@ export function DataTableCard<T extends { id: string }>({
   rows: T[];
   isLoading: boolean;
   emptyMessage: string;
+  emptyDescription?: string;
+  emptyAction?: React.ReactNode;
   pagination: Pagination | null;
   page: number;
   onPageChange: (page: number) => void;
@@ -88,11 +93,12 @@ export function DataTableCard<T extends { id: string }>({
               </tr>
             ) : rows.length === 0 ? (
               <tr>
-                <td
-                  colSpan={columns.length}
-                  className="px-6 py-10 text-center font-bold text-sidebar-muted"
-                >
-                  {emptyMessage}
+                <td colSpan={columns.length} className="px-6 py-10">
+                  <EmptyState
+                    title={emptyMessage}
+                    description={emptyDescription}
+                    action={emptyAction}
+                  />
                 </td>
               </tr>
             ) : (

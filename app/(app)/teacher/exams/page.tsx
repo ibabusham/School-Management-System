@@ -26,6 +26,8 @@ import { Input } from "@/components/ui/input";
 import { Modal } from "@/components/ui/modal";
 import { Select } from "@/components/ui/select";
 import { formatDate, toDateInputValue } from "@/lib/utils/dates";
+import { useConfirm } from "@/components/ui/confirm-dialog";
+import { toast } from "sonner";
 
 type ExamFormState = {
   examName: string;
@@ -52,6 +54,7 @@ function examToForm(exam: ExamDetail): ExamFormState {
 
 export default function TeacherExamsPage() {
   useRequireAuth(["TEACHER"]);
+  const confirm = useConfirm();
 
   const [exams, setExams] = useState<ExamSummary[]>([]);
   const [subjects, setSubjects] = useState<SubjectSummary[]>([]);
@@ -163,6 +166,7 @@ export default function TeacherExamsPage() {
         await createExam(payload);
       }
 
+      toast.success(editingId ? "Exam updated." : "Exam created.");
       closeModal();
       await loadExams(page, subjectFilter);
     } catch (err) {
@@ -173,7 +177,10 @@ export default function TeacherExamsPage() {
   }
 
   async function handleDelete(exam: ExamSummary) {
-    const confirmed = window.confirm(`Delete exam "${exam.examName}"?`);
+    const confirmed = await confirm({
+      title: "Delete exam",
+      description: `Delete exam "${exam.examName}"? This cannot be undone.`,
+    });
     if (!confirmed) {
       return;
     }
@@ -182,6 +189,7 @@ export default function TeacherExamsPage() {
 
     try {
       await deleteExam(exam.id);
+      toast.success("Exam deleted.");
       await loadExams(page, subjectFilter);
     } catch (err) {
       setError(err instanceof ApiError ? err.message : "Failed to delete exam.");
@@ -271,7 +279,13 @@ export default function TeacherExamsPage() {
         ]}
         rows={exams}
         isLoading={isLoading}
-        emptyMessage="No exams found."
+        emptyMessage="No exams yet."
+        emptyDescription="Create an exam for one of your subjects."
+        emptyAction={
+          <Button type="button" onClick={openCreate} disabled={subjects.length === 0}>
+            Add exam
+          </Button>
+        }
         pagination={pagination}
         page={page}
         onPageChange={setPage}

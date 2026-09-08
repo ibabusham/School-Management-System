@@ -6,6 +6,7 @@ import { ApiError } from "@/lib/api/client";
 import { fetchLearningProgress } from "@/lib/api/learning-progress";
 import { fetchStudent } from "@/lib/api/students";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
+import { DashboardBarChart } from "@/components/dashboard/dashboard-bar-chart";
 import { DashboardSection } from "@/components/dashboard/dashboard-section";
 import { FieldCard } from "@/components/dashboard/field-card";
 import { StatCard } from "@/components/dashboard/stat-card";
@@ -76,28 +77,44 @@ export default function StudentDashboardPage() {
       ) : (
         <>
           {progress ? (
-            <dl className="grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
-              <StatCard
-                label="Subject average"
-                value={`${progress.subjectsAverages}%`}
-                large
-              />
-              <StatCard
-                label="Overall average"
-                value={`${progress.overallAvreages}%`}
-                large
-              />
-              <StatCard
-                label="Attendance"
-                value={`${progress.attendencePercentage}%`}
-                large
-              />
-              <StatCard
-                label="Learning status"
-                value={progress.learningStatus}
-                hint="Current standing"
-              />
-            </dl>
+            <>
+              <dl className="grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
+                <StatCard
+                  label="Subject average"
+                  value={`${progress.subjectsAverages}%`}
+                  large
+                />
+                <StatCard
+                  label="Overall average"
+                  value={`${progress.overallAvreages}%`}
+                  large
+                />
+                <StatCard
+                  label="Attendance"
+                  value={`${progress.attendencePercentage}%`}
+                  large
+                />
+                <StatCard
+                  label="Learning status"
+                  value={progress.learningStatus}
+                  hint="Current standing"
+                />
+              </dl>
+
+              <DashboardSection
+                title="Your progress"
+                description="Averages and attendance at a glance."
+              >
+                <DashboardBarChart
+                  valueSuffix="%"
+                  data={[
+                    { name: "Subject avg", value: progress.subjectsAverages },
+                    { name: "Overall avg", value: progress.overallAvreages },
+                    { name: "Attendance", value: progress.attendencePercentage },
+                  ]}
+                />
+              </DashboardSection>
+            </>
           ) : null}
 
           <div className="grid gap-8 lg:grid-cols-2">

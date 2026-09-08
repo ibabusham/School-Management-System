@@ -13,8 +13,10 @@ import { StatCard } from "@/components/dashboard/stat-card";
 import { DashboardSection } from "@/components/dashboard/dashboard-section";
 import { PageHeader } from "@/components/layout/page-header";
 import { Alert } from "@/components/ui/alert";
+import { EmptyState } from "@/components/ui/empty-state";
 import { Card } from "@/components/ui/card";
 import { formatDate } from "@/lib/utils/dates";
+import { DashboardBarChart } from "@/components/dashboard/dashboard-bar-chart";
 
 export default function StudentLearningProgressPage() {
   const { user } = useRequireAuth(["STUDENT"]);
@@ -54,24 +56,39 @@ export default function StudentLearningProgressPage() {
       {error ? <Alert>{error}</Alert> : null}
 
       {progress ? (
-        <dl className="grid gap-4 sm:grid-cols-2">
-          <StatCard
-            label="Subject average"
-            value={`${progress.subjectsAverages}%`}
-            large
-          />
-          <StatCard
-            label="Overall average"
-            value={`${progress.overallAvreages}%`}
-            large
-          />
-          <StatCard
-            label="Attendance"
-            value={`${progress.attendencePercentage}%`}
-            large
-          />
-          <StatCard label="Status" value={progress.learningStatus} />
-        </dl>
+        <>
+          <dl className="grid gap-4 sm:grid-cols-2">
+            <StatCard
+              label="Subject average"
+              value={`${progress.subjectsAverages}%`}
+              large
+            />
+            <StatCard
+              label="Overall average"
+              value={`${progress.overallAvreages}%`}
+              large
+            />
+            <StatCard
+              label="Attendance"
+              value={`${progress.attendencePercentage}%`}
+              large
+            />
+            <StatCard label="Status" value={progress.learningStatus} />
+          </dl>
+          <DashboardSection
+            title="Progress snapshot"
+            description="Averages and attendance together."
+          >
+            <DashboardBarChart
+              valueSuffix="%"
+              data={[
+                { name: "Subject avg", value: progress.subjectsAverages },
+                { name: "Overall avg", value: progress.overallAvreages },
+                { name: "Attendance", value: progress.attendencePercentage },
+              ]}
+            />
+          </DashboardSection>
+        </>
       ) : (
         <Card className="p-8">
           <p className="text-sm text-sidebar-muted">
@@ -121,9 +138,10 @@ export default function StudentLearningProgressPage() {
             ))}
           </div>
         ) : (
-          <p className="text-sm text-sidebar-muted">
-            No teacher notes yet.
-          </p>
+          <EmptyState
+            title="No teacher notes yet"
+            description="When teachers add observations, they will appear here."
+          />
         )}
       </DashboardSection>
     </div>

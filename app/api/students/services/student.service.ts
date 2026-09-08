@@ -19,7 +19,12 @@ import {
   getTeacherClassIds,
 } from "@/app/api/auth/services/teacher-scope";
 
-function toSafeStudent(student: Student) {
+function toSafeStudent(
+  student: Student & {
+    class?: { id: string; className: string } | null;
+    user?: { username: string };
+  }
+) {
   const { ...safeStudent } = student;
   return safeStudent;
 }
@@ -203,6 +208,14 @@ async function findActiveStudentById(studentId: string) {
     where: {
       id: studentId,
       accountStatus: true,
+    },
+    include: {
+      class: {
+        select: { id: true, className: true },
+      },
+      user: {
+        select: { username: true },
+      },
     },
   });
 

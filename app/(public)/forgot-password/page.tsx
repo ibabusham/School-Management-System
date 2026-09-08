@@ -16,6 +16,7 @@ import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
@@ -34,6 +35,7 @@ export default function ForgotPasswordPage() {
     try {
       const result = await forgotPassword(email);
       setMessage(result.message);
+      toast.success(result.message);
       if (result.token) {
         setResetToken(result.token);
       }

@@ -1,7 +1,7 @@
 /**
  * Generic content container with border and shadow.
  *
- * Uses BrandSurface for a gray mix (slate / charcoal) instead of burgundy.
+ * Uses BrandSurface for a dark mix with a red glow.
  * Extend with className for padding etc.
  */
 import { type HTMLAttributes } from "react";

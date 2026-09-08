@@ -89,7 +89,8 @@ export default function TeacherStudentsPage() {
         ]}
         rows={students}
         isLoading={isLoading}
-        emptyMessage="No students found."
+        emptyMessage="No students yet."
+        emptyDescription="Students in classes you teach will appear here."
         pagination={pagination}
         page={page}
         onPageChange={setPage}

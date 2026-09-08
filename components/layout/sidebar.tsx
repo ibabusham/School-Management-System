@@ -11,6 +11,24 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import type { LucideIcon } from "lucide-react";
+import {
+  BookOpen,
+  CalendarDays,
+  CalendarRange,
+  ClipboardCheck,
+  FileText,
+  GraduationCap,
+  KeyRound,
+  LayoutDashboard,
+  NotebookPen,
+  School,
+  Settings,
+  TrendingUp,
+  User,
+  UserCheck,
+  Users,
+} from "lucide-react";
 import { SchoolMark } from "@/components/brand/school-mark";
 import { useAuth } from "@/lib/auth/auth-context";
 import type { UserRole } from "@/lib/auth/types";
@@ -20,12 +38,14 @@ type NavLink = {
   href: string;
   label: string;
   roles: UserRole[];
+  icon: LucideIcon;
 };
 
 type NavFolder = {
   id: string;
   label: string;
   roles: UserRole[];
+  icon: LucideIcon;
   children: NavLink[];
 };
 
@@ -37,34 +57,53 @@ function isFolder(entry: NavEntry): entry is NavFolder {
 
 /** All nav links — filtered at render time by the logged-in user's role. */
 const NAV_ITEMS: NavEntry[] = [
-  { href: "/admin", label: "Dashboard", roles: ["ADMIN"] },
-  { href: "/admin/students", label: "Students", roles: ["ADMIN"] },
-  { href: "/admin/teachers", label: "Teachers", roles: ["ADMIN"] },
-  { href: "/admin/classes", label: "Classes", roles: ["ADMIN"] },
-  { href: "/admin/subjects", label: "Subjects", roles: ["ADMIN"] },
-  { href: "/admin/terms", label: "Terms", roles: ["ADMIN"] },
-  { href: "/teacher", label: "Dashboard", roles: ["TEACHER"] },
-  { href: "/teacher/students", label: "Students", roles: ["TEACHER"] },
-  { href: "/teacher/exams", label: "Exams", roles: ["TEACHER"] },
-  { href: "/teacher/assignments", label: "Assignments", roles: ["TEACHER"] },
-  { href: "/teacher/lessons", label: "Lessons", roles: ["TEACHER"] },
-  { href: "/teacher/attendance", label: "Attendance", roles: ["TEACHER"] },
-  { href: "/student", label: "Dashboard", roles: ["STUDENT"] },
-  { href: "/student/profile", label: "My Profile", roles: ["STUDENT"] },
+  { href: "/admin", label: "Dashboard", roles: ["ADMIN"], icon: LayoutDashboard },
+  { href: "/admin/students", label: "Students", roles: ["ADMIN"], icon: Users },
+  { href: "/admin/teachers", label: "Teachers", roles: ["ADMIN"], icon: GraduationCap },
+  { href: "/admin/classes", label: "Classes", roles: ["ADMIN"], icon: School },
+  {
+    href: "/admin/academic-years",
+    label: "Academic Years",
+    roles: ["ADMIN"],
+    icon: CalendarRange,
+  },
+  { href: "/admin/subjects", label: "Subjects", roles: ["ADMIN"], icon: BookOpen },
+  { href: "/admin/terms", label: "Terms", roles: ["ADMIN"], icon: CalendarDays },
+  { href: "/teacher", label: "Dashboard", roles: ["TEACHER"], icon: LayoutDashboard },
+  { href: "/teacher/students", label: "Students", roles: ["TEACHER"], icon: Users },
+  { href: "/teacher/exams", label: "Exams", roles: ["TEACHER"], icon: ClipboardCheck },
+  {
+    href: "/teacher/assignments",
+    label: "Assignments",
+    roles: ["TEACHER"],
+    icon: FileText,
+  },
+  { href: "/teacher/lessons", label: "Lessons", roles: ["TEACHER"], icon: NotebookPen },
+  {
+    href: "/teacher/attendance",
+    label: "Attendance",
+    roles: ["TEACHER"],
+    icon: UserCheck,
+  },
+  { href: "/student", label: "Dashboard", roles: ["STUDENT"], icon: LayoutDashboard },
+  { href: "/student/profile", label: "My Profile", roles: ["STUDENT"], icon: User },
   {
     href: "/student/learning-progress",
     label: "Learning Progress",
     roles: ["STUDENT"],
+    icon: TrendingUp,
   },
   {
     id: "settings",
     label: "Settings",
     roles: ["ADMIN", "TEACHER", "STUDENT"],
+    icon: Settings,
     children: [
       {
         href: "/settings/change-password",
         label: "Change Password",
         roles: ["ADMIN", "TEACHER", "STUDENT"],
+        icon: KeyRound,
       },
     ],
   },
@@ -106,7 +145,7 @@ export function Sidebar() {
   }
 
   function linkClass(href: string) {
-    return `rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+    return `flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
       isActive(href)
         ? "bg-primary text-white shadow-sm shadow-primary/20"
         : "text-sidebar-muted hover:bg-sidebar-hover hover:text-white"
@@ -124,7 +163,7 @@ export function Sidebar() {
   return (
     <aside className="relative flex w-72 shrink-0 flex-col overflow-hidden bg-charcoal text-white">
       <div
-        className="pointer-events-none absolute inset-0 bg-linear-to-b from-burgundy-dark/50 via-charcoal to-ink"
+        className="pointer-events-none absolute inset-0 bg-linear-to-b from-primary/40 via-charcoal to-ink"
         aria-hidden
       />
       <div
@@ -181,7 +220,10 @@ export function Sidebar() {
                   onClick={() => toggleFolder(item.id)}
                   className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium text-sidebar-muted transition-colors hover:bg-sidebar-hover hover:text-white"
                 >
-                  {item.label}
+                  <span className="flex items-center gap-2.5">
+                    <item.icon className="h-4 w-4 shrink-0" aria-hidden />
+                    {item.label}
+                  </span>
                   <span
                     className={`text-xs transition-transform ${
                       folderOpen ? "rotate-90" : ""
@@ -199,6 +241,7 @@ export function Sidebar() {
                         href={child.href}
                         className={linkClass(child.href)}
                       >
+                        <child.icon className="h-4 w-4 shrink-0" aria-hidden />
                         {child.label}
                       </Link>
                     ))}
@@ -210,6 +253,7 @@ export function Sidebar() {
 
           return (
             <Link key={item.href} href={item.href} className={linkClass(item.href)}>
+              <item.icon className="h-4 w-4 shrink-0" aria-hidden />
               {item.label}
             </Link>
           );

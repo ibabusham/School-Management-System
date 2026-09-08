@@ -23,9 +23,11 @@ import { PageHeader } from "@/components/layout/page-header";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useConfirm } from "@/components/ui/confirm-dialog";
 import { Modal } from "@/components/ui/modal";
 import { Select } from "@/components/ui/select";
 import { toDateInputValue } from "@/lib/utils/dates";
+import { toast } from "sonner";
 
 type StudentFormState = {
   studentId: string;
@@ -70,6 +72,7 @@ function studentToForm(student: StudentDetail): StudentFormState {
 
 export default function AdminStudentsPage() {
   useRequireAuth(["ADMIN"]);
+  const confirm = useConfirm();
 
   const [students, setStudents] = useState<StudentSummary[]>([]);
   const [pagination, setPagination] = useState<Pagination | null>(null);
@@ -169,6 +172,7 @@ export default function AdminStudentsPage() {
         await createStudent(payload);
       }
 
+      toast.success(editingId ? "Student updated." : "Student created.");
       closeModal();
       await loadStudents(page);
     } catch (err) {
@@ -181,9 +185,10 @@ export default function AdminStudentsPage() {
   }
 
   async function handleDelete(student: StudentSummary) {
-    const confirmed = window.confirm(
-      `Delete ${student.firstName} ${student.lastName}?`
-    );
+    const confirmed = await confirm({
+      title: "Delete student",
+      description: `Delete ${student.firstName} ${student.lastName}? This cannot be undone.`,
+    });
     if (!confirmed) {
       return;
     }
@@ -192,6 +197,7 @@ export default function AdminStudentsPage() {
 
     try {
       await deleteStudent(student.id);
+      toast.success("Student deleted.");
       await loadStudents(page);
     } catch (err) {
       setError(err instanceof ApiError ? err.message : "Failed to delete student.");
@@ -258,7 +264,13 @@ export default function AdminStudentsPage() {
         ]}
         rows={students}
         isLoading={isLoading}
-        emptyMessage="No students found."
+        emptyMessage="No students yet."
+        emptyDescription="Create the first student account to get started."
+        emptyAction={
+          <Button type="button" onClick={openCreate}>
+            Add student
+          </Button>
+        }
         pagination={pagination}
         page={page}
         onPageChange={setPage}

@@ -33,6 +33,8 @@ import { Input } from "@/components/ui/input";
 import { Modal } from "@/components/ui/modal";
 import { Select } from "@/components/ui/select";
 import { formatDate, toDateInputValue } from "@/lib/utils/dates";
+import { useConfirm } from "@/components/ui/confirm-dialog";
+import { toast } from "sonner";
 
 /** Shape of the create/edit form. */
 type AttendanceFormState = {
@@ -73,6 +75,7 @@ const STATUS_OPTIONS: AttendanceStatus[] = [
 export default function TeacherAttendancePage() {
   // Only teachers can access this route.
   useRequireAuth(["TEACHER"]);
+  const confirm = useConfirm();
 
   // --- List state (table + pagination) ---
   const [records, setRecords] = useState<Attendance[]>([]);
@@ -228,6 +231,7 @@ export default function TeacherAttendancePage() {
         await createAttendance(payload);
       }
 
+      toast.success(editingId ? "Attendance updated." : "Attendance recorded.");
       closeModal();
       await loadAttendance(page, currentFilters);
     } catch (err) {
@@ -247,15 +251,14 @@ export default function TeacherAttendancePage() {
   }
 
   async function handleDelete(record: Attendance) {
-    const studentName =
-      studentMap.get(record.studentId);
-    const confirmed = window.confirm(
-      `Delete attendance record for ${
-        studentName
-          ? `${studentName.firstName} ${studentName.lastName}`
-          : "this student"
-      }?`
-    );
+    const studentName = studentMap.get(record.studentId);
+    const who = studentName
+      ? `${studentName.firstName} ${studentName.lastName}`
+      : "this student";
+    const confirmed = await confirm({
+      title: "Delete attendance",
+      description: `Delete attendance record for ${who}? This cannot be undone.`,
+    });
     if (!confirmed) {
       return;
     }
@@ -264,6 +267,7 @@ export default function TeacherAttendancePage() {
 
     try {
       await deleteAttendance(record.id);
+      toast.success("Attendance record deleted.");
       await loadAttendance(page, currentFilters);
     } catch (err) {
       setError(
@@ -421,7 +425,17 @@ export default function TeacherAttendancePage() {
         ]}
         rows={records}
         isLoading={isLoading}
-        emptyMessage="No attendance records found."
+        emptyMessage="No attendance records yet."
+        emptyDescription="Record attendance for students in your subjects."
+        emptyAction={
+          <Button
+            type="button"
+            onClick={openCreate}
+            disabled={students.length === 0 || subjects.length === 0}
+          >
+            Add attendance
+          </Button>
+        }
         pagination={pagination}
         page={page}
         onPageChange={setPage}

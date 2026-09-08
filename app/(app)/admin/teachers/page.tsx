@@ -23,6 +23,8 @@ import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Modal } from "@/components/ui/modal";
+import { useConfirm } from "@/components/ui/confirm-dialog";
+import { toast } from "sonner";
 
 type TeacherFormState = {
   username: string;
@@ -58,6 +60,7 @@ function teacherToForm(teacher: TeacherDetail): TeacherFormState {
 
 export default function AdminTeachersPage() {
   useRequireAuth(["ADMIN"]);
+  const confirm = useConfirm();
 
   const [teachers, setTeachers] = useState<TeacherSummary[]>([]);
   const [pagination, setPagination] = useState<Pagination | null>(null);
@@ -150,6 +153,7 @@ export default function AdminTeachersPage() {
         await createTeacher(payload);
       }
 
+      toast.success(editingId ? "Teacher updated." : "Teacher created.");
       closeModal();
       await loadTeachers(page);
     } catch (err) {
@@ -162,7 +166,10 @@ export default function AdminTeachersPage() {
   }
 
   async function handleDelete(teacher: TeacherSummary) {
-    const confirmed = window.confirm(`Delete teacher ${teacher.name}?`);
+    const confirmed = await confirm({
+      title: "Delete teacher",
+      description: `Delete teacher ${teacher.name}? This cannot be undone.`,
+    });
     if (!confirmed) {
       return;
     }
@@ -171,6 +178,7 @@ export default function AdminTeachersPage() {
 
     try {
       await deleteTeacher(teacher.id);
+      toast.success("Teacher deleted.");
       await loadTeachers(page);
     } catch (err) {
       setError(err instanceof ApiError ? err.message : "Failed to delete teacher.");
@@ -241,7 +249,13 @@ export default function AdminTeachersPage() {
         ]}
         rows={teachers}
         isLoading={isLoading}
-        emptyMessage="No teachers found."
+        emptyMessage="No teachers yet."
+        emptyDescription="Create the first teacher account to get started."
+        emptyAction={
+          <Button type="button" onClick={openCreate}>
+            Add teacher
+          </Button>
+        }
         pagination={pagination}
         page={page}
         onPageChange={setPage}

@@ -7,10 +7,12 @@ import { ApiError } from "@/lib/api/client";
 import { fetchExams } from "@/lib/api/exams";
 import { fetchSubjects } from "@/lib/api/subjects";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
+import { DashboardBarChart } from "@/components/dashboard/dashboard-bar-chart";
 import { DashboardSection } from "@/components/dashboard/dashboard-section";
 import { StatCard } from "@/components/dashboard/stat-card";
 import { PageHeader } from "@/components/layout/page-header";
 import { Alert } from "@/components/ui/alert";
+import { EmptyState } from "@/components/ui/empty-state";
 import { Card } from "@/components/ui/card";
 import { formatDate } from "@/lib/utils/dates";
 
@@ -87,13 +89,29 @@ export default function TeacherDashboardPage() {
           </dl>
 
           <DashboardSection
+            title="Your workload"
+            description="Subjects, exams, and assignments assigned to you."
+          >
+            <DashboardBarChart
+              data={[
+                { name: "Subjects", value: subjectCount },
+                { name: "Exams", value: examCount },
+                { name: "Assignments", value: assignmentCount },
+              ]}
+            />
+          </DashboardSection>
+
+          <DashboardSection
             title="Your subjects"
             description="Classes and subjects assigned to you."
             href="/teacher/exams"
             linkLabel="Manage exams"
           >
             {subjects.length === 0 ? (
-              <p className="text-sm text-sidebar-muted">No subjects found.</p>
+              <EmptyState
+                title="No subjects yet"
+                description="Subjects assigned to you will show up here."
+              />
             ) : (
               <ul className="divide-y divide-white/10 rounded-lg border border-white/10">
                 {subjects.map((subject) => (
@@ -121,7 +139,18 @@ export default function TeacherDashboardPage() {
               linkLabel="View all"
             >
               {exams.length === 0 ? (
-                <p className="text-sm text-sidebar-muted">No exams yet.</p>
+                <EmptyState
+                  title="No exams yet"
+                  description="Create an exam to start grading students."
+                  action={
+                    <Link
+                      href="/teacher/exams"
+                      className="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-bold text-white hover:bg-primary-hover"
+                    >
+                      Add exam
+                    </Link>
+                  }
+                />
               ) : (
                 <ul className="divide-y divide-white/10 rounded-lg border border-white/10">
                   {exams.map((exam) => (
@@ -150,9 +179,18 @@ export default function TeacherDashboardPage() {
               linkLabel="View all"
             >
               {assignments.length === 0 ? (
-                <p className="text-sm text-sidebar-muted">
-                  No assignments yet.
-                </p>
+                <EmptyState
+                  title="No assignments yet"
+                  description="Create an assignment for one of your subjects."
+                  action={
+                    <Link
+                      href="/teacher/assignments"
+                      className="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-bold text-white hover:bg-primary-hover"
+                    >
+                      Add assignment
+                    </Link>
+                  }
+                />
               ) : (
                 <ul className="divide-y divide-white/10 rounded-lg border border-white/10">
                   {assignments.map((assignment) => (

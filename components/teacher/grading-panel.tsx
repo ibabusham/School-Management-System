@@ -36,7 +36,7 @@ export function GradingPanel({
   takenSubmissions,
   isLoading,
   isSaving,
-  successMessage,
+  successMessage = null,
   errorMessage,
   onSave,
 }: {
@@ -45,7 +45,7 @@ export function GradingPanel({
   takenSubmissions: TakenRow[];
   isLoading: boolean;
   isSaving: boolean;
-  successMessage: string | null;
+  successMessage?: string | null;
   errorMessage: string | null;
   onSave: (marks: { studentId: string; score: number }[]) => Promise<void>;
 }) {

@@ -34,6 +34,8 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Modal } from "@/components/ui/modal";
 import { formatDate, toDateInputValue } from "@/lib/utils/dates";
+import { useConfirm } from "@/components/ui/confirm-dialog";
+import { toast } from "sonner";
 
 /** Shape of the create/edit form. noteDate is optional (server defaults to now). */
 type NoteFormState = {
@@ -63,6 +65,7 @@ function noteToForm(note: ProgressNote): NoteFormState {
 export default function TeacherStudentDetailPage() {
   // Only teachers can access this route.
   useRequireAuth(["TEACHER"]);
+  const confirm = useConfirm();
 
   const params = useParams<{ id: string }>();
   const studentId = params.id;
@@ -175,6 +178,7 @@ export default function TeacherStudentDetailPage() {
         await createProgressNote(studentId, payload);
       }
 
+      toast.success(editingId ? "Note updated." : "Note added.");
       closeModal();
       await loadData(page);
     } catch (err) {
@@ -187,7 +191,10 @@ export default function TeacherStudentDetailPage() {
   }
 
   async function handleDelete(note: ProgressNote) {
-    const confirmed = window.confirm("Delete this progress note?");
+    const confirmed = await confirm({
+      title: "Delete note",
+      description: "Delete this progress note? This cannot be undone.",
+    });
     if (!confirmed) {
       return;
     }
@@ -196,6 +203,7 @@ export default function TeacherStudentDetailPage() {
 
     try {
       await deleteProgressNote(studentId, note.id);
+      toast.success("Note deleted.");
       await loadData(page);
     } catch (err) {
       setError(
@@ -214,6 +222,10 @@ export default function TeacherStudentDetailPage() {
         eyebrow="Teacher Portal"
         title={studentName}
         description="View learning progress and manage progress notes."
+        breadcrumbs={[
+          { label: "Students", href: "/teacher/students" },
+          { label: studentName },
+        ]}
       />
 
       {error ? <Alert>{error}</Alert> : null}
@@ -306,6 +318,12 @@ export default function TeacherStudentDetailPage() {
             rows={notes}
             isLoading={false}
             emptyMessage="No progress notes yet."
+            emptyDescription="Add an observation about this student’s learning."
+            emptyAction={
+              <Button type="button" onClick={openCreate}>
+                Add note
+              </Button>
+            }
             pagination={pagination}
             page={page}
             onPageChange={setPage}

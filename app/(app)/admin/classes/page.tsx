@@ -22,9 +22,11 @@ import { PageHeader } from "@/components/layout/page-header";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useConfirm } from "@/components/ui/confirm-dialog";
 import { Modal } from "@/components/ui/modal";
 import { Select } from "@/components/ui/select";
 import { toDateInputValue } from "@/lib/utils/dates";
+import { toast } from "sonner";
 
 type ClassFormState = {
   className: string;
@@ -51,6 +53,7 @@ function getClassYearLabel(classItem: ClassSummary) {
 
 export default function AdminClassesPage() {
   useRequireAuth(["ADMIN"]);
+  const confirm = useConfirm();
 
   const [classes, setClasses] = useState<ClassSummary[]>([]);
   const [academicYears, setAcademicYears] = useState<AcademicYear[]>([]);
@@ -178,6 +181,7 @@ export default function AdminClassesPage() {
         await createClass(payload);
       }
 
+      toast.success(editingId ? "Class updated." : "Class created.");
       closeModal();
       await loadClasses(page);
       await loadAcademicYears();
@@ -189,7 +193,10 @@ export default function AdminClassesPage() {
   }
 
   async function handleDelete(classItem: ClassSummary) {
-    const confirmed = window.confirm(`Delete class ${classItem.className}?`);
+    const confirmed = await confirm({
+      title: "Delete class",
+      description: `Delete class ${classItem.className}? This cannot be undone.`,
+    });
     if (!confirmed) {
       return;
     }
@@ -198,6 +205,7 @@ export default function AdminClassesPage() {
 
     try {
       await deleteClass(classItem.id);
+      toast.success("Class deleted.");
       await loadClasses(page);
     } catch (err) {
       setError(err instanceof ApiError ? err.message : "Failed to delete class.");
@@ -277,7 +285,13 @@ export default function AdminClassesPage() {
         ]}
         rows={classes}
         isLoading={isLoading}
-        emptyMessage="No classes found."
+        emptyMessage="No classes yet."
+        emptyDescription="Create a class and assign it to an academic year."
+        emptyAction={
+          <Button type="button" onClick={openCreate}>
+            Add class
+          </Button>
+        }
         pagination={pagination}
         page={page}
         onPageChange={setPage}

@@ -9,7 +9,7 @@ import { type ButtonHTMLAttributes } from "react";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   /** Visual style — defaults to primary (red brand color). */
-  variant?: "primary" | "secondary" | "ghost" | "outline";
+  variant?: "primary" | "secondary" | "ghost" | "outline" | "danger";
 };
 
 const variants = {
@@ -21,6 +21,8 @@ const variants = {
   // outline is tuned for the dark sidebar (logout button)
   outline:
     "border border-white/20 bg-white/10 text-white hover:bg-white/15 disabled:opacity-50",
+  danger:
+    "bg-primary text-white hover:bg-primary-hover disabled:bg-muted shadow-sm",
 };
 
 export function Button({

@@ -21,6 +21,7 @@ import {
 import { fetchStudents, type StudentSummary } from "@/lib/api/students";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { DataTableCard } from "@/components/admin/data-table-card";
+import { DashboardBarChart } from "@/components/dashboard/dashboard-bar-chart";
 import { DashboardSection } from "@/components/dashboard/dashboard-section";
 import { StatCard } from "@/components/dashboard/stat-card";
 import { PageHeader } from "@/components/layout/page-header";
@@ -28,9 +29,12 @@ import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Modal } from "@/components/ui/modal";
+import { useConfirm } from "@/components/ui/confirm-dialog";
+import { toast } from "sonner";
 
 export default function AdminClassDetailPage() {
   useRequireAuth(["ADMIN"]);
+  const confirm = useConfirm();
 
   const params = useParams<{ id: string }>();
   const classId = params.id;
@@ -111,6 +115,7 @@ export default function AdminClassDetailPage() {
 
     try {
       await assignStudentsToClass(classId, [...selectedIds]);
+      toast.success("Students assigned to class.");
       closeModal();
       await loadData();
     } catch (err) {
@@ -123,9 +128,11 @@ export default function AdminClassDetailPage() {
   }
 
   async function handleUnassign(student: AssignedStudent) {
-    const confirmed = window.confirm(
-      `Remove ${student.firstName} ${student.lastName} from ${classData?.className}?`
-    );
+    const confirmed = await confirm({
+      title: "Remove student",
+      description: `Remove ${student.firstName} ${student.lastName} from ${classData?.className}?`,
+      confirmLabel: "Remove",
+    });
     if (!confirmed) {
       return;
     }
@@ -134,6 +141,7 @@ export default function AdminClassDetailPage() {
 
     try {
       await unassignStudentFromClass(classId, student.id);
+      toast.success("Student removed from class.");
       await loadData();
     } catch (err) {
       setError(
@@ -155,6 +163,10 @@ export default function AdminClassDetailPage() {
         eyebrow="Administration"
         title={classData?.className ?? "Class details"}
         description="View class info and assign or remove students."
+        breadcrumbs={[
+          { label: "Classes", href: "/admin/classes" },
+          { label: classData?.className ?? "Details" },
+        ]}
       />
 
       {error ? <Alert>{error}</Alert> : null}
@@ -199,6 +211,16 @@ export default function AdminClassDetailPage() {
                 <StatCard label="Students needing support" value={String(performance.studentRequiringSupport)} />
                 <StatCard label="Status" value={performance.classStatus} />
               </dl>
+              <div className="mt-8">
+                <DashboardBarChart
+                  valueSuffix="%"
+                  data={[
+                    { name: "Class avg", value: performance.classAvg },
+                    { name: "Attendance", value: performance.attendenceRate },
+                    { name: "Assignments", value: performance.assignmentsCompleationRate },
+                  ]}
+                />
+              </div>
             </DashboardSection>
           ) : null}
 
@@ -244,7 +266,17 @@ export default function AdminClassDetailPage() {
             ]}
             rows={classData.students}
             isLoading={false}
-            emptyMessage="No students enrolled in this class."
+            emptyMessage="No students enrolled yet."
+            emptyDescription="Assign students from the school roster to this class."
+            emptyAction={
+              <Button
+                type="button"
+                onClick={openAddModal}
+                disabled={availableStudents.length === 0}
+              >
+                Add students
+              </Button>
+            }
             pagination={enrolledPagination}
             page={1}
             onPageChange={() => undefined}
