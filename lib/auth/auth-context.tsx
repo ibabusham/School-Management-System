@@ -9,7 +9,7 @@ import {
   useState,
 } from "react";
 import { loginRequest, logoutRequest } from "@/lib/api/auth-api";
-import { getSession, setSession } from "@/lib/api/client";
+import { getSession } from "@/lib/api/client";
 import type { AuthSession, AuthUser, UserRole } from "@/lib/auth/types";
 
 type AuthContextValue = {
@@ -69,8 +69,4 @@ export function getRoleHomePath(role: UserRole) {
     default:
       return "/login";
   }
-}
-
-export function setAuthSession(session: AuthSession | null) {
-  setSession(session);
 }

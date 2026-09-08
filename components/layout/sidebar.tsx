@@ -161,7 +161,7 @@ export function Sidebar() {
     .toUpperCase();
 
   return (
-    <aside className="relative flex w-72 shrink-0 flex-col overflow-hidden bg-charcoal text-white">
+    <aside className="sticky top-0 flex h-screen w-72 shrink-0 flex-col overflow-hidden bg-charcoal text-white">
       <div
         className="pointer-events-none absolute inset-0 bg-linear-to-b from-primary/40 via-charcoal to-ink"
         aria-hidden
@@ -200,7 +200,7 @@ export function Sidebar() {
       </div>
 
       {/* Role-filtered navigation links */}
-      <nav className="relative z-10 flex flex-1 flex-col gap-1 px-4 py-6">
+      <nav className="relative z-10 flex flex-1 flex-col gap-1 overflow-y-auto px-4 py-6">
         <p className="mb-2 px-3 text-[10px] font-semibold uppercase tracking-widest text-sidebar-muted">
           Menu
         </p>
@@ -260,7 +260,7 @@ export function Sidebar() {
         })}
       </nav>
 
-      <div className="relative z-10 border-t border-sidebar-border p-4">
+      <div className="relative z-10 mt-auto shrink-0 border-t border-sidebar-border p-4">
         <Button
           variant="outline"
           className="w-full"

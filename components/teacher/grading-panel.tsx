@@ -36,7 +36,6 @@ export function GradingPanel({
   takenSubmissions,
   isLoading,
   isSaving,
-  successMessage = null,
   errorMessage,
   onSave,
 }: {
@@ -45,7 +44,6 @@ export function GradingPanel({
   takenSubmissions: TakenRow[];
   isLoading: boolean;
   isSaving: boolean;
-  successMessage?: string | null;
   errorMessage: string | null;
   onSave: (marks: { studentId: string; score: number }[]) => Promise<void>;
 }) {
@@ -109,9 +107,6 @@ export function GradingPanel({
 
   return (
     <form onSubmit={(event) => void handleSubmit(event)} className="space-y-6">
-      {successMessage ? (
-        <Alert variant="info">{successMessage}</Alert>
-      ) : null}
       {errorMessage ? <Alert>{errorMessage}</Alert> : null}
 
       <DashboardSection
