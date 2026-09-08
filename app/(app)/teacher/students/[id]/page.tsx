@@ -249,7 +249,7 @@ export default function TeacherStudentDetailPage() {
                   large
                 />
                 <StatCard
-                  label="Overall average"
+                  label="GPA"
                   value={`${progress.overallAvreages}%`}
                   large
                 />
