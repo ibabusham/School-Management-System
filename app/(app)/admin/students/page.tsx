@@ -345,6 +345,9 @@ export default function AdminStudentsPage() {
             <FormField label="Phone number" htmlFor="phoneNumber">
               <Input
                 id="phoneNumber"
+                type="tel"
+                pattern="\d{10}"
+                title="Phone number must be exactly 10 digits"
                 value={form.phoneNumber}
                 onChange={(event) => updateField("phoneNumber", event.target.value)}
               />
