@@ -1,12 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { ApiError } from "@/lib/api/client";
 import {
   fetchLearningProgress,
   fetchProgressNotes,
-  type LearningProgress,
-  type ProgressNote,
 } from "@/lib/api/learning-progress";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { StatCard } from "@/components/dashboard/stat-card";
@@ -20,30 +18,21 @@ import { DashboardBarChart } from "@/components/dashboard/dashboard-bar-chart";
 
 export default function StudentLearningProgressPage() {
   const { user } = useRequireAuth(["STUDENT"]);
-  const [progress, setProgress] = useState<LearningProgress | null>(null);
-  const [notes, setNotes] = useState<ProgressNote[]>([]);
-  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (!user) {
-      return;
-    }
+  const { data: progress, isPending: isLoading, error: progressError } = useQuery({
+    queryKey: ["learningProgress", user?.id],
+    queryFn: () => fetchLearningProgress(user!.id),
+    enabled: !!user,
+  });
 
-    // Load learning progress stats and progress notes in parallel.
-    void Promise.all([
-      fetchLearningProgress(user.id),
-      fetchProgressNotes(user.id, 1, 100),
-    ])
-      .then(([progressRecord, notesResult]) => {
-        setProgress(progressRecord);
-        setNotes(notesResult.data);
-      })
-      .catch((err) => {
-        setError(
-          err instanceof ApiError ? err.message : "Failed to load learning progress."
-        );
-      });
-  }, [user]);
+  const { data: notesData } = useQuery({
+    queryKey: ["progressNotes", user?.id, 1],
+    queryFn: () => fetchProgressNotes(user!.id, 1, 100),
+    enabled: !!user,
+  });
+
+  const notes = notesData?.data ?? [];
+  const error = progressError;
 
   return (
     <div className="space-y-10">
@@ -53,7 +42,11 @@ export default function StudentLearningProgressPage() {
         description="Your academic progress, attendance summary, and teacher notes."
       />
 
-      {error ? <Alert>{error}</Alert> : null}
+      {error ? (
+        <Alert>
+          {error instanceof ApiError ? error.message : "Failed to load learning progress."}
+        </Alert>
+      ) : null}
 
       {progress ? (
         <>

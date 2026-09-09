@@ -7,7 +7,8 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useCallback, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
+import { useMutation, useQuery, useQueryClient, keepPreviousData } from "@tanstack/react-query";
 import { fetchClasses, type ClassSummary } from "@/lib/api/classes";
 import { ApiError } from "@/lib/api/client";
 import {
@@ -22,7 +23,6 @@ import {
   type UpdateSubjectInput,
 } from "@/lib/api/subjects";
 import { fetchTeachers, type TeacherSummary } from "@/lib/api/teachers";
-import type { Pagination } from "@/lib/auth/types";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { DataTableCard } from "@/components/admin/data-table-card";
 import { FormField } from "@/components/admin/form-field";
@@ -68,74 +68,65 @@ export default function AdminSubjectsPage() {
   // Only admins can access this route — redirects others to their home page.
   useRequireAuth(["ADMIN"]);
   const confirm = useConfirm();
+  const queryClient = useQueryClient();
 
   // --- List state (table + pagination) ---
-  const [subjects, setSubjects] = useState<SubjectSummary[]>([]);
-  const [pagination, setPagination] = useState<Pagination | null>(null);
   const [page, setPage] = useState(1);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  // --- Dropdown data for the create/edit modal ---
-  const [classes, setClasses] = useState<ClassSummary[]>([]);
-  const [teachers, setTeachers] = useState<TeacherSummary[]>([]);
+  const [pageError, setPageError] = useState<string | null>(null);
 
   // --- Modal / form state ---
   const [modalOpen, setModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<SubjectFormState>(emptyForm);
   const [formError, setFormError] = useState<string | null>(null);
-  const [isSaving, setIsSaving] = useState(false);
+
+  const { data, isPending, error } = useQuery({
+    queryKey: ["subjects", page],
+    queryFn: () => fetchSubjects(page, 10),
+    placeholderData: keepPreviousData,
+  });
+
+  const subjects = data?.data ?? [];
+  const pagination = data?.pagination ?? null;
+
+  const { data: classesData } = useQuery({
+    queryKey: ["classes", "all"],
+    queryFn: () => fetchClasses(1, 100),
+    staleTime: 5 * 60_000,
+  });
+  const classes: ClassSummary[] = classesData?.data ?? [];
+
+  const { data: teachersData } = useQuery({
+    queryKey: ["teachers", "all"],
+    queryFn: () => fetchTeachers(1, 100),
+    staleTime: 5 * 60_000,
+  });
+  const teachers: TeacherSummary[] = teachersData?.data ?? [];
 
   // True when both dropdowns have at least one option (needed to create a subject).
   const canCreate = classes.length > 0 && teachers.length > 0;
 
-  /** Fetches paginated subjects for the table. */
-  const loadSubjects = useCallback(async (targetPage: number) => {
-    setIsLoading(true);
-    setError(null);
+  const saveMutation = useMutation({
+    mutationFn: async (payload: CreateSubjectInput | UpdateSubjectInput) => {
+      if (editingId) {
+        return updateSubject(editingId, payload as UpdateSubjectInput);
+      }
+      return createSubject(payload as CreateSubjectInput);
+    },
+    onSuccess: () => {
+      toast.success(editingId ? "Subject updated." : "Subject created.");
+      closeModal();
+      queryClient.invalidateQueries({ queryKey: ["subjects"] });
+    },
+  });
 
-    try {
-      const result = await fetchSubjects(targetPage, 10);
-      setSubjects(result.data);
-      setPagination(result.pagination);
-    } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to load subjects.");
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
-  /** Loads all classes for the class dropdown (high limit = no pagination in modal). */
-  const loadClasses = useCallback(async () => {
-    try {
-      const result = await fetchClasses(1, 100);
-      setClasses(result.data);
-    } catch {
-      setClasses([]);
-    }
-  }, []);
-
-  /** Loads all teachers for the teacher dropdown. */
-  const loadTeachers = useCallback(async () => {
-    try {
-      const result = await fetchTeachers(1, 100);
-      setTeachers(result.data);
-    } catch {
-      setTeachers([]);
-    }
-  }, []);
-
-  // Load dropdown options once on mount.
-  useEffect(() => {
-    void loadClasses();
-    void loadTeachers();
-  }, [loadClasses, loadTeachers]);
-
-  // Reload table whenever the current page changes.
-  useEffect(() => {
-    void loadSubjects(page);
-  }, [page, loadSubjects]);
+  const deleteMutation = useMutation({
+    mutationFn: deleteSubject,
+    onSuccess: () => {
+      toast.success("Subject deleted.");
+      queryClient.invalidateQueries({ queryKey: ["subjects"] });
+    },
+  });
 
   function openCreate() {
     setEditingId(null);
@@ -159,7 +150,7 @@ export default function AdminSubjectsPage() {
       setForm(subjectToForm(subject));
       setModalOpen(true);
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to load subject.");
+      setPageError(err instanceof ApiError ? err.message : "Failed to load subject.");
     }
   }
 
@@ -181,7 +172,6 @@ export default function AdminSubjectsPage() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setFormError(null);
-    setIsSaving(true);
 
     try {
       if (editingId) {
@@ -192,7 +182,7 @@ export default function AdminSubjectsPage() {
           classId: form.classId,
           teacherId: form.teacherId,
         };
-        await updateSubject(editingId, payload);
+        await saveMutation.mutateAsync(payload);
       } else {
         const payload: CreateSubjectInput = {
           subjectName: form.subjectName,
@@ -201,18 +191,12 @@ export default function AdminSubjectsPage() {
           classId: form.classId,
           teacherId: form.teacherId,
         };
-        await createSubject(payload);
+        await saveMutation.mutateAsync(payload);
       }
-
-      toast.success(editingId ? "Subject updated." : "Subject created.");
-      closeModal();
-      await loadSubjects(page);
     } catch (err) {
       setFormError(
         err instanceof ApiError ? err.message : "Failed to save subject."
       );
-    } finally {
-      setIsSaving(false);
     }
   }
 
@@ -225,14 +209,12 @@ export default function AdminSubjectsPage() {
       return;
     }
 
-    setError(null);
+    setPageError(null);
 
     try {
-      await deleteSubject(subject.id);
-      toast.success("Subject deleted.");
-      await loadSubjects(page);
+      await deleteMutation.mutateAsync(subject.id);
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to delete subject.");
+      setPageError(err instanceof ApiError ? err.message : "Failed to delete subject.");
     }
   }
 
@@ -244,7 +226,12 @@ export default function AdminSubjectsPage() {
         description="Manage subjects, assign them to classes, and link teachers."
       />
 
-      {error ? <Alert>{error}</Alert> : null}
+      {pageError ? <Alert>{pageError}</Alert> : null}
+      {error ? (
+        <Alert>
+          {error instanceof ApiError ? error.message : "Failed to load subjects."}
+        </Alert>
+      ) : null}
 
       <DataTableCard
         title="All subjects"
@@ -298,7 +285,7 @@ export default function AdminSubjectsPage() {
           },
         ]}
         rows={subjects}
-        isLoading={isLoading}
+        isLoading={isPending}
         emptyMessage="No subjects yet."
         emptyDescription="Create a subject and assign it to a class and teacher."
         emptyAction={
@@ -311,7 +298,7 @@ export default function AdminSubjectsPage() {
         onPageChange={setPage}
       />
 
-      {!canCreate && !isLoading ? (
+      {!canCreate && !isPending ? (
         <Alert variant="info">
           You need at least one class and one teacher before creating subjects.
         </Alert>
@@ -399,8 +386,8 @@ export default function AdminSubjectsPage() {
             <Button type="button" variant="secondary" onClick={closeModal}>
               Cancel
             </Button>
-            <Button type="submit" disabled={isSaving}>
-              {isSaving ? "Saving..." : editingId ? "Save changes" : "Create subject"}
+            <Button type="submit" disabled={saveMutation.isPending}>
+              {saveMutation.isPending ? "Saving..." : editingId ? "Save changes" : "Create subject"}
             </Button>
           </div>
         </form>

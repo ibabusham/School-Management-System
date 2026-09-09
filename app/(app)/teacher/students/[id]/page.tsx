@@ -6,10 +6,11 @@
  */
 "use client";
 
-import { FormEvent, useCallback, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
+import { useMutation, useQuery, useQueryClient, keepPreviousData } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import { ApiError } from "@/lib/api/client";
-import { fetchStudent, type StudentDetail } from "@/lib/api/students";
+import { fetchStudent } from "@/lib/api/students";
 import {
   createProgressNote,
   deleteProgressNote,
@@ -17,11 +18,9 @@ import {
   fetchProgressNotes,
   updateProgressNote,
   type CreateProgressNoteInput,
-  type LearningProgress,
   type ProgressNote,
   type UpdateProgressNoteInput,
 } from "@/lib/api/learning-progress";
-import type { Pagination } from "@/lib/auth/types";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { DataTableCard } from "@/components/admin/data-table-card";
 import { FormField } from "@/components/admin/form-field";
@@ -66,60 +65,59 @@ export default function TeacherStudentDetailPage() {
   // Only teachers can access this route.
   useRequireAuth(["TEACHER"]);
   const confirm = useConfirm();
+  const queryClient = useQueryClient();
 
   const params = useParams<{ id: string }>();
   const studentId = params.id;
 
-  // --- Student + progress state ---
-  const [student, setStudent] = useState<StudentDetail | null>(null);
-  const [progress, setProgress] = useState<LearningProgress | null>(null);
-
-  // --- Notes list state ---
-  const [notes, setNotes] = useState<ProgressNote[]>([]);
-  const [pagination, setPagination] = useState<Pagination | null>(null);
   const [page, setPage] = useState(1);
-
-  // --- General state ---
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  // --- Modal / form state ---
+  const [pageError, setPageError] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<NoteFormState>(emptyForm);
   const [formError, setFormError] = useState<string | null>(null);
-  const [isSaving, setIsSaving] = useState(false);
 
-  /** Loads student detail, learning progress, and paginated notes in parallel. */
-  const loadData = useCallback(
-    async (targetPage: number) => {
-      setIsLoading(true);
-      setError(null);
+  const { data: student, isPending: isLoading, error } = useQuery({
+    queryKey: ["student", studentId],
+    queryFn: () => fetchStudent(studentId),
+  });
 
-      try {
-        const [studentRecord, progressRecord, notesResult] = await Promise.all([
-          fetchStudent(studentId),
-          fetchLearningProgress(studentId).catch(() => null),
-          fetchProgressNotes(studentId, targetPage, 10),
-        ]);
-        setStudent(studentRecord);
-        setProgress(progressRecord);
-        setNotes(notesResult.data);
-        setPagination(notesResult.pagination);
-      } catch (err) {
-        setError(
-          err instanceof ApiError ? err.message : "Failed to load student."
-        );
-      } finally {
-        setIsLoading(false);
+  const { data: progress } = useQuery({
+    queryKey: ["learningProgress", studentId],
+    queryFn: () => fetchLearningProgress(studentId),
+    retry: false,
+  });
+
+  const { data: notesData, isPending: notesLoading } = useQuery({
+    queryKey: ["progressNotes", studentId, page],
+    queryFn: () => fetchProgressNotes(studentId, page, 10),
+    placeholderData: keepPreviousData,
+  });
+
+  const notes = notesData?.data ?? [];
+  const pagination = notesData?.pagination ?? null;
+
+  const saveMutation = useMutation({
+    mutationFn: async (payload: CreateProgressNoteInput | UpdateProgressNoteInput) => {
+      if (editingId) {
+        return updateProgressNote(studentId, editingId, payload as UpdateProgressNoteInput);
       }
+      return createProgressNote(studentId, payload as CreateProgressNoteInput);
     },
-    [studentId]
-  );
+    onSuccess: () => {
+      toast.success(editingId ? "Note updated." : "Note added.");
+      closeModal();
+      queryClient.invalidateQueries({ queryKey: ["progressNotes", studentId] });
+    },
+  });
 
-  useEffect(() => {
-    void loadData(page);
-  }, [page, loadData]);
+  const deleteMutation = useMutation({
+    mutationFn: (noteId: string) => deleteProgressNote(studentId, noteId),
+    onSuccess: () => {
+      toast.success("Note deleted.");
+      queryClient.invalidateQueries({ queryKey: ["progressNotes", studentId] });
+    },
+  });
 
   function openCreate() {
     setEditingId(null);
@@ -154,7 +152,6 @@ export default function TeacherStudentDetailPage() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setFormError(null);
-    setIsSaving(true);
 
     try {
       // noteDate is optional — only include it if the user picked one.
@@ -167,7 +164,7 @@ export default function TeacherStudentDetailPage() {
           strengths: form.strengths,
           areasForImprovement: form.areasForImprovement,
         };
-        await updateProgressNote(studentId, editingId, payload);
+        await saveMutation.mutateAsync(payload);
       } else {
         const payload: CreateProgressNoteInput = {
           noteDate,
@@ -175,18 +172,12 @@ export default function TeacherStudentDetailPage() {
           strengths: form.strengths,
           areasForImprovement: form.areasForImprovement,
         };
-        await createProgressNote(studentId, payload);
+        await saveMutation.mutateAsync(payload);
       }
-
-      toast.success(editingId ? "Note updated." : "Note added.");
-      closeModal();
-      await loadData(page);
     } catch (err) {
       setFormError(
         err instanceof ApiError ? err.message : "Failed to save note."
       );
-    } finally {
-      setIsSaving(false);
     }
   }
 
@@ -199,14 +190,12 @@ export default function TeacherStudentDetailPage() {
       return;
     }
 
-    setError(null);
+    setPageError(null);
 
     try {
-      await deleteProgressNote(studentId, note.id);
-      toast.success("Note deleted.");
-      await loadData(page);
+      await deleteMutation.mutateAsync(note.id);
     } catch (err) {
-      setError(
+      setPageError(
         err instanceof ApiError ? err.message : "Failed to delete note."
       );
     }
@@ -228,7 +217,12 @@ export default function TeacherStudentDetailPage() {
         ]}
       />
 
-      {error ? <Alert>{error}</Alert> : null}
+      {pageError ? <Alert>{pageError}</Alert> : null}
+      {error ? (
+        <Alert>
+          {error instanceof ApiError ? error.message : "Failed to load student."}
+        </Alert>
+      ) : null}
 
       {isLoading ? (
         <Card className="p-8">
@@ -316,7 +310,7 @@ export default function TeacherStudentDetailPage() {
               },
             ]}
             rows={notes}
-            isLoading={false}
+            isLoading={notesLoading}
             emptyMessage="No progress notes yet."
             emptyDescription="Add an observation about this student’s learning."
             emptyAction={
@@ -394,8 +388,8 @@ export default function TeacherStudentDetailPage() {
             <Button type="button" variant="secondary" onClick={closeModal}>
               Cancel
             </Button>
-            <Button type="submit" disabled={isSaving}>
-              {isSaving ? "Saving..." : editingId ? "Save changes" : "Create note"}
+            <Button type="submit" disabled={saveMutation.isPending}>
+              {saveMutation.isPending ? "Saving..." : editingId ? "Save changes" : "Create note"}
             </Button>
           </div>
         </form>

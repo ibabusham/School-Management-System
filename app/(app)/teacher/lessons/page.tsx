@@ -6,7 +6,8 @@
  */
 "use client";
 
-import { FormEvent, useCallback, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
+import { useMutation, useQuery, useQueryClient, keepPreviousData } from "@tanstack/react-query";
 import { ApiError } from "@/lib/api/client";
 import {
   createLesson,
@@ -19,8 +20,7 @@ import {
   type LessonSummary,
   type UpdateLessonInput,
 } from "@/lib/api/lessons";
-import { fetchSubjects, type SubjectSummary } from "@/lib/api/subjects";
-import type { Pagination } from "@/lib/auth/types";
+import { fetchSubjects } from "@/lib/api/subjects";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { DataTableCard } from "@/components/admin/data-table-card";
 import { FormField } from "@/components/admin/form-field";
@@ -73,65 +73,56 @@ export default function TeacherLessonsPage() {
   // Only teachers can access this route.
   useRequireAuth(["TEACHER"]);
   const confirm = useConfirm();
+  const queryClient = useQueryClient();
 
   // --- List state (table + pagination) ---
-  const [lessons, setLessons] = useState<LessonSummary[]>([]);
-  const [subjects, setSubjects] = useState<SubjectSummary[]>([]);
-  const [pagination, setPagination] = useState<Pagination | null>(null);
   const [page, setPage] = useState(1);
   const [subjectFilter, setSubjectFilter] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [pageError, setPageError] = useState<string | null>(null);
 
   // --- Modal / form state ---
   const [modalOpen, setModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<LessonFormState>(emptyForm());
   const [formError, setFormError] = useState<string | null>(null);
-  const [isSaving, setIsSaving] = useState(false);
 
-  /** Loads all subjects for the dropdown + filter (teacher's subjects only). */
-  const loadSubjects = useCallback(async () => {
-    try {
-      const result = await fetchSubjects(1, 100);
-      setSubjects(result.data);
-    } catch {
-      setSubjects([]);
-    }
-  }, []);
+  const { data, isPending, error } = useQuery({
+    queryKey: ["lessons", page, subjectFilter],
+    queryFn: () => fetchLessons(page, 10, subjectFilter || undefined),
+    placeholderData: keepPreviousData,
+  });
 
-  /** Fetches paginated lessons, optionally filtered by subject. */
-  const loadLessons = useCallback(
-    async (targetPage: number, filterSubjectId: string) => {
-      setIsLoading(true);
-      setError(null);
+  const lessons = data?.data ?? [];
+  const pagination = data?.pagination ?? null;
 
-      try {
-        const result = await fetchLessons(
-          targetPage,
-          10,
-          filterSubjectId || undefined
-        );
-        setLessons(result.data);
-        setPagination(result.pagination);
-      } catch (err) {
-        setError(err instanceof ApiError ? err.message : "Failed to load lessons.");
-      } finally {
-        setIsLoading(false);
+  const { data: subjectsData } = useQuery({
+    queryKey: ["subjects", "all"],
+    queryFn: () => fetchSubjects(1, 100),
+    staleTime: 5 * 60_000,
+  });
+  const subjects = subjectsData?.data ?? [];
+
+  const saveMutation = useMutation({
+    mutationFn: async (payload: CreateLessonInput | UpdateLessonInput) => {
+      if (editingId) {
+        return updateLesson(editingId, payload as UpdateLessonInput);
       }
+      return createLesson(payload as CreateLessonInput);
     },
-    []
-  );
+    onSuccess: () => {
+      toast.success(editingId ? "Lesson updated." : "Lesson created.");
+      closeModal();
+      queryClient.invalidateQueries({ queryKey: ["lessons"] });
+    },
+  });
 
-  // Load subjects once on mount.
-  useEffect(() => {
-    void loadSubjects();
-  }, [loadSubjects]);
-
-  // Reload table whenever page or subject filter changes.
-  useEffect(() => {
-    void loadLessons(page, subjectFilter);
-  }, [page, subjectFilter, loadLessons]);
+  const deleteMutation = useMutation({
+    mutationFn: deleteLesson,
+    onSuccess: () => {
+      toast.success("Lesson deleted.");
+      queryClient.invalidateQueries({ queryKey: ["lessons"] });
+    },
+  });
 
   function openCreate() {
     setEditingId(null);
@@ -150,7 +141,7 @@ export default function TeacherLessonsPage() {
       setForm(lessonToForm(lesson));
       setModalOpen(true);
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to load lesson.");
+      setPageError(err instanceof ApiError ? err.message : "Failed to load lesson.");
     }
   }
 
@@ -181,8 +172,6 @@ export default function TeacherLessonsPage() {
       return;
     }
 
-    setIsSaving(true);
-
     try {
       if (editingId) {
         const payload: UpdateLessonInput = {
@@ -194,7 +183,7 @@ export default function TeacherLessonsPage() {
           learningMaterial: form.learningMaterial,
           completionStatus: form.completionStatus,
         };
-        await updateLesson(editingId, payload);
+        await saveMutation.mutateAsync(payload);
       } else {
         const payload: CreateLessonInput = {
           lessonTitle: form.lessonTitle,
@@ -205,18 +194,12 @@ export default function TeacherLessonsPage() {
           learningMaterial: form.learningMaterial,
           completionStatus: form.completionStatus,
         };
-        await createLesson(payload);
+        await saveMutation.mutateAsync(payload);
       }
-
-      toast.success(editingId ? "Lesson updated." : "Lesson created.");
-      closeModal();
-      await loadLessons(page, subjectFilter);
     } catch (err) {
       setFormError(
         err instanceof ApiError ? err.message : "Failed to save lesson."
       );
-    } finally {
-      setIsSaving(false);
     }
   }
 
@@ -229,14 +212,12 @@ export default function TeacherLessonsPage() {
       return;
     }
 
-    setError(null);
+    setPageError(null);
 
     try {
-      await deleteLesson(lesson.id);
-      toast.success("Lesson deleted.");
-      await loadLessons(page, subjectFilter);
+      await deleteMutation.mutateAsync(lesson.id);
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to delete lesson.");
+      setPageError(err instanceof ApiError ? err.message : "Failed to delete lesson.");
     }
   }
 
@@ -248,7 +229,12 @@ export default function TeacherLessonsPage() {
         description="Create and manage lessons for your subjects."
       />
 
-      {error ? <Alert>{error}</Alert> : null}
+      {pageError ? <Alert>{pageError}</Alert> : null}
+      {error ? (
+        <Alert>
+          {error instanceof ApiError ? error.message : "Failed to load lessons."}
+        </Alert>
+      ) : null}
 
       <div className="max-w-xs">
         <FormField label="Filter by subject" htmlFor="subjectFilter">
@@ -320,7 +306,7 @@ export default function TeacherLessonsPage() {
           },
         ]}
         rows={lessons}
-        isLoading={isLoading}
+        isLoading={isPending}
         emptyMessage="No lessons yet."
         emptyDescription="Plan a lesson for one of your subjects."
         emptyAction={
@@ -333,7 +319,7 @@ export default function TeacherLessonsPage() {
         onPageChange={setPage}
       />
 
-      {subjects.length === 0 && !isLoading ? (
+      {subjects.length === 0 && !isPending ? (
         <Alert variant="info">
           You need at least one assigned subject before creating lessons.
         </Alert>
@@ -445,8 +431,8 @@ export default function TeacherLessonsPage() {
             <Button type="button" variant="secondary" onClick={closeModal}>
               Cancel
             </Button>
-            <Button type="submit" disabled={isSaving}>
-              {isSaving ? "Saving..." : editingId ? "Save changes" : "Create lesson"}
+            <Button type="submit" disabled={saveMutation.isPending}>
+              {saveMutation.isPending ? "Saving..." : editingId ? "Save changes" : "Create lesson"}
             </Button>
           </div>
         </form>

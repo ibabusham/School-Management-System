@@ -1,6 +1,10 @@
 import { z } from "zod";
 
 const genderSchema = z.enum(["MALE", "FEMALE"]);
+const phoneSchema = z
+  .string()
+  .trim()
+  .regex(/^\d{10}$/, "Phone number must be exactly 10 digits");
 
 export const createStudentSchema = z.object({
   studentId: z.number().int().min(1, "Student id is required").max(2147483647),
@@ -9,7 +13,7 @@ export const createStudentSchema = z.object({
   lastName: z.string().trim().min(1, "Last name is required"),
   password: z.string().min(1, "Password is required"),
   email: z.string().trim().email("Valid email is required"),
-  phoneNumber: z.string().trim().min(1, "Phone number is required").optional(),
+  phoneNumber: phoneSchema.optional(),
   dateOfBirth: z.coerce.date({ error: "Valid date of birth is required" }),
   enrollmentDate: z.coerce.date({ error: "Valid enrollment date is required" }),
   gender: genderSchema,
@@ -20,7 +24,7 @@ export const updateStudentSchema = z.object({
   firstName: z.string().trim().min(1).optional(),
   lastName: z.string().trim().min(1).optional(),
   email: z.string().trim().email().optional(),
-  phoneNumber: z.string().trim().min(1).optional(),
+  phoneNumber: phoneSchema.optional(),
   dateOfBirth: z.coerce.date().optional(),
   enrollmentDate: z.coerce.date().optional(),
   learningProgressId: z.string().trim().min(1).optional(),

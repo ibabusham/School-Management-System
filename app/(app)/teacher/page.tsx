@@ -1,11 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { fetchAssignments } from "@/lib/api/assignments";
+import { useQuery } from "@tanstack/react-query";
 import { ApiError } from "@/lib/api/client";
-import { fetchExams } from "@/lib/api/exams";
-import { fetchSubjects } from "@/lib/api/subjects";
+import { fetchTeacherDashboard } from "@/lib/api/dashboard";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { DashboardBarChart } from "@/components/dashboard/dashboard-bar-chart";
 import { DashboardSection } from "@/components/dashboard/dashboard-section";
@@ -18,49 +16,18 @@ import { formatDate } from "@/lib/utils/dates";
 
 export default function TeacherDashboardPage() {
   const { user } = useRequireAuth(["TEACHER"]);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [subjectCount, setSubjectCount] = useState(0);
-  const [examCount, setExamCount] = useState(0);
-  const [assignmentCount, setAssignmentCount] = useState(0);
-  const [subjects, setSubjects] = useState<
-    { id: string; subjectName: string; subjectCode: string }[]
-  >([]);
-  const [exams, setExams] = useState<
-    { id: string; examName: string; examDate: string }[]
-  >([]);
-  const [assignments, setAssignments] = useState<
-    { id: string; assignmentTitle: string; dueDate: string }[]
-  >([]);
+  const { data: dashboard, isPending: isLoading, error } = useQuery({
+    queryKey: ["dashboard", "teacher"],
+    queryFn: fetchTeacherDashboard,
+    enabled: !!user,
+  });
 
-  useEffect(() => {
-    if (!user) {
-      return;
-    }
-
-    setIsLoading(true);
-    setError(null);
-
-    void Promise.all([
-      fetchSubjects(1, 5),
-      fetchExams(1, 5),
-      fetchAssignments(1, 5),
-    ])
-      .then(([subjectsResult, examsResult, assignmentsResult]) => {
-        setSubjects(subjectsResult.data);
-        setExams(examsResult.data);
-        setAssignments(assignmentsResult.data);
-        setSubjectCount(subjectsResult.pagination.total);
-        setExamCount(examsResult.pagination.total);
-        setAssignmentCount(assignmentsResult.pagination.total);
-      })
-      .catch((err) => {
-        setError(
-          err instanceof ApiError ? err.message : "Failed to load dashboard."
-        );
-      })
-      .finally(() => setIsLoading(false));
-  }, [user]);
+  const subjectCount = dashboard?.counts.subjects ?? 0;
+  const examCount = dashboard?.counts.exams ?? 0;
+  const assignmentCount = dashboard?.counts.assignments ?? 0;
+  const subjects = dashboard?.subjects ?? [];
+  const exams = dashboard?.recentExams ?? [];
+  const assignments = dashboard?.recentAssignments ?? [];
 
   return (
     <div className="space-y-10">
@@ -70,7 +37,11 @@ export default function TeacherDashboardPage() {
         description="Overview of your subjects, exams, and assignments."
       />
 
-      {error ? <Alert>{error}</Alert> : null}
+      {error ? (
+        <Alert>
+          {error instanceof ApiError ? error.message : "Failed to load dashboard."}
+        </Alert>
+      ) : null}
 
       {isLoading ? (
         <Card className="p-8">

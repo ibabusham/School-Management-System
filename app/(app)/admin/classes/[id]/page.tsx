@@ -6,7 +6,8 @@
  */
 "use client";
 
-import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
+import { FormEvent, useMemo, useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import { ApiError } from "@/lib/api/client";
 import {
@@ -15,10 +16,8 @@ import {
   fetchClassPerformance,
   unassignStudentFromClass,
   type AssignedStudent,
-  type ClassDetail,
-  type ClassPerformance,
 } from "@/lib/api/classes";
-import { fetchStudents, type StudentSummary } from "@/lib/api/students";
+import { fetchStudents } from "@/lib/api/students";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { DataTableCard } from "@/components/admin/data-table-card";
 import { DashboardBarChart } from "@/components/dashboard/dashboard-bar-chart";
@@ -35,44 +34,33 @@ import { toast } from "sonner";
 export default function AdminClassDetailPage() {
   useRequireAuth(["ADMIN"]);
   const confirm = useConfirm();
+  const queryClient = useQueryClient();
 
   const params = useParams<{ id: string }>();
   const classId = params.id;
 
-  const [classData, setClassData] = useState<ClassDetail | null>(null);
-  const [performance, setPerformance] = useState<ClassPerformance | null>(null);
-  const [allStudents, setAllStudents] = useState<StudentSummary[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const [pageError, setPageError] = useState<string | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
-  const [isSaving, setIsSaving] = useState(false);
 
-  const loadData = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
+  const { data: classData, isPending: isLoading, error } = useQuery({
+    queryKey: ["class", classId],
+    queryFn: () => fetchClass(classId),
+  });
 
-    try {
-      const [classRecord, studentsResult, perf] = await Promise.all([
-        fetchClass(classId),
-        fetchStudents(1, 100),
-        // Defensive: a performance failure shouldn't blank the whole page.
-        fetchClassPerformance(classId).catch(() => null),
-      ]);
-      setClassData(classRecord);
-      setAllStudents(studentsResult.data);
-      setPerformance(perf);
-    } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to load class.");
-    } finally {
-      setIsLoading(false);
-    }
-  }, [classId]);
+  const { data: performance } = useQuery({
+    queryKey: ["classPerformance", classId],
+    queryFn: () => fetchClassPerformance(classId),
+    retry: false,
+  });
 
-  useEffect(() => {
-    void loadData();
-  }, [loadData]);
+  const { data: studentsData } = useQuery({
+    queryKey: ["students", "all"],
+    queryFn: () => fetchStudents(1, 100),
+    staleTime: 5 * 60_000,
+  });
+  const allStudents = studentsData?.data ?? [];
 
   const enrolledIds = useMemo(
     () => new Set((classData?.students ?? []).map((student) => student.id)),
@@ -83,6 +71,23 @@ export default function AdminClassDetailPage() {
     () => allStudents.filter((student) => !enrolledIds.has(student.id)),
     [allStudents, enrolledIds]
   );
+
+  const assignMutation = useMutation({
+    mutationFn: (ids: string[]) => assignStudentsToClass(classId, ids),
+    onSuccess: () => {
+      toast.success("Students assigned to class.");
+      closeModal();
+      queryClient.invalidateQueries({ queryKey: ["class", classId] });
+    },
+  });
+
+  const unassignMutation = useMutation({
+    mutationFn: (studentId: string) => unassignStudentFromClass(classId, studentId),
+    onSuccess: () => {
+      toast.success("Student removed from class.");
+      queryClient.invalidateQueries({ queryKey: ["class", classId] });
+    },
+  });
 
   function openAddModal() {
     setSelectedIds(new Set());
@@ -111,19 +116,13 @@ export default function AdminClassDetailPage() {
   async function handleAssign(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setFormError(null);
-    setIsSaving(true);
 
     try {
-      await assignStudentsToClass(classId, [...selectedIds]);
-      toast.success("Students assigned to class.");
-      closeModal();
-      await loadData();
+      await assignMutation.mutateAsync([...selectedIds]);
     } catch (err) {
       setFormError(
         err instanceof ApiError ? err.message : "Failed to assign students."
       );
-    } finally {
-      setIsSaving(false);
     }
   }
 
@@ -137,14 +136,12 @@ export default function AdminClassDetailPage() {
       return;
     }
 
-    setError(null);
+    setPageError(null);
 
     try {
-      await unassignStudentFromClass(classId, student.id);
-      toast.success("Student removed from class.");
-      await loadData();
+      await unassignMutation.mutateAsync(student.id);
     } catch (err) {
-      setError(
+      setPageError(
         err instanceof ApiError ? err.message : "Failed to remove student."
       );
     }
@@ -169,7 +166,12 @@ export default function AdminClassDetailPage() {
         ]}
       />
 
-      {error ? <Alert>{error}</Alert> : null}
+      {pageError ? <Alert>{pageError}</Alert> : null}
+      {error ? (
+        <Alert>
+          {error instanceof ApiError ? error.message : "Failed to load class."}
+        </Alert>
+      ) : null}
 
       {isLoading ? (
         <Card className="p-8">
@@ -324,8 +326,8 @@ export default function AdminClassDetailPage() {
             <Button type="button" variant="secondary" onClick={closeModal}>
               Cancel
             </Button>
-            <Button type="submit" disabled={isSaving || selectedIds.size === 0}>
-              {isSaving ? "Assigning..." : "Assign students"}
+            <Button type="submit" disabled={assignMutation.isPending || selectedIds.size === 0}>
+              {assignMutation.isPending ? "Assigning..." : "Assign students"}
             </Button>
           </div>
         </form>

@@ -607,6 +607,36 @@ export const swaggerComponentSchemas = {
   AcademicYearResponse: zodToOpenApiSchema(
     z.object({ data: academicYearSchema })
   ),
+  AdminDashboardResponse: zodToOpenApiSchema(
+    z.object({
+      counts: z.object({
+        students: z.number().int(),
+        teachers: z.number().int(),
+        classes: z.number().int(),
+        subjects: z.number().int(),
+      }),
+      recentStudents: z.array(studentSummarySchema),
+      academicYears: z.array(academicYearSchema),
+    })
+  ),
+  TeacherDashboardResponse: zodToOpenApiSchema(
+    z.object({
+      counts: z.object({
+        subjects: z.number().int(),
+        exams: z.number().int(),
+        assignments: z.number().int(),
+      }),
+      subjects: z.array(subjectSummarySchema),
+      recentExams: z.array(examSummarySchema),
+      recentAssignments: z.array(assignmentSummarySchema),
+    })
+  ),
+  StudentDashboardResponse: zodToOpenApiSchema(
+    z.object({
+      learningProgress: learningProgressReportSchema,
+      recentNotes: z.array(progressNoteSchema),
+    })
+  ),
   LearningProgressReportResponse: zodToOpenApiSchema(
     z.object({
       learningProgress: learningProgressReportSchema,

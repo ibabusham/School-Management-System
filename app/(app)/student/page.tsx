@@ -1,13 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { ApiError } from "@/lib/api/client";
-import {
-  fetchLearningProgress,
-  fetchProgressNotes,
-  type ProgressNote,
-  type SubjectAverage,
-} from "@/lib/api/learning-progress";
+import { fetchStudentDashboard } from "@/lib/api/dashboard";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { DashboardBarChart } from "@/components/dashboard/dashboard-bar-chart";
 import { DashboardSection } from "@/components/dashboard/dashboard-section";
@@ -21,46 +16,15 @@ import { formatDate } from "@/lib/utils/dates";
 
 export default function StudentDashboardPage() {
   const { user } = useRequireAuth(["STUDENT"]);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [notes, setNotes] = useState<ProgressNote[]>([]);
-  const [progress, setProgress] = useState<{
-    subjectsAverages: number;
-    overallAvreages: number;
-    attendencePercentage: number;
-    learningStatus: string;
-    subjectAverages: SubjectAverage[];
-  } | null>(null);
+  const { data: dashboard, isPending, error } = useQuery({
+    queryKey: ["dashboard", "student"],
+    queryFn: fetchStudentDashboard,
+    enabled: !!user,
+  });
 
-  useEffect(() => {
-    if (!user) {
-      return;
-    }
-
-    setIsLoading(true);
-    setError(null);
-
-    void Promise.all([
-      fetchLearningProgress(user.id),
-      fetchProgressNotes(user.id, 1, 3),
-    ])
-      .then(([learningProgress, notesResult]) => {
-        setProgress({
-          subjectsAverages: learningProgress.subjectsAverages,
-          overallAvreages: learningProgress.overallAvreages,
-          attendencePercentage: learningProgress.attendencePercentage,
-          learningStatus: learningProgress.learningStatus,
-          subjectAverages: learningProgress.subjectAverages ?? [],
-        });
-        setNotes(notesResult.data);
-      })
-      .catch((err) => {
-        setError(
-          err instanceof ApiError ? err.message : "Failed to load dashboard."
-        );
-      })
-      .finally(() => setIsLoading(false));
-  }, [user]);
+  const progress = dashboard?.learningProgress;
+  const notes = dashboard?.recentNotes ?? [];
+  const subjectAverages = progress?.subjectAverages ?? [];
 
   return (
     <div className="space-y-10">
@@ -70,9 +34,15 @@ export default function StudentDashboardPage() {
         description="Your academic overview at Shield's School."
       />
 
-      {error ? <Alert>{error}</Alert> : null}
+      {error ? (
+        <Alert>
+          {error instanceof ApiError
+            ? error.message
+            : "Failed to load dashboard."}
+        </Alert>
+      ) : null}
 
-      {isLoading ? (
+      {isPending ? (
         <Card className="p-8">
           <p className="text-sm text-sidebar-muted">Loading dashboard...</p>
         </Card>
@@ -159,10 +129,10 @@ export default function StudentDashboardPage() {
               title="Subject averages"
               description="Your average in each subject from graded work."
             >
-              {progress && progress.subjectAverages.length > 0 ? (
+              {progress && subjectAverages.length > 0 ? (
                 <div className="space-y-6">
                   <dl className="grid gap-4 sm:grid-cols-2">
-                    {progress.subjectAverages.map((subject) => (
+                    {subjectAverages.map((subject) => (
                       <FieldCard key={subject.subjectId}>
                         <dt className="text-xs font-bold uppercase tracking-wider text-sidebar-muted">
                           {subject.subjectName}
@@ -175,7 +145,7 @@ export default function StudentDashboardPage() {
                   </dl>
                   <DashboardBarChart
                     valueSuffix="%"
-                    data={progress.subjectAverages.map((subject) => ({
+                    data={subjectAverages.map((subject) => ({
                       name: subject.subjectName,
                       value: subject.average,
                     }))}

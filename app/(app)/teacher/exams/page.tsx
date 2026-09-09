@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useCallback, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
+import { useMutation, useQuery, useQueryClient, keepPreviousData } from "@tanstack/react-query";
 import { ApiError } from "@/lib/api/client";
 import {
   createExam,
@@ -14,8 +15,7 @@ import {
   type ExamSummary,
   type UpdateExamInput,
 } from "@/lib/api/exams";
-import { fetchSubjects, type SubjectSummary } from "@/lib/api/subjects";
-import type { Pagination } from "@/lib/auth/types";
+import { fetchSubjects } from "@/lib/api/subjects";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { DataTableCard } from "@/components/admin/data-table-card";
 import { FormField } from "@/components/admin/form-field";
@@ -55,58 +55,53 @@ function examToForm(exam: ExamDetail): ExamFormState {
 export default function TeacherExamsPage() {
   useRequireAuth(["TEACHER"]);
   const confirm = useConfirm();
+  const queryClient = useQueryClient();
 
-  const [exams, setExams] = useState<ExamSummary[]>([]);
-  const [subjects, setSubjects] = useState<SubjectSummary[]>([]);
-  const [pagination, setPagination] = useState<Pagination | null>(null);
   const [page, setPage] = useState(1);
   const [subjectFilter, setSubjectFilter] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [pageError, setPageError] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<ExamFormState>(emptyForm());
   const [formError, setFormError] = useState<string | null>(null);
-  const [isSaving, setIsSaving] = useState(false);
 
-  const loadSubjects = useCallback(async () => {
-    try {
-      const result = await fetchSubjects(1, 100);
-      setSubjects(result.data);
-    } catch {
-      setSubjects([]);
-    }
-  }, []);
+  const { data, isPending, error } = useQuery({
+    queryKey: ["exams", page, subjectFilter],
+    queryFn: () => fetchExams(page, 10, subjectFilter || undefined),
+    placeholderData: keepPreviousData,
+  });
 
-  const loadExams = useCallback(
-    async (targetPage: number, filterSubjectId: string) => {
-      setIsLoading(true);
-      setError(null);
+  const exams = data?.data ?? [];
+  const pagination = data?.pagination ?? null;
 
-      try {
-        const result = await fetchExams(
-          targetPage,
-          10,
-          filterSubjectId || undefined
-        );
-        setExams(result.data);
-        setPagination(result.pagination);
-      } catch (err) {
-        setError(err instanceof ApiError ? err.message : "Failed to load exams.");
-      } finally {
-        setIsLoading(false);
+  const { data: subjectsData } = useQuery({
+    queryKey: ["subjects", "all"],
+    queryFn: () => fetchSubjects(1, 100),
+    staleTime: 5 * 60_000,
+  });
+  const subjects = subjectsData?.data ?? [];
+
+  const saveMutation = useMutation({
+    mutationFn: async (payload: CreateExamInput | UpdateExamInput) => {
+      if (editingId) {
+        return updateExam(editingId, payload as UpdateExamInput);
       }
+      return createExam(payload as CreateExamInput);
     },
-    []
-  );
+    onSuccess: () => {
+      toast.success(editingId ? "Exam updated." : "Exam created.");
+      closeModal();
+      queryClient.invalidateQueries({ queryKey: ["exams"] });
+    },
+  });
 
-  useEffect(() => {
-    void loadSubjects();
-  }, [loadSubjects]);
-
-  useEffect(() => {
-    void loadExams(page, subjectFilter);
-  }, [page, subjectFilter, loadExams]);
+  const deleteMutation = useMutation({
+    mutationFn: deleteExam,
+    onSuccess: () => {
+      toast.success("Exam deleted.");
+      queryClient.invalidateQueries({ queryKey: ["exams"] });
+    },
+  });
 
   function openCreate() {
     setEditingId(null);
@@ -124,7 +119,7 @@ export default function TeacherExamsPage() {
       setForm(examToForm(exam));
       setModalOpen(true);
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to load exam.");
+      setPageError(err instanceof ApiError ? err.message : "Failed to load exam.");
     }
   }
 
@@ -145,7 +140,6 @@ export default function TeacherExamsPage() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setFormError(null);
-    setIsSaving(true);
 
     try {
       if (editingId) {
@@ -155,7 +149,7 @@ export default function TeacherExamsPage() {
           subjectId: form.subjectId,
           maximumGrade: Number(form.maximumGrade),
         };
-        await updateExam(editingId, payload);
+        await saveMutation.mutateAsync(payload);
       } else {
         const payload: CreateExamInput = {
           examName: form.examName,
@@ -163,16 +157,10 @@ export default function TeacherExamsPage() {
           subjectId: form.subjectId,
           maximumGrade: Number(form.maximumGrade),
         };
-        await createExam(payload);
+        await saveMutation.mutateAsync(payload);
       }
-
-      toast.success(editingId ? "Exam updated." : "Exam created.");
-      closeModal();
-      await loadExams(page, subjectFilter);
     } catch (err) {
       setFormError(err instanceof ApiError ? err.message : "Failed to save exam.");
-    } finally {
-      setIsSaving(false);
     }
   }
 
@@ -185,14 +173,12 @@ export default function TeacherExamsPage() {
       return;
     }
 
-    setError(null);
+    setPageError(null);
 
     try {
-      await deleteExam(exam.id);
-      toast.success("Exam deleted.");
-      await loadExams(page, subjectFilter);
+      await deleteMutation.mutateAsync(exam.id);
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to delete exam.");
+      setPageError(err instanceof ApiError ? err.message : "Failed to delete exam.");
     }
   }
 
@@ -204,7 +190,12 @@ export default function TeacherExamsPage() {
         description="Create and manage exams for your subjects."
       />
 
-      {error ? <Alert>{error}</Alert> : null}
+      {pageError ? <Alert>{pageError}</Alert> : null}
+      {error ? (
+        <Alert>
+          {error instanceof ApiError ? error.message : "Failed to load exams."}
+        </Alert>
+      ) : null}
 
       <div className="max-w-xs">
         <FormField label="Filter by subject" htmlFor="subjectFilter">
@@ -278,7 +269,7 @@ export default function TeacherExamsPage() {
           },
         ]}
         rows={exams}
-        isLoading={isLoading}
+        isLoading={isPending}
         emptyMessage="No exams yet."
         emptyDescription="Create an exam for one of your subjects."
         emptyAction={
@@ -291,7 +282,7 @@ export default function TeacherExamsPage() {
         onPageChange={setPage}
       />
 
-      {subjects.length === 0 && !isLoading ? (
+      {subjects.length === 0 && !isPending ? (
         <Alert variant="info">
           You need at least one assigned subject before creating exams.
         </Alert>
@@ -362,8 +353,8 @@ export default function TeacherExamsPage() {
             <Button type="button" variant="secondary" onClick={closeModal}>
               Cancel
             </Button>
-            <Button type="submit" disabled={isSaving}>
-              {isSaving ? "Saving..." : editingId ? "Save changes" : "Create exam"}
+            <Button type="submit" disabled={saveMutation.isPending}>
+              {saveMutation.isPending ? "Saving..." : editingId ? "Save changes" : "Create exam"}
             </Button>
           </div>
         </form>

@@ -4,7 +4,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { ApiError } from "@/lib/api/client";
 import { fetchStudent, type StudentDetail } from "@/lib/api/students";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
@@ -25,22 +25,11 @@ function formatPhone(phone: string | null) {
 
 export default function StudentProfilePage() {
   const { user } = useRequireAuth(["STUDENT"]);
-  const [profile, setProfile] = useState<StudentDetail | null>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (!user) {
-      return;
-    }
-
-    void fetchStudent(user.id)
-      .then((student) => setProfile(student))
-      .catch((err) => {
-        setError(
-          err instanceof ApiError ? err.message : "Failed to load profile."
-        );
-      });
-  }, [user]);
+  const { data: profile, error } = useQuery({
+    queryKey: ["student", user?.id],
+    queryFn: () => fetchStudent(user!.id),
+    enabled: !!user,
+  });
 
   return (
     <div className="space-y-10">
@@ -54,7 +43,11 @@ export default function StudentProfilePage() {
         ]}
       />
 
-      {error ? <Alert>{error}</Alert> : null}
+      {error ? (
+        <Alert>
+          {error instanceof ApiError ? error.message : "Failed to load profile."}
+        </Alert>
+      ) : null}
 
       <Card className="p-8">
         {profile ? (

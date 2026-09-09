@@ -1,14 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { getRoleHomePath, useAuth } from "@/lib/auth/auth-context";
 import type { UserRole } from "@/lib/auth/types";
 
 export function useRequireAuth(allowedRoles?: UserRole[]) {
   const { user, isLoading } = useAuth();
   const router = useRouter();
-  const pathname = usePathname();
 
   useEffect(() => {
     if (isLoading) {
@@ -16,14 +15,14 @@ export function useRequireAuth(allowedRoles?: UserRole[]) {
     }
 
     if (!user) {
-      router.replace(`/login?next=${encodeURIComponent(pathname)}`);
+      router.replace("/login");
       return;
     }
 
     if (allowedRoles && !allowedRoles.includes(user.role)) {
       router.replace(getRoleHomePath(user.role));
     }
-  }, [user, isLoading, allowedRoles, router, pathname]);
+  }, [user, isLoading, allowedRoles, router]);
 
   return { user, isLoading };
 }

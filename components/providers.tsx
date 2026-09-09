@@ -7,26 +7,30 @@
 "use client";
 
 import { Toaster } from "sonner";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "@/lib/query-client";
 import { AuthProvider } from "@/lib/auth/auth-context";
 import { ConfirmProvider } from "@/components/ui/confirm-dialog";
 
 /** Root provider component — add more providers here as the app grows. */
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <AuthProvider>
-      <ConfirmProvider>
-        {children}
-        <Toaster
-          position="top-right"
-          richColors
-          closeButton
-          toastOptions={{
-            classNames: {
-              toast: "font-bold",
-            },
-          }}
-        />
-      </ConfirmProvider>
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <ConfirmProvider>
+          {children}
+          <Toaster
+            position="top-right"
+            richColors
+            closeButton
+            toastOptions={{
+              classNames: {
+                toast: "font-bold",
+              },
+            }}
+          />
+        </ConfirmProvider>
+      </AuthProvider>
+    </QueryClientProvider>
   );
 }

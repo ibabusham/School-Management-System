@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useCallback, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
+import { useMutation, useQuery, useQueryClient, keepPreviousData } from "@tanstack/react-query";
 import { fetchAcademicYears, type AcademicYear } from "@/lib/api/academic-years";
 import { ApiError } from "@/lib/api/client";
 import {
@@ -14,7 +15,6 @@ import {
   type CreateClassInput,
   type UpdateClassInput,
 } from "@/lib/api/classes";
-import type { Pagination } from "@/lib/auth/types";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { DataTableCard } from "@/components/admin/data-table-card";
 import { FormField } from "@/components/admin/form-field";
@@ -54,50 +54,53 @@ function getClassYearLabel(classItem: ClassSummary) {
 export default function AdminClassesPage() {
   useRequireAuth(["ADMIN"]);
   const confirm = useConfirm();
+  const queryClient = useQueryClient();
 
-  const [classes, setClasses] = useState<ClassSummary[]>([]);
-  const [academicYears, setAcademicYears] = useState<AcademicYear[]>([]);
-  const [pagination, setPagination] = useState<Pagination | null>(null);
   const [page, setPage] = useState(1);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [pageError, setPageError] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<ClassFormState>(emptyForm);
   const [formError, setFormError] = useState<string | null>(null);
-  const [isSaving, setIsSaving] = useState(false);
 
-  const loadClasses = useCallback(async (targetPage: number) => {
-    setIsLoading(true);
-    setError(null);
+  const { data, isPending, error } = useQuery({
+    queryKey: ["classes", page],
+    queryFn: () => fetchClasses(page, 10),
+    placeholderData: keepPreviousData,
+  });
 
-    try {
-      const result = await fetchClasses(targetPage, 10);
-      setClasses(result.data);
-      setPagination(result.pagination);
-    } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to load classes.");
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
+  const classes = data?.data ?? [];
+  const pagination = data?.pagination ?? null;
 
-  const loadAcademicYears = useCallback(async () => {
-    try {
-      const result = await fetchAcademicYears(1, 100);
-      setAcademicYears(result.data);
-    } catch {
-      setAcademicYears([]);
-    }
-  }, []);
+  const { data: academicYearsData } = useQuery({
+    queryKey: ["academicYears", "all"],
+    queryFn: () => fetchAcademicYears(1, 100),
+    staleTime: 5 * 60_000,
+  });
+  const academicYears: AcademicYear[] = academicYearsData?.data ?? [];
 
-  useEffect(() => {
-    void loadClasses(page);
-  }, [page, loadClasses]);
+  const saveMutation = useMutation({
+    mutationFn: async (payload: CreateClassInput | UpdateClassInput) => {
+      if (editingId) {
+        return updateClass(editingId, payload as UpdateClassInput);
+      }
+      return createClass(payload as CreateClassInput);
+    },
+    onSuccess: () => {
+      toast.success(editingId ? "Class updated." : "Class created.");
+      closeModal();
+      queryClient.invalidateQueries({ queryKey: ["classes"] });
+      queryClient.invalidateQueries({ queryKey: ["academicYears"] });
+    },
+  });
 
-  useEffect(() => {
-    void loadAcademicYears();
-  }, [loadAcademicYears]);
+  const deleteMutation = useMutation({
+    mutationFn: deleteClass,
+    onSuccess: () => {
+      toast.success("Class deleted.");
+      queryClient.invalidateQueries({ queryKey: ["classes"] });
+    },
+  });
 
   function openCreate() {
     setEditingId(null);
@@ -126,7 +129,7 @@ export default function AdminClassesPage() {
       });
       setModalOpen(true);
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to load class.");
+      setPageError(err instanceof ApiError ? err.message : "Failed to load class.");
     }
   }
 
@@ -147,7 +150,6 @@ export default function AdminClassesPage() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setFormError(null);
-    setIsSaving(true);
 
     try {
       if (editingId) {
@@ -157,7 +159,7 @@ export default function AdminClassesPage() {
             ? { academicYearId: form.academicYearId }
             : {}),
         };
-        await updateClass(editingId, payload);
+        await saveMutation.mutateAsync(payload);
       } else {
         let payload: CreateClassInput;
 
@@ -178,17 +180,10 @@ export default function AdminClassesPage() {
           };
         }
 
-        await createClass(payload);
+        await saveMutation.mutateAsync(payload);
       }
-
-      toast.success(editingId ? "Class updated." : "Class created.");
-      closeModal();
-      await loadClasses(page);
-      await loadAcademicYears();
     } catch (err) {
       setFormError(err instanceof ApiError ? err.message : "Failed to save class.");
-    } finally {
-      setIsSaving(false);
     }
   }
 
@@ -201,14 +196,12 @@ export default function AdminClassesPage() {
       return;
     }
 
-    setError(null);
+    setPageError(null);
 
     try {
-      await deleteClass(classItem.id);
-      toast.success("Class deleted.");
-      await loadClasses(page);
+      await deleteMutation.mutateAsync(classItem.id);
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to delete class.");
+      setPageError(err instanceof ApiError ? err.message : "Failed to delete class.");
     }
   }
 
@@ -220,7 +213,12 @@ export default function AdminClassesPage() {
         description="Manage classes and student assignments."
       />
 
-      {error ? <Alert>{error}</Alert> : null}
+      {pageError ? <Alert>{pageError}</Alert> : null}
+      {error ? (
+        <Alert>
+          {error instanceof ApiError ? error.message : "Failed to load classes."}
+        </Alert>
+      ) : null}
 
       <DataTableCard
         title="All classes"
@@ -284,7 +282,7 @@ export default function AdminClassesPage() {
           },
         ]}
         rows={classes}
-        isLoading={isLoading}
+        isLoading={isPending}
         emptyMessage="No classes yet."
         emptyDescription="Create a class and assign it to an academic year."
         emptyAction={
@@ -456,8 +454,8 @@ export default function AdminClassesPage() {
             <Button type="button" variant="secondary" onClick={closeModal}>
               Cancel
             </Button>
-            <Button type="submit" disabled={isSaving}>
-              {isSaving ? "Saving..." : editingId ? "Save changes" : "Create class"}
+            <Button type="submit" disabled={saveMutation.isPending}>
+              {saveMutation.isPending ? "Saving..." : editingId ? "Save changes" : "Create class"}
             </Button>
           </div>
         </form>

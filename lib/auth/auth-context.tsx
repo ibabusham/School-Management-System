@@ -10,6 +10,7 @@ import {
 } from "react";
 import { loginRequest, logoutRequest } from "@/lib/api/auth-api";
 import { getSession } from "@/lib/api/client";
+import { queryClient } from "@/lib/query-client";
 import type { AuthSession, AuthUser, UserRole } from "@/lib/auth/types";
 
 type AuthContextValue = {
@@ -39,6 +40,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const logout = useCallback(async () => {
     await logoutRequest();
+    queryClient.clear();
     setUser(null);
   }, []);
 
