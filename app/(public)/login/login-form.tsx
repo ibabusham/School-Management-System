@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { getRoleHomePath, useAuth } from "@/lib/auth/auth-context";
 import { ApiError } from "@/lib/api/client";
 import { AuthSplitLayout } from "@/components/layout/auth-split-layout";
@@ -22,7 +22,6 @@ function FieldIcon({ children }: { children: React.ReactNode }) {
 export function LoginForm() {
   const { login } = useAuth();
   const router = useRouter();
-  const searchParams = useSearchParams();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -36,8 +35,7 @@ export function LoginForm() {
 
     try {
       const session = await login(username, password);
-      const next = searchParams.get("next");
-      router.replace(next ?? getRoleHomePath(session.user.role));
+      router.replace(getRoleHomePath(session.user.role));
     } catch (err) {
       if (err instanceof ApiError) {
         setError(err.message);

@@ -1,15 +1,13 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   fetchAssignment,
   fetchAssignmentMissingMarks,
   fetchAssignmentTakenMarks,
   submitAssignmentMarks,
-  type AssignmentDetail,
-  type AssignmentTakenSubmission,
-  type StudentMarkCandidate,
 } from "@/lib/api/assignments";
 import { ApiError } from "@/lib/api/client";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
@@ -26,59 +24,46 @@ export default function TeacherAssignmentDetailPage() {
 
   const params = useParams<{ id: string }>();
   const assignmentId = params.id;
+  const queryClient = useQueryClient();
 
-  const [assignment, setAssignment] = useState<AssignmentDetail | null>(null);
-  const [missingStudents, setMissingStudents] = useState<StudentMarkCandidate[]>(
-    []
-  );
-  const [takenSubmissions, setTakenSubmissions] = useState<
-    AssignmentTakenSubmission[]
-  >([]);
-  const [error, setError] = useState<string | null>(null);
+  const { data: assignment, isPending: isLoading, error } = useQuery({
+    queryKey: ["assignment", assignmentId],
+    queryFn: () => fetchAssignment(assignmentId),
+  });
+
+  const { data: missingData } = useQuery({
+    queryKey: ["assignment", assignmentId, "missing"],
+    queryFn: () => fetchAssignmentMissingMarks(assignmentId),
+  });
+
+  const { data: takenData } = useQuery({
+    queryKey: ["assignment", assignmentId, "taken"],
+    queryFn: () => fetchAssignmentTakenMarks(assignmentId),
+  });
+
+  const missingStudents = missingData?.data ?? [];
+  const takenSubmissions = takenData?.data ?? [];
+
   const [gradeError, setGradeError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isSaving, setIsSaving] = useState(false);
 
-  const loadData = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const [assignmentData, missing, taken] = await Promise.all([
-        fetchAssignment(assignmentId),
-        fetchAssignmentMissingMarks(assignmentId),
-        fetchAssignmentTakenMarks(assignmentId),
-      ]);
-      setAssignment(assignmentData);
-      setMissingStudents(missing.data);
-      setTakenSubmissions(taken.data);
-    } catch (err) {
-      setError(
-        err instanceof ApiError ? err.message : "Failed to load assignment."
-      );
-    } finally {
-      setIsLoading(false);
-    }
-  }, [assignmentId]);
-
-  useEffect(() => {
-    void loadData();
-  }, [loadData]);
+  const saveMutation = useMutation({
+    mutationFn: (marks: { studentId: string; score: number }[]) =>
+      submitAssignmentMarks(assignmentId, marks),
+    onSuccess: (result) => {
+      toast.success(result.message);
+      queryClient.invalidateQueries({ queryKey: ["assignment", assignmentId] });
+    },
+  });
 
   async function handleSaveMarks(marks: { studentId: string; score: number }[]) {
     setGradeError(null);
-    setIsSaving(true);
 
     try {
-      const result = await submitAssignmentMarks(assignmentId, marks);
-      toast.success(result.message);
-      await loadData();
+      await saveMutation.mutateAsync(marks);
     } catch (err) {
       setGradeError(
         err instanceof ApiError ? err.message : "Failed to save marks."
       );
-    } finally {
-      setIsSaving(false);
     }
   }
 
@@ -98,7 +83,11 @@ export default function TeacherAssignmentDetailPage() {
         ]}
       />
 
-      {error ? <Alert>{error}</Alert> : null}
+      {error ? (
+        <Alert>
+          {error instanceof ApiError ? error.message : "Failed to load assignment."}
+        </Alert>
+      ) : null}
 
       {assignment ? (
         <dl className="grid gap-8 sm:grid-cols-3">
@@ -159,7 +148,7 @@ export default function TeacherAssignmentDetailPage() {
         missingStudents={missingStudents}
         takenSubmissions={takenSubmissions}
         isLoading={isLoading}
-        isSaving={isSaving}
+        isSaving={saveMutation.isPending}
         errorMessage={gradeError}
         onSave={handleSaveMarks}
       />

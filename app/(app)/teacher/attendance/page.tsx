@@ -7,7 +7,8 @@
  */
 "use client";
 
-import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
+import { FormEvent, useMemo, useState } from "react";
+import { useMutation, useQuery, useQueryClient, keepPreviousData } from "@tanstack/react-query";
 import { ApiError } from "@/lib/api/client";
 import {
   createAttendance,
@@ -20,9 +21,8 @@ import {
   type CreateAttendanceInput,
   type UpdateAttendanceInput,
 } from "@/lib/api/attendance";
-import { fetchStudents, type StudentSummary } from "@/lib/api/students";
-import { fetchSubjects, type SubjectSummary } from "@/lib/api/subjects";
-import type { Pagination } from "@/lib/auth/types";
+import { fetchStudents } from "@/lib/api/students";
+import { fetchSubjects } from "@/lib/api/subjects";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { DataTableCard } from "@/components/admin/data-table-card";
 import { FormField } from "@/components/admin/form-field";
@@ -76,15 +76,11 @@ export default function TeacherAttendancePage() {
   // Only teachers can access this route.
   useRequireAuth(["TEACHER"]);
   const confirm = useConfirm();
+  const queryClient = useQueryClient();
 
   // --- List state (table + pagination) ---
-  const [records, setRecords] = useState<Attendance[]>([]);
-  const [students, setStudents] = useState<StudentSummary[]>([]);
-  const [subjects, setSubjects] = useState<SubjectSummary[]>([]);
-  const [pagination, setPagination] = useState<Pagination | null>(null);
   const [page, setPage] = useState(1);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [pageError, setPageError] = useState<string | null>(null);
 
   // --- Filter state ---
   const [filterStudent, setFilterStudent] = useState("");
@@ -97,67 +93,6 @@ export default function TeacherAttendancePage() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<AttendanceFormState>(emptyForm());
   const [formError, setFormError] = useState<string | null>(null);
-  const [isSaving, setIsSaving] = useState(false);
-
-  // Lookup maps for displaying student/subject names in the table.
-  const studentMap = useMemo(() => {
-    const map = new Map<string, StudentSummary>();
-    students.forEach((s) => map.set(s.id, s));
-    return map;
-  }, [students]);
-
-  const subjectMap = useMemo(() => {
-    const map = new Map<string, SubjectSummary>();
-    subjects.forEach((s) => map.set(s.id, s));
-    return map;
-  }, [subjects]);
-
-  /** Loads all students for the dropdown + table name lookup. */
-  const loadStudents = useCallback(async () => {
-    try {
-      const result = await fetchStudents(1, 100);
-      setStudents(result.data);
-    } catch {
-      setStudents([]);
-    }
-  }, []);
-
-  /** Loads all subjects for the dropdown + table name lookup. */
-  const loadSubjects = useCallback(async () => {
-    try {
-      const result = await fetchSubjects(1, 100);
-      setSubjects(result.data);
-    } catch {
-      setSubjects([]);
-    }
-  }, []);
-
-  /** Fetches paginated attendance records with optional filters. */
-  const loadAttendance = useCallback(
-    async (targetPage: number, filters: AttendanceFilters) => {
-      setIsLoading(true);
-      setError(null);
-
-      try {
-        const result = await fetchAttendance(targetPage, 10, filters);
-        setRecords(result.data);
-        setPagination(result.pagination);
-      } catch (err) {
-        setError(
-          err instanceof ApiError ? err.message : "Failed to load attendance."
-        );
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    []
-  );
-
-  // Load dropdown data once on mount.
-  useEffect(() => {
-    void loadStudents();
-    void loadSubjects();
-  }, [loadStudents, loadSubjects]);
 
   // Current filter values assembled for the fetch.
   const currentFilters = useMemo<AttendanceFilters>(
@@ -170,10 +105,63 @@ export default function TeacherAttendancePage() {
     [filterStudent, filterSubject, filterFromDate, filterToDate]
   );
 
-  // Reload table whenever page or any filter changes.
-  useEffect(() => {
-    void loadAttendance(page, currentFilters);
-  }, [page, currentFilters, loadAttendance]);
+  const { data, isPending, error } = useQuery({
+    queryKey: ["attendance", page, currentFilters],
+    queryFn: () => fetchAttendance(page, 10, currentFilters),
+    placeholderData: keepPreviousData,
+  });
+
+  const records = data?.data ?? [];
+  const pagination = data?.pagination ?? null;
+
+  const { data: studentsData } = useQuery({
+    queryKey: ["students", "all"],
+    queryFn: () => fetchStudents(1, 100),
+    staleTime: 5 * 60_000,
+  });
+  const students = studentsData?.data ?? [];
+
+  const { data: subjectsData } = useQuery({
+    queryKey: ["subjects", "all"],
+    queryFn: () => fetchSubjects(1, 100),
+    staleTime: 5 * 60_000,
+  });
+  const subjects = subjectsData?.data ?? [];
+
+  // Lookup maps for displaying student/subject names in the table.
+  const studentMap = useMemo(() => {
+    const map = new Map<string, typeof students[number]>();
+    students.forEach((s) => map.set(s.id, s));
+    return map;
+  }, [students]);
+
+  const subjectMap = useMemo(() => {
+    const map = new Map<string, typeof subjects[number]>();
+    subjects.forEach((s) => map.set(s.id, s));
+    return map;
+  }, [subjects]);
+
+  const saveMutation = useMutation({
+    mutationFn: async (payload: CreateAttendanceInput | UpdateAttendanceInput) => {
+      if (editingId) {
+        return updateAttendance(editingId, payload as UpdateAttendanceInput);
+      }
+      return createAttendance(payload as CreateAttendanceInput);
+    },
+    onSuccess: () => {
+      toast.success(editingId ? "Attendance updated." : "Attendance recorded.");
+      closeModal();
+      queryClient.invalidateQueries({ queryKey: ["attendance"] });
+    },
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: deleteAttendance,
+    onSuccess: () => {
+      toast.success("Attendance record deleted.");
+      queryClient.invalidateQueries({ queryKey: ["attendance"] });
+    },
+  });
 
   function openCreate() {
     setEditingId(null);
@@ -210,7 +198,6 @@ export default function TeacherAttendancePage() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setFormError(null);
-    setIsSaving(true);
 
     try {
       if (editingId) {
@@ -220,7 +207,7 @@ export default function TeacherAttendancePage() {
           attendanceDate: form.attendanceDate,
           attendanceStatus: form.attendanceStatus,
         };
-        await updateAttendance(editingId, payload);
+        await saveMutation.mutateAsync(payload);
       } else {
         const payload: CreateAttendanceInput = {
           studentId: form.studentId,
@@ -228,12 +215,8 @@ export default function TeacherAttendancePage() {
           attendanceDate: form.attendanceDate,
           attendanceStatus: form.attendanceStatus,
         };
-        await createAttendance(payload);
+        await saveMutation.mutateAsync(payload);
       }
-
-      toast.success(editingId ? "Attendance updated." : "Attendance recorded.");
-      closeModal();
-      await loadAttendance(page, currentFilters);
     } catch (err) {
       const message =
         err instanceof ApiError ? err.message : "Failed to save attendance.";
@@ -245,8 +228,6 @@ export default function TeacherAttendancePage() {
       } else {
         setFormError(message);
       }
-    } finally {
-      setIsSaving(false);
     }
   }
 
@@ -263,14 +244,12 @@ export default function TeacherAttendancePage() {
       return;
     }
 
-    setError(null);
+    setPageError(null);
 
     try {
-      await deleteAttendance(record.id);
-      toast.success("Attendance record deleted.");
-      await loadAttendance(page, currentFilters);
+      await deleteMutation.mutateAsync(record.id);
     } catch (err) {
-      setError(
+      setPageError(
         err instanceof ApiError ? err.message : "Failed to delete attendance."
       );
     }
@@ -284,7 +263,12 @@ export default function TeacherAttendancePage() {
         description="Record and manage student attendance for your subjects."
       />
 
-      {error ? <Alert>{error}</Alert> : null}
+      {pageError ? <Alert>{pageError}</Alert> : null}
+      {error ? (
+        <Alert>
+          {error instanceof ApiError ? error.message : "Failed to load attendance."}
+        </Alert>
+      ) : null}
 
       {/* Filter bar — student, subject, and date range */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -424,7 +408,7 @@ export default function TeacherAttendancePage() {
           },
         ]}
         rows={records}
-        isLoading={isLoading}
+        isLoading={isPending}
         emptyMessage="No attendance records yet."
         emptyDescription="Record attendance for students in your subjects."
         emptyAction={
@@ -441,7 +425,7 @@ export default function TeacherAttendancePage() {
         onPageChange={setPage}
       />
 
-      {(students.length === 0 || subjects.length === 0) && !isLoading ? (
+      {(students.length === 0 || subjects.length === 0) && !isPending ? (
         <Alert variant="info">
           You need at least one student and one subject before recording
           attendance.
@@ -544,8 +528,8 @@ export default function TeacherAttendancePage() {
             <Button type="button" variant="secondary" onClick={closeModal}>
               Cancel
             </Button>
-            <Button type="submit" disabled={isSaving}>
-              {isSaving
+            <Button type="submit" disabled={saveMutation.isPending}>
+              {saveMutation.isPending
                 ? "Saving..."
                 : editingId
                 ? "Save changes"

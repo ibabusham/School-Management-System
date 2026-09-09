@@ -7,10 +7,10 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { ApiError } from "@/lib/api/client";
-import { fetchStudents, type StudentSummary } from "@/lib/api/students";
-import type { Pagination } from "@/lib/auth/types";
+import { fetchStudents } from "@/lib/api/students";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { DataTableCard } from "@/components/admin/data-table-card";
 import { PageHeader } from "@/components/layout/page-header";
@@ -20,32 +20,16 @@ export default function TeacherStudentsPage() {
   // Only teachers can access this route.
   useRequireAuth(["TEACHER"]);
 
-  const [students, setStudents] = useState<StudentSummary[]>([]);
-  const [pagination, setPagination] = useState<Pagination | null>(null);
   const [page, setPage] = useState(1);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
 
-  /** Fetches paginated students for the table. */
-  const loadStudents = useCallback(async (targetPage: number) => {
-    setIsLoading(true);
-    setError(null);
+  const { data, isPending, error } = useQuery({
+    queryKey: ["students", page],
+    queryFn: () => fetchStudents(page, 10),
+    placeholderData: keepPreviousData,
+  });
 
-    try {
-      const result = await fetchStudents(targetPage, 10);
-      setStudents(result.data);
-      setPagination(result.pagination);
-    } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to load students.");
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
-  // Reload table whenever the current page changes.
-  useEffect(() => {
-    void loadStudents(page);
-  }, [page, loadStudents]);
+  const students = data?.data ?? [];
+  const pagination = data?.pagination ?? null;
 
   return (
     <div className="space-y-10">
@@ -55,7 +39,11 @@ export default function TeacherStudentsPage() {
         description="Browse students and view their learning progress and notes."
       />
 
-      {error ? <Alert>{error}</Alert> : null}
+      {error ? (
+        <Alert>
+          {error instanceof ApiError ? error.message : "Failed to load students."}
+        </Alert>
+      ) : null}
 
       <DataTableCard
         title="All students"
@@ -88,7 +76,7 @@ export default function TeacherStudentsPage() {
           },
         ]}
         rows={students}
-        isLoading={isLoading}
+        isLoading={isPending}
         emptyMessage="No students yet."
         emptyDescription="Students in classes you teach will appear here."
         pagination={pagination}

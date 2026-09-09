@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useCallback, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
+import { useMutation, useQuery, useQueryClient, keepPreviousData } from "@tanstack/react-query";
 import { ApiError } from "@/lib/api/client";
 import {
   createStudent,
@@ -15,7 +16,6 @@ import {
   type StudentSummary,
   type UpdateStudentInput,
 } from "@/lib/api/students";
-import type { Pagination } from "@/lib/auth/types";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { DataTableCard } from "@/components/admin/data-table-card";
 import { FormField } from "@/components/admin/form-field";
@@ -73,36 +73,45 @@ function studentToForm(student: StudentDetail): StudentFormState {
 export default function AdminStudentsPage() {
   useRequireAuth(["ADMIN"]);
   const confirm = useConfirm();
+  const queryClient = useQueryClient();
 
-  const [students, setStudents] = useState<StudentSummary[]>([]);
-  const [pagination, setPagination] = useState<Pagination | null>(null);
   const [page, setPage] = useState(1);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<StudentFormState>(emptyForm);
   const [formError, setFormError] = useState<string | null>(null);
-  const [isSaving, setIsSaving] = useState(false);
+  const [pageError, setPageError] = useState<string | null>(null);
 
-  const loadStudents = useCallback(async (targetPage: number) => {
-    setIsLoading(true);
-    setError(null);
+  const { data, isPending, error } = useQuery({
+    queryKey: ["students", page],
+    queryFn: () => fetchStudents(page, 10),
+    placeholderData: keepPreviousData,
+  });
 
-    try {
-      const result = await fetchStudents(targetPage, 10);
-      setStudents(result.data);
-      setPagination(result.pagination);
-    } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to load students.");
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
+  const students = data?.data ?? [];
+  const pagination = data?.pagination ?? null;
 
-  useEffect(() => {
-    void loadStudents(page);
-  }, [page, loadStudents]);
+  const saveMutation = useMutation({
+    mutationFn: async (payload: CreateStudentInput | UpdateStudentInput) => {
+      if (editingId) {
+        return updateStudent(editingId, payload as UpdateStudentInput);
+      }
+      return createStudent(payload as CreateStudentInput);
+    },
+    onSuccess: () => {
+      toast.success(editingId ? "Student updated." : "Student created.");
+      closeModal();
+      queryClient.invalidateQueries({ queryKey: ["students"] });
+    },
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: deleteStudent,
+    onSuccess: () => {
+      toast.success("Student deleted.");
+      queryClient.invalidateQueries({ queryKey: ["students"] });
+    },
+  });
 
   function openCreate() {
     setEditingId(null);
@@ -120,7 +129,7 @@ export default function AdminStudentsPage() {
       setForm(studentToForm(student));
       setModalOpen(true);
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to load student.");
+      setPageError(err instanceof ApiError ? err.message : "Failed to load student.");
     }
   }
 
@@ -141,7 +150,6 @@ export default function AdminStudentsPage() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setFormError(null);
-    setIsSaving(true);
 
     try {
       if (editingId) {
@@ -155,7 +163,7 @@ export default function AdminStudentsPage() {
           enrollmentDate: form.enrollmentDate,
           gender: form.gender,
         };
-        await updateStudent(editingId, payload);
+        await saveMutation.mutateAsync(payload);
       } else {
         const payload: CreateStudentInput = {
           studentId: Number(form.studentId),
@@ -169,18 +177,12 @@ export default function AdminStudentsPage() {
           enrollmentDate: form.enrollmentDate,
           gender: form.gender,
         };
-        await createStudent(payload);
+        await saveMutation.mutateAsync(payload);
       }
-
-      toast.success(editingId ? "Student updated." : "Student created.");
-      closeModal();
-      await loadStudents(page);
     } catch (err) {
       setFormError(
         err instanceof ApiError ? err.message : "Failed to save student."
       );
-    } finally {
-      setIsSaving(false);
     }
   }
 
@@ -193,14 +195,12 @@ export default function AdminStudentsPage() {
       return;
     }
 
-    setError(null);
+    setPageError(null);
 
     try {
-      await deleteStudent(student.id);
-      toast.success("Student deleted.");
-      await loadStudents(page);
+      await deleteMutation.mutateAsync(student.id);
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to delete student.");
+      setPageError(err instanceof ApiError ? err.message : "Failed to delete student.");
     }
   }
 
@@ -212,7 +212,12 @@ export default function AdminStudentsPage() {
         description="Manage enrolled students in the school."
       />
 
-      {error ? <Alert>{error}</Alert> : null}
+      {pageError ? <Alert>{pageError}</Alert> : null}
+      {error ? (
+        <Alert>
+          {error instanceof ApiError ? error.message : "Failed to load students."}
+        </Alert>
+      ) : null}
 
       <DataTableCard
         title="All students"
@@ -263,7 +268,7 @@ export default function AdminStudentsPage() {
           },
         ]}
         rows={students}
-        isLoading={isLoading}
+        isLoading={isPending}
         emptyMessage="No students yet."
         emptyDescription="Create the first student account to get started."
         emptyAction={
@@ -399,8 +404,8 @@ export default function AdminStudentsPage() {
             <Button type="button" variant="secondary" onClick={closeModal}>
               Cancel
             </Button>
-            <Button type="submit" disabled={isSaving}>
-              {isSaving ? "Saving..." : editingId ? "Save changes" : "Create student"}
+            <Button type="submit" disabled={saveMutation.isPending}>
+              {saveMutation.isPending ? "Saving..." : editingId ? "Save changes" : "Create student"}
             </Button>
           </div>
         </form>

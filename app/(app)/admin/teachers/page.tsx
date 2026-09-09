@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useCallback, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
+import { useMutation, useQuery, useQueryClient, keepPreviousData } from "@tanstack/react-query";
 import { ApiError } from "@/lib/api/client";
 import {
   createTeacher,
@@ -14,7 +15,6 @@ import {
   type TeacherSummary,
   type UpdateTeacherInput,
 } from "@/lib/api/teachers";
-import type { Pagination } from "@/lib/auth/types";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { DataTableCard } from "@/components/admin/data-table-card";
 import { FormField } from "@/components/admin/form-field";
@@ -61,36 +61,45 @@ function teacherToForm(teacher: TeacherDetail): TeacherFormState {
 export default function AdminTeachersPage() {
   useRequireAuth(["ADMIN"]);
   const confirm = useConfirm();
+  const queryClient = useQueryClient();
 
-  const [teachers, setTeachers] = useState<TeacherSummary[]>([]);
-  const [pagination, setPagination] = useState<Pagination | null>(null);
   const [page, setPage] = useState(1);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<TeacherFormState>(emptyForm);
   const [formError, setFormError] = useState<string | null>(null);
-  const [isSaving, setIsSaving] = useState(false);
+  const [pageError, setPageError] = useState<string | null>(null);
 
-  const loadTeachers = useCallback(async (targetPage: number) => {
-    setIsLoading(true);
-    setError(null);
+  const { data, isPending, error } = useQuery({
+    queryKey: ["teachers", page],
+    queryFn: () => fetchTeachers(page, 10),
+    placeholderData: keepPreviousData,
+  });
 
-    try {
-      const result = await fetchTeachers(targetPage, 10);
-      setTeachers(result.data);
-      setPagination(result.pagination);
-    } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to load teachers.");
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
+  const teachers = data?.data ?? [];
+  const pagination = data?.pagination ?? null;
 
-  useEffect(() => {
-    void loadTeachers(page);
-  }, [page, loadTeachers]);
+  const saveMutation = useMutation({
+    mutationFn: async (payload: CreateTeacherInput | UpdateTeacherInput) => {
+      if (editingId) {
+        return updateTeacher(editingId, payload as UpdateTeacherInput);
+      }
+      return createTeacher(payload as CreateTeacherInput);
+    },
+    onSuccess: () => {
+      toast.success(editingId ? "Teacher updated." : "Teacher created.");
+      closeModal();
+      queryClient.invalidateQueries({ queryKey: ["teachers"] });
+    },
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: deleteTeacher,
+    onSuccess: () => {
+      toast.success("Teacher deleted.");
+      queryClient.invalidateQueries({ queryKey: ["teachers"] });
+    },
+  });
 
   function openCreate() {
     setEditingId(null);
@@ -108,7 +117,7 @@ export default function AdminTeachersPage() {
       setForm(teacherToForm(teacher));
       setModalOpen(true);
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to load teacher.");
+      setPageError(err instanceof ApiError ? err.message : "Failed to load teacher.");
     }
   }
 
@@ -129,7 +138,6 @@ export default function AdminTeachersPage() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setFormError(null);
-    setIsSaving(true);
 
     try {
       if (editingId) {
@@ -139,7 +147,7 @@ export default function AdminTeachersPage() {
           phoneNumber: form.phoneNumber,
           specilization: form.specilization,
         };
-        await updateTeacher(editingId, payload);
+        await saveMutation.mutateAsync(payload);
       } else {
         const payload: CreateTeacherInput = {
           username: form.username,
@@ -150,18 +158,12 @@ export default function AdminTeachersPage() {
           phoneNumber: form.phoneNumber,
           specilization: form.specilization,
         };
-        await createTeacher(payload);
+        await saveMutation.mutateAsync(payload);
       }
-
-      toast.success(editingId ? "Teacher updated." : "Teacher created.");
-      closeModal();
-      await loadTeachers(page);
     } catch (err) {
       setFormError(
         err instanceof ApiError ? err.message : "Failed to save teacher."
       );
-    } finally {
-      setIsSaving(false);
     }
   }
 
@@ -174,14 +176,12 @@ export default function AdminTeachersPage() {
       return;
     }
 
-    setError(null);
+    setPageError(null);
 
     try {
-      await deleteTeacher(teacher.id);
-      toast.success("Teacher deleted.");
-      await loadTeachers(page);
+      await deleteMutation.mutateAsync(teacher.id);
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to delete teacher.");
+      setPageError(err instanceof ApiError ? err.message : "Failed to delete teacher.");
     }
   }
 
@@ -193,7 +193,12 @@ export default function AdminTeachersPage() {
         description="Manage teacher accounts and profiles."
       />
 
-      {error ? <Alert>{error}</Alert> : null}
+      {pageError ? <Alert>{pageError}</Alert> : null}
+      {error ? (
+        <Alert>
+          {error instanceof ApiError ? error.message : "Failed to load teachers."}
+        </Alert>
+      ) : null}
 
       <DataTableCard
         title="All teachers"
@@ -248,7 +253,7 @@ export default function AdminTeachersPage() {
           },
         ]}
         rows={teachers}
-        isLoading={isLoading}
+        isLoading={isPending}
         emptyMessage="No teachers yet."
         emptyDescription="Create the first teacher account to get started."
         emptyAction={
@@ -353,8 +358,8 @@ export default function AdminTeachersPage() {
             <Button type="button" variant="secondary" onClick={closeModal}>
               Cancel
             </Button>
-            <Button type="submit" disabled={isSaving}>
-              {isSaving ? "Saving..." : editingId ? "Save changes" : "Create teacher"}
+            <Button type="submit" disabled={saveMutation.isPending}>
+              {saveMutation.isPending ? "Saving..." : editingId ? "Save changes" : "Create teacher"}
             </Button>
           </div>
         </form>

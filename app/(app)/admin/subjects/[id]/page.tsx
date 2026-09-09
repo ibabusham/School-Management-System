@@ -3,13 +3,13 @@
  */
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
-import { fetchAssignments, type AssignmentSummary } from "@/lib/api/assignments";
+import { fetchAssignments } from "@/lib/api/assignments";
 import { ApiError } from "@/lib/api/client";
-import { fetchExams, type ExamSummary } from "@/lib/api/exams";
-import { fetchLessons, type LessonSummary } from "@/lib/api/lessons";
-import { fetchSubject, type SubjectDetail } from "@/lib/api/subjects";
+import { fetchExams } from "@/lib/api/exams";
+import { fetchLessons } from "@/lib/api/lessons";
+import { fetchSubject } from "@/lib/api/subjects";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { DataTableCard } from "@/components/admin/data-table-card";
 import { DashboardSection } from "@/components/dashboard/dashboard-section";
@@ -31,42 +31,29 @@ export default function AdminSubjectDetailPage() {
   const params = useParams<{ id: string }>();
   const subjectId = params.id;
 
-  const [subject, setSubject] = useState<SubjectDetail | null>(null);
-  const [lessons, setLessons] = useState<LessonSummary[]>([]);
-  const [exams, setExams] = useState<ExamSummary[]>([]);
-  const [assignments, setAssignments] = useState<AssignmentSummary[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const { data: subject, isPending: isLoading, error } = useQuery({
+    queryKey: ["subject", subjectId],
+    queryFn: () => fetchSubject(subjectId),
+  });
 
-  const loadData = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
+  const { data: lessonsData } = useQuery({
+    queryKey: ["lessons", 1, subjectId],
+    queryFn: () => fetchLessons(1, 10, subjectId),
+  });
 
-    try {
-      const [subjectRecord, lessonsResult, examsResult, assignmentsResult] =
-        await Promise.all([
-          fetchSubject(subjectId),
-          fetchLessons(1, 10, subjectId),
-          fetchExams(1, 10, subjectId),
-          fetchAssignments(1, 10, subjectId),
-        ]);
+  const { data: examsData } = useQuery({
+    queryKey: ["exams", 1, subjectId],
+    queryFn: () => fetchExams(1, 10, subjectId),
+  });
 
-      setSubject(subjectRecord);
-      setLessons(lessonsResult.data);
-      setExams(examsResult.data);
-      setAssignments(assignmentsResult.data);
-    } catch (err) {
-      setError(
-        err instanceof ApiError ? err.message : "Failed to load subject."
-      );
-    } finally {
-      setIsLoading(false);
-    }
-  }, [subjectId]);
+  const { data: assignmentsData } = useQuery({
+    queryKey: ["assignments", 1, subjectId],
+    queryFn: () => fetchAssignments(1, 10, subjectId),
+  });
 
-  useEffect(() => {
-    void loadData();
-  }, [loadData]);
+  const lessons = lessonsData?.data ?? [];
+  const exams = examsData?.data ?? [];
+  const assignments = assignmentsData?.data ?? [];
 
   return (
     <div className="space-y-10">
@@ -80,7 +67,11 @@ export default function AdminSubjectDetailPage() {
         ]}
       />
 
-      {error ? <Alert>{error}</Alert> : null}
+      {error ? (
+        <Alert>
+          {error instanceof ApiError ? error.message : "Failed to load subject."}
+        </Alert>
+      ) : null}
 
       {isLoading ? (
         <Card className="p-8">

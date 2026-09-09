@@ -6,7 +6,8 @@
  */
 "use client";
 
-import { FormEvent, useCallback, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
+import { useMutation, useQuery, useQueryClient, keepPreviousData } from "@tanstack/react-query";
 import {
   createAcademicYear,
   deleteAcademicYear,
@@ -18,7 +19,6 @@ import {
   type UpdateAcademicYearInput,
 } from "@/lib/api/academic-years";
 import { ApiError } from "@/lib/api/client";
-import type { Pagination } from "@/lib/auth/types";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { DataTableCard } from "@/components/admin/data-table-card";
 import { FormField } from "@/components/admin/form-field";
@@ -54,38 +54,58 @@ function yearToForm(year: AcademicYear): AcademicYearFormState {
 export default function AdminAcademicYearsPage() {
   useRequireAuth(["ADMIN"]);
   const confirm = useConfirm();
+  const queryClient = useQueryClient();
 
-  const [years, setYears] = useState<AcademicYear[]>([]);
-  const [pagination, setPagination] = useState<Pagination | null>(null);
   const [page, setPage] = useState(1);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<AcademicYearFormState>(emptyForm);
   const [formError, setFormError] = useState<string | null>(null);
-  const [isSaving, setIsSaving] = useState(false);
+  const [pageError, setPageError] = useState<string | null>(null);
 
-  const loadYears = useCallback(async (targetPage: number) => {
-    setIsLoading(true);
-    setError(null);
+  const { data, isPending, error } = useQuery({
+    queryKey: ["academicYears", page],
+    queryFn: () => fetchAcademicYears(page, 10),
+    placeholderData: keepPreviousData,
+  });
 
-    try {
-      const result = await fetchAcademicYears(targetPage, 10);
-      setYears(result.data);
-      setPagination(result.pagination);
-    } catch (err) {
-      setError(
-        err instanceof ApiError ? err.message : "Failed to load academic years."
+  const years = data?.data ?? [];
+  const pagination = data?.pagination ?? null;
+
+  const saveMutation = useMutation({
+    mutationFn: async (payload: CreateAcademicYearInput | UpdateAcademicYearInput) => {
+      if (editingId) {
+        return updateAcademicYear(editingId, payload as UpdateAcademicYearInput);
+      }
+      return createAcademicYear(payload as CreateAcademicYearInput);
+    },
+    onSuccess: () => {
+      toast.success(editingId ? "Academic year updated." : "Academic year created.");
+      closeModal();
+      queryClient.invalidateQueries({ queryKey: ["academicYears"] });
+    },
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: deleteAcademicYear,
+    onSuccess: () => {
+      toast.success("Academic year deleted.");
+      queryClient.invalidateQueries({ queryKey: ["academicYears"] });
+    },
+  });
+
+  const toggleStatusMutation = useMutation({
+    mutationFn: ({ id, status }: { id: string; status: "ACTIVE" | "INACTIVE" }) =>
+      updateAcademicYear(id, { status }),
+    onSuccess: (_data, variables) => {
+      toast.success(
+        variables.status === "ACTIVE"
+          ? "Academic year activated."
+          : "Academic year deactivated."
       );
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    void loadYears(page);
-  }, [page, loadYears]);
+      queryClient.invalidateQueries({ queryKey: ["academicYears"] });
+    },
+  });
 
   function openCreate() {
     setEditingId(null);
@@ -103,7 +123,7 @@ export default function AdminAcademicYearsPage() {
       setForm(yearToForm(year));
       setModalOpen(true);
     } catch (err) {
-      setError(
+      setPageError(
         err instanceof ApiError ? err.message : "Failed to load academic year."
       );
     }
@@ -132,8 +152,6 @@ export default function AdminAcademicYearsPage() {
       return;
     }
 
-    setIsSaving(true);
-
     try {
       if (editingId) {
         const payload: UpdateAcademicYearInput = {
@@ -141,25 +159,19 @@ export default function AdminAcademicYearsPage() {
           startDate: form.startDate,
           endDate: form.endDate,
         };
-        await updateAcademicYear(editingId, payload);
+        await saveMutation.mutateAsync(payload);
       } else {
         const payload: CreateAcademicYearInput = {
           yearName: form.yearName,
           startDate: form.startDate,
           endDate: form.endDate,
         };
-        await createAcademicYear(payload);
+        await saveMutation.mutateAsync(payload);
       }
-
-      toast.success(editingId ? "Academic year updated." : "Academic year created.");
-      closeModal();
-      await loadYears(page);
     } catch (err) {
       setFormError(
         err instanceof ApiError ? err.message : "Failed to save academic year."
       );
-    } finally {
-      setIsSaving(false);
     }
   }
 
@@ -172,14 +184,12 @@ export default function AdminAcademicYearsPage() {
       return;
     }
 
-    setError(null);
+    setPageError(null);
 
     try {
-      await deleteAcademicYear(year.id);
-      toast.success("Academic year deleted.");
-      await loadYears(page);
+      await deleteMutation.mutateAsync(year.id);
     } catch (err) {
-      setError(
+      setPageError(
         err instanceof ApiError ? err.message : "Failed to delete academic year."
       );
     }
@@ -199,18 +209,12 @@ export default function AdminAcademicYearsPage() {
       return;
     }
 
-    setError(null);
+    setPageError(null);
 
     try {
-      await updateAcademicYear(year.id, { status: newStatus });
-      toast.success(
-        newStatus === "ACTIVE"
-          ? "Academic year activated."
-          : "Academic year deactivated."
-      );
-      await loadYears(page);
+      await toggleStatusMutation.mutateAsync({ id: year.id, status: newStatus });
     } catch (err) {
-      setError(
+      setPageError(
         err instanceof ApiError ? err.message : "Failed to update status."
       );
     }
@@ -224,7 +228,12 @@ export default function AdminAcademicYearsPage() {
         description="Create and manage academic years. Only one year can be active at a time."
       />
 
-      {error ? <Alert>{error}</Alert> : null}
+      {pageError ? <Alert>{pageError}</Alert> : null}
+      {error ? (
+        <Alert>
+          {error instanceof ApiError ? error.message : "Failed to load academic years."}
+        </Alert>
+      ) : null}
 
       <DataTableCard
         title="All academic years"
@@ -289,7 +298,7 @@ export default function AdminAcademicYearsPage() {
           },
         ]}
         rows={years}
-        isLoading={isLoading}
+        isLoading={isPending}
         emptyMessage="No academic years yet."
         emptyDescription="Create the first academic year to start organizing classes and terms."
         emptyAction={
@@ -351,8 +360,8 @@ export default function AdminAcademicYearsPage() {
             <Button type="button" variant="secondary" onClick={closeModal}>
               Cancel
             </Button>
-            <Button type="submit" disabled={isSaving}>
-              {isSaving
+            <Button type="submit" disabled={saveMutation.isPending}>
+              {saveMutation.isPending
                 ? "Saving..."
                 : editingId
                 ? "Save changes"

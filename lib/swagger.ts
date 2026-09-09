@@ -83,9 +83,9 @@ export const getApiDocs = async () => {
             "**ADMIN** and **TEACHER** (own subjects): CRUD. **STUDENT:** no access.",
         },
         {
-          name: "Attendance",
+          name: "Dashboard",
           description:
-            "**ADMIN** and **TEACHER** (own subjects): CRUD; list is filtered to the teacher's subjects. **STUDENT:** no access.",
+            "Role-specific snapshots that batch dashboard data into one request. **ADMIN:** school counts, recent students, academic years. **TEACHER:** subject/exam/assignment counts and recent items. **STUDENT:** learning progress and recent teacher notes.",
         },
       ],
       components: {

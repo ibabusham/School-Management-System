@@ -4,11 +4,12 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import { ApiError } from "@/lib/api/client";
-import { fetchSubjects, type SubjectSummary } from "@/lib/api/subjects";
-import { fetchTeacher, type TeacherDetail } from "@/lib/api/teachers";
+import { fetchSubjects } from "@/lib/api/subjects";
+import { fetchTeacher } from "@/lib/api/teachers";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { DataTableCard } from "@/components/admin/data-table-card";
 import { DashboardSection } from "@/components/dashboard/dashboard-section";
@@ -22,36 +23,24 @@ export default function AdminTeacherDetailPage() {
   const params = useParams<{ id: string }>();
   const teacherId = params.id;
 
-  const [teacher, setTeacher] = useState<TeacherDetail | null>(null);
-  const [subjects, setSubjects] = useState<SubjectSummary[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const { data: teacher, isPending: isLoading, error } = useQuery({
+    queryKey: ["teacher", teacherId],
+    queryFn: () => fetchTeacher(teacherId),
+  });
 
-  const loadData = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
+  const { data: subjectsData } = useQuery({
+    queryKey: ["subjects", "all"],
+    queryFn: () => fetchSubjects(1, 100),
+    staleTime: 5 * 60_000,
+  });
 
-    try {
-      const [teacherRecord, subjectsResult] = await Promise.all([
-        fetchTeacher(teacherId),
-        fetchSubjects(1, 100),
-      ]);
-      setTeacher(teacherRecord);
-      setSubjects(
-        subjectsResult.data.filter((subject) => subject.teacherId === teacherId)
-      );
-    } catch (err) {
-      setError(
-        err instanceof ApiError ? err.message : "Failed to load teacher."
-      );
-    } finally {
-      setIsLoading(false);
-    }
-  }, [teacherId]);
-
-  useEffect(() => {
-    void loadData();
-  }, [loadData]);
+  const subjects = useMemo(
+    () =>
+      (subjectsData?.data ?? []).filter(
+        (subject) => subject.teacherId === teacherId
+      ),
+    [subjectsData, teacherId]
+  );
 
   const pagination = useMemo(
     () => ({
@@ -75,7 +64,11 @@ export default function AdminTeacherDetailPage() {
         ]}
       />
 
-      {error ? <Alert>{error}</Alert> : null}
+      {error ? (
+        <Alert>
+          {error instanceof ApiError ? error.message : "Failed to load teacher."}
+        </Alert>
+      ) : null}
 
       {isLoading ? (
         <Card className="p-8">

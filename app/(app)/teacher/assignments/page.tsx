@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
+import { FormEvent, useMemo, useState } from "react";
+import { useMutation, useQuery, useQueryClient, keepPreviousData } from "@tanstack/react-query";
 import {
   createAssignment,
   deleteAssignment,
@@ -14,8 +15,7 @@ import {
   type UpdateAssignmentInput,
 } from "@/lib/api/assignments";
 import { ApiError } from "@/lib/api/client";
-import { fetchSubjects, type SubjectSummary } from "@/lib/api/subjects";
-import type { Pagination } from "@/lib/auth/types";
+import { fetchSubjects } from "@/lib/api/subjects";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { DataTableCard } from "@/components/admin/data-table-card";
 import { FormField } from "@/components/admin/form-field";
@@ -70,66 +70,59 @@ function tomorrowDateInputValue() {
 export default function TeacherAssignmentsPage() {
   useRequireAuth(["TEACHER"]);
   const confirm = useConfirm();
+  const queryClient = useQueryClient();
 
-  const [assignments, setAssignments] = useState<AssignmentSummary[]>([]);
-  const [subjects, setSubjects] = useState<SubjectSummary[]>([]);
-  const [pagination, setPagination] = useState<Pagination | null>(null);
   const [page, setPage] = useState(1);
   const [subjectFilter, setSubjectFilter] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [pageError, setPageError] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [initialDueDate, setInitialDueDate] = useState("");
   const [form, setForm] = useState<AssignmentFormState>(emptyForm());
   const [formError, setFormError] = useState<string | null>(null);
-  const [isSaving, setIsSaving] = useState(false);
+
+  const { data, isPending, error } = useQuery({
+    queryKey: ["assignments", page, subjectFilter],
+    queryFn: () => fetchAssignments(page, 10, subjectFilter || undefined),
+    placeholderData: keepPreviousData,
+  });
+
+  const assignments = data?.data ?? [];
+  const pagination = data?.pagination ?? null;
+
+  const { data: subjectsData } = useQuery({
+    queryKey: ["subjects", "all"],
+    queryFn: () => fetchSubjects(1, 100),
+    staleTime: 5 * 60_000,
+  });
+  const subjects = subjectsData?.data ?? [];
 
   const subjectNameById = useMemo(
     () => new Map(subjects.map((subject) => [subject.id, subject.subjectName])),
     [subjects]
   );
 
-  const loadSubjects = useCallback(async () => {
-    try {
-      const result = await fetchSubjects(1, 100);
-      setSubjects(result.data);
-    } catch {
-      setSubjects([]);
-    }
-  }, []);
-
-  const loadAssignments = useCallback(
-    async (targetPage: number, filterSubjectId: string) => {
-      setIsLoading(true);
-      setError(null);
-
-      try {
-        const result = await fetchAssignments(
-          targetPage,
-          10,
-          filterSubjectId || undefined
-        );
-        setAssignments(result.data);
-        setPagination(result.pagination);
-      } catch (err) {
-        setError(
-          err instanceof ApiError ? err.message : "Failed to load assignments."
-        );
-      } finally {
-        setIsLoading(false);
+  const saveMutation = useMutation({
+    mutationFn: async (payload: CreateAssignmentInput | UpdateAssignmentInput) => {
+      if (editingId) {
+        return updateAssignment(editingId, payload as UpdateAssignmentInput);
       }
+      return createAssignment(payload as CreateAssignmentInput);
     },
-    []
-  );
+    onSuccess: () => {
+      toast.success(editingId ? "Assignment updated." : "Assignment created.");
+      closeModal();
+      queryClient.invalidateQueries({ queryKey: ["assignments"] });
+    },
+  });
 
-  useEffect(() => {
-    void loadSubjects();
-  }, [loadSubjects]);
-
-  useEffect(() => {
-    void loadAssignments(page, subjectFilter);
-  }, [page, subjectFilter, loadAssignments]);
+  const deleteMutation = useMutation({
+    mutationFn: deleteAssignment,
+    onSuccess: () => {
+      toast.success("Assignment deleted.");
+      queryClient.invalidateQueries({ queryKey: ["assignments"] });
+    },
+  });
 
   function openCreate() {
     setEditingId(null);
@@ -153,7 +146,7 @@ export default function TeacherAssignmentsPage() {
       setInitialDueDate(nextForm.dueDate);
       setModalOpen(true);
     } catch (err) {
-      setError(
+      setPageError(
         err instanceof ApiError ? err.message : "Failed to load assignment."
       );
     }
@@ -177,7 +170,6 @@ export default function TeacherAssignmentsPage() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setFormError(null);
-    setIsSaving(true);
 
     try {
       if (editingId) {
@@ -194,7 +186,7 @@ export default function TeacherAssignmentsPage() {
           payload.dueDate = form.dueDate;
         }
 
-        await updateAssignment(editingId, payload);
+        await saveMutation.mutateAsync(payload);
       } else {
         const payload: CreateAssignmentInput = {
           title: form.title,
@@ -205,18 +197,12 @@ export default function TeacherAssignmentsPage() {
           subjectId: form.subjectId,
           attachments: form.attachments,
         };
-        await createAssignment(payload);
+        await saveMutation.mutateAsync(payload);
       }
-
-      toast.success(editingId ? "Assignment updated." : "Assignment created.");
-      closeModal();
-      await loadAssignments(page, subjectFilter);
     } catch (err) {
       setFormError(
         err instanceof ApiError ? err.message : "Failed to save assignment."
       );
-    } finally {
-      setIsSaving(false);
     }
   }
 
@@ -229,14 +215,12 @@ export default function TeacherAssignmentsPage() {
       return;
     }
 
-    setError(null);
+    setPageError(null);
 
     try {
-      await deleteAssignment(assignment.id);
-      toast.success("Assignment deleted.");
-      await loadAssignments(page, subjectFilter);
+      await deleteMutation.mutateAsync(assignment.id);
     } catch (err) {
-      setError(
+      setPageError(
         err instanceof ApiError ? err.message : "Failed to delete assignment."
       );
     }
@@ -250,7 +234,12 @@ export default function TeacherAssignmentsPage() {
         description="Create and grade assignments for your subjects."
       />
 
-      {error ? <Alert>{error}</Alert> : null}
+      {pageError ? <Alert>{pageError}</Alert> : null}
+      {error ? (
+        <Alert>
+          {error instanceof ApiError ? error.message : "Failed to load assignments."}
+        </Alert>
+      ) : null}
 
       <div className="max-w-xs">
         <FormField label="Filter by subject" htmlFor="subjectFilter">
@@ -340,7 +329,7 @@ export default function TeacherAssignmentsPage() {
           },
         ]}
         rows={assignments}
-        isLoading={isLoading}
+        isLoading={isPending}
         emptyMessage="No assignments yet."
         emptyDescription="Create an assignment for one of your subjects."
         emptyAction={
@@ -353,7 +342,7 @@ export default function TeacherAssignmentsPage() {
         onPageChange={setPage}
       />
 
-      {subjects.length === 0 && !isLoading ? (
+      {subjects.length === 0 && !isPending ? (
         <Alert variant="info">
           You need at least one assigned subject before creating assignments.
         </Alert>
@@ -467,8 +456,8 @@ export default function TeacherAssignmentsPage() {
             <Button type="button" variant="secondary" onClick={closeModal}>
               Cancel
             </Button>
-            <Button type="submit" disabled={isSaving}>
-              {isSaving
+            <Button type="submit" disabled={saveMutation.isPending}>
+              {saveMutation.isPending
                 ? "Saving..."
                 : editingId
                   ? "Save changes"

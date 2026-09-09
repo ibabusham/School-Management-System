@@ -1,16 +1,14 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ApiError } from "@/lib/api/client";
 import {
   fetchExam,
   fetchExamMissingMarks,
   fetchExamTakenMarks,
   submitExamMarks,
-  type ExamDetail,
-  type ExamTakenSubmission,
-  type StudentMarkCandidate,
 } from "@/lib/api/exams";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { GradingPanel } from "@/components/teacher/grading-panel";
@@ -26,57 +24,46 @@ export default function TeacherExamDetailPage() {
 
   const params = useParams<{ id: string }>();
   const examId = params.id;
+  const queryClient = useQueryClient();
 
-  const [exam, setExam] = useState<ExamDetail | null>(null);
-  const [missingStudents, setMissingStudents] = useState<StudentMarkCandidate[]>(
-    []
-  );
-  const [takenSubmissions, setTakenSubmissions] = useState<ExamTakenSubmission[]>(
-    []
-  );
-  const [error, setError] = useState<string | null>(null);
+  const { data: exam, isPending: isLoading, error } = useQuery({
+    queryKey: ["exam", examId],
+    queryFn: () => fetchExam(examId),
+  });
+
+  const { data: missingData } = useQuery({
+    queryKey: ["exam", examId, "missing"],
+    queryFn: () => fetchExamMissingMarks(examId),
+  });
+
+  const { data: takenData } = useQuery({
+    queryKey: ["exam", examId, "taken"],
+    queryFn: () => fetchExamTakenMarks(examId),
+  });
+
+  const missingStudents = missingData?.data ?? [];
+  const takenSubmissions = takenData?.data ?? [];
+
   const [gradeError, setGradeError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isSaving, setIsSaving] = useState(false);
 
-  const loadData = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const [examData, missing, taken] = await Promise.all([
-        fetchExam(examId),
-        fetchExamMissingMarks(examId),
-        fetchExamTakenMarks(examId),
-      ]);
-      setExam(examData);
-      setMissingStudents(missing.data);
-      setTakenSubmissions(taken.data);
-    } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to load exam.");
-    } finally {
-      setIsLoading(false);
-    }
-  }, [examId]);
-
-  useEffect(() => {
-    void loadData();
-  }, [loadData]);
+  const saveMutation = useMutation({
+    mutationFn: (marks: { studentId: string; score: number }[]) =>
+      submitExamMarks(examId, marks),
+    onSuccess: (result) => {
+      toast.success(result.message);
+      queryClient.invalidateQueries({ queryKey: ["exam", examId] });
+    },
+  });
 
   async function handleSaveMarks(marks: { studentId: string; score: number }[]) {
     setGradeError(null);
-    setIsSaving(true);
 
     try {
-      const result = await submitExamMarks(examId, marks);
-      toast.success(result.message);
-      await loadData();
+      await saveMutation.mutateAsync(marks);
     } catch (err) {
       setGradeError(
         err instanceof ApiError ? err.message : "Failed to save marks."
       );
-    } finally {
-      setIsSaving(false);
     }
   }
 
@@ -96,7 +83,11 @@ export default function TeacherExamDetailPage() {
         ]}
       />
 
-      {error ? <Alert>{error}</Alert> : null}
+      {error ? (
+        <Alert>
+          {error instanceof ApiError ? error.message : "Failed to load exam."}
+        </Alert>
+      ) : null}
 
       {exam ? (
         <dl className="grid gap-8 sm:grid-cols-3">
@@ -138,7 +129,7 @@ export default function TeacherExamDetailPage() {
         missingStudents={missingStudents}
         takenSubmissions={takenSubmissions}
         isLoading={isLoading}
-        isSaving={isSaving}
+        isSaving={saveMutation.isPending}
         errorMessage={gradeError}
         onSave={handleSaveMarks}
       />

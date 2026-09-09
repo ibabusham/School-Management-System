@@ -1,16 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { ApiError } from "@/lib/api/client";
-import {
-  fetchAcademicYears,
-  type AcademicYear,
-} from "@/lib/api/academic-years";
-import { fetchStudents, type StudentSummary } from "@/lib/api/students";
-import { fetchTeachers } from "@/lib/api/teachers";
-import { fetchClasses } from "@/lib/api/classes";
-import { fetchSubjects } from "@/lib/api/subjects";
+import { fetchAdminDashboard } from "@/lib/api/dashboard";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { StatCard } from "@/components/dashboard/stat-card";
 import { DashboardBarChart } from "@/components/dashboard/dashboard-bar-chart";
@@ -24,51 +17,15 @@ import { formatDate } from "@/lib/utils/dates";
 
 export default function AdminDashboardPage() {
   const { user } = useRequireAuth(["ADMIN"]);
-  const [counts, setCounts] = useState<{
-    students: number;
-    teachers: number;
-    classes: number;
-    subjects: number;
-  } | null>(null);
-  const [years, setYears] = useState<AcademicYear[]>([]);
-  const [recentStudents, setRecentStudents] = useState<StudentSummary[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const { data: dashboard, isPending: isLoading, error } = useQuery({
+    queryKey: ["dashboard", "admin"],
+    queryFn: fetchAdminDashboard,
+    enabled: !!user,
+  });
 
-  useEffect(() => {
-    if (!user) {
-      return;
-    }
-
-    setIsLoading(true);
-    setError(null);
-
-    void Promise.all([
-      fetchStudents(1, 5),
-      fetchTeachers(1, 1),
-      fetchClasses(1, 1),
-      fetchSubjects(1, 1),
-      fetchAcademicYears(1, 20),
-    ])
-      .then(([students, teachers, classes, subjects, academicYears]) => {
-        setCounts({
-          students: students.pagination.total,
-          teachers: teachers.pagination.total,
-          classes: classes.pagination.total,
-          subjects: subjects.pagination.total,
-        });
-        setRecentStudents(students.data);
-        setYears(academicYears.data);
-      })
-      .catch((err) => {
-        setError(
-          err instanceof ApiError ? err.message : "Failed to load dashboard."
-        );
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [user]);
+  const counts = dashboard?.counts;
+  const years = dashboard?.academicYears ?? [];
+  const recentStudents = dashboard?.recentStudents ?? [];
 
   const activeYear = years.find((year) => year.status === "ACTIVE") ?? null;
   const otherYears = years.filter((year) => year.id !== activeYear?.id);
@@ -81,7 +38,11 @@ export default function AdminDashboardPage() {
         description="School-wide counts and the current academic year at Shield's School."
       />
 
-      {error ? <Alert>{error}</Alert> : null}
+      {error ? (
+        <Alert>
+          {error instanceof ApiError ? error.message : "Failed to load dashboard."}
+        </Alert>
+      ) : null}
 
       {isLoading ? (
         <Card className="p-8">

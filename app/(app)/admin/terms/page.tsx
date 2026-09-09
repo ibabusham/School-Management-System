@@ -6,7 +6,8 @@
  */
 "use client";
 
-import { FormEvent, useCallback, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
+import { useMutation, useQuery, useQueryClient, keepPreviousData } from "@tanstack/react-query";
 import { fetchAcademicYears, type AcademicYear } from "@/lib/api/academic-years";
 import { ApiError } from "@/lib/api/client";
 import {
@@ -19,7 +20,6 @@ import {
   type Term,
   type UpdateTermInput,
 } from "@/lib/api/terms";
-import type { Pagination } from "@/lib/auth/types";
 import { useRequireAuth } from "@/lib/auth/use-require-auth";
 import { DataTableCard } from "@/components/admin/data-table-card";
 import { FormField } from "@/components/admin/form-field";
@@ -63,62 +63,58 @@ export default function AdminTermsPage() {
   // Only admins can access this route — redirects others to their home page.
   useRequireAuth(["ADMIN"]);
   const confirm = useConfirm();
+  const queryClient = useQueryClient();
 
   // --- List state (table + pagination) ---
-  const [terms, setTerms] = useState<Term[]>([]);
-  const [pagination, setPagination] = useState<Pagination | null>(null);
   const [page, setPage] = useState(1);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  // --- Dropdown data for the create/edit modal ---
-  const [academicYears, setAcademicYears] = useState<AcademicYear[]>([]);
+  const [pageError, setPageError] = useState<string | null>(null);
 
   // --- Modal / form state ---
   const [modalOpen, setModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<TermFormState>(emptyForm());
   const [formError, setFormError] = useState<string | null>(null);
-  const [isSaving, setIsSaving] = useState(false);
+
+  const { data, isPending, error } = useQuery({
+    queryKey: ["terms", page],
+    queryFn: () => fetchTerms(page, 10),
+    placeholderData: keepPreviousData,
+  });
+
+  const terms = data?.data ?? [];
+  const pagination = data?.pagination ?? null;
+
+  const { data: academicYearsData } = useQuery({
+    queryKey: ["academicYears", "all"],
+    queryFn: () => fetchAcademicYears(1, 100),
+    staleTime: 5 * 60_000,
+  });
+  const academicYears: AcademicYear[] = academicYearsData?.data ?? [];
 
   // True when at least one academic year exists (needed to create a term).
   const canCreate = academicYears.length > 0;
 
-  /** Fetches paginated terms for the table. */
-  const loadTerms = useCallback(async (targetPage: number) => {
-    setIsLoading(true);
-    setError(null);
+  const saveMutation = useMutation({
+    mutationFn: async (payload: CreateTermInput | UpdateTermInput) => {
+      if (editingId) {
+        return updateTerm(editingId, payload as UpdateTermInput);
+      }
+      return createTerm(payload as CreateTermInput);
+    },
+    onSuccess: () => {
+      toast.success(editingId ? "Term updated." : "Term created.");
+      closeModal();
+      queryClient.invalidateQueries({ queryKey: ["terms"] });
+    },
+  });
 
-    try {
-      const result = await fetchTerms(targetPage, 10);
-      setTerms(result.data);
-      setPagination(result.pagination);
-    } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to load terms.");
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
-  /** Loads all academic years for the dropdown (high limit = no pagination in modal). */
-  const loadAcademicYears = useCallback(async () => {
-    try {
-      const result = await fetchAcademicYears(1, 100);
-      setAcademicYears(result.data);
-    } catch {
-      setAcademicYears([]);
-    }
-  }, []);
-
-  // Load dropdown options once on mount.
-  useEffect(() => {
-    void loadAcademicYears();
-  }, [loadAcademicYears]);
-
-  // Reload table whenever the current page changes.
-  useEffect(() => {
-    void loadTerms(page);
-  }, [page, loadTerms]);
+  const deleteMutation = useMutation({
+    mutationFn: deleteTerm,
+    onSuccess: () => {
+      toast.success("Term deleted.");
+      queryClient.invalidateQueries({ queryKey: ["terms"] });
+    },
+  });
 
   function openCreate() {
     setEditingId(null);
@@ -138,7 +134,7 @@ export default function AdminTermsPage() {
       setForm(termToForm(term));
       setModalOpen(true);
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to load term.");
+      setPageError(err instanceof ApiError ? err.message : "Failed to load term.");
     }
   }
 
@@ -167,8 +163,6 @@ export default function AdminTermsPage() {
       return;
     }
 
-    setIsSaving(true);
-
     try {
       if (editingId) {
         const payload: UpdateTermInput = {
@@ -177,7 +171,7 @@ export default function AdminTermsPage() {
           endDate: form.endDate,
           yearId: form.yearId,
         };
-        await updateTerm(editingId, payload);
+        await saveMutation.mutateAsync(payload);
       } else {
         const payload: CreateTermInput = {
           termName: form.termName,
@@ -185,19 +179,13 @@ export default function AdminTermsPage() {
           endDate: form.endDate,
           yearId: form.yearId,
         };
-        await createTerm(payload);
+        await saveMutation.mutateAsync(payload);
       }
-
-      toast.success(editingId ? "Term updated." : "Term created.");
-      closeModal();
-      await loadTerms(page);
     } catch (err) {
       // Surfaces backend errors like "maximum of 2 terms" in the modal.
       setFormError(
         err instanceof ApiError ? err.message : "Failed to save term."
       );
-    } finally {
-      setIsSaving(false);
     }
   }
 
@@ -210,14 +198,12 @@ export default function AdminTermsPage() {
       return;
     }
 
-    setError(null);
+    setPageError(null);
 
     try {
-      await deleteTerm(term.id);
-      toast.success("Term deleted.");
-      await loadTerms(page);
+      await deleteMutation.mutateAsync(term.id);
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Failed to delete term.");
+      setPageError(err instanceof ApiError ? err.message : "Failed to delete term.");
     }
   }
 
@@ -229,7 +215,12 @@ export default function AdminTermsPage() {
         description="Manage academic terms and assign them to academic years."
       />
 
-      {error ? <Alert>{error}</Alert> : null}
+      {pageError ? <Alert>{pageError}</Alert> : null}
+      {error ? (
+        <Alert>
+          {error instanceof ApiError ? error.message : "Failed to load terms."}
+        </Alert>
+      ) : null}
 
       <DataTableCard
         title="All terms"
@@ -287,7 +278,7 @@ export default function AdminTermsPage() {
           },
         ]}
         rows={terms}
-        isLoading={isLoading}
+        isLoading={isPending}
         emptyMessage="No terms yet."
         emptyDescription="Create a term inside an academic year. Each year can have up to two terms."
         emptyAction={
@@ -300,7 +291,7 @@ export default function AdminTermsPage() {
         onPageChange={setPage}
       />
 
-      {!canCreate && !isLoading ? (
+      {!canCreate && !isPending ? (
         <Alert variant="info">
           You need an academic year before creating terms.
         </Alert>
@@ -370,8 +361,8 @@ export default function AdminTermsPage() {
             <Button type="button" variant="secondary" onClick={closeModal}>
               Cancel
             </Button>
-            <Button type="submit" disabled={isSaving}>
-              {isSaving ? "Saving..." : editingId ? "Save changes" : "Create term"}
+            <Button type="submit" disabled={saveMutation.isPending}>
+              {saveMutation.isPending ? "Saving..." : editingId ? "Save changes" : "Create term"}
             </Button>
           </div>
         </form>
