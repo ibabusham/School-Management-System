@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# School Management System
 
-## Getting Started
+A full-stack web application designed to simplify school administration and academic management. The system provides role-based access for administrators, teachers, and students to manage and access educational information.
 
-First, run the development server:
+## Technologies Used
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Frontend**
+- Next.js, React, TypeScript
+- Tailwind CSS
+- React Query
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Backend**
+- Next.js API Routes
+- REST APIs
+- Zod validation
+- Authentication and role-based authorization
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Database**
+- PostgreSQL
+- Prisma ORM
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Development Tools**
+- Git and GitHub
+- Swagger for API documentation
+- Postman for API testing
 
-## Learn More
+## Main Features
 
-To learn more about Next.js, take a look at the following resources:
+### Administrator
+- Manage students, teachers, and classes
+- Manage subjects and lessons
+- Access and update academic information
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Teacher
+- Manage assignments and lessons
+- Track student attendance and grades
+- Monitor student learning progress
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Student
+- Access academic information
+- View assignments, grades, and learning progress
 
-## Deploy on Vercel
+## Application Architecture
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The application uses Next.js and React for the user interface, with REST APIs handling communication between the frontend and backend.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Prisma ORM provides database access and manages relationships between entities stored in PostgreSQL.
+
+Role-based authentication and authorization control access to different features based on user permissions.
+
+## API Documentation
+
+The backend APIs are documented using Swagger and tested with Postman.
+
+## Project Purpose
+
+This project was developed during my software development internship to strengthen my understanding of full-stack development, database design, REST API implementation, authentication, and frontend-backend integration.
+
+## Author
+
+Ibrahim Abusham
+
+GitHub: https://github.com/ibabusham
